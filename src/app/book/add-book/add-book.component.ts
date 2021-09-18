@@ -16,7 +16,8 @@ export class AddBookComponent implements OnInit{
   // images: File[] = [];
   // imgFile: File;
   filePaths: string[] = [];
-
+  
+  
   addAdsForm: FormGroup = new FormGroup({
     'title': new FormControl("",Validators.required),
     'author': new FormControl(""),
@@ -33,6 +34,7 @@ export class AddBookComponent implements OnInit{
   selectedFile = null;
 
   ngOnInit() {
+    console.log("cia");
     if (this.authService.user.value.role === "LIBRERIA") {
       this.addAdsForm.get('author').setValidators(Validators.required);
       this.addAdsForm.get('year').setValidators(Validators.required);
