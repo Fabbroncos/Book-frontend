@@ -1,0 +1,562 @@
+<style>
+  .collapsing.width {
+  position: relative;
+  overflow: hidden;
+  width: 0;
+  height: auto;
+  -webkit-transition-duration: 0.35s;
+  transition-duration: 0.35s;
+
+  transition: width 0.35s ease;
+}
+
+/* .btn {
+  background-color: #343a40;
+} */
+
+a, a:visited, a:link {
+ color: lightgray;
+}
+
+.btn:hover {
+  background-color: #474f58;
+}
+
+.box {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  flex-direction: row;
+}
+.box-column {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  flex-direction:column;
+}
+
+@media(max-width: 540px) {
+    .cia {
+      z-index: 10;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+  }
+</style>
+
+<div class="d-flex w-100" style="position: relative;">
+  <!-- <div #sidebar class="bg-dark collapse width  p-0" id="sidebarSupportedContent">
+    <div style="">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">
+            Cerco - Vendo
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            Anno
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            prezzo
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            Nome
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            Editore
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            Autore
+          </a>
+        </li>
+      </ul>
+      <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        <span>Generi</span>
+        <a class="d-flex align-items-center text-muted" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+        </a>
+      </h6>
+      <ul class="nav flex-column mb-2">
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            genere 1
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            genere 2
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            genere 3
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class=" p-0">
+    <button (click)="open = !open" type="button" class="btn bg-dark" style="color: white; border: 0; box-shadow: none;  border-radius: 0; float: left; height: fit-content;" type="button" data-toggle="collapse" data-target="#sidebarSupportedContent" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+      <svg style="pointer-events: none;" *ngIf="!open" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+        <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+      </svg>
+      <svg style="pointer-events: none;" *ngIf="open" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+      </svg>
+    
+    </button>
+  </div> -->
+  <!-- <div class=" mx-auto p-0">
+    <div class="mx-auto list-group-item p-0" style="height: 100px; max-width: 800px; border: none;">
+      <div class="row p-2 p-sm-0 h-100">
+        <div class="h-100 col-3 col-sm-2 p-0">
+          <div class="h-100 d-flex justify-content-center" style="overflow: hidden; background-color: rgba(200, 200, 200, 0.60);">
+            <img class="h-100" src="http://159.89.30.229:3000/api/v1/adImages/{{bookss[8].images[0].url}}" alt="{{ bookss[0].title }}">
+          </div>
+        </div>
+        <div class="box-column col-9 col-sm-9 p-0">
+          <div class="p-2" style="flex: 1 1 auto; overflow: hidden;">
+            
+            <p class="text-truncate">
+              <b>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis ac tortor ac aliquam. Sed ultrices sem dolor, ac finibus diam volutpat quis. Nunc cursus posuere felis vel consectetur. Proin elementum diam in purus posuere ultrices nunc.
+              </b>
+            </p>
+
+          </div>
+          <div class="row px-1">
+            <div class="px-1 col-12 col-sm-9 d-none d-sm-block">
+              <small class="d-inline">Christelle Dabos</small> -
+              <small class="d-inline">Mondadori</small>
+            </div>
+          </div>
+          <div class="row p-1" style="flex: 0 0 auto;">
+            
+            <!-- <div class="bg-danger col-12 col-sm-9 d-none d-sm-block">
+              <p class="d-inline">Christelle Dabos</p> 
+              <p class="ml-2 d-inline">Mondadori</p>
+            </div> -->
+            <!-- <div class="d-none d-sm-block col-4">Mondadori</div> ->
+            <div class=" text-right col mr-2">19.99€</div>
+          </div>
+        </div>
+        <div class="d-none d-sm-block col-sm-1 bg-warning p-0">
+          <div class="row h-100">
+            <div class="mb-auto col-12 d-flex justify-content-center">
+              2010
+            </div>
+            <div class="col-12 mt-auto d-flex justify-content-center">
+              <strong style="color: green;">vendo</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-danger">cia</div>
+    </div>
+  </div> -->
+  
+<!-- <style>
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css);
+
+.widget {
+  position: absolute;
+  background-color: red;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  height: 120px;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  flex-wrap: wrap;
+  cursor: pointer;
+  border-radius: 20px;
+  box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
+}
+/* .widget*/ .weatherIcon{ 
+  flex: 0 0 25%;
+  height: 100%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background: #FAFAFA;
+  font-family: weathericons;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 100px;   
+}
+/* .widget*/ .weatherIcon i{
+  padding-top: 30px;
+}
+/* .widget*/ .weatherInfo{
+  flex: 1 1 auto;
+  height: 100%;
+  background: #080705;
+  display: flex;
+  color: white;
+  flex-direction: column;
+}
+.widget .weatherInfo .temperature{
+  flex: 0 0 50%;
+  height: 50%;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+.widget .weatherInfo .description{
+  flex: 0 50%;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  justify-content: center;
+}
+.widget .weatherInfo .description .weatherCondition{
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 100;
+}   
+.widget .weatherInfo .description .place{
+  font-size: 15px;
+}
+/* .widget*/ .date{
+  flex: 0 0 auto;
+  height: 100%;
+  background: #70C1B3;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+}
+p{
+  position: fixed;
+  bottom: 0%;
+  right: 2%;
+}
+p a{
+  text-decoration: none;
+  color: #E4D6A7;
+  font-size: 10px;
+}
+</style> -->
+  
+
+<div class="d-flex flex-row cia">
+  <div class="d-flex flex-row" style="position: relative;">
+    <div class="bg-dark">
+      <div class="collapse collapse-horizontal" id="collapseWidthExample">
+        <ul class="nav nav-pills flex-column mb-auto" style="width: 200px;">
+          <li class="justify-content-center d-flex">
+            <div>
+              <strong class="fs-4 nav-link d-inline p-1" style="color: green;">
+                Vendo
+              </strong>
+              <strong class="fs-4 nav-link d-inline p-1" style="color: orange;">
+                Cerco
+              </strong>
+            </div>
+          </li>
+          <hr style="color: lightgray;">
+          <li class="p-2" style="color: lightgray;">
+            <input class="form-control" type="text" placeholder="Ordina per...">
+          </li>
+          <li class="p-2">
+            <input class="form-control" type="text" placeholder="Titolo...">
+          </li>
+          <li class="p-2" style="color: lightgray;">
+            <input class="form-control" type="text" placeholder="Autore...">
+          </li>
+          <li class="p-2" style="color: lightgray;">
+            <input class="form-control" type="text" placeholder="Editore...">
+          </li>
+          <li class="p-2" style="color: lightgray;">
+            <input class="form-control" type="text" placeholder="Anno...">
+          </li>
+          <li class="p-2" style="color: lightgray;">
+            <input class="form-control" type="text" placeholder="Genere...">
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button (click)="open = !open" type="button" class="btn collapsed" style="z-index: 100; box-shadow: none; position: absolute; right: -60px; top: 5px; color: white; background: none; border: none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+    
+      <svg style="pointer-events: none; filter: drop-shadow( 0px 0px 4px rgba(200, 200, 200, .7));" *ngIf="!open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+      </svg>
+      <svg style="pointer-events: none; filter: drop-shadow( 0px 0px 4px rgba(200, 200, 200, .7));" *ngIf="open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<div class="w-100 d-block d-sm-flex justify-content-center" style="min-width: 0; position: relative;">
+  <!-- <button (click)="open = !open" type="button" class="btn collapsed" style="z-index: 100; box-shadow: none; position: absolute; left: 5px; top: 5px; color: rgb(45, 45, 45); background: none; border: none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+    
+    <svg style="pointer-events: none;" *ngIf="!open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+    </svg>
+    <svg style="pointer-events: none;" *ngIf="open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+    </svg>
+  </button> -->
+  <div class="h-100 w-100 d-sm-none" *ngIf="open" style="position: absolute; background-color: rgba(0, 0, 0, 0.9);"></div>
+  <div class="col-12 col-sm-8 p-3">
+    <h1 style="font-family: cursive;" class="text-center text-light">{{ listType }}</h1>
+    <hr>
+    <app-book-list-item-component *ngFor="let book of bookss" [book]="book"></app-book-list-item-component>
+  </div>
+  <!-- <app-book-list-item-component *ngFor="let book of bookss" [book]="book"></app-book-list-item-component> -->
+  
+
+  <!-- <style>
+    .flex-parent {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      margin: 30px 0;
+    }
+    .long-and-truncated-with-child-corrected {
+    flex: 0 1 40%;
+    min-width: 0;
+    /* or some value */
+  }
+  .long-and-truncated-with-child-corrected h5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  </style> -->
+  
+    <!-- <div class="p-0" style="height: 120px; max-width: 900px;
+    border-radius: 20px;
+    display: flex;
+      align-items: center;
+      padding: 10px;
+      margin: 30px 0;
+    background: linear-gradient(135deg, lightgray 0%, white 75%, orange);">
+      <div class="h-100" 
+      style="
+        overflow: hidden;
+        flex: 0 0 25%;
+        height: 100%;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        font-family: weathericons;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        font-size: 100px;">
+        <div class="h-100 d-flex justify-content-center" style="overflow: hidden; background-color: rgba(200, 200, 200, 0.60);">
+          <img class="h-100" src="http://159.89.30.229:3000/api/v1/adImages/{{bookss[4].images[0].url}}" alt="{{ bookss[0].title }}">
+        </div>
+      </div>
+      <div class="" 
+      style="
+      min-width: 0;
+      flex: 1 1 auto;
+      height: 100%;
+      display: flex;
+      flex-direction: column;">
+        <div class="long-and-truncated-with-child-corrected d-flex align-items-end px-2">
+          <h5>{{ bookss[9].title }}</h5>
+        </div>
+        <div class="h-50 px-2" style="flex: 0 1 25%;">
+          <p class="d-inline" style="position: initial;">{{ bookss[9].author }}</p>
+          <div class="d-inline">
+            - <p class="d-inline" style="position: initial;">{{ bookss[9].publisher }}</p> 
+          </div>
+        </div>
+        <div class="h-50 px-2" style="flex: 0 1 25%;">
+          <p class="d-flex justify-content-end" style="position: initial;">19.99€</p>
+        </div>
+      </div>
+      <div 
+      style="
+      flex: 0 0 auto;
+      height: 100%;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      flex: 1 1 auto;
+      height: 100%;
+      display: flex;
+      flex-direction: column;">
+        <div class="h-50 px-2" style="flex: 0 1 25%;">
+          <p class="d-inline" style="position: initial;">2012</p>
+        </div>
+        <div class="h-50 px-2" style="flex: 0 1 25%;">
+          <span class="" style=" color:tomato;"> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-binoculars" viewBox="0 0 16 16">
+              <path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z"/>
+            </svg>
+          </span>
+          <span class="d-none" style=" color: green;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
+              <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
+              <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z"/>
+              <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+      
+    </div> -->
+ 
+
+  <!-- <article class="widget">
+    <div class="weatherIcon"><i class="wi wi-day-cloudy"></i></div>
+    <div class="weatherInfo">
+      <style>
+        .long-and-truncated {
+          flex: 1;
+
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      </style>
+      <div class="temperature">
+
+        <div class="long-and-truncated">
+          {{ bookss[9].title }} {{ bookss[9].title }} {{ bookss[9].title }}
+        </div>
+        
+      </div>
+      <!- <div class="temperature"><span class="">{{ bookss[9].title }} {{ bookss[9].title }}</span></div> ->
+      <div class="description">    
+        <div class="weatherCondition">CLOUDY</div>    
+        <div class="place">New York</div>
+      </div>
+    </div>
+    <div class="date">1st Jan</div>
+  </article>
+  
+  <p><a href="https://codepen.io/nerios/full/jWjmby/">Inspired by: https://codepen.io/nerios/full/jWjmby/. Implemented using FlexBox.</a>
+  </p> -->
+</div>
+
+</div>
+
+<!-- <div class="box" style="background-color: cyan;">
+  <div class="box" style="background-color: sienna;">
+    <div #sidebar class="bg-dark collapse width" style="flex: 0 0 auto;" id="sidebarSupportedContent">
+    <div style="width: 200px;">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">
+            Cerco - Vendo
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            Anno
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            prezzo
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            Nome
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            Editore
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            Autore
+          </a>
+        </li>
+      </ul>
+      <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        <span>Generi</span>
+        <a class="d-flex align-items-center text-muted" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+        </a>
+      </h6>
+      <ul class="nav flex-column mb-2">
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            genere 1
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            genere 2
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            genere 3
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div style="flex: 0 0 auto;">
+    <button (click)="open = !open" type="button" class="btn bg-dark" style="color: white; border: 0; box-shadow: none;  border-radius: 0; float: left; height: fit-content;" type="button" data-toggle="collapse" data-target="#sidebarSupportedContent" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+      <svg style="pointer-events: none;" *ngIf="!open" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+        <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+      </svg>
+      <svg style="pointer-events: none;" *ngIf="open" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+      </svg>
+    
+    </button>
+  </div>
+  <div class="bg-secondary" style="flex: 1 1 auto;">
+    <div class="mx-auto" style="max-width: 800px;">
+      <div class="row p-2 p-sm-0" style="height: 100px;">
+        <div class="h-100 col-3 col-sm-2 p-0">
+          <div class="h-100 d-flex justify-content-center" style="overflow: hidden; background-color: rgba(200, 200, 200, 0.60);">
+            <img class="h-100" src="http://159.89.30.229:3000/api/v1/adImages/{{bookss[8].images[0].url}}" alt="{{ bookss[0].title }}">
+          </div>
+        </div>
+        <div class="bg-success box-column col-9 col-sm-9 p-0">
+          
+          <div class="row bg-primary text-truncate" style="flex: 1 1 auto; overflow: hidden;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis ac tortor ac aliquam. Sed ultrices sem dolor, ac finibus diam volutpat quis. Nunc cursus posuere felis vel consectetur. Proin elementum diam in purus posuere ultrices nunc.
+            
+            <!- <p class="bg-danger h-100" style="">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis ac tortor ac aliquam. Sed ultrices sem dolor, ac finibus diam volutpat quis. Nunc cursus posuere felis vel consectetur. Proin elementum diam in purus posuere ultrices nunc.
+            </p> ->
+
+          </div>
+          <div class="row bg-danger" style="flex: 0 0 auto;">
+            
+            <!- <div class="col-6">Christelle Dabos</div>
+            <div class="col-4">Mondadori</div>
+            <div class="col-2">19.99€</div> ->
+          </div>
+        </div>
+        <div class="d-none d-sm-block col-sm-1 bg-warning p-0">year</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div> -->

@@ -1,0 +1,14 @@
+
+<div class="form-group mb-0" (scroll)="onScroll()" style="position: relative;">
+  <div class="form-control valueText" [ngClass]="{'disabled': disabled, 'invalid': form.invalid && form.touched}" tabindex="0" (blur)="onTouched()" #toggleElement role="button"  id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <p>
+      {{ valueText }}
+    </p>
+    <span class="dropdown-toggle"></span>
+  </div>
+  <div class="dropdown-menu drop " #dropdownElement aria-labelledby="dropdownMenuLink" style="min-width: 0;">
+    <a class="dropdown-item btn" [ngClass]="{'activeItem': value.includes(item)}" #itemOption *ngFor ="let item of list" (click)="onToggleCheck(item, $event); "> <!--$event.stopPropagation()-->
+      <p style="display: inline;">{{ setOptionText(item) }}</p>
+    </a>
+  </div>
+</div>

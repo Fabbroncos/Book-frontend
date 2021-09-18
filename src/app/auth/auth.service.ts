@@ -1,0 +1,276 @@
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { EmailValidator } from "@angular/forms";
+import { Router } from "@angular/router";
+import { BehaviorSubject, throwError } from "rxjs";
+import { catchError, exhaust, exhaustMap, map, take, tap } from "rxjs/operators";
+import { User } from "../account/user.model";
+
+export interface AuthResponseData {
+  data: string;
+  message: string;
+}
+
+export interface UserData {
+  id: number,
+  role: string,
+  token: string,
+  exp: number
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  userData = new BehaviorSubject<UserData>(null);
+  //userData: UserData;
+  user = new BehaviorSubject<User>(null);
+
+  url = "65.108.49.43"
+
+  private tokenExpirationTimer: any;
+
+  constructor(private http: HttpClient, private router: Router) {}
+  
+  parseJwt(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+  };
+
+  register(role,email,password,passwordConfirm){
+    return this.http.post(
+      `http://${this.url}/api/v1/auth/register`,
+      {
+        role: role,
+        email: email,
+        password: password,
+        passwordConfirm: passwordConfirm
+      }
+    )
+  }
+
+  login(email: string, password: string) {
+    return this.http.post/*<AuthResponseData>*/(
+      `http://${this.url}/api/v1/auth/login`,
+      {
+        email: email,
+        password: password
+      }
+    ).pipe(
+      tap(
+        (resData: AuthResponseData) => {
+          const data = this.parseJwt(resData.data);
+          
+          const userData = {
+            id: data.id,
+            role: data.role,
+            token: resData.data,
+            exp: data.exp,
+          };
+          this.userData.next(userData);
+          
+          const expirationDuration = (new Date(userData.exp).getTime()*1000) - new Date().getTime();
+          this.autoLogout(expirationDuration)
+
+          localStorage.setItem('userData',JSON.stringify(userData));
+          // this.loadUser();
+        },
+      ),
+      take(1),
+      exhaustMap(value => {
+        return this.loadUser();
+      })
+    )
+  }
+  
+  loadUser(){
+    return this.http.get(
+      `http://${this.url}/api/v1/users/${this.userData.value.id}`,
+      {
+        headers: {
+          'Authorization': `${this.userData.value.token}`
+        }
+      }
+    ).pipe(
+      tap(
+        resData=> {
+          const expirationDate = new Date(+this.userData.value.exp*1000);
+          const loadedUser = new User(
+            this.userData.value.id,
+            resData['data'].role,
+            resData['data'].email,
+            resData['data'].user_infos ? resData['data'].user_infos : null,
+            resData['data'].library_infos ? resData['data'].library_infos : null,
+            resData['data'].province_id,
+            resData['data'].city,
+            resData['data'].zip_code,
+            resData['data'].street_address_1,
+            resData['data'].street_address_2,
+            this.userData.value.token,
+            expirationDate
+          )
+          this.user.next(loadedUser);
+          console.log(resData);
+          
+          localStorage.setItem('userDetail', JSON.stringify(loadedUser))
+          
+        } 
+      )
+    )
+  }
+
+  autoLogin() {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    
+    if (!userData) {return;}
+
+    if (!userData.exp || new Date() > new Date(userData.exp*1000)) {return;}
+
+    if (userData.token) {
+      this.userData.next(userData);
+      const userJSON = JSON.parse(localStorage.getItem('userDetail'));
+      
+      if (userJSON) {
+        const user = new User(
+          userJSON.id,
+          userJSON.role,
+          userJSON.email,
+          userJSON.userInfos,
+          userJSON.libraryInfos,
+          userJSON.provinceId,
+          userJSON.city,
+          userJSON.zipCode,
+          userJSON.streetAddress1,
+          userJSON.streetAddress2,
+          userData.token,
+          new Date(+userData.exp*1000)
+        );
+        this.user.next(user);
+      }
+      const expirationDuration = (new Date(userData.exp).getTime()*1000) - new Date().getTime();
+      this.autoLogout(expirationDuration)
+    }
+  }
+
+  logout() {
+    console.log("LOGOUT");
+    this.user.next(null);
+    this.userData.next(null);
+    localStorage.removeItem('userData');
+    localStorage.removeItem('userDetail');
+    this.router.navigate(['/insertion']);
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+    }
+    this.tokenExpirationTimer = null;
+  }
+
+  autoLogout(expirationDuration: number){
+    this.tokenExpirationTimer = setTimeout(
+      ()=>{
+        this.logout();
+      },
+      expirationDuration);
+  }
+
+  changePassword(password: string, newPassword: string, newPasswordConfirm: string) {
+    return this.http.post(
+      'http://161.35.18.65:3000/api/v1/auth/change-password',
+      {
+        password: password,
+        passwordNew: newPassword,
+        passwordConfirm: newPasswordConfirm
+      },
+      {
+        headers: {
+          "Authorization": `${this.user.value.token}`
+        }
+      }
+    )
+  }
+
+  confirmAccount(token: string){
+    return this.http.get(
+      `http://${this.url}/api/v1/auth/confirm-account/${token}`,
+      {
+        headers: {
+          data: `Bearer ${token}`
+        }
+      }
+    )
+    // .pipe(
+    //   catchError(this.handleError)
+    // )
+  }
+
+  // handleAuthentication(/*email: string, password: string,*/token: string) {
+  //   const tokenData = this.parseJwt(token);
+  //   const expirationDate = new Date(+tokenData.exp*1000);
+
+  //   this.http.get(
+  //     `http://161.35.18.65:3000/api/v1/users/${tokenData.id}`,
+  //     {
+  //       headers: {
+  //         'Authorization': `${token}`
+  //       }
+  //     }
+  //   ).subscribe(
+  //     resData=> {
+  //       const loadedUser = new User(
+  //         tokenData.id,
+  //         resData['data'].role,
+  //         resData['data'].email,
+  //         resData['data'].user_infos ? resData['data'].user_infos : null,
+  //         resData['data'].library_infos ? resData['data'].library_infos : null,
+  //         resData['data'].province_id,
+  //         resData['data'].city,
+  //         resData['data'].zip_code,
+  //         resData['data'].street_address_1,
+  //         resData['data'].street_address_2,
+  //         token,
+  //         expirationDate
+  //       )
+  //       this.user.next(loadedUser);
+  //       if (!localStorage.getItem('userData')) {
+  //         console.log("USERDATA SAVED");
+  //         localStorage.setItem('userData',JSON.stringify(loadedUser));
+  //       }
+  //     }   
+  //   )
+  // }
+
+  // private loadUser(password: string, token: string, expirationDate: Date){
+  //   console.log(this.parseJwt(token));
+  //   const tokenData = this.parseJwt(token);
+    
+      
+  // }
+
+
+  // private handleError(errorResponse: HttpErrorResponse) {
+  //   console.log(errorResponse);
+  //   let errorMessage: string = "Unknow error occurred!";;
+  //   if (!errorResponse.error || !errorResponse.error.error ) {
+  //     return throwError(errorMessage);
+  //   }
+  //   switch (errorResponse.error.error.message) {
+  //   case "EMAIL_EXISTS":
+  //     errorMessage = "This email exists already";
+  //     break;
+  //   case "EMAIL_NOTFOUND":
+  //     errorMessage = "This email does not exist.";
+  //     break;
+  //   case "INVALID_PASSWORD":
+  //     errorMessage = "The password is not correct";
+  //     break;
+  //   }
+  //   return throwError(errorMessage);
+  // }
+}
+
+

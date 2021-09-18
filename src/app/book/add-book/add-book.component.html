@@ -1,0 +1,148 @@
+<style>
+  input.ng-invalid.ng-touched,
+  textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+</style>
+
+<div class="container-form p-4 my-3 me-5" style="border-bottom-right-radius: 60px; border-top-right-radius: 60px;">
+  <h3>Inserisci le informazioni sul Libro</h3>
+  <hr>
+  <form [formGroup]="addAdsForm" (ngSubmit)="onSubmit()">
+    <div class="row m-0">
+      <div class="col-8">
+        <div class="form-group">
+          <label for="title">Titolo:</label>
+          <input type="text" name="title" class="form-control" formControlName="title">
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <label for="author">Autore:</label>
+          <input type="text" name="author" class="form-control" formControlName="author">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="genre">Genere:</label>
+          <app-multiple-select-component [form]="addAdsForm.get('genre')" name="genre" [list]="genres" stringAttribute="name" [multiple]="true" formControlName="genre"></app-multiple-select-component>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group">
+          <label for="publisher">Editore:</label>
+          <input type="text" name="publisher" class="form-control" formControlName="publisher">
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="form-group">
+          <label for="year">Anno:</label>
+          <style>
+            
+          </style>
+          <app-multiple-select-component [form]="addAdsForm.get('year')" name="year" [list]="years" formControlName="year"></app-multiple-select-component>
+        </div> 
+      </div>
+      
+        
+      <div class="col-md-6 box">
+        
+        
+      
+      <!-- <app-custom-input-file-component></app-custom-input-file-component> -->
+      <style>
+        .box {
+          display: flex;
+          flex-flow: column;
+        }
+
+        .box .content {
+          flex: 1 1 auto;
+        }
+      </style>
+      
+      <!-- <div class="form-group" style="height: 200px;">
+          <div class="form-control" style="height: 200px;">
+            <div class="row">
+              <div *ngFor="let filePath of filePaths" class="col-xs-12 d-flex align-items-center" style="background-color: gray; border: 1px solid cyan; height: 110px; width: 110px; margin: 10px;">
+                <img  [src]="filePath" style="max-height: 100px; max-width: 100px; margin: auto;">
+              </div>
+            </div>
+            <div >
+              
+            </div>
+
+          </div>
+        
+      </div> -->
+      
+    </div>
+    </div>
+    <div class="row m-0">
+      <div class="col-12">
+        <div class="form-group content box">
+          <label for="inputImage">Immagini:</label>
+          <div class="content">
+            <!-- <input type="file" formControlName="image" (change)="handleFileInput($event.target.files)"> -->
+            <app-custom-input-file-component [form]="addAdsForm.get('image')" formControlName="image"></app-custom-input-file-component>
+          </div>
+          <!-- <div class="custom-file" id="inputImage">
+            <input
+              multiple
+              (change)="imagePreview($event)"
+              #imgInput 
+              type="file" 
+              accept="image/*" 
+              class="custom-file-input" 
+              id="imgInp" 
+              formControlName="image"
+              data-show-caption="true" 
+              data-show-upload="false">
+            <label  class="custom-file-label" for="imgInp">
+              Choose file
+              
+            </label>
+          </div> -->
+        </div>
+      </div>
+
+    </div>
+    <div class="row m-0">
+      <div class="col-8">
+        <div class="form-group">
+          <label for="description">Descrizione</label>
+          <textarea 
+            type="text"
+            id="description"
+            class="form-control"
+            rows="4"
+            formControlName="description"
+            style="resize: none;"></textarea>
+        </div>
+      </div>
+      <div class="col-4 d-flex flex-column">
+        <div class="form-group">
+          <label for="isbn">ISBN:</label>
+          <input type="text" name="isbn" class="form-control" formControlName="isbn">
+        </div>
+        <div class="d-flex mt-auto">
+          <div class="form-group me-1" style="flex: 1 auto">
+            <label for="quantity">Quantità:</label>
+            <input type="text" name="quantity" class="form-control" formControlName="quantity">
+          </div>
+          <div class="form-group ms-1" style="flex: 1 auto">
+            <label for="price">Prezzo:</label>
+            <input type="text" name="price" class="form-control" formControlName="price">
+          </div> 
+        </div>
+      </div>
+      
+    </div>
+    
+    
+    <hr>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-orange">Conferma</button>
+    </div>
+  </form>
+</div>

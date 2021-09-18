@@ -1,0 +1,147 @@
+div.form-container:focus {
+  border-color: #ff8615;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px #ff8615;
+}
+
+/* .disabled {
+  pointer-events: none;
+  background-color: #e9ecef;
+  opacity: 1;
+  cursor:default;
+} */
+
+.imageFrame {
+  background-color: rgba(161, 62, 62, 0.10);
+  border: 1px solid #ff8615; 
+  height: 110px; width: 110px; 
+  margin: 10px;
+  float: top;
+  display: inline;
+
+  background-clip: padding-box;
+  border-radius: .50rem;
+}
+
+
+.custom-file {
+  width: 100%;
+}
+
+.form-container {
+  /* height: 250px; */
+  height: 100%;
+  flex: 1 1 auto;
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  /* pointer-events: none; */
+
+  display:flex;
+  flex-direction:column;
+  
+}
+
+.inputGroup {
+  width: 100%;
+  height: auto;
+  display:inline-flex;
+  border: none;
+  float: top;
+}
+
+.imageContainer {
+  width: 100%;
+  float: top;
+  display: flex;
+  overflow: hidden;
+  overflow-y: auto;
+  flex:1;
+}
+
+.imageContainer .row {
+  height:auto;
+  width: 100%;
+  margin: 0;
+}
+
+label {
+  border: none;
+}
+
+.form-group {
+  margin-top: 50px;
+}
+
+.custom-file-input ~ .custom-file-label::after {
+  content: "Scegli";
+  background-color: #ff8615;
+  height: 100%;
+}
+
+.custom-file-input:focus ~ .custom-file-label {
+  border: none;
+  border-bottom: 1px solid #ced4da;
+  box-shadow:none;
+}
+
+div .custom-file-input ~ .custom-file-label {
+  pointer-events: auto;
+}
+
+.imageFrameAdd {
+  background-color: rgba(161, 62, 62, 0.10);
+  border: 1px solid #ff8615; 
+  height: 110px; width: 110px; 
+  margin: 10px;
+  float: top;
+  display: inline;
+
+  background-clip: padding-box;
+  border-radius: .50rem;
+}
+
+div.imageContainer {
+  pointer-events: auto;
+}
+
+div.imageFrame,
+div.imageFrameAdd {
+  pointer-events: auto;
+}
+
+div.imageFrameAdd {
+  pointer-events: auto;
+  background: none;
+  border: none;
+}
+#imgPlus {
+  color: #ff8615;
+  display: none;
+}
+
+div.imageFrameAdd span{
+  visibility: hidden;
+  color: #ff8615;
+}
+
+div.imageContainer:hover .imageFrameAdd{
+  /* visibility: visible; */
+  visibility: visible;
+  background-color: rgba(161, 62, 62, 0.10);
+  border: 1px solid #ff8615; 
+  height: 110px; width: 110px; 
+  margin: 10px;
+  float: top;
+  display: inline;
+
+  background-clip: padding-box;
+  border-radius: .50rem;
+}
+
+div.imageContainer:hover #imgPlus {
+  display: block;
+}
+
+div.imageContainer:hover .imageFrameAdd span{
+  visibility: visible;
+}

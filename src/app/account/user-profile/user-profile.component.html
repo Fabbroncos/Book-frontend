@@ -1,0 +1,56 @@
+<style>
+  strong {
+    right: 0;
+    top: 0;
+    margin-right: 10px;
+    margin-top: 5px;
+    position: absolute;
+  }
+
+  .row {
+    margin: 0;
+  }
+</style>
+  <!-- <div class="row justify-content-end h-100 p-3 p-md-4 p-lg-5">
+    <div class="col-10 col-md-7"> -->
+      <div class="p-3">
+        <div class="row">
+          <div class="col-12 container-form p-4">
+            <h1 *ngIf="user.role=='ACQUIRENTE'">{{ user.username }} {{ user.userInfos.last_name }}</h1>
+            <h1 *ngIf="user.role=='LIBRERIA'">Libreria {{ user.username }}</h1>
+            <h4>{{ user.email }}</h4>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-12 container-form p-4 ">
+            <h4 class=" mb-3 ms-auto">Informazioni</h4>
+            <h5><b>Indirizzo:</b></h5>
+            <h6 style="margin-left: 10px;">{{ user.city }} - {{ user.provinceId }} - {{ user.zipCode }}</h6>
+            <h6 style="margin-left: 10px;">{{ user.streetAddress1 }} - {{ user.streetAddress2 }}</h6>
+            <br>
+            <p style="font-size: larger;"><b>Partita Iva:</b> {{ user.libraryInfos.piva }}</p>
+          </div>
+        </div>
+        <br>
+        <div class="row" *ngIf="user.role=='LIBRERIA'">
+          <div class="col-12 container-form p-4">
+            <h5 class=" mb-3 ms-auto">Descrizione</h5>
+            <p class="m-3">{{ user.libraryInfos.description }}</p>
+          </div>
+        </div>
+      </div>
+    <!-- </div> -->
+    <!-- <div class="col-2 col-md-3">
+      <div class="container-form">
+        <ul class="list-group">
+          <li class="list-group-item">Le mie inserzioni</li>
+          <li class="list-group-item">Aggiungi inserzioni</li>
+          <li class="list-group-item">Modifica profilo</li>
+          <li class="list-group-item">Cambia password</li>
+          <li class="list-group-item">altro 1</li>
+          <li class="list-group-item">altro 2</li>
+        </ul>
+      </div>
+    </div> -->
+  <!-- </div> -->

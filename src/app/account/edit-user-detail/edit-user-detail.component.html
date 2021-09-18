@@ -1,0 +1,103 @@
+  <!-- <div class="row justify-content-end p-3 p-md-4 p-lg-5">
+    <div class="col-10 col-md-7 p-4 container-form"> -->
+      <div class="p-4 container-form">
+        <h1>Modifica Profilo</h1>
+        <hr>
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+          <div class="row" *ngIf="user.role=='ACQUIRENTE'">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="firstname">Nome:</label>
+                <input id="firstname" formControlName="firstname" class="form-control" type="text">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="lastname">Cognome:</label>
+                <input id="lastname" formControlName="lastname" class="form-control" type="text">
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-group" *ngIf="user.role=='LIBRERIA'">
+            <label for="libraryname">Nome Libreria:</label>
+            <input id="libraryname" formControlName="libraryname" type="text" class="form-control">
+          </div>
+  
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" type="email" formControlName="email" class="form-control">
+          </div>
+  
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input id="password" type="password" formControlName="password" class="form-control">
+            <small><a routerLink="/auth/change-password">Change Password</a></small>
+            
+          </div>
+  
+          <div class="form-group" *ngIf="user.role=='LIBRERIA'">
+            <label for="description">Descrizione:</label>
+            <textarea id="description" formControlName="description" class="form-control" rows="4" style="resize: none;"></textarea>
+          </div>
+  
+          <div class="form-group" *ngIf="user.role=='LIBRERIA'">
+            <label for="piva">Partita Iva:</label>
+            <input id="piva" formControlName="piva" class="form-control">
+          </div>
+  
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <label for="streetAddress1">Indirizzo 1:</label>
+                <input class="form-control" id="streetAddress1" formControlName="streetAddress1" type="text">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="streetAddress2">Indirizzo 2:</label>
+                <input class="form-control" id="streetAddress2" formControlName="streetAddress2" type="text">
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="provinces">Provincia:</label>
+                <app-multiple-select-component [list]="provinces" id="provinces" stringAttribute="name" formControlName="provinces"></app-multiple-select-component>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="city">Città:</label>
+                <app-multiple-select-component [list]="city" id="city" stringAttribute="name" formControlName="city"></app-multiple-select-component>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="zipCode">Cap:</label>
+                <input class="form-control" id="zipCode" formControlName="zipCode" type="text" maxlength="5">
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-orange">Conferma</button>
+          </div>
+        </form>
+      </div>
+    <!-- </div> -->
+    <!-- <div class="col-2 col-md-3">
+      <div class="container-form">
+        <ul class="list-group">
+          <li class="list-group-item">Le mie inserzioni</li>
+          <li class="list-group-item">Aggiungi inserzioni</li>
+          <li class="list-group-item">Modifica profilo</li>
+          <li class="list-group-item">Cambia password</li>
+          <li class="list-group-item">altro 1</li>
+          <li class="list-group-item">altro 2</li>
+        </ul>
+      </div>
+    </div> -->
+  <!-- </div> -->

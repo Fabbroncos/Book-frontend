@@ -1,0 +1,85 @@
+.invalid {
+  border: 1px solid red;
+}
+
+.drop {
+  position: absolute;
+  z-index: 1000;
+  float: left;
+  width: 100%;
+  /* width: calc(100% - 30px); */
+  height: auto;
+  max-height: 200px;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  overflow-y: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+}
+
+
+.valueText {
+  color: #999;
+  width: 100%;
+  position: relative;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.valueText p {
+  background-color: rgba(0, 0, 255, 0.00);
+
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+  display: inline;
+  align-items: center;
+  justify-content: space-between;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.valueText span {
+  background-color: rgba(255, 0, 0, 0.0);
+  width: 30px;
+  text-align: center;
+  position: absolute;
+  right: 0;
+}
+
+.show div.valueText,
+div.form-control:focus {
+  border-color: #ff8615;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px #ff8615;
+}
+
+.activeItem {
+  /* background-color: #a6cedf; */
+  background-color: #ff8615;
+}
+
+a:active {
+  background-color: #ff8615;
+}
+
+.activeItem:hover {
+  /* background-color: #68adca; */
+  background-color: hsl(29, 85%, 43%);
+}
+
+.disabled {
+  pointer-events: none;
+  background-color: #e9ecef;
+  opacity: 1;
+  cursor:default;
+  
+}
