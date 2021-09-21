@@ -6,8 +6,7 @@
 
 .box .row.content {
   flex: 1 1 auto;
-  background-color: #cc8010;
-  background: linear-gradient(#cc8010, white);
+  background-color: #242038;
 }
 
 .box .row.footer {

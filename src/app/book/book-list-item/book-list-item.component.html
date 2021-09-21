@@ -34,13 +34,21 @@
   </div>
 </div> -->
 
-<div class="mb-2 p-0" style="height: 120px; 
+
+
+
+
+<div class="m-3 p-0" style="
+    height: 120px;
+    color: lightgray;
     border-radius: 20px;
     display: flex;
     width: 100%;
     max-width: 900px;
+    border: 1px solid lightgray;
+    background: linear-gradient(135deg, #28233D 75%, #3F325C);
     
-    background: linear-gradient(135deg, lightgray 0%, white 75%, orange);">
+    /* background: linear-gradient(135deg, lightgray 0%, white 75%, orange);*/"> 
       <div class="h-100" 
       style="
         overflow: hidden;
@@ -53,8 +61,8 @@
         align-items: center;
         justify-content: space-around;
         font-size: 100px;">
-        <div class="h-100 d-flex justify-content-center" style="overflow: hidden; background-color: rgba(200, 200, 200, 0.60);">
-          <img class="h-100" src="http://65.108.49.43:3000/api/v1/adImages/{{book.images[0].url}}" alt="{{ book.title }}">
+        <div class="w-100 d-flex justify-content-center" style="overflow: hidden; background-color: rgba(200, 200, 200, 0.60);">
+          <img class="w-100 "  src="http://65.108.49.43:3000/api/v1/adImages/{{book.images[0].url}}" alt="{{ book.title }}">
         </div>
       </div>
       <div class="" 
