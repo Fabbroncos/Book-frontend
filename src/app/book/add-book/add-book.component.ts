@@ -13,20 +13,23 @@ import { GenreResolverService } from "../genre-resolver.service";
 export class AddBookComponent implements OnInit{
   years: number[] = [];
   genres: Genre[] = [];
+  role: string = "";
   // images: File[] = [];
   // imgFile: File;
   filePaths: string[] = [];
   
   
   addAdsForm: FormGroup = new FormGroup({
-    'title': new FormControl("",Validators.required),
-    'author': new FormControl(""),
-    'year': new FormControl([]),
-    'publisher': new FormControl(""),
-    'genre': new FormControl([]),
-    'description': new FormControl(""),
-    'image': new FormControl([]),
-    'isbn': new FormControl([])
+    'title': new FormControl(null,Validators.required),
+    'author': new FormControl(null),
+    'year': new FormControl(null),
+    'publisher': new FormControl(null),
+    'genre': new FormControl(null),
+    'description': new FormControl(null),
+    'image': new FormControl(null),
+    'ISBN': new FormControl(null),
+    'quantity': new FormControl(null),
+    'price': new FormControl(null),
   });
 
   constructor (private http: HttpClient, private authService: AuthService, private route: ActivatedRoute, private router: Router) {}
@@ -34,16 +37,19 @@ export class AddBookComponent implements OnInit{
   selectedFile = null;
 
   ngOnInit() {
+    this.role = this.authService.user.value.role;
     if (this.authService.user.value.role === "LIBRERIA") {
       this.addAdsForm.get('author').setValidators(Validators.required);
       this.addAdsForm.get('year').setValidators(Validators.required);
       this.addAdsForm.get('publisher').setValidators(Validators.required);
       this.addAdsForm.get('genre').setValidators(Validators.required);
       this.addAdsForm.get('description').setValidators(Validators.required);
-      this.addAdsForm.get('isbn').setValidators(Validators.required);
+      this.addAdsForm.get('ISBN').setValidators(Validators.required);
       this.addAdsForm.get('image').setValidators(Validators.required);
-      this.addAdsForm.addControl('quantity', new FormControl(1));
-      this.addAdsForm.addControl('price', new FormControl("", Validators.required));
+      this.addAdsForm.get('quantity').setValidators(Validators.required);
+      this.addAdsForm.get('price').setValidators(Validators.required);
+      // this.addAdsForm.addControl('quantity', new FormControl(1, Validators.required));
+      // this.addAdsForm.addControl('price', new FormControl("", Validators.required));
     } else {
     }
 
@@ -103,16 +109,45 @@ export class AddBookComponent implements OnInit{
       console.log("INVALIDO");
     } else {
       const formData = new FormData()
-      for (const image of this.addAdsForm.value['image']) {
-        formData.append('images',image, image.name)
+
+      console.log(Object.keys(this.addAdsForm.value));
+
+      for (const nameValue of Object.keys(this.addAdsForm.value)) {
+        if(this.addAdsForm.value[nameValue]!== null){
+          if (nameValue === "image") {
+            for (const image of this.addAdsForm.value['image']) {
+              formData.append('images',image, image.name)
+            }
+          } else if (nameValue === "genre"){
+            formData.append('genre_id',this.addAdsForm.value['genre'][0].id)
+            
+          } else if (this.addAdsForm.value[nameValue]!== "") {
+            console.log(nameValue);
+            
+            formData.append(nameValue,this.addAdsForm.value[nameValue])
+          }
+        }
       }
-      formData.append('title',this.addAdsForm.value['title'])
-      formData.append('genre_id',this.addAdsForm.value['genre'][0].id)
-      formData.append('description',this.addAdsForm.value['description'])
-      formData.append('year',this.addAdsForm.value['year'])
-      formData.append('author',this.addAdsForm.value['author'])
-      formData.append('publisher',this.addAdsForm.value['publisher'])
-      formData.append('isbn',this.addAdsForm.value['isbn'])
+      
+      console.log(formData.get('genre_id'));
+      
+
+      // if (this.addAdsForm.value['image']!== null) {
+      //   for (const image of this.addAdsForm.value['image']) {
+      //     formData.append('images',image, image.name)
+      //   }
+      // }
+      // formData.append('title',this.addAdsForm.value['title'])
+      // if (this.addAdsForm.value['genre']!==null){
+      //   console.log(this.addAdsForm.value['genre']);
+        
+      //   formData.append('genre_id',this.addAdsForm.value['genre'][0].id)
+      // }
+      // formData.append('description',this.addAdsForm.value['description'])
+      // formData.append('year',this.addAdsForm.value['year'])
+      // formData.append('author',this.addAdsForm.value['author'])
+      // formData.append('publisher',this.addAdsForm.value['publisher'])
+      // formData.append('ISBN',this.addAdsForm.value['ISBN'])
 
       let url = "http://" + this.authService.url + "/api/v1/ads/"
 
@@ -123,6 +158,12 @@ export class AddBookComponent implements OnInit{
       } else {
         url = url + "search"
       }
+
+      
+      console.log(formData.forEach(value=>{console.log(value);
+      }));
+      
+
 
       this.http.post(
         url,
@@ -138,31 +179,30 @@ export class AddBookComponent implements OnInit{
           {
             message: string,
             data: {
-              author: string,
-              created_at: string,
-              deleted_at: string,
-              description: string, 
-              genre: string,
-              hidden: boolean,
-              id: number,
-              publisher: string,
               title: string,
-              updated_at: string,
               user_id: number,
-              year: string
+              description: string,
+              year: string,
+              quantity: number,
+              price: string,
+              isbn: string,
+              author: string,
+              genre: string,
+              publisher: string,
+              deleted_at: string,
+              id: number,
+              hidden: boolean,
+              created_at: string,
+              updated_at: string
             }  
           }
             ) => {
               console.log(resData);
-              this.router.navigate([`/insertion/${resData.data.user_id}/${resData.data.id}`])
+              // this.router.navigate([`/insertion/${resData.data.user_id}/${resData.data.id}`])
         }
       )
 
     }
-
-    console.log(this.addAdsForm.value);
-    console.log(this.filePaths);
-    console.log(this.addAdsForm.value['title']);
     
     
     
@@ -193,5 +233,14 @@ export class AddBookComponent implements OnInit{
   // handleFileInput(files: FileList) {
   //   this.fileToUpload = files.item(0);
   // }
+
+  onCambia() {
+    if (this.role === "LIBRERIA") {
+      this.role = "ACQUIRENTE"
+    } else {
+      this.role = "LIBRERIA"
+
+    }
+  }
 
 }

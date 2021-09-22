@@ -91,9 +91,8 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
   writeValue(value: any[]): void {
     this.value = value;
     this.onChange(this.value);
-    
-    
-    if (this.value.length === 0) {
+    if (this.value===null) {this.valueText = this.defaultText; return}    
+    if (this.value.length=0) {
       this.valueText = this.defaultText
     } else {
       let list: String[] =[];
@@ -118,5 +117,12 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
     console.log(isDisabled);
     
     this.disabled = isDisabled;
+  }
+
+  isIncluded(item): boolean {
+    if (this.value!== null){
+      if (this.value.includes(item)){return true}
+    }
+    return false
   }
 }
