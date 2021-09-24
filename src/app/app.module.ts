@@ -5,8 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BookDetailComponent } from './book/book-detail/book-detail.component';
-import { BookListComponent } from './book/book-list/book-list.component';
+import { AdDetailComponent } from './ads/ad-detail/ad-detail.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -14,22 +13,23 @@ import { ConfirmAccountComponent } from './auth/confirm-account/confirm-account.
 import { RegisterComponent } from './auth/register/register.component';
 import { AccountComponent } from './account/account.component';
 import { FilterPipe } from './utility/filter.pipe';
-import { AddBookComponent } from './book/add-book/add-book.component';
+import { AddAdsComponent } from './ads/add-ads/add-ads.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { MultipleSelectComponent } from './utility/multiple-select/multiple-select.component';
 import { EditUserDetailComponent } from './account/edit-user-detail/edit-user-detail.component';
 import { CustomInputFileComponent } from './utility/custom-input-file-component/custom-input-file-component';
 import { HomeComponent } from './home/home.component';
 import { UserProfileComponent } from './account/user-profile/user-profile.component';
-import { BookListItemComponent } from './book/book-list-item/book-list-item.component';
+import { AdsListItemComponent } from './ads/ads-list-item/ads-list-item.component';
+import { AdsListComponent } from './ads/ads-list/ads-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    BookListComponent,
-    BookDetailComponent,
+    AdsListComponent,
+    AdDetailComponent,
     LoginComponent,
     RegisterComponent,
     ConfirmAccountComponent,
@@ -37,11 +37,11 @@ import { BookListItemComponent } from './book/book-list-item/book-list-item.comp
     AccountComponent,
     UserProfileComponent,
     EditUserDetailComponent,
-    AddBookComponent,
+    AddAdsComponent,
     MultipleSelectComponent,
     CustomInputFileComponent,
     FilterPipe,
-    BookListItemComponent
+    AdsListItemComponent
   ],
   imports: [
     BrowserModule,

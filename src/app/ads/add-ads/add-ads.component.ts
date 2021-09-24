@@ -3,14 +3,13 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
-import { Genre } from "../book.service";
-import { GenreResolverService } from "../genre-resolver.service";
+import { Genre } from "../ad.model";
 
 @Component({
-  selector: 'app-add-book',
-  templateUrl: './add-book.component.html'
+  selector: 'app-add-ads',
+  templateUrl: './add-ads.component.html'
 })
-export class AddBookComponent implements OnInit{
+export class AddAdsComponent implements OnInit{
   years: number[] = [];
   genres: Genre[] = [];
   role: string = "";

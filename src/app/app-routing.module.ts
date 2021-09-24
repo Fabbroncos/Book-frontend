@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConfirmAccountComponent } from './auth/confirm-account/confirm-account.component';
-import { BookDetailComponent } from './book/book-detail/book-detail.component';
-import { BookListComponent } from './book/book-list/book-list.component';
+import { AdDetailComponent } from './ads/ad-detail/ad-detail.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AccountComponent } from './account/account.component';
-import { AddBookComponent } from './book/add-book/add-book.component';
-import { GenreResolverService } from './book/genre-resolver.service';
+import { GenreResolverService } from './ads/genre-resolver.service';
 import { EditUserDetailComponent } from './account/edit-user-detail/edit-user-detail.component';
 import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { ProvincesResolverService } from './auth/provinces-resolver.service';
 import { UserProfileComponent } from './account/user-profile/user-profile.component';
+import { AddAdsComponent } from './ads/add-ads/add-ads.component';
+import { AdsListComponent } from './ads/ads-list/ads-list.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -21,9 +21,9 @@ const routes: Routes = [
   {
     path: 'insertion',
     children: [
-      {path: '', component: BookListComponent},
+      {path: '', component: AdsListComponent},
       // {path: 'newest', component: BookListComponent},
-      {path: ':book-userId/:book-id', component: BookDetailComponent}
+      {path: ':book-userId/:book-id', component: AdDetailComponent}
     ]
   },
   {
@@ -42,9 +42,9 @@ const routes: Routes = [
       {path: '',component: UserProfileComponent},
       {path: 'my-profile',component: UserProfileComponent},
       {path: 'my-profile/edit',component: EditUserDetailComponent, resolve: [ProvincesResolverService]},
-      {path: 'my-insertion',component: BookListComponent},
+      {path: 'my-insertion',component: AdsListComponent},
       // {path: 'my-orders',component: BookListComponent},
-      {path: 'add-book',component: AddBookComponent, resolve: [GenreResolverService]},
+      {path: 'add-book',component: AddAdsComponent, resolve: [GenreResolverService]},
       {path: 'change-password', component:ChangePasswordComponent},
     ]
   }
@@ -52,7 +52,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

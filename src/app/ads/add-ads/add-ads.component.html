@@ -3,6 +3,18 @@
   textarea.ng-invalid.ng-touched {
     border: 1px solid red;
   }
+
+  .container-form {
+    background-color: #2B2541;
+    color: lightgrey;
+    border-color: #9067C6;
+    border-left: none;
+  }
+
+  .btn-purple {
+    background-color: #5A447F;
+    color: lightgray;
+  }
 </style>
 
 <div class="container-form p-4 my-3 me-5" style="border-bottom-right-radius: 60px; border-top-right-radius: 60px;">
@@ -79,8 +91,8 @@
     </div>
     <hr>
     <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-orange">Conferma</button>
-      <button type="button" (click)="onCambia()" class="btn btn-orange">Change</button>
+      <button type="submit" class="btn btn-purple">Conferma</button>
+      <button type="button" (click)="onCambia()" class="btn btn-purple">Change</button>
     </div>
   </form>
 </div>

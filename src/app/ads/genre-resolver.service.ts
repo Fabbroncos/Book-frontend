@@ -3,21 +3,28 @@ import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from "@angular/router";
 import { map } from "rxjs/operators";
 import { AuthService } from "../auth/auth.service";
-import { BookService, Genre } from "./book.service";
+import { Genre } from "./ad.model";
 
 @Injectable({
   providedIn: "root"
 })
 export class GenreResolverService implements Resolve<Genre[]>{
-  constructor(private http: HttpClient, private bookService: BookService, private authService: AuthService) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
   
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.bookService.fetchGenre()
-      .pipe(
-        map((genresData: {message: string, data: []}) => {
-          return genresData.data
-        })
-      );
+    return this.http.get(
+      "http://65.108.49.43/api/v1/genres",
+      {
+        headers: {
+          "Authorization":  this.authService.user.value.token
+        }
+      }
+    )
+    .pipe(
+      map((genresData: {message: string, data: []}) => {
+        return genresData.data
+      })
+    );
   }
 
 }

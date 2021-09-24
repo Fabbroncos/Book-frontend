@@ -1,0 +1,130 @@
+<style>
+  .collapsing.width {
+  position: relative;
+  overflow: hidden;
+  width: 0;
+  height: auto;
+  -webkit-transition-duration: 0.35s;
+  transition-duration: 0.35s;
+
+  transition: width 0.35s ease;
+}
+
+a, a:visited, a:link {
+ color: lightgray;
+}
+
+.btn:hover {
+  background-color: #474f58;
+}
+
+.box {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  flex-direction: row;
+}
+.box-column {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  flex-direction:column;
+}
+
+hr {
+  background-color: lightgray;
+}
+
+@media(max-width: 540px) {
+    .cia {
+      z-index: 10;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+  }
+</style>
+
+<div class="d-flex w-100" style="position: relative;">
+<div class="d-flex flex-row cia">
+  <div class="d-flex flex-row" style="position: relative;">
+    <div class="bg-dark">
+      <div class="collapse collapse-horizontal" id="collapseWidthExample">
+        <ul class="nav nav-pills flex-column mb-auto" style="width: 200px;">
+          <li class="justify-content-center d-flex">
+            <div>
+              <strong class="fs-4 nav-link d-inline p-1" style="color: green;">
+                Vendo
+              </strong>
+              <strong class="fs-4 nav-link d-inline p-1" style="color: orange;">
+                Cerco
+              </strong>
+            </div>
+          </li>
+          <hr style="color: lightgray;">
+          <li class="p-2" style="color: lightgray;">
+            <input class="form-control" type="text" placeholder="Ordina per...">
+          </li>
+          <li class="p-2">
+            <input class="form-control" type="text" placeholder="Titolo...">
+          </li>
+          <li class="p-2" style="color: lightgray;">
+            <input class="form-control" type="text" placeholder="Autore...">
+          </li>
+          <li class="p-2" style="color: lightgray;">
+            <input class="form-control" type="text" placeholder="Editore...">
+          </li>
+          <li class="p-2" style="color: lightgray;">
+            <input class="form-control" type="text" placeholder="Anno...">
+          </li>
+          <li class="p-2" style="color: lightgray;">
+            <input class="form-control" type="text" placeholder="Genere...">
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button (click)="open = !open" type="button" class="btn collapsed" style="z-index: 100; box-shadow: none; position: absolute; right: -60px; top: 5px; color: white; background: none; border: none;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+    
+      <svg style="pointer-events: none; filter: drop-shadow( 0px 0px 4px rgba(200, 200, 200, .7));" *ngIf="!open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+      </svg>
+      <svg style="pointer-events: none; filter: drop-shadow( 0px 0px 4px rgba(200, 200, 200, .7));" *ngIf="open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<div class="w-100 d-block d-sm-flex justify-content-center" style="min-width: 0; position: relative;">
+  <div class="h-100 w-100 d-sm-none" *ngIf="open" style="position: absolute; background-color: rgba(0, 0, 0, 0.9);"></div>
+  <div class="col-12 col-sm-8 p-3">
+    <h1 style="font-family:'Garamond'; font-size: xxx-large;" class="text-center text-light">{{ listType }}</h1>
+    <hr>
+    <app-ads-list-item-component *ngFor="let ad of ads" [ad]="ad"></app-ads-list-item-component>
+    <hr>
+    <div class="m-3 d-flex justify-content-end">
+      <p class="m-2" style="display: inline; color: lightgray;">Page {{page}} of {{last_page}}</p>
+      <style>
+        .disabledLink{
+          pointer-events: none;
+          color: grey;
+        }
+      </style>
+      <a role="button" class="m-2" [ngClass]="{'disabledLink': page==1}" (click)="previousPage()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+      </a>
+      <a class="m-2" role="button" [ngClass]="{'disabledLink': page==last_page}" (click)="nextPage()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+      </a>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
