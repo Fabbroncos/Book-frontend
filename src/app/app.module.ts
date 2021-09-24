@@ -22,6 +22,7 @@ import { HomeComponent } from './home/home.component';
 import { UserProfileComponent } from './account/user-profile/user-profile.component';
 import { AdsListItemComponent } from './ads/ads-list-item/ads-list-item.component';
 import { AdsListComponent } from './ads/ads-list/ads-list.component';
+import { ChatComponent } from './account/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AdsListComponent } from './ads/ads-list/ads-list.component';
     MultipleSelectComponent,
     CustomInputFileComponent,
     FilterPipe,
-    AdsListItemComponent
+    AdsListItemComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

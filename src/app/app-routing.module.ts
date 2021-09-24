@@ -14,6 +14,7 @@ import { ProvincesResolverService } from './auth/provinces-resolver.service';
 import { UserProfileComponent } from './account/user-profile/user-profile.component';
 import { AddAdsComponent } from './ads/add-ads/add-ads.component';
 import { AdsListComponent } from './ads/ads-list/ads-list.component';
+import { ChatComponent } from './account/chat/chat.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -45,6 +46,7 @@ const routes: Routes = [
       {path: 'my-insertion',component: AdsListComponent},
       // {path: 'my-orders',component: BookListComponent},
       {path: 'add-book',component: AddAdsComponent, resolve: [GenreResolverService]},
+      {path: 'chat', component: ChatComponent},
       {path: 'change-password', component:ChangePasswordComponent},
     ]
   }
