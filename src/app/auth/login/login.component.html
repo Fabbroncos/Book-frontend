@@ -1,41 +1,33 @@
+<style>
+  .btn-green {
+    background-color: #4d8682;
+    color: #213937;
+}
+</style>
+
 <div class="row justify-content-center align-items-center h-100 m-0">
   <div class="col-10 col-sm-7 col-md-5">
-    <div class="container-form p-4" style="border-radius: 20px;">
-      <h1>Login</h1>
-      <hr>
-      <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input 
-            type="email" 
-            name="email" 
-            id="email" 
-            class="form-control"
-            ngModel
-            required
-            email>
-        </div>
-        <div class="form-group">
-          <label for="password">password:</label>
-          <input 
-            type="password" 
-            name="password" 
-            id="password" 
-            class="form-control"
-            ngModel
-            required
-            minlength="2"
-            maxlength="16">
-        </div>
-        <div class="d-flex my-3 justify-content-center">
-          <!-- <button type="submit" class="btn btn-orange" [disabled]="!authForm.valid">Conferma</button> -->
-          <button class="w-100 mb-2 btn  btn-orange rounded-4 btn-primary" type="submit">Sign up</button>
-        </div>
-      </form>
-      <hr>
-      <div class="d-flex justify-content-center">
-        <p>Non hai un account? <a routerLink="/auth/register" class="link-orange">clicca qui</a></p>
-      </div>
-    </div>
+  <div class="container-form p-4" style="border-radius: 20px;">
+  <h1 style="color: #3A6562;">Login</h1>
+  <hr>
+  <form novalidate="" class="ng-untouched ng-pristine ng-invalid">
+  <div class="form-group">
+  <label for="email">Email:</label>
+  <input type="email" name="email" id="email" ngmodel="" required="" email="" class="form-control ng-untouched ng-pristine ng-invalid">
   </div>
-</div>
+  <div class="form-group">
+  <label for="password">password:</label>
+  <input type="password" name="password" id="password" ngmodel="" required="" minlength="2" maxlength="16" class="form-control ng-untouched ng-pristine ng-invalid">
+  </div>
+  <div class="d-flex my-3 justify-content-center">
+  <button type="submit" class="w-100 mb-2 btn btn-orange rounded-4 btn-green">Sign up</button>
+  </div>
+  </form>
+  <hr>
+  <div class="d-flex justify-content-center">
+  <p>Non hai un account? <a routerlink="/auth/register" href="/auth/register">clicca qui</a>
+  </p>
+  </div>
+  </div>
+  </div>
+  </div>
