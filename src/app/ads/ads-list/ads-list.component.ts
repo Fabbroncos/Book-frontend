@@ -109,36 +109,36 @@ export class AdsListComponent implements OnInit{
   }
 
   getAds(params?){
-    this.http.get(
-      `http://${this.authService.url}/api/v1/ads/sell`,
-      {
-        params: params
-      }
-    ).subscribe(
-      (resData: {message:string, 
-        data:{
-          data: Ad[],
-          from: number,
-          last_page: number,
-          offset: number,
-          page: string,
-          pageSize: number,
-          to: number,
-          total:number
-        }}) => {
-        this.ads = resData.data.data;
+    // this.http.get(
+    //   `http://${this.authService.url}/api/v1/ads`,
+    //   {
+    //     params: params
+    //   }
+    // ).subscribe(
+    //   (resData: {message:string, 
+    //     data:{
+    //       data: Ad[],
+    //       from: number,
+    //       last_page: number,
+    //       offset: number,
+    //       page: string,
+    //       pageSize: number,
+    //       to: number,
+    //       total:number
+    //     }}) => {
+    //     this.ads = resData.data.data;
 
-        this.total= resData.data.total
-        this.pageSize= resData.data.pageSize
-        this.offset= resData.data.offset
-        this.to= resData.data.to
-        this.last_page= resData.data.last_page
-        this.page= +resData.data.page
-        this.from= resData.data.from
+    //     this.total= resData.data.total
+    //     this.pageSize= resData.data.pageSize
+    //     this.offset= resData.data.offset
+    //     this.to= resData.data.to
+    //     this.last_page= resData.data.last_page
+    //     this.page= +resData.data.page
+    //     this.from= resData.data.from
 
-        console.log(resData);
-      }
-    )
+    //     console.log(resData);
+    //   }
+    // )
   }
 
   nextPage() {

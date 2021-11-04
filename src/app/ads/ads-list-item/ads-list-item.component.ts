@@ -10,8 +10,8 @@ export class AdsListItemComponent implements OnInit{
   @Input('ad') ad: Ad
 
   ngOnInit() {
-    this.ad["type"] = "vendo";
-    this.ad["price"] = "15.99€";
+    // this.ad["type"] = "vendo";
+    // this.ad["price"] = "15.99€";
     
   }
 }
