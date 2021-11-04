@@ -26,7 +26,7 @@ export class AuthService {
   //userData: UserData;
   user = new BehaviorSubject<User>(null);
 
-  url = "65.108.49.43"
+  url = "HTTPS://api.datge.cloud"
 
   private tokenExpirationTimer: any;
 
@@ -56,7 +56,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http.post/*<AuthResponseData>*/(
-      `http://${this.url}/api/v1/auth/login`,
+      `${this.url}/api/v1/auth/login`,
       {
         email: email,
         password: password
@@ -90,7 +90,7 @@ export class AuthService {
   
   loadUser(){
     return this.http.get(
-      `http://${this.url}/api/v1/users/${this.userData.value.id}`,
+      `${this.url}/api/v1/users/${this.userData.value.id}`,
       {
         headers: {
           'Authorization': `${this.userData.value.token}`

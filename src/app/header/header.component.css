@@ -87,19 +87,20 @@ form {
 .dropdown-menu {
   right: 0;
   left: auto;
+  border: 1px solid #243F3D;
 }
 
 .dropdown-item {
-  color: rgba(255,255,255,.5);
+  /* color: rgba(255,255,255,.5); */
 }
 
 .dropdown-item:hover {
-  color: lightgray;
-  background-color: #444a50;
+  color: #3A6562;
+  background-color: #85D5D0;
 }
 
 .dropdown-divider {
-  border-color: black;
+  border-color: #243F3D;
 }
 
 .navbar-brand {
