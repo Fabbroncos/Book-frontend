@@ -1,122 +1,414 @@
-<style>
-  .box {
-    display: flex;
-    flex-flow: column;
-    height: 100%;
-  }
-  
-  .box .row.content {
-    flex: 1 1 auto;
-  }
-  
-  .box .row.footer {
-    flex: 0 1 40px;
-  }
-  </style>
 
-<div class="container p-4 h-100 box">
-  <div class="row">
-    <div class="col-md-12">
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="background-color: rgba(50, 50, 50, 0.5);  background: radial-gradient(#ff8615,rgb(50, 50, 50));">
-        <div class="text-center" 
-          style="
-            color: white;
-            background: black; /* For browsers that do not support gradients */
-            background: linear-gradient(rgba(50, 50, 50, 0.80), rgba(0,0,0,0)); /* Standard syntax */">
-          <h2>Novità</h2>
-        </div>
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="i" *ngFor="let book of books; let i = index" [ngClass] ="{'active': i===0}"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item align-item-center" *ngFor="let book of books; let i = index" [ngClass] ="{'active': i===0}">
-            <img src="{{ book.imgUrl }}" alt="{{ book.title }}" class="img-responsive mx-auto d-block" style="width: auto; height: 100%; max-height: 300px;">
-            <div class="carousel-caption d-none d-md-block" style="left: 0; right: 0; background-color: rgba(50, 50, 50, 0.75);">
-              <h5>{{book.title}}</h5>
-            </div>
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </div>
-  </div>
 
-  <!-- <div class="card card-custom bgi-no-repeat gutter-b" style="height: 175px; background-color: #663259; background-position: calc(100% + 0.5rem) 100%; background-size: 100% auto; background-image: url(/metronic/theme/html/demo2/dist/assets/media/svg/patterns/taieri.svg)">
-    <div class="card-body d-flex align-items-center">
-      <div>
-        <h3 class="text-white font-weight-bolder line-height-lg mb-5">Create SaaS 
-        <br>Based Reports</h3>
-        <a href="#" class="btn btn-success font-weight-bold px-6 py-3">Create Report</a>
-      </div>
+    <div  class="container w-75 p-4 d-flex flex-column">
+    <div  class="row" style="position: relative;">
+    <div  class="col-12">
+    <div  class="text-light px-4 pb-1" style="border-top-left-radius: 10px; border-top-right-radius: 10px; overflow: hidden; background-color: #63BBF3;">
+    <h4  style="display: contents;">Popolari</h4>
     </div>
-  </div> -->
+    </div>
+    <div  class="col-md-12 d-flex flex-row">
+    <div  class="ps-5 pe-2 py-3 col-6 d-flex flex-row" style="height: 250px; position: relative; background-color: #67C5FF; border-bottom-left-radius: 10px;">
+    <div  id="tar1" class="h-100 d-flex justify-content-center align-items-center">
+    <img  class="img-responsive mx-auto d-block" style="width: auto; height: 100%; max-height: 300px;" src="HTTPS://api.datge.cloud/api/v1/adImages/fcf98e3937191d64724bfbf12e932f82" alt="Harry Potter e la pietra filosafale">
+    </div>
+    <div  class="py-2 px-4 text-light flex-grow-1">
+    <p >Attraversa Specchi 4</p>
+    <p >Conan - Salani</p>
+    <p >2014</p>
+    <p  class="text-end w-100">99€</p>
+    </div>
+    </div>
+    <div  class="p-3 col-3" style="height: 250px; position: relative; background-color: #8DD4FF;">
+    <div  class="h-100 w-100 d-flex justify-content-center align-items-center">
+    <img  class="img-responsive mx-auto d-block" style="width: auto; height: 100%; max-height: 300px;" src="HTTPS://api.datge.cloud/api/v1/adImages/f96ea6d5e6cec9eca11af693b279b33b" alt="Harry Potter e la pietra filosafale">
+    </div>
+    <div  class="w-75 text-center text-light" style="background-color: #579CCE; position: absolute; bottom: 20px; margin-left: auto; margin-right: auto; left: 0; right: 0;"> Attraversa Specchi 3 </div>
+    </div>
+    <div  class="p-3 col-3" style="height: 250px; position: relative; background-color: #B3E2FF; border-bottom-right-radius: 10px;">
+    <div  class="h-100 w-100 d-flex justify-content-center align-items-center">
+    <img  class="img-responsive mx-auto d-block" style="width: auto; height: 100%; max-height: 300px;" src="HTTPS://api.datge.cloud/api/v1/adImages/513612d1ed31f1ab3eec96b8686e5e06" alt="Harry Potter e la pietra filosafale">
+    </div>
+    <div  class="w-75 text-center text-light" style="background-color: #579CCE; position: absolute; bottom: 20px; margin-left: auto; margin-right: auto; left: 0; right: 0;"> Attraversa Specchi 2 </div>
+    </div>
+    </div>
+    </div>
+    <div  class="d-flex mt-5">
+    <div  class="d-flex w-100">
+    <div  class="p-0 m-0 row w-100">
+      <style>
+        .genre-box {
+          position: relative;
+          border: 1px solid lightgray;
+          border-radius: 40%;
+          font-size: 1.3vw;
+          width: 12.5%;
+        }
 
-  <div class="row py-3 align-items-center">
-    <div class="col-md-6">
-      <div class="card flex-md-row box-shadow align-items-center p-5" 
-        style="
-        height: 150px; 
-        border: 1px solid white; 
-        color: white;
-        background: rgb(50, 50, 50);
-        background: linear-gradient(to right,rgb(50, 50, 50), #ff8615);">
-        <div class="card-body d-flex flex-column align-items-start">
-          <!-- <strong class="d-inline-block text-primary">utente</strong> -->
-          <h3 class="mb-0">
-            <a>Cerca il tuo libro</a>
-          </h3>
-          <p class="card-text mb-auto">Trova il libro che cerchi.</p>
-        </div>
-      </div>
+        .genre-box:before {
+          content: "";
+          float: left;
+          padding-top: 100%;
+        }
+      </style>
+    <div  class="col-12 p-0 d-flex flex-row align-items-center">
+    <div  class="me-1 genre-box d-flex align-items-center justify-content-center">Giallo</div>
+    <div  class="mx-1 genre-box d-flex align-items-center justify-content-center">Fantasy</div>
+    <div  class="mx-1 genre-box d-flex align-items-center justify-content-center">Horror</div>
+    <div  class="mx-1 genre-box d-flex align-items-center justify-content-center">Fantascienza</div>
+    <div  class="ms-1 genre-box d-flex align-items-center justify-content-center">Rosa</div>
+    <div  class="ms-1 genre-box d-flex align-items-center justify-content-center">Thriller</div>
+    <div  class="ms-1 genre-box d-flex align-items-center justify-content-center">Storico</div>
+    <div  class="ms-1 genre-box d-flex align-items-center justify-content-center">Avventura</div>
     </div>
-    <div class="col-md-6">
-      <div class="card flex-md-row box-shadow align-items-center p-5" style="
-      height: 150px; 
-      border: 1px solid white; 
-      color: white;
-      background: rgb(50, 50, 50);
-      background: linear-gradient(to right,rgb(50, 50, 50), #ff8615);">
-        <div class="card-body d-flex flex-column align-items-start">
-          <h3 class="mb-0">
-            <a>Vendi il tuo libro</a>
-          </h3>
-          <p class="card-text mb-auto">Metti in vendita i libri della tua libreria.</p>
-        </div>
-      </div>
     </div>
-  </div>
-
-  <div class="row content align-items-center">
-    <div class="col-md-12">
-      <div class="card flex-md-row box-shadow align-items-center p-5" 
-        style="
-        height: 150px; 
-        border: 1px solid white; 
-        color: white;
-        background: rgb(50, 50, 50);">
-        <div class="card-body d-flex flex-column text-center">
-          <!-- <strong class="d-inline-block text-primary">utente</strong> -->
-          <h3 class="mb-0 ">
-            <a>Iscriviti</a>
-          </h3>
-        </div>
-      </div>
     </div>
-  </div>
-
-  <!-- <div class="card" style="width: 18rem;">
-    <!- <img class="card-img-top" src="..." alt="Card image cap"> ->
-    <div class="card-body">
-      <h5 class="card-title">Cerca il tuo libro</h5>
-      <!- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> ->
-      <!- <a href="#" class="btn btn-primary">Go somewhere</a> ->
     </div>
-  </div> -->
-</div>
+    </div>
+    <div  class="container w-75 p-0 mt-4 mb-5">
+    <div  class="row">
+    <div  class="col-6">
+    <div  class="card mb-3 w-100">
+    <div  class="row g-0">
+    <div  class="col-md-4">
+    <img  alt="..." class="img-fluid rounded-start" src="HTTPS://api.datge.cloud/api/v1/adImages/102090547ca2d1f5b95480d33e84b40d">
+    </div>
+    <div  class="col-md-8">
+    <div  class="card-body h-100 d-flex flex-column">
+    <h5  class="card-title">Harry Potter e la pietra filosafale</h5>
+    <p  class="card-text">Descrizione del libro Harry Potter</p>
+    <p  class="card-text mt-auto text-end">
+    <small >24€</small>
+    </p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div  class="col-6 p-5 d-flex align-items-end flex-column" style="color: #4D8682;">
+    <h1  style="font-size: 4vw;">Libri Consigliati</h1>
+    <p  style="font-size: 1.5vw;">perditi in queste emozionanti storie</p>
+    </div>
+    <div  class="col-6">
+    <div  class="card mb-3">
+    <div  class="row g-0">
+    <div  class="col-md-4">
+    <img  alt="..." class="img-fluid rounded-start" src="HTTPS://api.datge.cloud/api/v1/adImages/513612d1ed31f1ab3eec96b8686e5e06">
+    </div>
+    <div  class="col-md-8">
+    <div  class="card-body h-100 d-flex flex-column">
+    <h5  class="card-title">Harry Potter e la pietra filosafale</h5>
+    <p  class="card-text">Descrizione del libro Harry Potter</p>
+    <p  class="card-text mt-auto text-end">
+    <small >24€</small>
+    </p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div  class="col-6">
+    <div  class="card mb-3">
+    <div  class="row g-0">
+    <div  class="col-md-4">
+    <img  alt="..." class="img-fluid rounded-start" src="HTTPS://api.datge.cloud/api/v1/adImages/f96ea6d5e6cec9eca11af693b279b33b">
+    </div>
+    <div  class="col-md-8">
+    <div  class="card-body h-100 d-flex flex-column">
+    <h5  class="card-title">Harry Potter e la pietra filosafale</h5>
+    <p  class="card-text">Descrizione del libro Harry Potter</p>
+    <p  class="card-text mt-auto text-end">
+    <small >24€</small>
+    </p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div >
+    <div  class="row m-0 px-5 py-3 w-100 justify-content-center" style="background-color: #D1F1EF;">
+    <div  class="col-11 p-0 d-flex flex-row flex-wrap justify-content-center">
+    <div  class="w-100 px-5 d-flex justify-content-between align-items-center" style="color: #69AEA9;">
+    <h1 >Novità</h1>
+    <a  href="#" style="height: fit-content; color: #69AEA9;">Scopri di più</a>
+    </div>
+    <div  class="w-20 p-3 d-flex justify-content-center" style="height: fit-content; width: 20%;">
+    <div  class="card border-secondary" style="position: relative;">
+    <img  alt="..." class="card-img-top" src="HTTPS://api.datge.cloud/api/v1/adImages/909ec977f5fc85874da910fef3e57d26">
+    <div  style="position: absolute; bottom: 0; left: 0; right: 0; background-color: white;">
+    <div  class="card-body py-2 px-2">
+    <h5  class="card-title text-center text-truncate" style="font-size: 1.3vw;">Harry Potter e la pietra filosafale</h5>
+    </div>
+    <div  class="card-footer d-flex justify-content-between">
+    <small >
+    <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="bi bi-heart">
+    <path  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z">
+    </path>
+    </svg>
+    </small>
+    <small  class="text-center">99€</small>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div  class="w-20 p-3 d-flex justify-content-center" style="height: fit-content; width: 20%;">
+    <div  class="card border-secondary" style="position: relative;">
+    <img  alt="..." class="card-img-top" src="HTTPS://api.datge.cloud/api/v1/adImages/909ec977f5fc85874da910fef3e57d26">
+    <div  style="position: absolute; bottom: 0; left: 0; right: 0; background-color: white;">
+    <div  class="card-body py-2 px-2">
+    <h5  class="card-title text-center text-truncate" style="font-size: 1.3vw;">Harry Potter e la pietra filosafale</h5>
+    </div>
+    <div  class="card-footer d-flex justify-content-between">
+    <small >
+    <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="bi bi-heart">
+    <path  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z">
+    </path>
+    </svg>
+    </small>
+    <small  class="text-center">99€</small>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div  class="w-20 p-3 d-flex justify-content-center" style="height: fit-content; width: 20%;">
+    <div  class="card border-secondary" style="position: relative;">
+    <img  alt="..." class="card-img-top" src="HTTPS://api.datge.cloud/api/v1/adImages/909ec977f5fc85874da910fef3e57d26">
+    <div  style="position: absolute; bottom: 0; left: 0; right: 0; background-color: white;">
+    <div  class="card-body py-2 px-2">
+    <h5  class="card-title text-center text-truncate" style="font-size: 1.3vw;">Harry Potter e la pietra filosafale</h5>
+    </div>
+    <div  class="card-footer d-flex justify-content-between">
+    <small >
+    <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="bi bi-heart">
+    <path  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z">
+    </path>
+    </svg>
+    </small>
+    <small  class="text-center">99€</small>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div  class="w-20 p-3 d-flex justify-content-center" style="height: fit-content; width: 20%;">
+    <div  class="card border-secondary" style="position: relative;">
+    <img  alt="..." class="card-img-top" src="HTTPS://api.datge.cloud/api/v1/adImages/909ec977f5fc85874da910fef3e57d26">
+    <div  style="position: absolute; bottom: 0; left: 0; right: 0; background-color: white;">
+    <div  class="card-body py-2 px-2">
+    <h5  class="card-title text-center text-truncate" style="font-size: 1.3vw;">Harry Potter e la pietra filosafale</h5>
+    </div>
+    <div  class="card-footer d-flex justify-content-between">
+    <small >
+    <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="bi bi-heart">
+    <path  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z">
+    </path>
+    </svg>
+    </small>
+    <small  class="text-center">99€</small>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div  class="w-20 p-3 d-flex justify-content-center" style="height: fit-content; width: 20%;">
+    <div  class="card border-secondary" style="position: relative;">
+    <img  alt="..." class="card-img-top" src="HTTPS://api.datge.cloud/api/v1/adImages/909ec977f5fc85874da910fef3e57d26">
+    <div  style="position: absolute; bottom: 0; left: 0; right: 0; background-color: white;">
+    <div  class="card-body py-2 px-2">
+    <h5  class="card-title text-center text-truncate" style="font-size: 1.3vw;">Harry Potter e la pietra filosafale</h5>
+    </div>
+    <div  class="card-footer d-flex justify-content-between">
+    <small >
+    <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="bi bi-heart">
+    <path  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z">
+    </path>
+    </svg>
+    </small>
+    <small  class="text-center">99€</small>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div  class="w-20 p-3 d-flex justify-content-center" style="height: fit-content; width: 20%;">
+    <div  class="card border-secondary" style="position: relative;">
+    <img  alt="..." class="card-img-top" src="HTTPS://api.datge.cloud/api/v1/adImages/909ec977f5fc85874da910fef3e57d26">
+    <div  style="position: absolute; bottom: 0; left: 0; right: 0; background-color: white;">
+    <div  class="card-body py-2 px-2">
+    <h5  class="card-title text-center text-truncate" style="font-size: 1.3vw;">Harry Potter e la pietra filosafale</h5>
+    </div>
+    <div  class="card-footer d-flex justify-content-between">
+    <small >
+    <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="bi bi-heart">
+    <path  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z">
+    </path>
+    </svg>
+    </small>
+    <small  class="text-center">99€</small>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div  class="w-20 p-3 d-flex justify-content-center" style="height: fit-content; width: 20%;">
+    <div  class="card border-secondary" style="position: relative;">
+    <img  alt="..." class="card-img-top" src="HTTPS://api.datge.cloud/api/v1/adImages/909ec977f5fc85874da910fef3e57d26">
+    <div  style="position: absolute; bottom: 0; left: 0; right: 0; background-color: white;">
+    <div  class="card-body py-2 px-2">
+    <h5  class="card-title text-center text-truncate" style="font-size: 1.3vw;">Harry Potter e la pietra filosafale</h5>
+    </div>
+    <div  class="card-footer d-flex justify-content-between">
+    <small >
+    <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="bi bi-heart">
+    <path  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z">
+    </path>
+    </svg>
+    </small>
+    <small  class="text-center">99€</small>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div  class="w-20 p-3 d-flex justify-content-center" style="height: fit-content; width: 20%;">
+    <div  class="card border-secondary" style="position: relative;">
+    <img  alt="..." class="card-img-top" src="HTTPS://api.datge.cloud/api/v1/adImages/909ec977f5fc85874da910fef3e57d26">
+    <div  style="position: absolute; bottom: 0; left: 0; right: 0; background-color: white;">
+    <div  class="card-body py-2 px-2">
+    <h5  class="card-title text-center text-truncate" style="font-size: 1.3vw;">Harry Potter e la pietra filosafale</h5>
+    </div>
+    <div  class="card-footer d-flex justify-content-between">
+    <small >
+    <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="bi bi-heart">
+    <path  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z">
+    </path>
+    </svg>
+    </small>
+    <small  class="text-center">99€</small>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div  class="w-20 p-3 d-flex justify-content-center" style="height: fit-content; width: 20%;">
+    <div  class="card border-secondary" style="position: relative;">
+    <img  alt="..." class="card-img-top" src="HTTPS://api.datge.cloud/api/v1/adImages/909ec977f5fc85874da910fef3e57d26">
+    <div  style="position: absolute; bottom: 0; left: 0; right: 0; background-color: white;">
+    <div  class="card-body py-2 px-2">
+    <h5  class="card-title text-center text-truncate" style="font-size: 1.3vw;">Harry Potter e la pietra filosafale</h5>
+    </div>
+    <div  class="card-footer d-flex justify-content-between">
+    <small >
+    <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="bi bi-heart">
+    <path  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z">
+    </path>
+    </svg>
+    </small>
+    <small  class="text-center">99€</small>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div  class="w-20 p-3 d-flex justify-content-center" style="height: fit-content; width: 20%;">
+    <div  class="card border-secondary" style="position: relative;">
+    <img  alt="..." class="card-img-top" src="HTTPS://api.datge.cloud/api/v1/adImages/909ec977f5fc85874da910fef3e57d26">
+    <div  style="position: absolute; bottom: 0; left: 0; right: 0; background-color: white;">
+    <div  class="card-body py-2 px-2">
+    <h5  class="card-title text-center text-truncate" style="font-size: 1.3vw;">Harry Potter e la pietra filosafale</h5>
+    </div>
+    <div  class="card-footer d-flex justify-content-between">
+    <small >
+    <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="bi bi-heart">
+    <path  d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z">
+    </path>
+    </svg>
+    </small>
+    <small  class="text-center">99€</small>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div  class="container w-75 my-5">
+    <div  class="row">
+    <div  class="col-9">
+    <ul  class="list-group">
+    <li  class="list-group-item p-3">
+    <h3 >lista novità cerco</h3>
+    </li>
+    <li  class="list-group-item px-3 py-1">
+    <div  class="d-flex w-100 justify-content-between">
+    <h5  class="mb-1">Inserzione cerco 1</h5>
+    <small  class="text-muted">3 days ago</small>
+    </div>
+    <small  class="text-muted">descrizione Inserzione cerco</small>
+    </li>
+    <li  class="list-group-item px-3 py-1">
+    <div  class="d-flex w-100 justify-content-between">
+    <h5  class="mb-1">Inserzione cerco 2</h5>
+    <small  class="text-muted">3 days ago</small>
+    </div>
+    <small  class="text-muted">descrizione Inserzione cerco</small>
+    </li>
+    <li  class="list-group-item px-3 py-1">
+    <div  class="d-flex w-100 justify-content-between">
+    <h5  class="mb-1">Inserzione cerco 3</h5>
+    <small  class="text-muted">3 days ago</small>
+    </div>
+    <small  class="text-muted">descrizione Inserzione cerco</small>
+    </li>
+    <li  class="list-group-item px-3 py-1">
+    <div  class="d-flex w-100 justify-content-between">
+    <h5  class="mb-1">Inserzione cerco 4</h5>
+    <small  class="text-muted">3 days ago</small>
+    </div>
+    <small  class="text-muted">descrizione Inserzione cerco</small>
+    </li>
+    <li  class="list-group-item px-3 py-1">
+    <div  class="d-flex w-100 justify-content-between">
+    <h5  class="mb-1">Inserzione cerco 5</h5>
+    <small  class="text-muted">3 days ago</small>
+    </div>
+    <small  class="text-muted">descrizione Inserzione cerco</small>
+    </li>
+    <li  class="list-group-item px-3 py-1">
+    <div  class="d-flex w-100 justify-content-between">
+    <h5  class="mb-1">Inserzione cerco 6</h5>
+    <small  class="text-muted">3 days ago</small>
+    </div>
+    <small  class="text-muted">descrizione Inserzione cerco</small>
+    </li>
+    <li  class="list-group-item px-3 py-1">
+    <div  class="d-flex w-100 justify-content-between">
+    <h5  class="mb-1">Inserzione cerco 7</h5>
+    <small  class="text-muted">3 days ago</small>
+    </div>
+    <small  class="text-muted">descrizione Inserzione cerco</small>
+    </li>
+    <li  class="list-group-item px-3 py-1">
+    <div  class="d-flex w-100 justify-content-between">
+    <h5  class="mb-1">Inserzione cerco 8</h5>
+    <small  class="text-muted">3 days ago</small>
+    </div>
+    <small  class="text-muted">descrizione Inserzione cerco</small>
+    </li>
+    <li  class="list-group-item px-3 py-1">
+    <div  class="d-flex w-100 justify-content-between">
+    <h5  class="mb-1">Inserzione cerco 9</h5>
+    <small  class="text-muted">3 days ago</small>
+    </div>
+    <small  class="text-muted">descrizione Inserzione cerco</small>
+    </li>
+    <li  class="list-group-item px-3 py-1">
+    <div  class="d-flex w-100 justify-content-between">
+    <h5  class="mb-1">Inserzione cerco 10</h5>
+    <small  class="text-muted">3 days ago</small>
+    </div>
+    <small  class="text-muted">descrizione Inserzione cerco</small>
+    </li>
+    </ul>
+    </div>
+    <div  class="col-3 ps-3">
+    <div  class="w-100 h-100" style="border: 1px solid lightgrey;"> banner qualcosa </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
