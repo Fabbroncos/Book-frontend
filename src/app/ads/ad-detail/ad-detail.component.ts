@@ -22,7 +22,7 @@ export class AdDetailComponent implements OnInit{
         this.id = +params['book-id'];
         
         this.http.get(
-          `http://65.108.49.43/api/v1/ads/${this.id}`
+          `${this.authService.url}/api/v1/ads/${this.id}`
         ).subscribe(
           (ad: {message: string, data: Ad}) => {
             this.ad = ad.data

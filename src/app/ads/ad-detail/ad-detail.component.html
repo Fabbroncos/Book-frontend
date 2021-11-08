@@ -21,7 +21,7 @@
           <div class="carousel-inner h-100">
             <div class="carousel-item h-100" *ngFor="let image of ad.images;let i = index" [ngClass]="{'active': i===0}">
               <div class="h-100 w-100 d-flex align-items-center justify-content-center">
-                <img style="max-height: 200px; max-width: 100%;" class="d-block" src="http://65.108.49.43/api/v1/adImages/{{ image.url }}" alt="{{ i }}"> 
+                <img style="max-height: 200px; max-width: 100%;" class="d-block" src="{{authService.url}}/api/v1/adImages/{{ image.url }}" alt="{{ i }}"> 
               </div>
             </div>
           </div>
@@ -35,7 +35,7 @@
           </a>
         </div>
         <div *ngIf="ad.images.length==1" class="d-flex align-items-center">
-          <img  style="max-height: 200px; width: 100%;" class="d-block" src="http://65.108.49.43/api/v1/adImages/{{ ad.images[0].url }}" alt="{{ i }}">
+          <img  style="max-height: 200px; width: 100%;" class="d-block" src="{{authService.url}}/api/v1/adImages/{{ ad.images[0].url }}" alt="{{ i }}">
         </div>
       </div>
       <div class="col-sm">

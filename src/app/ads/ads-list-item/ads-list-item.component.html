@@ -34,16 +34,24 @@
   <div  style="min-width: 0; flex: 1 1 auto; height: auto; display: flex; flex-direction: column;">
   <div  class="d-flex align-items-end px-2" style="flex: 0 1 40%; min-width: 0;">
   <h5  style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-  <a  href="/insertion/{{ad.user_id}}/{{ad.id}}">{{ad.title}}</a>
+  <a routerLink= "/insertion/{{ad.user_id}}/{{ad.id}}">{{ad.title}}</a>
   </h5>
   </div>
   <div  class="h-50 px-2" style="flex: 0 1 35%;">
-  <a  routerlink="/insertion" class="d-inline" style="position: initial;" href="/insertion?author={{ad.author}}">J. K. Rowing</a>
-  <div  class="d-none d-md-inline"> - <a  routerlink="/insertion" class="d-inline" style="position: initial;" href="/insertion?publisher={{ad.publisher}}">{{ad.publisher}}</a>
+  <a  
+    routerLink= "/insertion"
+    [queryParams] = "{author: ad.author}" class="d-inline" style="position: initial;">{{ad.author}}</a>
+  <div  class="d-none d-md-inline">
+     - <a 
+     routerLink= "/insertion"
+     [queryParams] = "{publisher: ad.publisher}"
+     class="d-inline" 
+     style="position: initial;">{{ad.publisher}}</a>
   </div>
   </div>
   <div  class="h-50 px-2 d-flex" style="flex: 0 1 25%;">
-  <a  routerlink="/insertion" class="d-inline" style="position: initial;" href="/insertion?year={{ad.year}}">{{ad.year}}</a>
+  <a  routerLink= "/insertion"
+  [queryParams] = "{year: ad.year}" class="d-inline" style="position: initial;">{{ad.year}}</a>
   <span  class="ms-auto">Utente {{ad.user_id}}</span>
   </div>
   </div>

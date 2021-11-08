@@ -23,12 +23,14 @@ import { UserProfileComponent } from './account/user-profile/user-profile.compon
 import { AdsListItemComponent } from './ads/ads-list-item/ads-list-item.component';
 import { AdsListComponent } from './ads/ads-list/ads-list.component';
 import { ChatComponent } from './account/chat/chat.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
+    AdsListItemComponent,
     AdsListComponent,
     AdDetailComponent,
     LoginComponent,
@@ -42,12 +44,12 @@ import { ChatComponent } from './account/chat/chat.component';
     MultipleSelectComponent,
     CustomInputFileComponent,
     FilterPipe,
-    AdsListItemComponent,
     ChatComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule

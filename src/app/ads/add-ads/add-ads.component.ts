@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from "@angular/core";
 import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
@@ -101,6 +101,27 @@ export class AddAdsComponent implements OnInit{
     
   //   return URL.createObjectURL(image);
   // }
+  @ViewChild('progressBar') progressBarEl: ElementRef
+  @ViewChildren('step') stepEl: QueryList<ElementRef>
+  onSetStep(id: number) {
+    for (let i = 0; i < this.stepEl.length; i++) {
+      if (i<=id){
+        if (!this.stepEl.get(i).nativeElement['classList'].contains('done')) {
+          this.stepEl.get(i).nativeElement['classList'].add('done')
+        }
+      } else {
+        if (this.stepEl.get(i).nativeElement['classList'].contains('done')) {
+          this.stepEl.get(i).nativeElement['classList'].remove('done')
+        }
+      }
+      
+    }
+    this.progressBarEl.nativeElement['value'] = id;
+  }
+
+  changeStep(id: number) {
+    this.stepEl.get(id).nativeElement.click()
+  }
 
   onSubmit() {
     this.addAdsForm.markAllAsTouched()
@@ -148,14 +169,14 @@ export class AddAdsComponent implements OnInit{
       // formData.append('publisher',this.addAdsForm.value['publisher'])
       // formData.append('ISBN',this.addAdsForm.value['ISBN'])
 
-      let url = "http://" + this.authService.url + "/api/v1/ads/"
+      let url = this.authService.url + "/api/v1/ads/"
 
       if (this.authService.user.value.role === "LIBRERIA") {
         formData.append('quantity',this.addAdsForm.value['quantity'])
         formData.append('price',this.addAdsForm.value['price'])
-        url = url + "sell"
+        // url = url + "sell"
       } else {
-        url = url + "search"
+        // url = url + "search"
       }
 
       

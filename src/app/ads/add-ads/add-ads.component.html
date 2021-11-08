@@ -5,20 +5,209 @@
   }
 
   .container-form {
-    background-color: #2B2541;
-    color: lightgrey;
-    border-color: #9067C6;
+    background-color: white;
+    color: #243F3D;
+    border-color: #213937;
     border-left: none;
   }
 
   .btn-purple {
-    background-color: #5A447F;
+    background-color: var(--blue);
     color: lightgray;
   }
 </style>
 
-<div class="container-form p-4 my-3 me-5" style="border-bottom-right-radius: 60px; border-top-right-radius: 60px;">
-  <h3>Inserisci le informazioni sul Libro</h3>
+<style>
+  ::ng-deep :root {
+    --prm-gray: lightgrey;
+    --prm-color: green;
+
+    --transition-collapse:         height .35s ease;
+    --transition-collapse-width:   width .35s ease;
+  }
+  .steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+.step-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--prm-gray);
+    transition: .4s;
+}
+.step-button[aria-expanded="true"] {
+    width: 60px;
+    height: 60px;
+    background-color: var(--prm-color);
+    color: #fff;
+}
+.done {
+    background-color: var(--prm-color);
+    color: #fff;
+}
+.step-item {
+    z-index: 10;
+    text-align: center;
+}
+
+#progress {
+  -webkit-appearance:none;
+    position: absolute;
+    width: 95%;
+    z-index: 5;
+    height: 10px;
+    margin-left: 18px;
+}
+/* to customize progress bar */
+#progress::-webkit-progress-value {
+    background-color: var(--prm-color);
+    transition: .5s ease;
+}
+#progress::-webkit-progress-bar {
+    background-color: var(--prm-gray);
+}
+
+.collapsing {
+  visibility: hidden;
+}
+
+.collape {
+  visibility: hidden;
+  transition: visibility 2s;
+}
+
+.show {
+  visibility: visible;
+  transition: visibility 2s;
+}
+
+.card {
+  background-color: red;
+}
+
+
+</style>
+
+
+<style>
+  .nav-tabs {
+    border: none;
+  }
+  .nav-link {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--prm-gray);
+    transition: .4s;
+    z-index: 10;
+  }
+
+  .nav-link.done {
+    background-color: var(--prm-color);
+    color: #fff;
+  }
+
+  .nav-link.active {
+    width: 60px;
+    height: 60px;
+    background-color: var(--prm-color);
+    color: #fff;
+}
+</style>
+
+<div class="container-form p-4 my-3 me-5 h-100" style="border-bottom-right-radius: 60px; border-top-right-radius: 60px;">
+  <div class="accordion h-100 d-flex flex-column" id="accordionExample">
+    <!-- <div class="steps w-75 d-flex align-items-center mx-auto">
+        <progress  id="progress" value=0 max=2 ></progress>
+        <div class="step-item">
+          <button  (click)="onSetStep(0)" class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            1
+        </button>
+            <div class="step-title">
+                
+            </div>
+        </div>
+        <div class="step-item">
+            <button  (click)="onSetStep(1)" class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                2
+            </button>
+            <div class="step-title">
+                
+            </div>
+        </div>
+        <div class="step-item">
+            <button  (click)="onSetStep(2)" class="step-button text-center collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                3
+            </button>
+            <div class="step-title">
+            </div>
+        </div>
+    </div> -->
+
+    <div class="steps w-75 d-flex mx-auto nav nav-tabs" style="height: 60px" id="nav-tab" role="tablist">
+      <progress #progressBar id="progress" value=0 max=2 ></progress>
+      
+      <button #step (click)="onSetStep(0)" class="steps-item nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="false">1</button>  
+        <button #step (click)="onSetStep(1)" class="steps-item nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">2</button>
+        <button #step (click)="onSetStep(2)" class="steps-item nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">3</button>
+      </div>
+      
+      
+    
+    
+    
+    <div class="tab-content bg-light d-flex flex-grow-1 flex-shrink-1" id="nav-tabContent">
+      <div class="tab-pane fade show active h-100 w-100" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="d-flex justify-content-center align-items-center h-100 w-100">
+          <ul class="list-group w-50">
+            <a role="button" (click)="changeStep(1)" class="list-group-item  p-3">
+              <h5>Crea un inserzione</h5>
+              <small class="text-muted">Inserisci manualmente i dettagli</small>
+            </a>
+            <a role="button" (click)="changeStep(1)" class="list-group-item p-3">
+              <h5>Inserisci un inserzione tramite ISBN</h5>
+              <small class="text-muted">Con questa opzione è possibile un creare molteplici inserzioni</small>
+            </a>
+          </ul>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">2</div>
+      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">3</div>
+    </div>
+    
+    <!-- <div class="bg-light d-flex flex-grow-1 flex-shrink-1">
+      <div id="collapseOne" class="card collapse show h-100 w-100" aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample">
+          <div class="text-dark card-body">
+            
+          </div>
+      </div>
+      
+      <div id="collapseTwo" class="card collapse h-100 w-100" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+          <div class="text-dark card-body">
+              your content goes here...
+          </div>
+      </div>
+
+      <div id="collapseThree" class="card collapse h-100 w-100" aria-labelledby="headingThree"
+        data-bs-parent="#accordionExample">
+        <div class="text-dark card-body">
+            your content goes here...
+        </div>
+      </div>
+    </div> -->
+  </div>
+  
+  <!-- <h3>Inserisci le informazioni sul Libro</h3>
   <hr>
   <form [formGroup]="addAdsForm" (ngSubmit)="onSubmit()">
     <div class="row m-0">
@@ -94,7 +283,7 @@
       <button type="submit" class="btn btn-purple">Conferma</button>
       <button type="button" (click)="onCambia()" class="btn btn-purple">Change</button>
     </div>
-  </form>
+  </form> -->
 </div>
 
 

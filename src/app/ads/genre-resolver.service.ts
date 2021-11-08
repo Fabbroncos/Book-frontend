@@ -13,7 +13,7 @@ export class GenreResolverService implements Resolve<Genre[]>{
   
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.http.get(
-      "http://65.108.49.43/api/v1/genres",
+      `${this.authService.url}/api/v1/genres`,
       {
         headers: {
           "Authorization":  this.authService.user.value.token
