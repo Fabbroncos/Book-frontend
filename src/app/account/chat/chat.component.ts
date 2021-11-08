@@ -1,4 +1,5 @@
 import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, HostListener, Input, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
 import { Chat, chatMessage, ChatService } from "./chat.service";
 
@@ -18,11 +19,14 @@ export class ChatComponent implements OnInit ,OnDestroy {
   isLoading= false;
   
   
-  constructor(private chatService:ChatService, private authService: AuthService) {}
+  constructor(private route: ActivatedRoute ,private chatService:ChatService, private authService: AuthService) {}
 
-  sendMessage( message: string){
-    this.chatService.sendMessage(this.activeChat.id,message);
-    this.message = '';
+  sendMessage(el){
+    console.log(el);
+    console.log(el.value);
+    
+    this.chatService.sendMessage(this.activeChat.id, el.value);
+    el.value = '';
   }
 
   
@@ -50,6 +54,11 @@ export class ChatComponent implements OnInit ,OnDestroy {
   scrollContainer: any;
   ngOnInit() {
 
+    this.route.data.subscribe(chatData => {
+      this.chats = chatData[0];
+      this.changeChat(this.chats[0])
+    })
+
     this.chatService.connect();
     console.log(this.messageListItem);
 
@@ -59,10 +68,21 @@ export class ChatComponent implements OnInit ,OnDestroy {
         console.log(chatListData);
         this.chats = chatListData.data.data;
         this.changeChat(this.chats[0])
-        this.chatService.getMessages().subscribe( resData => {
-          console.log(resData);
-
-          
+        this.chatService.getMessages().subscribe( (messageData: {msg: string, sent_by: number}) => {
+          const message: chatMessage = {
+            id: this.messages[0].id+1,
+            chat_id: this.activeChat.id,
+            sent_by: messageData.sent_by,
+            text: messageData.msg,
+            created_at: null,
+            updated_at: null,
+            deleted_at: null
+          }
+          this.messageListItem.first.nativeElement['classList'].remove('mb-3')
+          this.messages.unshift(message)
+          this.isFirstLoad = true
+          console.log(this.messages);
+        
           
         })
       }
@@ -85,7 +105,7 @@ export class ChatComponent implements OnInit ,OnDestroy {
     if (isLast && this.isLoad) {
       this.isLoad= false
       this.el.scrollIntoView({
-        behavior: 'smooth',
+        behavior: 'auto',
         block: 'center'
        })
     }

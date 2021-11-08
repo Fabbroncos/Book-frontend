@@ -9,9 +9,15 @@ import { Ad } from "src/app/ads/ad.model";
 export class AdsListItemComponent implements OnInit{
   @Input('ad') ad: Ad
 
+  srcImage: string = ""
+
   ngOnInit() {
-    // this.ad["type"] = "vendo";
-    // this.ad["price"] = "15.99€";
+    console.log(this.ad);
+    
+    this.ad["type"] = "vendo";
+    this.ad["price"] = "15.99€";
+    this.srcImage = "HTTPS://api.datge.cloud/api/v1/adImages/" + this.ad.images[0].url
+    
     
   }
 }
