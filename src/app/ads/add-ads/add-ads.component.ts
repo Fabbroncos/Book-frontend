@@ -3,7 +3,7 @@ import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } fro
 import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
-import { Genre } from "../ad.model";
+import { Ad, adImage, Genre } from "../ad.model";
 
 @Component({
   selector: 'app-add-ads',
@@ -16,6 +16,10 @@ export class AddAdsComponent implements OnInit{
   // images: File[] = [];
   // imgFile: File;
   filePaths: string[] = [];
+  showError: boolean = false
+  isEdit: boolean = false
+
+  isMultyISBN: boolean = false;
   
   
   addAdsForm: FormGroup = new FormGroup({
@@ -119,9 +123,108 @@ export class AddAdsComponent implements OnInit{
     this.progressBarEl.nativeElement['value'] = id;
   }
 
+  changeBook(book: {title: string, isbn: string, quantity: number}) {
+    this.isbnForm.controls['ISBN'].setValue(book.isbn);
+    this.isbnForm.controls['quantity'].setValue(book.quantity);
+    this.isEdit=true;
+  }
+
+  isbns: string[] = []
   changeStep(id: number) {
     this.stepEl.get(id).nativeElement.click()
+    if(id === 2) {
+
+      this.http.post(
+        `${this.authService.url}/api/v1/books`,
+        {
+          "isbns": [this.isbns]
+        },
+        {
+          headers: {
+            "Authorization": this.authService.user.value.token
+          }
+        }
+      ).subscribe(
+        (resData: {data}) => {
+          console.log(resData);
+          const img: adImage = {
+            id: 0,
+            url: resData.data[0].imageLinks.smallThumbnail,
+            ad_id: this.authService.user.value.id,
+            main: true,
+            created_at: null,
+            updated_at: null,
+            deleted_at: null,
+          } 
+          this.ads.push(new Ad(
+            "S",0,resData.data[0].title,"",resData.data[0].publishedDate,
+            resData.data[0].authors[0],1,"15.99","","",this.authService.user.value.id,
+            null,[img],false,null,null,null
+          ))
+          
+        }
+      )
+    }
   }
+
+  onEdit() {
+    this.isEdit = true;
+    this.showError= false
+    this.onSubmitIsbn();
+  }
+
+  wrongIsbn: boolean = false
+  books: {title: string, isbn: string, quantity: number}[] = []
+  @ViewChild('addAdsFormIsbn') isbnForm: NgForm
+  onSubmitIsbn() {
+    console.log(this.isbnForm);
+    let quantity = this.isbnForm.value['quantity'];
+    if (quantity === "" || quantity === null || quantity === 0) {
+      quantity=1
+    }
+
+    for (let i = 0; i < this.books.length; i++) {
+      if(this.books[i].isbn === this.isbnForm.value['ISBN']) {
+        if (this.isEdit) {
+          this.books[i].quantity = quantity
+          this.isbnForm.resetForm()
+          this.isEdit = false
+        } else {
+          this.showError = true
+        }
+        return
+      }
+    }
+    this.isEdit = false
+
+    
+    
+      this.http.get(
+      `${this.authService.url}/api/v1/books/checkByIsbn/${this.isbnForm.value['ISBN']}`,
+      {
+        headers: {
+          "Authorization": this.authService.user.value.token
+        }
+      }
+      ).subscribe(
+        (resData: {data: {title: string}})=> {
+          const book:{title: string, isbn: string, quantity: number}  = 
+          {title: resData.data.title, isbn: this.isbnForm.value['ISBN'], quantity: quantity} 
+          this.books.push(book)
+          this.isbns.push(book.isbn);
+          this.isbnForm.resetForm()
+        },
+        error => {
+          this.isbnForm.controls['ISBN'].setErrors({'incorrect': true})
+        }
+      )
+    
+    
+    
+    
+  }
+
+  ads: Ad[] = []
 
   onSubmit() {
     this.addAdsForm.markAllAsTouched()
@@ -261,6 +364,11 @@ export class AddAdsComponent implements OnInit{
       this.role = "LIBRERIA"
 
     }
+  }
+
+  
+  errorHandle(errorId: number) { //Creare gestione degli errori
+    
   }
 
 }

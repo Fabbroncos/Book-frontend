@@ -20,7 +20,7 @@
 <style>
   ::ng-deep :root {
     --prm-gray: lightgrey;
-    --prm-color: green;
+    --prm-color: #69AEA9;
 
     --transition-collapse:         height .35s ease;
     --transition-collapse-width:   width .35s ease;
@@ -119,9 +119,42 @@
     background-color: var(--prm-color);
     color: #fff;
 }
+
+div:hover.col-6 .btn-book {
+  visibility: visible;
+}
+
+.btn-book {
+      /* color: #3A6562; */
+    visibility: hidden;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: lightgray;
+  border: 1px solid #213937;
+  border-radius: 8px;
+}
 </style>
 
-<div class="container-form p-4 my-3 me-5 h-100" style="border-bottom-right-radius: 60px; border-top-right-radius: 60px;">
+<div *ngIf="showError" style="background-color: rgba(0, 0, 0, 0.4) ;z-index: 100;" class="position-absolute top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center">
+  <div class="toast" style="display: block;" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <!-- <img src="..." class="rounded me-2" alt="..."> -->
+      <strong class="me-auto">Isbn ripetuto</strong>
+      <button type="button" (click)="showError=false" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body px-3 d-flex text-center flex-column" style="background-color: white;">
+      Questo isbn è gia inserito <br> Vuoi sovrascriverlo?
+      <div class="mt-2 pt-2 border-top d-flex justify-content-between">
+        <button type="button" class="btn btn-primary btn-sm" (click)="onEdit()" >Conferma</button>
+        <button type="button" (click)="showError=false" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Annulla</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-form p-4 my-3 me-3 h-100" style="border-bottom-right-radius: 60px; border-top-right-radius: 60px;">
   <div class="accordion h-100 d-flex flex-column" id="accordionExample">
     <!-- <div class="steps w-75 d-flex align-items-center mx-auto">
         <progress  id="progress" value=0 max=2 ></progress>
@@ -162,26 +195,156 @@
       </div>
       
       
+      
     
     
-    
-    <div class="tab-content bg-light d-flex flex-grow-1 flex-shrink-1" id="nav-tabContent">
+    <div class="tab-content bg-light d-flex flex-grow-1 flex-shrink-1 px-4 pt-3" id="nav-tabContent">
       <div class="tab-pane fade show active h-100 w-100" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
         <div class="d-flex justify-content-center align-items-center h-100 w-100">
           <ul class="list-group w-50">
-            <a role="button" (click)="changeStep(1)" class="list-group-item  p-3">
+            <a role="button" (click)="changeStep(1); isMultyISBN = false" class="list-group-item  p-3">
               <h5>Crea un inserzione</h5>
               <small class="text-muted">Inserisci manualmente i dettagli</small>
             </a>
-            <a role="button" (click)="changeStep(1)" class="list-group-item p-3">
+            <a role="button" (click)="changeStep(1); isMultyISBN = true" class="list-group-item p-3">
               <h5>Inserisci un inserzione tramite ISBN</h5>
               <small class="text-muted">Con questa opzione è possibile un creare molteplici inserzioni</small>
             </a>
           </ul>
         </div>
       </div>
-      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">2</div>
-      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">3</div>
+      <div class="tab-pane fade h-100 w-100" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div *ngIf="!isMultyISBN; else multyIsbn">
+          <h3>Inserisci le informazioni sul Libro</h3>
+          <hr>
+          <form [formGroup]="addAdsForm" (ngSubmit)="onSubmit()">
+            <div class="row m-0">
+              <div class="col-8 order-1">
+                <div class="form-group">
+                  <label for="title">Titolo<span style="color: red;">*</span>:</label>
+                  <input type="text" name="title" class="form-control" formControlName="title">
+                </div>
+              </div>
+              <div class="col-4 order-1">
+                <div class="form-group">
+                  <label for="author">Autore<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
+                  <input type="text" name="author" class="form-control" formControlName="author">
+                </div>
+              </div>
+              <div class="order-2" [ngClass]="role!=='LIBRERIA'? 'col-9' : 'col-6'">
+                <div class="form-group">
+                  <label for="genre">Genere<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
+                  <app-multiple-select-component [form]="addAdsForm.get('genre')" name="genre" [list]="genres" stringAttribute="name" [multiple]="true" formControlName="genre"></app-multiple-select-component>
+                </div>
+              </div>
+              <div [ngClass]="role!=='LIBRERIA'? 'order-3 col-7' : 'order-2 col-4'">
+                <div class="form-group">
+                  <label for="publisher">Editore<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
+                  <input type="text" name="publisher" class="form-control" formControlName="publisher">
+                </div>
+              </div>
+              <div class="order-2" [ngClass]="role!=='LIBRERIA'? 'col-3' : 'col-2'">
+                <div class="form-group">
+                  <label for="year">Anno<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
+                  <app-multiple-select-component [form]="addAdsForm.get('year')" name="year" [list]="years" formControlName="year"></app-multiple-select-component>
+                </div> 
+              </div>
+              <div class="col-12 order-4">
+                <div class="form-group content box">
+                  <label for="inputImage">Immagini<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
+                  <div class="content">
+                    <app-custom-input-file-component [form]="addAdsForm.get('image')" formControlName="image"></app-custom-input-file-component>
+                  </div>
+                </div>
+              </div>
+              <div class="col order-4">
+                <div class="form-group">
+                  <label for="description">Descrizione<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
+                  <textarea 
+                  type="text"
+                  id="description"
+                  class="form-control"
+                  rows="4"
+                  formControlName="description"
+                  style="resize: none;"></textarea>
+                </div>
+              </div>
+              <div class="d-flex flex-column" [ngClass]="role!=='LIBRERIA'? 'order-3 col-5' : 'order-5 col-4'">
+                <div class="form-group">
+                  <label for="ISBN">ISBN<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
+                  <input type="text" name="ISBN" class="form-control" formControlName="ISBN">
+                </div>
+                <div class="d-flex mt-auto" *ngIf="role==='LIBRERIA'">
+                  <div class="form-group me-1" style="flex: 1 auto">
+                    <label for="quantity">Quantità <span style="color: red;">*</span>:</label>
+                    <input type="text" name="quantity" class="form-control" formControlName="quantity">
+                  </div>
+                  <div class="form-group ms-1" style="flex: 1 auto">
+                    <label for="price">Prezzo<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
+                    <input type="text" name="price" class="form-control" formControlName="price">
+                  </div> 
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-purple">Conferma</button>
+              <button type="button" (click)="onCambia()" class="btn btn-purple">Change</button>
+            </div>
+          </form>
+        </div>
+        <ng-template #multyIsbn >
+          <div class="container d-flex flex-column h-100 w-100">
+          <div class="row">
+            <div class="col-12">
+              <form #addAdsFormIsbn="ngForm" (ngSubmit)="onSubmitIsbn()">
+                <h3>Inserisci ISBN</h3>
+                <div class="row justify-content-center">
+                  <div class="form-group col-6">
+                    <label for="ISBN">ISBN:</label>
+                    <input type="text" name="ISBN" id="multyIsbn" class="form-control" required ngModel>
+                  </div>
+                  <div class="form-group col-2">
+                    <label for="quantity">Quantità:</label>
+                    <input type="number" name="quantity" id="multyQnt" class="form-control" ngModel>
+                  </div>
+                  <div class="col-3 d-flex align-items-end">
+                    <button [disabled]="addAdsFormIsbn.invalid" type="submit" class="btn btn-primary">Conferma ISBN</button>
+                  </div>
+                </div>
+               </form>
+            </div>
+          </div>
+          <div class="row d-flex flex-grow-1 flex-shrink-1">
+            <div class="row p-3 w-100 d-flex" style="height: fit-content;">
+              <div role="button" (click)="changeBook(book)" class="col-6 position-relative" *ngFor="let book of books">
+                <div class="btn-book">
+                  <button type="button" (click)="books.splice(books.indexOf(book), 1)" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="p-3" style="border:1px solid #213937; border-radius: 15px;">
+                  <h6>{{book.title}}</h6>
+                  <small>Isbn: {{book.isbn}} - Qnt: {{book.quantity}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row p-4">
+            <div class="col-12 d-flex justify-content-between">
+              <button class="btn" (click)="changeStep(0);">Indietro</button>
+              <button class="btn" [disabled]="books.length===0" (click)="changeStep(2);">Riepilogo</button>
+            </div>
+          </div>
+        </div>
+            
+        </ng-template>
+      </div>
+      <div class="tab-pane fade h-100 w-100" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <div class="row d-flex flex-shrink-1 flex-grow-1">
+          <div class="col-6" *ngFor="let ad of ads">
+            <app-ads-list-item-component  [ad]="ad"></app-ads-list-item-component>
+          </div>
+        </div>
+      </div>
     </div>
     
     <!-- <div class="bg-light d-flex flex-grow-1 flex-shrink-1">
@@ -207,83 +370,7 @@
     </div> -->
   </div>
   
-  <!-- <h3>Inserisci le informazioni sul Libro</h3>
-  <hr>
-  <form [formGroup]="addAdsForm" (ngSubmit)="onSubmit()">
-    <div class="row m-0">
-      <div class="col-8 order-1">
-        <div class="form-group">
-          <label for="title">Titolo<span style="color: red;">*</span>:</label>
-          <input type="text" name="title" class="form-control" formControlName="title">
-        </div>
-      </div>
-      <div class="col-4 order-1">
-        <div class="form-group">
-          <label for="author">Autore<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
-          <input type="text" name="author" class="form-control" formControlName="author">
-        </div>
-      </div>
-      <div class="order-2" [ngClass]="role!=='LIBRERIA'? 'col-9' : 'col-6'">
-        <div class="form-group">
-          <label for="genre">Genere<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
-          <app-multiple-select-component [form]="addAdsForm.get('genre')" name="genre" [list]="genres" stringAttribute="name" [multiple]="true" formControlName="genre"></app-multiple-select-component>
-        </div>
-      </div>
-      <div [ngClass]="role!=='LIBRERIA'? 'order-3 col-7' : 'order-2 col-4'">
-        <div class="form-group">
-          <label for="publisher">Editore<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
-          <input type="text" name="publisher" class="form-control" formControlName="publisher">
-        </div>
-      </div>
-      <div class="order-2" [ngClass]="role!=='LIBRERIA'? 'col-3' : 'col-2'">
-        <div class="form-group">
-          <label for="year">Anno<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
-          <app-multiple-select-component [form]="addAdsForm.get('year')" name="year" [list]="years" formControlName="year"></app-multiple-select-component>
-        </div> 
-      </div>
-      <div class="col-12 order-4">
-        <div class="form-group content box">
-          <label for="inputImage">Immagini<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
-          <div class="content">
-            <app-custom-input-file-component [form]="addAdsForm.get('image')" formControlName="image"></app-custom-input-file-component>
-          </div>
-        </div>
-      </div>
-      <div class="col order-4">
-        <div class="form-group">
-          <label for="description">Descrizione<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
-          <textarea 
-            type="text"
-            id="description"
-            class="form-control"
-            rows="4"
-            formControlName="description"
-            style="resize: none;"></textarea>
-        </div>
-      </div>
-      <div class="d-flex flex-column" [ngClass]="role!=='LIBRERIA'? 'order-3 col-5' : 'order-5 col-4'">
-        <div class="form-group">
-          <label for="ISBN">ISBN<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
-          <input type="text" name="ISBN" class="form-control" formControlName="ISBN">
-        </div>
-        <div class="d-flex mt-auto" *ngIf="role==='LIBRERIA'">
-          <div class="form-group me-1" style="flex: 1 auto">
-            <label for="quantity">Quantità <span style="color: red;">*</span>:</label>
-            <input type="text" name="quantity" class="form-control" formControlName="quantity">
-          </div>
-          <div class="form-group ms-1" style="flex: 1 auto">
-            <label for="price">Prezzo<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
-            <input type="text" name="price" class="form-control" formControlName="price">
-          </div> 
-        </div>
-      </div>
-    </div>
-    <hr>
-    <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-purple">Conferma</button>
-      <button type="button" (click)="onCambia()" class="btn btn-purple">Change</button>
-    </div>
-  </form> -->
+  
 </div>
 
 
