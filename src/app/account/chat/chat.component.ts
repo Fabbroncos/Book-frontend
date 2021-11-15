@@ -63,7 +63,7 @@ export class ChatComponent implements OnInit ,OnDestroy {
     console.log(this.messageListItem);
 
     
-    this.chatService.getChatList().subscribe(
+    this.connection = this.chatService.getChatList().subscribe(
       (chatListData: {data: {data: Chat[]}})=> {
         console.log(chatListData);
         this.chats = chatListData.data.data;

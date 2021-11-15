@@ -47,12 +47,7 @@ export class Ad {
     publisher: string,
     user_id: number,
     genre: Genre[],
-    images: adImage[],
-    
-    hidden: boolean,
-    created_at: string,
-    updated_at: string,
-    deleted_at: string,
+    images: adImage[]
   ) 
   {
     if(quantity!==null){
@@ -66,17 +61,12 @@ export class Ad {
     this.year = year
     this.author = author
     this.quantity = quantity
-    this.price = "19.99" + "€"
+    this.price = "19.99"
     this.isbn = isbn
     this.publisher = publisher
     this.user_id = user_id
     this.genre = genre
     this.images = images
-
-    this.hidden = hidden
-    this.created_at = created_at 
-    this.updated_at = updated_at
-    this.deleted_at = deleted_at
 
   }
 }

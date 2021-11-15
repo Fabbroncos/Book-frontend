@@ -15,6 +15,7 @@ import { UserProfileComponent } from './account/user-profile/user-profile.compon
 import { AddAdsComponent } from './ads/add-ads/add-ads.component';
 import { AdsListComponent } from './ads/ads-list/ads-list.component';
 import { ChatComponent } from './account/chat/chat.component';
+import { OwnerAdsComponent } from './account/owner-ads/owner-ads.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -32,7 +33,7 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: '/login', pathMatch: 'full'},
       {path: 'login', component:LoginComponent},
-      {path: 'register', component:RegisterComponent},
+      {path: 'register', component:RegisterComponent , resolve:[ProvincesResolverService]},
       {path: 'confirm-account/:token', component:ConfirmAccountComponent},
     ]
   },
@@ -43,7 +44,7 @@ const routes: Routes = [
       {path: '',component: UserProfileComponent},
       {path: 'my-profile',component: UserProfileComponent},
       {path: 'my-profile/edit',component: EditUserDetailComponent, resolve: [ProvincesResolverService]},
-      {path: 'my-insertion',component: AdsListComponent},
+      {path: 'my-insertion',component: OwnerAdsComponent},
       // {path: 'my-orders',component: BookListComponent},
       {path: 'add-book',component: AddAdsComponent, resolve: [GenreResolverService]},
       {path: 'chat', component: ChatComponent},

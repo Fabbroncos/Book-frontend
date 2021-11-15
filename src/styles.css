@@ -1,5 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
- .btn-orange {
+
+::ng-deep :root {
+  --dark-color: #213937;
+  --primary-color: #4d8682;
+}
+
+.btn-green {
+  background-color: #4d8682;
+  color: #213937;
+}
+
+
+
+
+
+.btn-orange {
   background-color: #ff8615;
   color: black;
 }

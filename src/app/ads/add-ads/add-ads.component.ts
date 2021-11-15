@@ -132,12 +132,18 @@ export class AddAdsComponent implements OnInit{
   isbns: string[] = []
   changeStep(id: number) {
     this.stepEl.get(id).nativeElement.click()
+    if(id===0) {
+      this.ads = []
+      this.isbns = []
+      this.books = []
+      this.addAdsForm.reset()
+    } 
     if(id === 2) {
 
       this.http.post(
         `${this.authService.url}/api/v1/books`,
         {
-          "isbns": [this.isbns]
+          "isbns": this.isbns
         },
         {
           headers: {
@@ -147,24 +153,32 @@ export class AddAdsComponent implements OnInit{
       ).subscribe(
         (resData: {data}) => {
           console.log(resData);
-          const img: adImage = {
-            id: 0,
-            url: resData.data[0].imageLinks.smallThumbnail,
-            ad_id: this.authService.user.value.id,
-            main: true,
-            created_at: null,
-            updated_at: null,
-            deleted_at: null,
-          } 
-          this.ads.push(new Ad(
-            "S",0,resData.data[0].title,"",resData.data[0].publishedDate,
-            resData.data[0].authors[0],1,"15.99","","",this.authService.user.value.id,
-            null,[img],false,null,null,null
-          ))
+          for (let i = 0; i < resData.data.length; i++) {
+            const img: adImage = {
+              id: 0,
+              url: resData.data[i].imageLinks.smallThumbnail,
+              ad_id: this.authService.user.value.id,
+              main: true,
+              created_at: null,
+              updated_at: null,
+              deleted_at: null,
+            } 
+            this.ads.push(new Ad(
+              "S",0,resData.data[i].title,"",resData.data[0].publishedDate,
+              resData.data[i].authors[0],1,"15.99","","",this.authService.user.value.id,
+              null,[img]
+            ))
+          }
+          
           
         }
       )
     }
+  }
+
+  onSubmitMulty() {
+    console.log(this.ads);
+    
   }
 
   onEdit() {
@@ -227,6 +241,10 @@ export class AddAdsComponent implements OnInit{
   ads: Ad[] = []
 
   onSubmit() {
+    console.log(this.addAdsForm.value);
+    return
+    
+
     this.addAdsForm.markAllAsTouched()
     if (this.addAdsForm.invalid) {
       console.log("INVALIDO");

@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Params } from "@angular/router";
+import { AuthService } from "../auth/auth.service";
 
 @Component({
   selector: 'app-account',
@@ -9,7 +10,7 @@ export class AccountComponent implements OnInit{
   // isUser = true;
   id = "0";
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private authService: AuthService) {}
 
   ngOnInit() {
     // this.route.params.subscribe(
@@ -17,5 +18,9 @@ export class AccountComponent implements OnInit{
     //     this.isUser = !!params;
     //   } 
     // )
+  }
+
+  onLogout() {
+    this.authService.logout()
   }
 }

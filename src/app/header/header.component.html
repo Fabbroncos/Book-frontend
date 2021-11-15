@@ -66,8 +66,8 @@
 </div>
 <div  class="col col-lg-8 col-md-6 nav-item d-flex justify-content-md-end xs-p-0">
   <div  id="navbarHeader" class="collapse collapse-horizontal flex-shrink-1 flex-grow-1 flex-md-shrink-0 flex-md-grow-0 p-1">
-    <form  novalidate="" class="h-100 ng-untouched ng-pristine ng-valid">
-      <input  type="text" placeholder="Search..." ngmodel="" name="search" class="form-control h-100 ng-untouched ng-pristine ng-valid">
+    <form #searchInput="ngForm" (ngSubmit)="onSubmit(searchInput)" class="h-100">
+      <input type="text" placeholder="Search..." ngModel name="search" id="search" class="form-control h-100">
     </form>
   </div>
   <a  data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" class="searchBtn">
@@ -98,11 +98,11 @@
           </svg>
         </div>
       </a>
-      <div aria-labelledby="dropdownMenuLink" class="dropdown-menu">
-        <a class="dropdown-item" href="/my-profile">Profilo</a>
-        <a class="dropdown-item" href="/chat">Chat</a>
-        <a class="dropdown-item" href="/my-insertion">Le Mie Inserzioni</a>
-        <a class="dropdown-item" href="/add-book">Aggiungi Inserzione</a>
+      <div aria-labelledby="dropdownMenuLink" #dropdown class="dropdown-menu">
+        <a class="dropdown-item" href="/{{ id }}/my-profile">Profilo</a>
+        <a class="dropdown-item" href="/{{ id }}/chat">Chat</a>
+        <a class="dropdown-item" href="/{{ id }}/my-insertion">Le Mie Inserzioni</a>
+        <a class="dropdown-item" href="/{{ id }}/add-book">Aggiungi Inserzione</a>
         <div  class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="onLogout()">Logout</a>
       </div>

@@ -40,6 +40,7 @@ export class CustomInputFileComponent implements OnInit, ControlValueAccessor{
   onTouched: any = () => { };
 
   writeValue(value: any[]): void {
+    if (!value) {return}
     this.value = value;
     this.onChange(this.value);
   }

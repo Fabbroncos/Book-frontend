@@ -8,8 +8,9 @@ import { AuthService } from "../auth.service";
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
-
   constructor(private authService: AuthService, private router: Router) {}
+
+  showError: boolean = false;
 
   onSubmit(authForm: NgForm) {
     if(!authForm.valid) {return;}
@@ -19,6 +20,11 @@ export class LoginComponent {
     .subscribe(
       resData => {
         this.router.navigate(['home']);
+      },
+      error => {
+        this.showError = true
+        console.log(error);
+        
       }
     );
   }

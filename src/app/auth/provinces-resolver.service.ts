@@ -18,7 +18,7 @@ export class ProvincesResolverService implements Resolve<Provinces[]>{
   
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.http.get(
-      `http://${this.authService.url}:3000/api/v1/provinces`
+      `${this.authService.url}/api/v1/provinces`
     ).pipe(
       map(
         (resData: {message: string, data: Provinces[]}) => {

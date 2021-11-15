@@ -31,6 +31,10 @@ export class AuthService {
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  isLogged() {
+    
+  }
   
   parseJwt(token) {
     var base64Url = token.split('.')[1];
@@ -42,15 +46,10 @@ export class AuthService {
     return JSON.parse(jsonPayload);
   };
 
-  register(role,email,password,passwordConfirm){
+  register(info){
     return this.http.post(
-      `http://${this.url}/api/v1/auth/register`,
-      {
-        role: role,
-        email: email,
-        password: password,
-        passwordConfirm: passwordConfirm
-      }
+      `${this.url}/api/v1/auth/register`,
+      info
     )
   }
 

@@ -1,0 +1,18 @@
+<div class="container p-4">
+  <div class="row">
+    <div class="col-12">
+      <h2>Le mie Inserzioni</h2>
+    </div>
+    <div class="col-12">
+      <div class="input-group p-2">
+        <input #searchInput type="text" class="form-control" placeholder="Cerca..." aria-label="Cerca..." aria-describedby="searchBtn">
+        <button (click)="onSearch()" class="btn btn-outline-secondary" type="button" id="searchBtn">Cerca</button>
+      </div>
+    </div>
+    <div class="col-12 py-2 d-flex flex-wrap">
+      <div *ngFor="let ad of ads" class="d-flex p-2" style="flex: 0 50%;">
+        <app-ads-list-item-component [ad]="ad"></app-ads-list-item-component>
+      </div>
+    </div>
+  </div>
+</div>

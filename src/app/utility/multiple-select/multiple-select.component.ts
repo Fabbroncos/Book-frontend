@@ -30,7 +30,9 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
 
   ngOnInit() {
     this.isMultiple = this.multiple;
-    console.log(this.form);
+    // console.log(this.form);
+    // console.log(this.value);
+    
     
   }
 
@@ -89,10 +91,10 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
   onTouched: any = () => { };
 
   writeValue(value: any[]): void {
+    if (value===null) {this.valueText = this.defaultText; return}    
     this.value = value;
     this.onChange(this.value);
-    if (this.value===null) {this.valueText = this.defaultText; return}    
-    if (this.value.length=0) {
+    if (this.value.length===0) {
       this.valueText = this.defaultText
     } else {
       let list: String[] =[];
@@ -114,14 +116,13 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    console.log(isDisabled);
-    
     this.disabled = isDisabled;
   }
 
   isIncluded(item): boolean {
     if (this.value!== null){
-      if (this.value.includes(item)){return true}
+      if (this.value.includes(item)){
+       return true}
     }
     return false
   }

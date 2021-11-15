@@ -31,6 +31,8 @@ export class HeaderComponent implements OnInit, OnDestroy{
   }
 
   onSubmit(searchForm: NgForm) {
+    console.log(searchForm.value);
+    
     const searchString: string = searchForm.value['search'];
     if (searchForm.value['search'] === "") {
       this.router.navigate(['/insertion']);
@@ -43,8 +45,11 @@ export class HeaderComponent implements OnInit, OnDestroy{
     this.userSub.unsubscribe();
   }
 
+  @ViewChild('dropdown') dropdown: ElementRef
   onLogout() {
     this.authService.logout();
+    this.dropdown.nativeElement['classList'].remove('show')
+    this.router.navigate(["/home"])
   }
   
 }

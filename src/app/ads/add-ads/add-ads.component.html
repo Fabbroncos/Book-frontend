@@ -5,10 +5,7 @@
   }
 
   .container-form {
-    background-color: white;
     color: #243F3D;
-    border-color: #213937;
-    border-left: none;
   }
 
   .btn-purple {
@@ -154,7 +151,7 @@ div:hover.col-6 .btn-book {
   </div>
 </div>
 
-<div class="container-form p-4 my-3 me-3 h-100" style="border-bottom-right-radius: 60px; border-top-right-radius: 60px;">
+<div class="p-4 my-3 me-3 h-100" style="color: #243F3D;">
   <div class="accordion h-100 d-flex flex-column" id="accordionExample">
     <!-- <div class="steps w-75 d-flex align-items-center mx-auto">
         <progress  id="progress" value=0 max=2 ></progress>
@@ -189,9 +186,9 @@ div:hover.col-6 .btn-book {
     <div class="steps w-75 d-flex mx-auto nav nav-tabs" style="height: 60px" id="nav-tab" role="tablist">
       <progress #progressBar id="progress" value=0 max=2 ></progress>
       
-      <button #step (click)="onSetStep(0)" class="steps-item nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="false">1</button>  
-        <button #step (click)="onSetStep(1)" class="steps-item nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">2</button>
-        <button #step (click)="onSetStep(2)" class="steps-item nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">3</button>
+      <button #step (click)="onSetStep(0)" style="pointer-events: none;" class="steps-item nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="false">1</button>  
+        <button #step (click)="onSetStep(1)" style="pointer-events: none;" class="steps-item nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">2</button>
+        <button #step (click)="onSetStep(2)" style="pointer-events: none;" class="steps-item nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">3</button>
       </div>
       
       
@@ -289,6 +286,7 @@ div:hover.col-6 .btn-book {
             <hr>
             <div class="d-flex justify-content-center">
               <button type="submit" class="btn btn-purple">Conferma</button>
+              <button type="button" (click)="changeStep(0)" class="btn btn-green">Indietro</button>
               <button type="button" (click)="onCambia()" class="btn btn-purple">Change</button>
             </div>
           </form>
@@ -340,8 +338,103 @@ div:hover.col-6 .btn-book {
       </div>
       <div class="tab-pane fade h-100 w-100" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
         <div class="row d-flex flex-shrink-1 flex-grow-1">
-          <div class="col-6" *ngFor="let ad of ads">
-            <app-ads-list-item-component  [ad]="ad"></app-ads-list-item-component>
+          <style>
+            .form-control-hidden {
+              border-top: none;
+              border-left: none;
+              border-right: none;
+              border-radius: 0;
+              border-bottom: 1px solid lightgray;
+}
+              .ads-item {
+                height: auto;
+                overflow: hidden;
+                color: #243F3D;
+                border-radius: 20px;
+                display: flex;
+                width: 100%;
+                max-width: 900px;
+                border: 1px solid #213937;
+                background-color: white;
+
+                
+              
+            }
+          </style>
+          <div class="col-6 p-3" *ngFor="let ad of ads; let i= index">
+            <div  class="my-3 p-0 ads-item">
+              <div class="row m-0 p-0">
+                <div class="col-4 px-0 py-2" style="overflow: hidden;">
+                  <div  class="h-100 align-self-center" style="overflow: hidden; flex: 0 0 25%; height: 100%; border-top-left-radius: 15px; border-bottom-left-radius: 20px; font-family: weathericons; display: flex; align-items: center; justify-content: space-around;">
+                    <div  class="h-100 d-flex justify-content-center" style="overflow: hidden; background-color: rgba(200, 200, 200, 0.60);">
+                      <img  class="h-100" src="{{ad.images[0].url}}" alt="{{ad.title}}">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="p-2" style="min-width: 0; flex: 1 1 auto; height: auto; display: flex; flex-direction: column;">
+                    <div  class="d-flex align-items-end px-2" style=" min-width: 0;">
+                    <h6>{{ad.title}}</h6>
+                    </div>
+                    <div  class="d-flex px-2">
+                    <p class="d-inline" style="position: initial;">{{ad.author}}</p>
+                    <div  class="d-none d-md-inline">
+                      - <p class="d-inline" 
+                      style="position: initial;">{{ad.publisher}}</p>
+                    </div>
+                    </div>
+                    <div  class="px-2 d-flex">
+                    <p class="d-inline" style="position: initial;">{{ad.year}}</p>
+                    <span  class="ms-auto">{{ad.isbn}}</span>
+                    </div>
+                    <div class="d-flex px-2 justify-content-between">
+                      <div>
+                        Prezzo: 
+                        <input type="text" class="form-control form-control-hidden" #priceInput [(ngModel)]="ad.price" (change)="ad.price = priceInput.value">
+                      </div>
+                      <div>
+                        Quantità: 
+                        <input type="number" class="form-control form-control-hidden" #quantityInput [(ngModel)]="ad.quantity" (change)="ad.quantity = quantityInput.value">
+                      </div>
+                    </div>
+                    
+                    </div>
+                </div>
+                <div class="col-12" style="border-top:1px solid #213937;">Scegli immagine principale:</div>
+                <div class="col-12 py-2 px-4">
+                  <img src="{{img.url}}" alt="ad.title" *ngFor="let img of ad.images" style="max-width: 35px; max-height: 35px;">
+                </div>
+              </div>
+            </div>
+            <!-- <app-ads-list-item-component  [ad]="ad"></app-ads-list-item-component> -->
+            <!-- <div class="d-flex p-2" style="border: 1px solid #213937; background-color: #fff;">
+              <h6>{{ad.title}}</h6>
+              <img src="#" alt="immagine">
+              <p>{{ad.author}} - {{ad.publisher}} - {{ad.year}} - {{ad.price}}</p>
+              <form #AdsForm="ngForm" (ngSubmit)="onSubmitADS(AdsForm, ad)">
+                
+                
+                  <div class="form-group">
+                    <label for="img">Immagine:</label>
+                    <input type="text" name="img" id="img" class="form-control" ngModel>
+                  </div>
+                  <div class="form-group">
+                    <label for="quantity">Quantità:</label>
+                    <input type="text" name="quantity" id="riepQuantity" class="form-control" ngModel>
+                  </div>
+                  <div class="form-group">
+                    <label for="price">prezzo:</label>
+                    <input type="text" name="price" id="riepPrice" class="form-control" ngModel>
+                  </div>
+                    <button type="submit" class="btn btn-primary">Conferma</button>
+                  
+                
+               </form>
+            </div> -->
+          </div>
+          <div class="col-12 d-flex justify-content-between">
+            <button class="btn" (click)="changeStep(1);">Indietro</button>
+            <button class="btn" (click)="onSubmitMulty()">Pubblica</button>
           </div>
         </div>
       </div>
