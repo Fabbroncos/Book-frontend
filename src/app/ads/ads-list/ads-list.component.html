@@ -26,20 +26,25 @@
   </div>
   </div>
   <div  class="p-3 d-flex flex-column">
-  <label  for="title">Titolo</label>
-  <input >
-  <label  for="author">Autore</label>
-  <input >
-  <label  for="title">Anno</label>
-  <input >
-  <label  for="title">Isbn</label>
-  <input >
-  <label  for="title">Editore</label>
-  <input >
-  <label  for="title">Genere</label>
-  <input >
-  <label  for="title">Price</label>
-  <input >
+    <form #filterForm="ngForm" (ngSubmit)="onSubmit(filterForm)">
+      <button (click)="toggleType('S')" class="btn btn-primary" type="submit">Vendo</button>
+      <button (click)="toggleType('F')" class="btn btn-primary" type="submit">Cerco</button>
+      <label  for="title">Titolo</label>
+      <input ngModel id="title" name="title" class="form-control">
+      <label  for="author">Autore</label>
+      <input ngModel id="author" name="author" class="form-control">
+      <label  for="title">Anno</label>
+      <input ngModel id="year" name="year" class="form-control">
+      <label  for="title">Isbn</label>
+      <input ngModel id="isbn" name="isbn" class="form-control">
+      <label  for="title">Editore</label>
+      <input ngModel id="publisher" name="publisher" class="form-control">
+      <label  for="title">Genere</label>
+      <input ngModel id="genre" name="genre" class="form-control">
+      <label  for="title">Price</label>
+      <input ngModel id="price" name="price" class="form-control">
+      <button class="btn btn-primary" type="submit">Cerca</button>
+    </form>
   </div>
   </div>
   </div>

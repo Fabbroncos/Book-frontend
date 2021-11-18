@@ -4,6 +4,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
 import { Ad } from "src/app/ads/ad.model";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: 'app-ads-list',
@@ -23,6 +24,8 @@ export class AdsListComponent implements OnInit{
   last_page= 1
   pageini= "1"
   from= 0
+
+  type: String = ""
 
   page: number;
 
@@ -148,5 +151,32 @@ export class AdsListComponent implements OnInit{
 
   previousPage() {
     this.router.navigate(['/insertion'], {queryParams: {...this.params, page: this.page-1}})
+  }
+
+  toggleType(type: String) {
+    console.log(type);
+    console.log(this.type);
+    
+    if(type === this.type) {
+      this.type = ""
+    } else {
+      this.type = type
+    }
+  }
+
+  onSubmit(filterForm: NgForm) {
+    let params = {...this.params}
+
+    for (const key in filterForm.value) {
+      if(filterForm.value[key] !== "") {
+        params[key] = filterForm.value[key]
+      }
+    }
+    
+    if(this.type !== "") {
+      params = {...filterForm.value}
+      params.type = this.type
+    }
+    this.getAds(params)
   }
 }
