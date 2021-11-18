@@ -32,9 +32,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  isLogged() {
-    
-  }
+  isLogged: boolean = false
   
   parseJwt(token) {
     var base64Url = token.split('.')[1];
@@ -72,6 +70,8 @@ export class AuthService {
             exp: data.exp,
           };
           this.userData.next(userData);
+
+          this.isLogged = true
           
           const expirationDuration = (new Date(userData.exp).getTime()*1000) - new Date().getTime();
           this.autoLogout(expirationDuration)
@@ -149,6 +149,7 @@ export class AuthService {
           userData.token,
           new Date(+userData.exp*1000)
         );
+        this.isLogged = true;
         this.user.next(user);
       }
       const expirationDuration = (new Date(userData.exp).getTime()*1000) - new Date().getTime();
@@ -160,6 +161,7 @@ export class AuthService {
     console.log("LOGOUT");
     this.user.next(null);
     this.userData.next(null);
+    this.isLogged = false;
     localStorage.removeItem('userData');
     localStorage.removeItem('userDetail');
     this.router.navigate(['/insertion']);

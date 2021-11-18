@@ -17,9 +17,11 @@ export class AdsListItemComponent implements OnInit{
   ngOnInit() {
     console.log(this.ad);
     
-    this.ad["type"] = "S";
+    // this.ad["type"] = "S";
     this.ad["price"] = "15.99€";
-    this.srcImage =  this.authService.url+ "/api/v1/adImages/" +this.ad.images[0].url
+    if(this.ad.images[0]){
+      this.srcImage =  this.authService.url+ "/api/v1/adImages/" +this.ad.images[0].url
+    }
     
     
   }

@@ -161,10 +161,14 @@ export class ChatComponent implements OnInit ,OnDestroy {
   }
   
   getOtherUser(chat: Chat) {
-    if (chat.opened_user_id === this.authService.user.value.id){
-      return chat.opener_user_id
+    if(chat){
+      if (chat.opened_user_id === this.authService.user.value.id){
+        return chat.opener_user_id
+      } else {
+        return chat.opened_user_id
+      }
     } else {
-      return chat.opened_user_id
+      return ""
     }
   }
 

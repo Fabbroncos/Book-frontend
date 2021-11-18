@@ -1,82 +1,150 @@
-<style>a {
-  color: lightgrey;
-  text-decoration: none;
-}
+<style>
+  a {
+    /* color: lightgrey; */
+    color:inherit;
+    text-decoration: none;
+  }
 
-.ads-item {
-  max-height: 120px;
-  height: auto;
-  overflow: hidden;
-  color: lightgray;
-  border-radius: 20px;
-  display: flex;
-  width: 100%;
-  max-width: 900px;
-  border: 1px solid #4D8682;
-  background: linear-gradient(135deg, #69AEA9 75%, #54908C);
-  transition: max-height 0.7s;
+  .ads-item-f {
+    color: #3A6562!important;
+    background: linear-gradient(135deg, white 75%, #85D5D0)!important;
+  }
 
-  
-}
+  .ads-item {
+    max-height: 120px;
+    height: auto;
+    overflow: hidden;
+    color: lightgray;
+    border-radius: 20px;
+    display: flex;
+    width: 100%;
+    max-width: 900px;
+    border: 1px solid #4D8682;
+    background: linear-gradient(135deg, #69AEA9 75%, #54908C);
+    transition: max-height 0.7s;
+  }
 
-.ads-item:hover {
-  max-height: 250px;
-  transition: max-height 1.4s;
-}</style>
+  .ads-item:hover {
+    max-height: 250px;
+    transition: max-height 1.4s;
+  }
 
-<div  class="p-0 ads-item">
-  <div  class="h-100 align-self-center" style="overflow: hidden; flex: 0 0 25%; height: 100%; border-top-left-radius: 20px; border-bottom-left-radius: 20px; font-family: weathericons; display: flex; align-items: center; justify-content: space-around; font-size: 100px;">
-  <div  class="w-100 d-flex justify-content-center" style="overflow: hidden; background-color: rgba(200, 200, 200, 0.60);">
-    <img  class="w-100" src="{{srcImage}}" alt="{{ad.title}}">
-  </div>
-</div>
-  <div  style="min-width: 0; flex: 1 1 auto; height: auto; display: flex; flex-direction: column;">
-    <div  class="d-flex align-items-end px-2" style="flex: 0 1 40%; min-width: 0;">
-      <h5  style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-        <a routerLink= "/insertion/{{ad.user_id}}/{{ad.id}}">{{ad.title}}</a>
-      </h5>
+  .ads-image-col {
+    overflow: hidden; 
+    flex: 0 0 25%; 
+    height: 100%; 
+    border-top-left-radius: 20px; 
+    border-bottom-left-radius: 20px;
+    display: flex; 
+    align-items: center; 
+    justify-content: space-around;
+    align-self: center;
+  }
+
+  .ads-image-frame {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    overflow: hidden; 
+    background-color: rgba(200, 200, 200, 0.60);
+  }
+
+</style>
+<div *ngIf="ad.type === 'S'; else adsItemF" class="p-0 ads-item">
+  <div class="ads-image-col" *ngIf="ad.images[0]">
+    <div class="ads-image-frame">
+      <img  class="w-100" src="{{srcImage}}" alt="{{ad.title}}">
     </div>
-<div  class="h-50 px-2" style="flex: 0 1 35%;">
-  <a  
-  routerLink= "/insertion"
-  [queryParams] = "{author: ad.author}" class="d-inline" style="position: initial;">{{ad.author}}</a>
-  <div  class="d-none d-md-inline">
-    - <a 
-    routerLink= "/insertion"
-    [queryParams] = "{publisher: ad.publisher}"
-    class="d-inline" 
-    style="position: initial;">{{ad.publisher}}</a>
   </div>
-</div>
-<div  class="h-50 px-2 d-flex" style="flex: 0 1 25%;">
-  <a  routerLink= "/insertion"
-  [queryParams] = "{year: ad.year}" class="d-inline" style="position: initial;">{{ad.year}}</a>
-  <span  class="ms-auto">Utente {{ad.user_id}}</span>
-</div>
+<div  style="min-width: 0; flex: 1 1 auto; height: auto; display: flex; flex-direction: column;">
+  <div  class="d-flex align-items-center px-2" style="flex: 1; min-width: 0;">
+    <h5 class="m-0" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+      <a routerLink= "/insertion/{{ad.user_id}}/{{ad.id}}">{{ad.title}}</a>
+    </h5>
+  </div>
+  <div class="h-50 px-2" style="flex: 0 1 35%;">
+    <a  
+      routerLink= "/insertion"
+      [queryParams] = "{author: ad.author}" class="d-inline me-2" style="position: initial;">{{ad.author}}</a>
+    <div  class="d-none d-md-inline">
+    <a 
+      routerLink= "/insertion"
+      [queryParams] = "{publisher: ad.publisher}"
+      class="d-inline" 
+      style="position: initial;">{{ad.publisher}}</a>
+    </div>
+  </div>
+  <div  class="h-50 px-2 d-flex" style="flex: 0 1 25%;">
+    <a  routerLink= "/insertion"
+    [queryParams] = "{year: ad.year}" class="d-inline" style="position: initial;">{{ad.year}}</a>
+    <span  class="ms-auto">Utente {{ad.user_id}}</span>
+  </div>
 </div>
 <div  style="flex: 0 0 auto; height: 100%; border-top-right-radius: 20px; border-bottom-right-radius: 20px; display: flex; justify-content: space-around; align-items: center; height: auto; display: flex; flex-direction: column;">
   <div  class="h-50 d-flex px-2 pt-3" style="flex: 0 1 50%;">
     <p  class="d-inline" style="position: initial;">{{ad.price}}</p>
   </div>
   <div  class="d-flex h-50 px-2 pb-2 align-items-end" style="flex: 0 1 50%;">
-    <span  data-bs-toggle="tooltip" data-bs-placement="top" title="Libro in Vendita" style="color: tomato;">
-  <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="bi bi-binoculars">
-    <path  d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z">
-    </path>
-  </svg>
-</span>
-<span  data-bs-toggle="tooltip" data-bs-placement="top" title="Inserzione di Ricerca" class="d-none" style="color: green;">
-  <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="bi bi-cash-coin">
-    <path  fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z">
-    </path>
-    <path  d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z">
-    </path>
-    <path  d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z">
-    </path>
-    <path  d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z">
-    </path>
+<span  data-bs-toggle="tooltip" data-bs-placement="top" title="Libro in Vendita" style="color: tomato;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
+    <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z"/>
   </svg>
 </span>
 </div>
 </div>
 </div>
+
+<ng-template #adsItemF>
+  <div>
+    <div class="p-2 ads-item ads-item-f">
+      <div class="ads-image-col" *ngIf="ad.images[0]">
+        <div class="ads-image-frame">
+          <img  class="w-100" src="{{srcImage}}" alt="{{ad.title}}">
+        </div>
+      </div>
+    <div  style="min-width: 0; flex: 1 1 auto; height: auto; display: flex; flex-direction: column;">
+      <div  class="d-flex align-items-center px-2" style="flex: 1; min-width: 0;">
+        <h5 class="m-0" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+          <a routerLink= "/insertion/{{ad.user_id}}/{{ad.id}}">{{ad.title}}</a>
+        </h5>
+      </div>
+      <div class="h-50 px-2 row" style="flex: 0 1 35%;" *ngIf="ad.author && ad.publisher && ad.year">
+        <div class="col-auto">
+          <a  
+            routerLink= "/insertion"
+            [queryParams] = "{author: ad.author}" class="d-inline me-2" style="position: initial;">{{ad.author}}</a>
+        </div>
+        <div  class="col-auto">
+          <a 
+            routerLink= "/insertion"
+            [queryParams] = "{publisher: ad.publisher}"
+            class="d-inline" 
+            style="position: initial;">{{ad.publisher}}</a>
+        </div>
+        <!-- <div class="col-auto ms-auto">
+          <a  routerLink= "/insertion"
+            [queryParams] = "{year: ad.year}" class="d-inline" style="position: initial;">{{ad.year}}</a>
+        </div> -->
+      </div>
+      <div  class="h-50 px-2 d-flex" style="flex: 0 1 25%;" *ngIf="ad.year">
+        <a  routerLink= "/insertion"
+        [queryParams] = "{year: ad.year}" class="d-inline" style="position: initial;">{{ad.year}}</a>
+        <!-- <span  class="ms-auto">Utente {{ad.user_id}}</span> -->
+      </div>
+    </div>
+    <div  style="flex: 0 0 auto; height: 100%; border-top-right-radius: 20px; border-bottom-right-radius: 20px; display: flex; justify-content: space-around; align-items: center; height: auto; display: flex; flex-direction: column;">
+      
+      <div  class="d-flex h-50 w-100 px-2 justify-content-end" style="flex: 0 1 50%">
+        <span  data-bs-toggle="tooltip" data-bs-placement="top" title="Inserzione di Ricerca"  style="color: green;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+            <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+          </svg>
+        </span>
+      </div>
+      <div  class="d-flex h-50 px-2 align-items-end" style="flex: 0 1 50%">
+        <span  class="ms-auto">Utente {{ad.user_id}}</span>
+      </div>
+    </div>
+    </div>
+  </div>
+</ng-template>
