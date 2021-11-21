@@ -8,51 +8,99 @@
   .box .row.content {
     flex: 1 1 auto;
   }
+  h2, h3 {
+    color: #3A6562;
+  }
 </style>
+
+<ng-template #emptyInfo>
+  <p class="px-1 m-0 text-muted" style="font-size: larger; border-bottom: 1px solid lightgray;">---</p>
+  
+</ng-template>
 
 <div class="row justify-content-center py-5 h-100">
   <div class="col-10 col-md-8 col-lg-10 container-form box" style="height: auto;">
     <div class="row p-4">
-      <div class="order-lg-2 col-12 col-lg-4 d-flex justify-content-center p-0" style="height: 200px; border: 1px solid black; background-color: rgba(100, 100, 100, 0.60);">
-        <div id="carouselExampleIndicators" *ngIf="ad.images.length>1" class="carousel slide w-100" data-interval="false">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" [data-slide-to]="i" *ngFor="let image of ad.images;let i = index" [ngClass]="{'active': i===0}"></li>
-          </ol>
-          <div class="carousel-inner h-100">
-            <div class="carousel-item h-100" *ngFor="let image of ad.images;let i = index" [ngClass]="{'active': i===0}">
-              <div class="h-100 w-100 d-flex align-items-center justify-content-center">
-                <img style="max-height: 200px; max-width: 100%;" class="d-block" src="{{authService.url}}/api/v1/adImages/{{ image.url }}" alt="{{ i }}"> 
+      <div class="order-lg-2 col-12 col-lg-4 d-flex justify-content-center p-0" style="height: 200px; border: 1px solid var(--dark-color); background-color: #D1F1EF ">
+        <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel" data-bs-interval="false">
+          <div class="carousel-indicators">
+            <button *ngFor="let img of ad.images;let i = index ;let isFirst = first" [ngClass]="{'active': isFirst}" type="button" data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i" aria-label="Slide"></button>
+            <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button> -->
+          </div>
+          <div class="carousel-inner w-100 h-100">
+            <div *ngFor="let img of ad.images;let isFirst = first" [ngClass]="{'active': isFirst}" class="carousel-item w-100 h-100">
+              <div class="w-100 h-100 d-flex justify-content-center">
+                <img [src]="getUrl(img)" class="d-block h-100" alt="{{ad.title}}">
               </div>
             </div>
+            <div *ngIf="ad.images.length === 0" class="h-100 w-100 d-flex justify-content-center align-items-center">
+              Immagine non disponibile
+            </div>
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <button *ngIf="ad.images.length > 1" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button *ngIf="ad.images.length > 1" class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-        <div *ngIf="ad.images.length==1" class="d-flex align-items-center">
-          <img  style="max-height: 200px; width: 100%;" class="d-block" src="{{authService.url}}/api/v1/adImages/{{ ad.images[0].url }}" alt="{{ i }}">
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
       </div>
-      <div class="col-sm">
-        <h2>{{ ad.title }}</h2>
-        <p style="font-size: larger;">{{ ad.author }} - {{ ad.year }}</p>
-        <p style="font-size: larger;">Publicato da {{ ad.publisher }}</p>
-        <p style="font-size: larger;">{{ ad.price }}</p>
+      <div class="col-8 order-lg-1">
+        <div class="row justify-content-center">
+          <div class="col-12 mb-3">
+            <h2>{{ ad.title }}</h2>
+          </div>
+          <div class="col-11 mb-2">
+            <label>Autore:</label>
+            <p class="px-1 m-0" *ngIf="ad.author; else emptyInfo" style="font-size: larger; border-bottom: 1px solid var(--primary-color);">{{ ad.author }}</p>    
+          </div>
+          <div class="col-8 mb-2">
+            <label>Editore:</label>
+            <p class="px-1 m-0" *ngIf="ad.author; else emptyInfo" style="font-size: larger; border-bottom: 1px solid var(--primary-color);">{{ ad.publisher }}</p>    
+          </div>
+          <div class="col-3 mb-2">
+            <label>Anno:</label>
+            <p class="px-1 m-0" *ngIf="ad.author; else emptyInfo" style="font-size: larger; border-bottom: 1px solid var(--primary-color);">{{ ad.year }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-8 order-lg-3">
+        <div class="row justify-content-center">
+          <div class="col-11 mb-2">
+            <label class="mb-1">Genere:</label>
+            <div class="row px-3">
+              <div class="col-auto px-1">
+                <div class="px-2 py-1" style="width: fit-content; background-color: #69AEA9; color: white; border-radius: 10px;">
+                  Non disponibile
+                </div>
+              </div>
+              <!-- <div class="col-auto px-1">
+                <div class="px-2 py-1" style="width: fit-content; background-color: #69AEA9; color: white; border-radius: 10px;">
+                  none
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="order-lg-4 mt-1 col-4 d-flex flex-column">
+        <small class="text-end">Utente {{ad.user_id}}</small>
+        <div class="mt-auto w-75 mx-auto">
+          <h3 class="mb-0 text-center p-0" style="border:1px solid #3A6562;">{{ad.price}} €</h3>
+        </div>
       </div>
     </div>
-    <div class="row justify-content-center content">
+    <div class="row justify-content-center content pb-3">
       <div class="col-11 align-self-center p-3" style="height: auto; min-height: 150px; border: 1px solid lightgrey;">
         <p>{{ ad.description }}</p>
       </div>
     </div>
     <div class="row px-5 pb-5 justify-content-end">
       <button *ngIf="userId===ad.user_id" class="btn btn-danger" (click)="onDelete()">Elimina Inserzione</button>
-      <button *ngIf="!(userId===ad.user_id)" class="btn btn-orange" (click)="openChat()">Contatta Inserzionista</button>
+      <button *ngIf="!(userId===ad.user_id)" class="btn btn-green" (click)="openChat()">Contatta Inserzionista</button>
     </div>
     
   </div>

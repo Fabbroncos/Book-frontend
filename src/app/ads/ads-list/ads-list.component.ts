@@ -3,7 +3,7 @@ import { stringify } from "@angular/compiler/src/util";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
-import { Ad } from "src/app/ads/ad.model";
+import { Ad, Genre } from "src/app/ads/ad.model";
 import { NgForm } from "@angular/forms";
 
 @Component({
@@ -24,6 +24,8 @@ export class AdsListComponent implements OnInit{
   last_page= 1
   pageini= "1"
   from= 0
+  years: number[] = []
+  genres: Genre[] = []
 
   type: String = ""
 
@@ -37,6 +39,18 @@ export class AdsListComponent implements OnInit{
     this.page = +this.pageini;
     
     let cont: string = this.router.url;
+
+    let startYear = 1900;
+    let endYear = new Date().getFullYear();
+
+    for (let i = endYear; i > startYear; i--) {this.years.push(i);}
+
+    this.route.data.subscribe(
+      genreData => {
+        console.log(genreData);
+        
+      }
+    )
 
     this.route.queryParams.subscribe(
         (params: Params) => {
@@ -164,6 +178,26 @@ export class AdsListComponent implements OnInit{
     }
   }
 
+  changePage(mode: string) {
+    let page = this.page
+    switch (mode) {
+      case "+":
+        page+=1;
+        break
+      case "++":
+        page = this.last_page
+        break
+      case "-":
+        page -= 1
+        break
+      case "--":
+        page = 1
+        break
+    }
+    this.params= { ...this.params, "page": page}
+    this.getAds(this.params)
+  }
+
   onSubmit(filterForm: NgForm) {
     let params = {...this.params}
 
@@ -172,11 +206,14 @@ export class AdsListComponent implements OnInit{
         params[key] = filterForm.value[key]
       }
     }
-    
+    delete params.page
     if(this.type !== "") {
       params = {...filterForm.value}
       params.type = this.type
     }
     this.getAds(params)
+    console.log(params);
+    console.log(filterForm.value);
+    
   }
 }

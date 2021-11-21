@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
-import { Ad } from "../ad.model";
+import { Ad, adImage } from "../ad.model";
 
 @Component({
   selector: 'app-ad-detail',
@@ -26,11 +26,18 @@ export class AdDetailComponent implements OnInit{
         ).subscribe(
           (ad: {message: string, data: Ad}) => {
             this.ad = ad.data
+            console.log(this.ad);
+            
           }
         )
         
       }
     )
+  }
+
+  gte(data: Element) {
+    console.log(data.attributes);
+    
   }
 
   openChat() {
@@ -57,6 +64,10 @@ export class AdDetailComponent implements OnInit{
         }
       )
     }
+  }
+
+  getUrl(img: adImage) {
+    return `${this.authService.url}/api/v1/adImages/${img.url}`
   }
 
   onDelete() {

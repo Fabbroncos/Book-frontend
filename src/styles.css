@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
-::ng-deep :root {
+:root {
   --dark-color: #213937;
+  --primary-dark: #243F3D;
   --primary-color: #4d8682;
 }
 
@@ -10,8 +11,12 @@
   color: #213937;
 }
 
-
-
+.container-form {
+  background-color: white;
+  border: 1px solid var(--primary-color);
+  border-radius: 15px;
+  color: var(--primary-dark);
+}
 
 
 .btn-orange {
@@ -33,11 +38,6 @@ textarea:focus.form-control {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px #ff8615;
 }
 
-.container-form {
-  border: 1px solid black; 
-  background-color: white; 
-  border-radius: 3px;
-}
 
 /* .container, .row, .col {
   padding: 0;
