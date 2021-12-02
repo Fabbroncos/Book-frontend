@@ -16,6 +16,7 @@ import { AddAdsComponent } from './ads/add-ads/add-ads.component';
 import { AdsListComponent } from './ads/ads-list/ads-list.component';
 import { ChatComponent } from './account/chat/chat.component';
 import { OwnerAdsComponent } from './account/owner-ads/owner-ads.component';
+import { AdsViewerComponent } from './ads/ads-viewer.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -23,7 +24,7 @@ const routes: Routes = [
   {
     path: 'insertion', //resolve: [GenreResolverService],
     children: [
-      {path: '', component: AdsListComponent},
+      {path: '', component: AdsViewerComponent},
       // {path: 'newest', component: BookListComponent},
       {path: ':book-userId/:book-id', component: AdDetailComponent}
     ]

@@ -25,6 +25,8 @@ import { AdsListComponent } from './ads/ads-list/ads-list.component';
 import { ChatComponent } from './account/chat/chat.component';
 import { RouterModule } from '@angular/router';
 import { OwnerAdsComponent } from './account/owner-ads/owner-ads.component';
+import { AddAdsFormComponent } from './ads/add-ads/add-ads-form/add-ads-form.component';
+import { AdsViewerComponent } from './ads/ads-viewer.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { OwnerAdsComponent } from './account/owner-ads/owner-ads.component';
     CustomInputFileComponent,
     FilterPipe,
     ChatComponent,
-    OwnerAdsComponent
+    OwnerAdsComponent,
+    AddAdsFormComponent,
+    AdsViewerComponent
   ],
   imports: [
     BrowserModule,

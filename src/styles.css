@@ -6,6 +6,10 @@
   --primary-color: #4d8682;
 }
 
+h1,h2,h3,h4,h5,h6, .list-group-item {
+  color: var(--primary-dark);
+}
+
 .btn-green {
   background-color: #4d8682;
   color: #213937;
@@ -16,6 +20,10 @@
   border: 1px solid var(--primary-color);
   border-radius: 15px;
   color: var(--primary-dark);
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
 }
 
 

@@ -1,16 +1,17 @@
 import { HttpClient } from "@angular/common/http";
-import { stringify } from "@angular/compiler/src/util";
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnChanges, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
 import { Ad, Genre } from "src/app/ads/ad.model";
 import { NgForm } from "@angular/forms";
+import { Subject, Subscription } from "rxjs";
+import { AdsService } from "../ads.service";
 
 @Component({
   selector: 'app-ads-list',
   templateUrl: './ads-list.component.html'
 })
-export class AdsListComponent implements OnInit{
+export class AdsListComponent implements OnInit, OnChanges{
   listType = "Inserzioni";
   filterString = "";
   ads: Ad[];
@@ -31,11 +32,27 @@ export class AdsListComponent implements OnInit{
 
   page: number;
 
-  params: Params
+  @Input('params') params: Params
 
-  constructor(private route: ActivatedRoute, private router: Router ,private http: HttpClient, private authService: AuthService) {}
+  constructor(
+    private route: ActivatedRoute, 
+    private router: Router ,
+    private http: HttpClient, 
+    private authService: AuthService,
+    private adsService: AdsService) {}
+
+  ngOnChanges() {
+    console.log(this.params);
+    this.adsService.getAds(this.params).subscribe(
+      (adsData: any) => {
+        this.ads = adsData.data.data
+        this.last_page = adsData.data.last_page
+      }
+    )
+  }
 
   ngOnInit() {
+    
     this.page = +this.pageini;
     
     let cont: string = this.router.url;
@@ -55,7 +72,7 @@ export class AdsListComponent implements OnInit{
     this.route.queryParams.subscribe(
         (params: Params) => {
           console.log(params);
-          this.getAds(params);
+          // this.getAds(params);
           this.params = params;
           // if (params['page']) {
             
@@ -125,41 +142,43 @@ export class AdsListComponent implements OnInit{
     )
   }
 
-  getAds(params?){
-    this.http.get(
-      `${this.authService.url}/api/v1/ads`,
-      {
-        params: params
-      }
-    ).subscribe(
-      (resData: {message:string, 
-        data:{
-          data: Ad[],
-          from: number,
-          last_page: number,
-          offset: number,
-          page: string,
-          pageSize: number,
-          to: number,
-          total:number
-        }}) => {
-        this.ads = resData.data.data;
+  // getAds(params?){
+  //   this.http.get(
+  //     `${this.authService.url}/api/v1/ads`,
+  //     {
+  //       params: params
+  //     }
+  //   ).subscribe(
+  //     (resData: {message:string, 
+  //       data:{
+  //         data: Ad[],
+  //         from: number,
+  //         last_page: number,
+  //         offset: number,
+  //         page: string,
+  //         pageSize: number,
+  //         to: number,
+  //         total:number
+  //       }}) => {
+  //       this.ads = resData.data.data;
 
-        this.total= resData.data.total
-        this.pageSize= resData.data.pageSize
-        this.offset= resData.data.offset
-        this.to= resData.data.to
-        this.last_page= resData.data.last_page
-        this.page= +resData.data.page
-        this.from= resData.data.from
+  //       this.total= resData.data.total
+  //       this.pageSize= resData.data.pageSize
+  //       this.offset= resData.data.offset
+  //       this.to= resData.data.to
+  //       this.last_page= resData.data.last_page
+  //       this.page= +resData.data.page
+  //       this.from= resData.data.from
 
-        console.log(resData);
-      }
-    )
-  }
+  //       console.log(resData);
+  //     }
+  //   )
+  // }
 
   nextPage() {
-    this.params
+    this.params["page"] = this.page+1;
+    console.log(this.params);
+    
     this.router.navigate(['/insertion'], {queryParams: {...this.params, page: this.page+1}})
   }
 
@@ -167,16 +186,16 @@ export class AdsListComponent implements OnInit{
     this.router.navigate(['/insertion'], {queryParams: {...this.params, page: this.page-1}})
   }
 
-  toggleType(type: String) {
-    console.log(type);
-    console.log(this.type);
+  // toggleType(type: String) {
+  //   console.log(type);
+  //   console.log(this.type);
     
-    if(type === this.type) {
-      this.type = ""
-    } else {
-      this.type = type
-    }
-  }
+  //   if(type === this.type) {
+  //     this.type = ""
+  //   } else {
+  //     this.type = type
+  //   }
+  // }
 
   changePage(mode: string) {
     let page = this.page
@@ -195,25 +214,51 @@ export class AdsListComponent implements OnInit{
         break
     }
     this.params= { ...this.params, "page": page}
-    this.getAds(this.params)
-  }
-
-  onSubmit(filterForm: NgForm) {
-    let params = {...this.params}
-
-    for (const key in filterForm.value) {
-      if(filterForm.value[key] !== "") {
-        params[key] = filterForm.value[key]
-      }
-    }
-    delete params.page
-    if(this.type !== "") {
-      params = {...filterForm.value}
-      params.type = this.type
-    }
-    this.getAds(params)
-    console.log(params);
-    console.log(filterForm.value);
+    console.log(this.params);
     
+    
+    
+    this.adsService.getAds(this.params).subscribe(
+      (adsData: any) => {
+        this.ads = adsData.data.data
+        this.last_page = adsData.data.last_page
+        this.page = adsData.data.page
+        console.log(this.page + " e " + this.last_page);
+      }
+    )
   }
+
+  mode = "list"
+  changeMode() {
+    switch (this.mode) {
+      case "list":
+        this.mode="grid"
+        break;
+      case "grid":
+        this.mode="gridCard"
+        break;
+      case "gridCard":
+        this.mode="list"
+        break;
+    }
+  }
+
+  // onSubmit(filterForm: NgForm) {
+  //   let params = {...this.params}
+
+  //   for (const key in filterForm.value) {
+  //     if(filterForm.value[key] !== "") {
+  //       params[key] = filterForm.value[key]
+  //     }
+  //   }
+  //   delete params.page
+  //   if(this.type !== "") {
+  //     params = {...filterForm.value}
+  //     params.type = this.type
+  //   }
+  //   this.getAds(params)
+  //   console.log(params);
+  //   console.log(filterForm.value);
+    
+  // }
 }

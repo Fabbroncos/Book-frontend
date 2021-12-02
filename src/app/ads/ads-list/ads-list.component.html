@@ -15,7 +15,7 @@
 
   <!-- <div class="w-100" style="background-color: var(--dark-color);">cia</div> -->
   <div  class="d-flex w-100 h-100 mt-3 flex-row" style="position: relative;">
-  <div  class="d-flex p-3 justify-content-end" style="flex: 0 20%;">
+  <!-- <div  class="d-flex p-3 justify-content-end" style="flex: 0 20%;">
   <div  class="filter-container flex-column">
   <div  class="d-flex">
   <div  class="d-flex flex-grow-1 px-3 align-items-center">
@@ -68,10 +68,15 @@
     </form>
   </div>
   </div>
-  </div>
+  </div> -->
   <div  class="d-flex p-3" style="flex: 0 60%;">
   <div  class="w-100">
   <h3 >Inserzione</h3>
+  <div class="w-100 d-flex justify-content-end">
+    <button class="btn">{{pageSize}}</button>
+    <button class="btn" (click)="changeMode()">modalità</button>
+
+  </div>
   <div  class="w-100">
   <app-ads-list-item-component *ngFor="let ad of ads" [ad]="ad"></app-ads-list-item-component>
   <div class="pt-3 align-items-center d-flex justify-content-center">

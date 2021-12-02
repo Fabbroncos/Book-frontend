@@ -1,15 +1,23 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { promisify } from "util";
+import { map } from "rxjs/operators";
+import { AuthService } from "../auth/auth.service";
+import { Ad } from "./ad.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdsService {
 
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  getAds(...prms: object[]) {
-    console.log(prms);
-    
+  getAds(params?) {
+    return this.http.get(
+      `${this.authService.url}/api/v1/ads`,
+      {
+        params: params
+      }
+    )
   }
 
 }

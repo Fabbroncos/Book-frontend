@@ -25,7 +25,7 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
   defaultText = "Scegli tra le seguenti...";
 
   valueText: String = this.defaultText;
-  value: any[] = [];
+  value: any[] = ["ciao","blue"];
   isMultiple = false;
 
   ngOnInit() {
@@ -90,8 +90,8 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
   onChange: any = () => { };
   onTouched: any = () => { };
 
-  writeValue(value: any[]): void {
-    if (value===null) {this.valueText = this.defaultText; return}    
+  writeValue(value): void {
+    if (value===null || value === "") {this.valueText = this.defaultText; return}    
     this.value = value;
     this.onChange(this.value);
     if (this.value.length===0) {
@@ -104,7 +104,6 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
       this.valueText = list.join(", ");
       
     }
-    
   }
 
   registerOnChange(fn: any): void {

@@ -10,8 +10,8 @@
       </div>
     </div>
     <div class="col-12 py-2 d-flex flex-wrap">
-      <div *ngFor="let ad of ads" class="d-flex p-2" style="flex: 0 50%;">
-        <app-ads-list-item-component [ad]="ad"></app-ads-list-item-component>
+      <div *ngFor="let ad of ads" class="d-flex p-2 w-50" > 
+        <app-ads-list-item-component class="w-100" [ad]="ad"></app-ads-list-item-component>
       </div>
     </div>
   </div>
