@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnChanges, OnInit } from "@angular/core";
 import { Ad } from "src/app/ads/ad.model";
 import { AuthService } from "src/app/auth/auth.service";
 
@@ -7,16 +7,22 @@ import { AuthService } from "src/app/auth/auth.service";
   templateUrl: './ads-list-item.component.html',
   styleUrls: ['./ads-list-item.component.css']
 })
-export class AdsListItemComponent implements OnInit{
+export class AdsListItemComponent implements OnInit, OnChanges{
   @Input('ad') ad: Ad
+  @Input('mode') mode: String
 
   constructor(private authService: AuthService) {}
 
   srcImage: string = ""
 
+  ngOnChanges() {
+    
+
+  }
+
   ngOnInit() {
     // console.log(this.ad);
-    
+     
     // this.ad["type"] = "S";
     this.ad["price"] = "15.99€";
     if(this.ad.images[0]){

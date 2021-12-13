@@ -13,112 +13,79 @@
 </style>
 
 
-  <!-- <div class="w-100" style="background-color: var(--dark-color);">cia</div> -->
-  <div  class="d-flex w-100 h-100 mt-3 flex-row" style="position: relative;">
-  <!-- <div  class="d-flex p-3 justify-content-end" style="flex: 0 20%;">
-  <div  class="filter-container flex-column">
-  <div  class="d-flex">
-  <div  class="d-flex flex-grow-1 px-3 align-items-center">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sliders me-2" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"/>
-    </svg>  
-    Filtri
-  </div>
-  <div >
-  <div  class="d-flex justify-content-center align-items-center" style="height: 30px; width: 30px;">
-  <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="bi bi-x-lg">
-  <path  fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z">
-  </path>
-  <path  fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z">
-  </path>
-  </svg>
-  </div>
-  </div>
-  </div>
-  <div  class="p-3 d-flex flex-column">
-    <form #filterForm="ngForm" (ngSubmit)="onSubmit(filterForm)">
-      <div class="row p-0 m-0 justify-content-center">
-        <div class="col-6 justify-content-center d-flex">
-          <button role="button" (click)="toggleType('S')" class="btn" [ngClass]="type==='S' ? 'btn-outline-warning' : 'btn-outline-secondary'" type="submit">Vendo</button>
-        </div>
-        <div class="col-6 justify-content-center d-flex">
-          <button role="button" (click)="toggleType('F')" class="btn" [ngClass]="type==='F' ? 'btn-outline-success' : 'btn-outline-secondary'" type="submit">Cerco</button>
-        </div>
-        <div class="col-12">
-          <hr style="color: #5B9A96;">
-          <label  for="title">Titolo</label>
-          <input ngModel id="title" name="title" class="form-control">
-          <label  for="author">Autore</label>
-          <input ngModel id="author" name="author" class="form-control">
-          <label  for="title">Anno</label>
-          <app-multiple-select-component ngModel id="year" name="year" [list]="years"></app-multiple-select-component>
-          <label  for="title">Isbn</label>
-          <input ngModel id="isbn" name="isbn" minlength="11" maxlength="13" class="form-control">
-          <label  for="title">Editore</label>
-          <input ngModel id="publisher" name="publisher" class="form-control">
-          <label  for="title">Genere</label>
-          <app-multiple-select-component ngModel name="genre" [list]="genres" stringAttribute="name" [multiple]="true"></app-multiple-select-component>
-          <label  for="title">Price</label>
-          <input ngModel id="price" name="price" class="form-control">
-        </div>
-        <div class="col-12 p-3">
-          <button class="btn btn-primary w-100" type="submit">Cerca</button>
+<div  class="d-flex w-100 h-100 flex-row" style="position: relative;">
+  <div  class="d-flex px-3 pb-3">
+    <div  class="w-100">
+      <div class="w-100 d-flex flex-wrap">
+        <app-ads-list-item-component class="px-2 pb-2" *ngFor="let ad of ads" [ad]="ad" [mode]="mode" [ngClass]="{'list': 'w-100', 'grid': 'w-50', 'gridCard' : 'w-25'}[mode]"></app-ads-list-item-component>
+        <div class="row w-100 justify-content-end">
+          <div class="col-9">
+            <div class="pt-3 align-items-center d-flex justify-content-end w-100">
+              <button class="btn" (click)="changePage('--')" [disabled]="page===1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                  <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                </svg>
+              </button>
+              <button class="btn me-2" (click)="changePage('-')" [disabled]="page===1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                </svg>
+              </button>
+              Pagina
+              <style>
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                  -webkit-appearance: none;
+                  margin: 0;
+                }
+    
+                /* Firefox */
+                input[type=number] {
+                  -moz-appearance: textfield;
+                }
+              </style>
+              <input class="form-control d-inline-block text-center py-0" [value]="page" style="width: 50px; border-bottom: 1px solid lightgray; border-top: none; border-left: none;border-right: none;" type="number">
+              di {{last_page}}
+              <button class="btn ms-2" (click)="changePage('+')" [disabled]="page===last_page">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              </button>
+              <button class="btn" (click)="changePage('++')" [disabled]="page===last_page">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                  <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="pt-3 w-100 d-flex justify-content-end">
+              <style>
+                .bordered {
+                  border: 1px solid lightgray;
+                  box-shadow: none;
+                }
+              </style>
+              <button class="btn bordered me-1">{{pageSize}}</button>
+              <button class="btn bordered d-flex align-items-center" (click)="changeMode()">
+                <svg *ngIf="mode==='list'" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+
+                <svg *ngIf="mode==='grid'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid" viewBox="0 0 16 16">
+                  <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+                </svg>
+                
+                <svg *ngIf="mode==='gridCard'" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid-3x3-gap" viewBox="0 0 16 16">
+                  <path d="M4 2v2H2V2h2zm1 12v-2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V7a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm5 10v-2a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V7a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V2a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zM9 2v2H7V2h2zm5 0v2h-2V2h2zM4 7v2H2V7h2zm5 0v2H7V7h2zm5 0h-2v2h2V7zM4 12v2H2v-2h2zm5 0v2H7v-2h2zm5 0v2h-2v-2h2zM12 1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zm-1 6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zm1 4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-2z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </form>
+    </div>
   </div>
-  </div>
-  </div> -->
-  <div  class="d-flex p-3" style="flex: 0 60%;">
-  <div  class="w-100">
-  <h3 >Inserzione</h3>
-  <div class="w-100 d-flex justify-content-end">
-    <button class="btn">{{pageSize}}</button>
-    <button class="btn" (click)="changeMode()">modalità</button>
-
-  </div>
-  <div  class="w-100">
-  <app-ads-list-item-component *ngFor="let ad of ads" [ad]="ad"></app-ads-list-item-component>
-  <div class="pt-3 align-items-center d-flex justify-content-center">
-    <button class="btn" (click)="changePage('--')" [disabled]="page===1">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-        <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-      </svg>
-    </button>
-    <button class="btn me-2" (click)="changePage('-')" [disabled]="page===1">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-      </svg>
-    </button>
-    Pagina
-    <style>
-      input::-webkit-outer-spin-button,
-      input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-
-      /* Firefox */
-      input[type=number] {
-        -moz-appearance: textfield;
-      }
-    </style>
-    <input class="form-control d-inline-block text-center py-0" [value]="page" style="width: 50px; border-bottom: 1px solid lightgray; border-top: none; border-left: none;border-right: none;" type="number">
-    di {{last_page}}
-    <button class="btn ms-2" (click)="changePage('+')" [disabled]="page===last_page">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-      </svg>
-    </button>
-    <button class="btn" (click)="changePage('++')" [disabled]="page===last_page">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
-        <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
-      </svg>
-    </button>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
+</div>
