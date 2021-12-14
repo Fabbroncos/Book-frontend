@@ -15,8 +15,8 @@
 
   .list-group {
     background-color: white;
-    border: 1px solid #3A6562;
-    border-radius: 15px;
+    border-right: 1px solid #3A6562;
+    border-radius: 0px;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
     overflow: hidden;
@@ -49,7 +49,7 @@
   }
 </style>
 
-<div class="d-flex h-100 w-100 p-3">
+<div class="d-flex h-100 w-100">
   <div class="w-25">
     <div class="list-group h-100">
     <a role="button" (click)="changeChat(chat)" *ngFor="let chat of chats; let i = index" [ngClass]="{'active': activeChat.id===chat.id }" class="list-group-item d-flex flex-column">
@@ -60,7 +60,7 @@
     </a>
     </div>
   </div>
-  <div class="w-100" style="overflow: hidden; border: 1px solid #3A6562; background-color: white; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-left: none;">
+  <div class="w-100" style="overflow: hidden; background-color: white; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-left: none;">
     <div class="container d-flex flex-column p-0 h-100">
       <div class="d-flex p-3 justify-content-between">
         <h4 class="m-0">Utente {{getOtherUser(activeChat)}}</h4>

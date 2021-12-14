@@ -284,7 +284,7 @@ div:hover.col-6 .btn-book {
                     <div  class="d-flex px-2">
                     <p class="d-inline" style="position: initial;">{{ad.author}}</p>
                     <div  class="d-none d-md-inline">
-                      - <p class="d-inline" 
+                      <p class="d-inline" 
                       style="position: initial;">{{ad.publisher}}</p>
                     </div>
                     </div>
@@ -293,11 +293,11 @@ div:hover.col-6 .btn-book {
                     <span  class="ms-auto">{{ad.isbn}}</span>
                     </div>
                     <div class="d-flex px-2 justify-content-between">
-                      <div>
+                      <div class="px-2">
                         Prezzo: 
                         <input type="text" class="form-control form-control-hidden" #priceInput [(ngModel)]="ad.price" (change)="ad.price = priceInput.value">
                       </div>
-                      <div>
+                      <div class="px-2">
                         Quantità: 
                         <input type="number" class="form-control form-control-hidden" #quantityInput [(ngModel)]="ad.quantity" (change)="ad.quantity = quantityInput.value">
                       </div>
