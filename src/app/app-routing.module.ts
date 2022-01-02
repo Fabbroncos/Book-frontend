@@ -17,6 +17,7 @@ import { AdsListComponent } from './ads/ads-list/ads-list.component';
 import { ChatComponent } from './account/chat/chat.component';
 import { OwnerAdsComponent } from './account/owner-ads/owner-ads.component';
 import { AdsViewerComponent } from './ads/ads-viewer.component';
+import { ChatResolverService } from './account/chat/chat-resolver.service';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -48,7 +49,7 @@ const routes: Routes = [
       {path: 'my-insertion',component: OwnerAdsComponent},
       // {path: 'my-orders',component: BookListComponent},
       {path: 'add-book',component: AddAdsComponent, resolve: [GenreResolverService]},
-      {path: 'chat', component: ChatComponent},
+      {path: 'chat', component: ChatComponent, resolve: [ChatResolverService]},
       {path: 'change-password', component:ChangePasswordComponent},
     ]
   }

@@ -1,0 +1,89 @@
+.popular-container{
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #63BBF3;
+  color: white;
+}
+
+.popular-container div {
+  padding: 0;
+}
+
+.most-popular-ads {
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+  position: relative; 
+  background-color: #67C5FF;
+}
+
+.popular-ads-1 {
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+  position: relative; 
+  background-color: #8DD4FF;
+}
+
+.popular-ads-2 {
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+  position: relative; 
+  background-color: #B3E2FF;
+}
+
+.third-line-truncate {
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.popular-body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.popular-title {
+  width: 90%;
+  background-color: #579CCEdd;
+  bottom: 15%;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0; 
+  right: 0;
+}
+
+.genre-box {
+  background-color: #BFEEEC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 1.3vw;
+  width: 12.5%;
+}
+
+.list-group-item:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.list-group-item:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+
+.recommended-title {
+  color: #4D8682;
+  display: flex;
+  align-items: end;
+  flex-direction: column;
+}

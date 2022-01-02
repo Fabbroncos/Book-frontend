@@ -42,8 +42,9 @@ export class AdDetailComponent implements OnInit{
 
   openChat() {
     console.log(this.authService.isLogged);
+    console.log();
     
-    if (this.authService.isLogged) {
+    if (!this.authService.isLogged) {
       this.router.navigate([`/auth/login`])
     } else {
       this.http.post(

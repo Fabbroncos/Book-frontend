@@ -1,141 +1,82 @@
 
 <div  class="container w-75 p-4 d-flex flex-column">
-  <div  class="row" style="position: relative;">
-    <div  class="col-12">
-      <div  class="text-light px-4 pb-1" style="border-top-left-radius: 10px; border-top-right-radius: 10px; overflow: hidden; background-color: #63BBF3;">
-        <h4  style="display: contents;">Popolari</h4>
+  <div  class="row popular-container">
+    <div  class="col-12 px-4">
+      <h4 class="mb-1">Popolari</h4>
+    </div>
+    <div class="col-6 most-popular-ads px-4 py-3" role="button" routerLink="/insertion/{{adsPopolari[0].user_id}}/{{adsPopolari[0].id}}">
+      <div id="tar1" class="h-100 d-flex justify-content-center align-items-center">
+        <img class="img-responsive mx-auto d-block h-100 w-auto" [src]="getImageUrl(adsPopolari[0])" alt="adsPopolari[0].title">
+      </div>
+      <div class="d-flex flex-column py-2 ps-4">
+        <div>
+          <h5 class="third-line-truncate">{{adsPopolari[0].title}}</h5>
+        </div>
+        <div class="popular-body">
+          <div class="px-2 w-100">{{adsPopolari[0].author}}</div>
+          <div class="px-2">{{adsPopolari[0].publisher}}</div>
+          <div class="px-2 ms-auto">{{adsPopolari[0].year}}</div>
+          <div class="w-100 fs-1 d-flex justify-content-end align-items-end">19.90€</div>
+        </div>
       </div>
     </div>
-    <div  class="col-md-12 d-flex flex-row">
-      <div role="button" routerLink="/insertion/{{adsPopolari[0].user_id}}/{{adsPopolari[0].id}}" class="ps-5 pe-2 py-3 col-6 d-flex flex-row" style="height: 250px; position: relative; background-color: #67C5FF; border-bottom-left-radius: 10px;">
-        <div  id="tar1" class="h-100 d-flex justify-content-center align-items-center">
-          <img  class="img-responsive mx-auto d-block" style="width: auto; height: 100%; max-height: 300px;"  [src]="getImageUrl(adsPopolari[0])" alt="adsPopolari[0].title">
-        </div>
-        <div  class="py-2 px-4 text-light flex-grow-1">
-          <p>{{adsPopolari[0].title}}</p>
-          <p >{{adsPopolari[0].author}} - {{adsPopolari[0].publisher}}</p>
-          <p >{{adsPopolari[0].year}}</p>
-          <p  class="text-end w-100">{{adsPopolari[0].price}}</p>
-        </div>
+    <div class="col-3 px-4 py-3 popular-ads-1" role="button" routerLink="/insertion/{{adsPopolari[1].user_id}}/{{adsPopolari[1].id}}">
+      <div id="tar1" class="h-100 d-flex justify-content-center align-items-center">
+        <img class="img-responsive mx-auto d-block h-100 w-auto" [src]="getImageUrl(adsPopolari[1])" alt="adsPopolari[1].title">
       </div>
-      <div role="button" routerLink="/insertion/{{adsPopolari[1].user_id}}/{{adsPopolari[1].id}}" class="p-3 col-3" style="height: 250px; position: relative; background-color: #8DD4FF;">
-        <div  class="h-100 w-100 d-flex justify-content-center align-items-center">
-          <img  class="img-responsive mx-auto d-block" style="width: auto; height: 100%; max-height: 300px;" [src]="getImageUrl(adsPopolari[1])" alt="adsPopolari[1].title">
-        </div>
-        <div  class="w-75 text-center text-light" style="background-color: #579CCE; position: absolute; bottom: 20px; margin-left: auto; margin-right: auto; left: 0; right: 0;"> {{adsPopolari[1].title}} </div>
+      <div class="popular-title text-center">{{adsPopolari[1].title}}</div>
+    </div>
+    <div class="col-3 px-4 py-3 popular-ads-2" role="button" routerLink="/insertion/{{adsPopolari[2].user_id}}/{{adsPopolari[2].id}}">
+      <div id="tar1" class="h-100 d-flex justify-content-center align-items-center">
+        <img class="img-responsive mx-auto d-block h-100 w-auto" [src]="getImageUrl(adsPopolari[2])" alt="adsPopolari[2].title">
       </div>
-      <div role="button" routerLink="/insertion/{{adsPopolari[2].user_id}}/{{adsPopolari[2].id}}" class="p-3 col-3" style="height: 250px; position: relative; background-color: #B3E2FF; border-bottom-right-radius: 10px;">
-        <div  class="h-100 w-100 d-flex justify-content-center align-items-center">
-          <img  class="img-responsive mx-auto d-block" style="width: auto; height: 100%; max-height: 300px;" [src]="getImageUrl(adsPopolari[2])" alt="Harry Potter e la pietra filosafale">
-        </div>
-        <div  class="w-75 text-center text-light" style="background-color: #579CCE; position: absolute; bottom: 20px; margin-left: auto; margin-right: auto; left: 0; right: 0;"> {{adsPopolari[2].title}} </div>
-      </div>
+      <div class="popular-title text-center">{{adsPopolari[2].title}}</div>
     </div>
   </div>
   <div  class="d-flex mt-3">
-    <div  class="d-flex w-100">
-      <div  class="p-0 m-0 row w-100">
-        <style>
-          .genre-box {
-            position: relative;
-            /* border: 1px solid lightgray; */
-            /* border-radius: 40%; */
-            font-size: 1.3vw;
-            width: 12.5%;
-          }
-          
-          /* .genre-box:before {
-            content: "";
-            float: left;
-            padding-top: 100%;
-          } */
-          
-          .list-group-item:first-child {
-            border-top-left-radius: 15px;
-            border-bottom-left-radius: 15px;
-          }
-          
-          .list-group-item:last-child {
-            border-top-right-radius: 15px;
-            border-bottom-right-radius: 15px;
-          }
-          </style>
-<div class="col-12 p-0">
-  <div class="list-group list-group-horizontal">
-    <a routerLink="/insertion" [queryParams]="{'genre_id': 37}" style="background-color: #BFEEEC;" class="list-group-item genre-box d-flex align-items-center justify-content-center">Giallo</a>
-    <a href="" style="background-color: #BFEEEC;" class="list-group-item genre-box d-flex align-items-center justify-content-center">Fantasy</a>
-    <a href="" style="background-color: #BFEEEC;" class="list-group-item genre-box d-flex align-items-center justify-content-center">Horror</a>
-    <a href="" style="background-color: #BFEEEC;" class="list-group-item genre-box d-flex align-items-center justify-content-center">Fantascienza</a>
-    <a href="" style="background-color: #BFEEEC;" class="list-group-item genre-box d-flex align-items-center justify-content-center">Rosa</a>
-    <a href="" style="background-color: #BFEEEC;" class="list-group-item genre-box d-flex align-items-center justify-content-center">Thriller</a>
-    <a href="" style="background-color: #BFEEEC;" class="list-group-item genre-box d-flex align-items-center justify-content-center">Storico</a>
-    <a href="" style="background-color: #BFEEEC;" class="list-group-item genre-box d-flex align-items-center justify-content-center">Avventura</a>
+    <div  class="p-0 m-0 row w-100">
+      <div class="col-12 p-0">
+        <div class="list-group list-group-horizontal">
+          <a class="list-group-item genre-box" routerLink="/insertion" [queryParams]="{'genre_id': 37}">Giallo</a>
+          <a class="list-group-item genre-box" routerLink="/insertion" [queryParams]="{'genre_id': 37}">Fantasy</a>
+          <a class="list-group-item genre-box" routerLink="/insertion" [queryParams]="{'genre_id': 37}">Horror</a>
+          <a class="list-group-item genre-box" routerLink="/insertion" [queryParams]="{'genre_id': 37}">Fantascienza</a>
+          <a class="list-group-item genre-box" routerLink="/insertion" [queryParams]="{'genre_id': 37}">Rosa</a>
+          <a class="list-group-item genre-box" routerLink="/insertion" [queryParams]="{'genre_id': 37}">Thriller</a>
+          <a class="list-group-item genre-box" routerLink="/insertion" [queryParams]="{'genre_id': 37}">Storico</a>
+          <a class="list-group-item genre-box" routerLink="/insertion" [queryParams]="{'genre_id': 37}">Avventura</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-</div>
-</div>
-</div>
-</div>
+
+
 <div  class="container w-75 p-0 mt-4 mb-5">
   <div  class="row">
-    <div  class="col-6">
-      <div role="button" routerLink="/insertion/{{adsConsigliati[0].user_id}}/{{adsConsigliati[0].id}}" class="card mb-3 w-100">
+    <div  class="col-6" *ngFor="let ad of adsConsigliati; let i = index" [ngClass]="i===0 ? 'order-1' : 'order-3'">
+      <div role="button" routerLink="/insertion/{{adsConsigliati[i].user_id}}/{{adsConsigliati[i].id}}" class="card mb-3 w-100">
         <div  class="row g-0">
           <div  class="col-md-4">
-            <img  alt="{{adsConsigliati[0].title}}" class="img-fluid rounded-start" [src]="getImageUrl(adsConsigliati[0])">
+            <img  alt="{{adsConsigliati[i].title}}" class="img-fluid rounded-start" [src]="getImageUrl(adsConsigliati[i])">
           </div>
           <div  class="col-md-8">
             <div  class="card-body h-100 d-flex flex-column">
-              <h5  class="card-title">{{adsConsigliati[0].title}}</h5>
-              <p  class="card-text">{{adsConsigliati[0].description}}</p>
+              <h5  class="card-title">{{adsConsigliati[i].title}}</h5>
+              <p  class="card-text">{{adsConsigliati[i].description}}</p>
               <p  class="card-text mt-auto text-end">
-                <small >{{adsConsigliati[0].price}}</small>
+                <small >{{adsConsigliati[i].price}}</small>
               </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div  class="col-6 p-5 d-flex align-items-end flex-column" style="color: #4D8682;">
+    <div  class="recommended-title col-6 order-2 p-5">
       <h1  style="font-size: 4vw;">Libri Consigliati</h1>
       <p  style="font-size: 1.5vw;">perditi in queste emozionanti storie</p>
     </div>
-    <div  class="col-6">
-      <div role="button" routerLink="/insertion/{{adsConsigliati[1].user_id}}/{{adsConsigliati[1].id}}" class="card mb-3">
-        <div  class="row g-0">
-          <div  class="col-md-4">
-            <img  alt="{{adsConsigliati[1].title}}" class="img-fluid rounded-start" [src]="getImageUrl(adsConsigliati[1])">
-          </div>
-          <div  class="col-md-8">
-            <div  class="card-body h-100 d-flex flex-column">
-              <h5  class="card-title">{{adsConsigliati[1].title}}</h5>
-              <p  class="card-text">{{adsConsigliati[1].description}}</p>
-              <p  class="card-text mt-auto text-end">
-                <small >{{adsConsigliati[1].price}}</small>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div  class="col-6">
-      <div role="button" routerLink="/insertion/{{adsConsigliati[2].user_id}}/{{adsConsigliati[2].id}}" class="card mb-3">
-        <div  class="row g-0">
-          <div  class="col-md-4">
-            <img  alt="{{adsConsigliati[2].title}}" class="img-fluid rounded-start" [src]="getImageUrl(adsConsigliati[2])">
-          </div>
-          <div  class="col-md-8">
-            <div  class="card-body h-100 d-flex flex-column">
-              <h5  class="card-title">{{adsConsigliati[2].title}}</h5>
-              <p  class="card-text">{{adsConsigliati[2].description}}</p>
-              <p  class="card-text mt-auto text-end">
-                <small >{{adsConsigliati[2].price}}</small>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
   </div>
 </div>
 <div >

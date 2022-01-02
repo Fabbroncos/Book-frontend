@@ -56,7 +56,10 @@ export class ChatComponent implements OnInit ,OnDestroy {
 
     this.route.data.subscribe(chatData => {
       this.chats = chatData[0];
-      this.changeChat(this.chats[0])
+    console.log(chatData[0]);
+    console.log(this.chats[0]);
+
+      this.changeChat(chatData[0])
     })
 
     this.chatService.connect();
