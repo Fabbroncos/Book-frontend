@@ -51,11 +51,6 @@ export class AdDetailComponent implements OnInit{
         `${this.authService.url}/api/v1/chats`,
         {
           "ad_id": this.ad.id
-        },
-        {
-          headers: {
-            "Authorization": this.authService.user.value.token
-          }
         }
       ).subscribe(
         chatData=> {
@@ -73,12 +68,7 @@ export class AdDetailComponent implements OnInit{
 
   onDelete() {
     this.http.delete(
-      `${this.authService.url}/api/v1/ads/${this.id}`,
-      {
-        headers: {
-          "Authorization": this.authService.user.value.token
-        }
-      }
+      `${this.authService.url}/api/v1/ads/${this.id}`
     ).subscribe(
       (resData) => {
         console.log(resData);

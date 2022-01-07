@@ -25,7 +25,7 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
   defaultText = "Scegli tra le seguenti...";
 
   valueText: String = this.defaultText;
-  value: any[] = ["ciao","blue"];
+  value: any[] = [];
   isMultiple = false;
 
   ngOnInit() {

@@ -9,15 +9,7 @@ import { Genre } from "./ad.model";
 })
 export class AdsViewerComponent implements OnInit{
   type: String = ""
-  genres: Genre[] = [
-    {
-      "id": 1,
-      "name": "Altercatio"
-    },
-    {
-      "id": 2,
-      "name": "Antologia"
-    }]
+  genres: Genre[] = []
   years: number[] = []
 
   page: number = 1
@@ -36,7 +28,7 @@ export class AdsViewerComponent implements OnInit{
 
     this.route.data.subscribe(
       genreData => {
-        console.log(genreData);
+        this.genres = genreData[0]
       }
     )
 

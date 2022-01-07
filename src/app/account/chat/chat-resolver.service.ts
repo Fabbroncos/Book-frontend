@@ -14,8 +14,6 @@ export class ChatResolverService implements Resolve<Chat[]> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.chatService.getChatList().pipe(
       map((chatData: {data: {data: Chat[]}}) => {
-        console.log(chatData);
-        
         return chatData.data.data
       })
     );

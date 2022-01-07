@@ -33,7 +33,7 @@ input.ng-touched.ng-invalid {
 }
 
 a.link-orange, a.link-orange:visited, a.link-orange:link{
-  color: #ff8615;
+  color: #4d8682;
 }
 
 a, a:visited, a:link{
@@ -42,8 +42,8 @@ a, a:visited, a:link{
 
 input:focus.form-control,
 textarea:focus.form-control {
-  border-color: #ff8615;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px #ff8615;
+  border-color: var(--primary-color);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px var(--primary-color);
 }
 
 

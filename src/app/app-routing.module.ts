@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component:HomeComponent},
   {
-    path: 'insertion', //resolve: [GenreResolverService],
+    path: 'insertion', resolve: [GenreResolverService],
     children: [
       {path: '', component: AdsViewerComponent},
       // {path: 'newest', component: BookListComponent},

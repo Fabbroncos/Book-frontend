@@ -40,7 +40,7 @@ export class ChatService {
   connect() {
     this.socket = io("https://ws.datge.cloud/ws/libreria/chats");
     this.socket.on('connection', (pack) => {
-      console.log(pack);
+      //console.log(pack);
     })
     this.socket.emit('joining-open-chats', {jwt: this.authService.user.value.token})
   }
@@ -54,12 +54,7 @@ export class ChatService {
 
   getChatList(){
     return this.http.get(
-      `${this.authService.url}/api/v1/chats`,
-      {
-        headers: {
-          "Authorization": this.authService.user.value.token
-        }
-      }
+      `${this.authService.url}/api/v1/chats`
     )
   }
 
@@ -68,9 +63,6 @@ export class ChatService {
     return this.http.get(
       `${this.authService.url}/api/v1/chats/${id}/messages`,
       {
-        headers: {
-          "Authorization": this.authService.user.value.token
-        },
         params: {
           page: page
         }

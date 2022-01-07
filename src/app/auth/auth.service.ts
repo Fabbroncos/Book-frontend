@@ -89,12 +89,7 @@ export class AuthService {
   
   loadUser(){
     return this.http.get(
-      `${this.url}/api/v1/users/${this.userData.value.id}`,
-      {
-        headers: {
-          'Authorization': `${this.userData.value.token}`
-        }
-      }
+      `${this.url}/api/v1/users/${this.userData.value.id}`
     ).pipe(
       tap(
         resData=> {
@@ -186,11 +181,6 @@ export class AuthService {
         password: password,
         passwordNew: newPassword,
         passwordConfirm: newPasswordConfirm
-      },
-      {
-        headers: {
-          "Authorization": `${this.user.value.token}`
-        }
       }
     )
   }
@@ -208,70 +198,6 @@ export class AuthService {
     //   catchError(this.handleError)
     // )
   }
-
-  // handleAuthentication(/*email: string, password: string,*/token: string) {
-  //   const tokenData = this.parseJwt(token);
-  //   const expirationDate = new Date(+tokenData.exp*1000);
-
-  //   this.http.get(
-  //     `http://161.35.18.65:3000/api/v1/users/${tokenData.id}`,
-  //     {
-  //       headers: {
-  //         'Authorization': `${token}`
-  //       }
-  //     }
-  //   ).subscribe(
-  //     resData=> {
-  //       const loadedUser = new User(
-  //         tokenData.id,
-  //         resData['data'].role,
-  //         resData['data'].email,
-  //         resData['data'].user_infos ? resData['data'].user_infos : null,
-  //         resData['data'].library_infos ? resData['data'].library_infos : null,
-  //         resData['data'].province_id,
-  //         resData['data'].city,
-  //         resData['data'].zip_code,
-  //         resData['data'].street_address_1,
-  //         resData['data'].street_address_2,
-  //         token,
-  //         expirationDate
-  //       )
-  //       this.user.next(loadedUser);
-  //       if (!localStorage.getItem('userData')) {
-  //         console.log("USERDATA SAVED");
-  //         localStorage.setItem('userData',JSON.stringify(loadedUser));
-  //       }
-  //     }   
-  //   )
-  // }
-
-  // private loadUser(password: string, token: string, expirationDate: Date){
-  //   console.log(this.parseJwt(token));
-  //   const tokenData = this.parseJwt(token);
-    
-      
-  // }
-
-
-  // private handleError(errorResponse: HttpErrorResponse) {
-  //   console.log(errorResponse);
-  //   let errorMessage: string = "Unknow error occurred!";;
-  //   if (!errorResponse.error || !errorResponse.error.error ) {
-  //     return throwError(errorMessage);
-  //   }
-  //   switch (errorResponse.error.error.message) {
-  //   case "EMAIL_EXISTS":
-  //     errorMessage = "This email exists already";
-  //     break;
-  //   case "EMAIL_NOTFOUND":
-  //     errorMessage = "This email does not exist.";
-  //     break;
-  //   case "INVALID_PASSWORD":
-  //     errorMessage = "The password is not correct";
-  //     break;
-  //   }
-  //   return throwError(errorMessage);
-  // }
 }
 
 

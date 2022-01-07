@@ -101,13 +101,7 @@ export class AddAdsFormComponent implements OnInit{
     let url = this.authService.url + "/api/v1/ads/"
     this.http.post(
       url,
-      formData,
-      {
-        headers: {
-          "Authorization": this.authService.userData.value.token,
-          
-        }
-      }
+      formData
     ).subscribe(
       resData => {
         this.router.navigate([`/${this.authService.user.value.id}/my-insertion`])

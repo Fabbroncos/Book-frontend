@@ -1,0 +1,68 @@
+.active {
+  color: #243F3D;
+  background-color: #69AEA9;
+  border: none
+}
+
+small {
+  color: gray;
+}
+
+.active small {
+  color: #3A6562;
+}
+
+.list-group {
+  background-color: white;
+  border-right: 1px solid #3A6562;
+  border-radius: 0px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  overflow: hidden;
+}
+
+.list-group-item {
+  border-radius: 0;
+}
+
+.btn-green {
+  background-color: #4d8682;
+  color: #213937;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 15px;
+}
+
+.userMessage {
+  background-color: #A2E2DE;
+  border-radius: 10px;
+  width: fit-content;
+  color: #243F3D;
+}
+
+.otherUserMessage {
+  background-color: #69AEA9;
+  border-radius: 10px;
+  width: fit-content;
+  color: #243F3D;
+  margin-left: auto;
+}
+
+.chat-container {
+  overflow: hidden; 
+  background-color: white; 
+  border-top-right-radius: 15px; 
+  border-bottom-right-radius: 15px; 
+  border-left: none;
+}
+
+.message-container {
+  overflow-y: scroll; 
+  position: relative; 
+  border-top: 1px solid #3A6562; 
+  border-bottom: 1px solid #3A6562;
+}
+
+textarea {
+  border:none; 
+  resize: none;
+}

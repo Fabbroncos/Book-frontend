@@ -75,12 +75,7 @@ export class AddAdsComponent implements OnInit{
       let url = this.authService.url + "/api/v1/ads/"
       this.http.post(
         url,
-        formData,
-        {
-          headers: {
-            "Authorization": this.authService.userData.value.token,
-          }
-        }
+        formData
       ).subscribe(
         resData => {
           this.router.navigate([`/${this.authService.user.value.id}/my-insertion`])
@@ -135,11 +130,6 @@ export class AddAdsComponent implements OnInit{
         `${this.authService.url}/api/v1/books`,
         {
           "isbns": this.isbns
-        },
-        {
-          headers: {
-            "Authorization": this.authService.user.value.token
-          }
         }
       ).subscribe(
         (resData: {data}) => {
@@ -204,12 +194,7 @@ export class AddAdsComponent implements OnInit{
     
     
       this.http.get(
-      `${this.authService.url}/api/v1/books/checkByIsbn/${this.isbnForm.value['ISBN']}`,
-      {
-        headers: {
-          "Authorization": this.authService.user.value.token
-        }
-      }
+      `${this.authService.url}/api/v1/books/checkByIsbn/${this.isbnForm.value['ISBN']}`
       ).subscribe(
         (resData: {data: {title: string}})=> {
           const book:{title: string, isbn: string, quantity: number}  = 

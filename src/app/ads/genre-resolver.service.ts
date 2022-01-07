@@ -13,12 +13,7 @@ export class GenreResolverService implements Resolve<Genre[]>{
   
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.http.get(
-      `${this.authService.url}/api/v1/genres`,
-      {
-        headers: {
-          "Authorization":  this.authService.user.value.token
-        }
-      }
+      `${this.authService.url}/api/v1/genres`
     )
     .pipe(
       map((genresData: {message: string, data: []}) => {

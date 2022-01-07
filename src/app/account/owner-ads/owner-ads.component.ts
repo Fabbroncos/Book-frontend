@@ -15,9 +15,6 @@ export class OwnerAdsComponent implements OnInit {
     this.http.get(
       `${this.authService.url}/api/v1/ads`,
       {
-        headers:{
-          "Authorization": this.authService.user.value.token
-        },
         params:{
           "owner": true
         }
@@ -36,9 +33,6 @@ export class OwnerAdsComponent implements OnInit {
     this.http.get(
       `${this.authService.url}/api/v1/ads`,
       {
-        headers:{
-          "Authorization": this.authService.user.value.token
-        },
         params:{
           "title": this.searchInput.nativeElement.value,
           "owner": true
