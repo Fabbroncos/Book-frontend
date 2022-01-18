@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
 import { Ad, adImage } from "../ad.model";
+import { environment } from "src/environments/environment.prod";
 
 @Component({
   selector: 'app-ad-detail',
@@ -22,7 +23,7 @@ export class AdDetailComponent implements OnInit{
         this.id = +params['book-id'];
         
         this.http.get(
-          `${this.authService.url}/api/v1/ads/${this.id}`
+          `${environment.apiUrl}/api/v1/ads/${this.id}`
         ).subscribe(
           (ad: {message: string, data: Ad}) => {
             this.ad = ad.data
@@ -48,7 +49,7 @@ export class AdDetailComponent implements OnInit{
       this.router.navigate([`/auth/login`])
     } else {
       this.http.post(
-        `${this.authService.url}/api/v1/chats`,
+        `${environment.apiUrl}/api/v1/chats`,
         {
           "ad_id": this.ad.id
         }
@@ -63,12 +64,12 @@ export class AdDetailComponent implements OnInit{
   }
 
   getUrl(img: adImage) {
-    return `${this.authService.url}/api/v1/adImages/${img.url}`
+    return `${environment.apiUrl}/api/v1/adImages/${img.url}`
   }
 
   onDelete() {
     this.http.delete(
-      `${this.authService.url}/api/v1/ads/${this.id}`
+      `${environment.apiUrl}/api/v1/ads/${this.id}`
     ).subscribe(
       (resData) => {
         console.log(resData);

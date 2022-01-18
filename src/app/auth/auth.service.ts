@@ -4,6 +4,7 @@ import { EmailValidator } from "@angular/forms";
 import { Router } from "@angular/router";
 import { BehaviorSubject, throwError } from "rxjs";
 import { catchError, exhaust, exhaustMap, map, take, tap } from "rxjs/operators";
+import { environment } from "src/environments/environment.prod";
 import { User } from "../account/user.model";
 
 export interface AuthResponseData {
@@ -26,8 +27,6 @@ export class AuthService {
   //userData: UserData;
   user = new BehaviorSubject<User>(null);
 
-  url = "HTTPS://api.datge.cloud"
-
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -46,14 +45,14 @@ export class AuthService {
 
   register(info){
     return this.http.post(
-      `${this.url}/api/v1/auth/register`,
+      `${environment.apiUrl}/api/v1/auth/register`,
       info
     )
   }
 
   login(email: string, password: string) {
     return this.http.post/*<AuthResponseData>*/(
-      `${this.url}/api/v1/auth/login`,
+      `${environment.apiUrl}/api/v1/auth/login`,
       {
         email: email,
         password: password
@@ -79,17 +78,17 @@ export class AuthService {
           localStorage.setItem('userData',JSON.stringify(userData));
           // this.loadUser();
         },
-      ),
-      take(1),
-      exhaustMap(value => {
-        return this.loadUser();
-      })
+       )//,
+      // take(1),
+      // exhaustMap(value => {
+      //   return this.loadUser();
+      // })
     )
   }
   
   loadUser(){
     return this.http.get(
-      `${this.url}/api/v1/users/${this.userData.value.id}`
+      `${environment.apiUrl}/api/v1/users/${this.userData.value.id}`
     ).pipe(
       tap(
         resData=> {
@@ -100,13 +99,13 @@ export class AuthService {
             resData['data'].email,
             resData['data'].user_infos ? resData['data'].user_infos : null,
             resData['data'].library_infos ? resData['data'].library_infos : null,
-            resData['data'].province_id,
-            resData['data'].city,
+            resData['data'].comune_id,
             resData['data'].zip_code,
             resData['data'].street_address_1,
             resData['data'].street_address_2,
             this.userData.value.token,
-            expirationDate
+            expirationDate,
+            {city: "Abruzzo", province: "Pescara"}
           )
           this.user.next(loadedUser);
           console.log(resData);
@@ -136,8 +135,7 @@ export class AuthService {
           userJSON.email,
           userJSON.userInfos,
           userJSON.libraryInfos,
-          userJSON.provinceId,
-          userJSON.city,
+          userJSON.comune_id,
           userJSON.zipCode,
           userJSON.streetAddress1,
           userJSON.streetAddress2,
@@ -176,7 +174,7 @@ export class AuthService {
 
   changePassword(password: string, newPassword: string, newPasswordConfirm: string) {
     return this.http.post(
-      'http://161.35.18.65:3000/api/v1/auth/change-password',
+      `${environment.apiUrl}/api/v1/auth/change-password`,
       {
         password: password,
         passwordNew: newPassword,
@@ -187,7 +185,7 @@ export class AuthService {
 
   confirmAccount(token: string){
     return this.http.get(
-      `http://${this.url}/api/v1/auth/confirm-account/${token}`,
+      `${environment.apiUrl}/api/v1/auth/confirm-account/${token}`,
       {
         headers: {
           data: `Bearer ${token}`

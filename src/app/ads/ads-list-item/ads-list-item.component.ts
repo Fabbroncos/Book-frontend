@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from "@angular/core";
 import { Ad } from "src/app/ads/ad.model";
 import { AuthService } from "src/app/auth/auth.service";
+import { environment } from "src/environments/environment.prod";
 
 @Component({
   selector: 'app-ads-list-item-component',
@@ -26,7 +27,7 @@ export class AdsListItemComponent implements OnInit, OnChanges{
     // this.ad["type"] = "S";
     this.ad["price"] = "15.99€";
     if(this.ad.images[0]){
-      this.srcImage =  this.authService.url+ "/api/v1/adImages/" +this.ad.images[0].url
+      this.srcImage =  environment.apiUrl+ "/api/v1/adImages/" +this.ad.images[0].url
     }
     
     

@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { io } from "socket.io-client";
 import { AuthService } from "src/app/auth/auth.service";
+import { environment } from "src/environments/environment.prod";
 
 export interface chatMessage {
   chat_id: number
@@ -53,15 +54,16 @@ export class ChatService {
   }
 
   getChatList(){
+    
     return this.http.get(
-      `${this.authService.url}/api/v1/chats`
+      `${environment.apiUrl}/api/v1/chats`
     )
   }
 
   getChatMessage(id: number, page?: number) {
     if (!page) {page=1}
     return this.http.get(
-      `${this.authService.url}/api/v1/chats/${id}/messages`,
+      `${environment.apiUrl}/api/v1/chats/${id}/messages`,
       {
         params: {
           page: page

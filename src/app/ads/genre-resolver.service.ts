@@ -4,6 +4,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from "@angular/r
 import { map } from "rxjs/operators";
 import { AuthService } from "../auth/auth.service";
 import { Genre } from "./ad.model";
+import { environment } from "src/environments/environment.prod";
 
 @Injectable({
   providedIn: "root"
@@ -13,7 +14,7 @@ export class GenreResolverService implements Resolve<Genre[]>{
   
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.http.get(
-      `${this.authService.url}/api/v1/genres`
+      `${environment.apiUrl}/api/v1/genres`
     )
     .pipe(
       map((genresData: {message: string, data: []}) => {

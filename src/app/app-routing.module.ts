@@ -18,6 +18,7 @@ import { ChatComponent } from './account/chat/chat.component';
 import { OwnerAdsComponent } from './account/owner-ads/owner-ads.component';
 import { AdsViewerComponent } from './ads/ads-viewer.component';
 import { ChatResolverService } from './account/chat/chat-resolver.service';
+import { UserResolverService } from './account/user-resolver.service';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -41,7 +42,8 @@ const routes: Routes = [
   },
   {
     path: ':username', component: AccountComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard], 
+    resolve:[UserResolverService],
     children: [
       {path: '',component: UserProfileComponent},
       {path: 'my-profile',component: UserProfileComponent},

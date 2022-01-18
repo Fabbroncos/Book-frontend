@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
 import { AuthService } from "../auth/auth.service";
 import { Ad } from "./ad.model";
+import { environment } from "src/environments/environment.prod";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AdsService {
 
   getAds(params?) {
     return this.http.get(
-      `${this.authService.url}/api/v1/ads`,
+      `${environment.apiUrl}/api/v1/ads`,
       {
         params: params
       }

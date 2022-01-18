@@ -17,5 +17,9 @@ export class UserProfileComponent implements OnInit{
     console.log(this.authService.user.value);
     
     this.user = this.authService.user.value
+
+    // console.log(this.authService.user.value);
+    
+    // this.user = this.authService.user.value
   }
 }

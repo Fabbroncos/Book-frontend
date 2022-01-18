@@ -5,6 +5,7 @@ import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
 import { Ad, adImage, Genre } from "../ad.model";
+import { environment } from "src/environments/environment.prod";
 
 @Component({
   selector: 'app-add-ads',
@@ -72,7 +73,7 @@ export class AddAdsComponent implements OnInit{
         }
       }
 
-      let url = this.authService.url + "/api/v1/ads/"
+      let url = environment.apiUrl + "/api/v1/ads/"
       this.http.post(
         url,
         formData
@@ -127,7 +128,7 @@ export class AddAdsComponent implements OnInit{
     if(id === 2) {
 
       this.http.post(
-        `${this.authService.url}/api/v1/books`,
+        `${environment.apiUrl}/api/v1/books`,
         {
           "isbns": this.isbns
         }
@@ -194,7 +195,7 @@ export class AddAdsComponent implements OnInit{
     
     
       this.http.get(
-      `${this.authService.url}/api/v1/books/checkByIsbn/${this.isbnForm.value['ISBN']}`
+      `${environment.apiUrl}/api/v1/books/checkByIsbn/${this.isbnForm.value['ISBN']}`
       ).subscribe(
         (resData: {data: {title: string}})=> {
           const book:{title: string, isbn: string, quantity: number}  = 

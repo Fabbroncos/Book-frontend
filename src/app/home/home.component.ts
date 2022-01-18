@@ -1,6 +1,7 @@
 import { getLocaleDateTimeFormat } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
+import { environment } from "src/environments/environment.prod";
 import { Ad } from "../ads/ad.model";
 import { AuthService } from "../auth/auth.service";
 
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit{
 
   ngOnInit() {
     this.http.get(
-      `${this.authService.url}/api/v1/ads`,
+      `${environment.apiUrl}/api/v1/ads`,
       {
         params: {"type": "S"}
       }
@@ -41,7 +42,7 @@ export class HomeComponent implements OnInit{
       }
     )
     this.http.get(
-      `${this.authService.url}/api/v1/ads`,
+      `${environment.apiUrl}/api/v1/ads`,
       {
         params: {"type": "F"}
       }
@@ -56,7 +57,7 @@ export class HomeComponent implements OnInit{
   }
 
   getImageUrl(ad: Ad) {
-    return `${this.authService.url}/api/v1/adImages/${ad.images[0].url}` 
+    return `${environment.apiUrl}/api/v1/adImages/${ad.images[0].url}` 
   }
 
   getDayAgo(ad: Ad) {

@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Ad } from "src/app/ads/ad.model";
 import { AuthService } from "src/app/auth/auth.service";
+import { environment } from "src/environments/environment.prod";
 
 
 @Component({
@@ -13,7 +14,7 @@ export class OwnerAdsComponent implements OnInit {
   constructor(private http: HttpClient, private authService: AuthService) {}
   ngOnInit() {
     this.http.get(
-      `${this.authService.url}/api/v1/ads`,
+      `${environment.apiUrl}/api/v1/ads`,
       {
         params:{
           "owner": true
@@ -31,7 +32,7 @@ export class OwnerAdsComponent implements OnInit {
   @ViewChild('searchInput') searchInput: ElementRef
   onSearch() {
     this.http.get(
-      `${this.authService.url}/api/v1/ads`,
+      `${environment.apiUrl}/api/v1/ads`,
       {
         params:{
           "title": this.searchInput.nativeElement.value,

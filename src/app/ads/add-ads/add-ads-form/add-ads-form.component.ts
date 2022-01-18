@@ -4,6 +4,7 @@ import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
 import { Genre } from "../../ad.model";
+import { environment } from "src/environments/environment.prod";
 
 @Component({
   selector: 'app-add-ads-form-component',
@@ -98,7 +99,7 @@ export class AddAdsFormComponent implements OnInit{
     console.log(formData);
     return
 
-    let url = this.authService.url + "/api/v1/ads/"
+    let url = environment.apiUrl + "/api/v1/ads/"
     this.http.post(
       url,
       formData

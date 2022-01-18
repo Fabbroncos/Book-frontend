@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { City } from "src/app/account/edit-user-detail/edit-user-detail.component";
 import { AuthService } from "../auth.service";
 import { Provinces } from "../provinces-resolver.service";
+import { environment } from "src/environments/environment.prod";
 
 @Component({
   selector: 'app-register',
@@ -46,7 +47,7 @@ export class RegisterComponent implements OnInit {
     
     if(model.value[0]) {
       this.http.get(
-        `${this.authService.url}/api/v1/provinces/${model.value[0].id}`
+        `${environment.apiUrl}/api/v1/provinces/${model.value[0].id}`
       ).subscribe((citiesData: {data: City[]}) => {
         this.cities = citiesData.data
       })

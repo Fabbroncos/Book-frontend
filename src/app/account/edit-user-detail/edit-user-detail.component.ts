@@ -1,15 +1,15 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, NgControl, NgForm, Validators } from "@angular/forms";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
 import { Provinces } from "src/app/auth/provinces-resolver.service";
 import { User } from "../user.model";
+import { environment } from "src/environments/environment.prod";
 
 export interface City {
   id: number,
-  name: string,
-  provinceId: number
+  name: string
 }
 
 @Component({
@@ -25,7 +25,7 @@ export class EditUserDetailComponent implements OnInit{
 
   userForm: FormGroup
 
-  constructor(private route: ActivatedRoute, private authService: AuthService, private http: HttpClient) {}
+  constructor(private route: ActivatedRoute,private router: Router , private authService: AuthService, private http: HttpClient) {}
 
   ngOnInit() {
     this.route.data.subscribe(resData => {
@@ -38,16 +38,16 @@ export class EditUserDetailComponent implements OnInit{
           user=> {
             this.user = user;
             this.initForm()
-            if (this.user.provinceId && this.user.provinceId!==0) {
-              this.http.get(
-                `http://161.35.18.65:3000/api/v1/provinces/${this.user.provinceId}`
-              ).subscribe(
-                (resData: {message: string, data: []}) => {
-                  this.city = resData.data;
-                  this.userForm.get('city').setValue(this.user.city ? this.city[this.user.city] : [])
-                }
-              )
-            }
+            // if (this.user.provinceId && this.user.provinceId!==0) {
+              // this.http.get(
+              //   `${environment.apiUrl}/api/v1/provinces/${this.user.provinceId}`
+              // ).subscribe(
+              //   (resData: {message: string, data: []}) => {
+              //     this.city = resData.data;
+              //     this.userForm.get('city').setValue(this.user.comune_id ? this.city[this.user.comune_id] : [])
+              //   }
+              // )
+            //}
           }
         )
       }
@@ -55,14 +55,15 @@ export class EditUserDetailComponent implements OnInit{
   }
 
   initForm() {
+    
     this.userForm = new FormGroup({
       'email': new FormControl(this.user.email ? this.user.email : "", [Validators.required, Validators.email]),
       'password': new FormControl({value:"password", disabled: true}),
       'provinces': new FormControl([], Validators.required),
-      'city': new FormControl(this.user.city ? this.city[this.user.city] : [], Validators.required),
-      'zipCode': new FormControl(this.user.zipCode ? this.user.zipCode : null, [Validators.required,Validators.maxLength(5), Validators.minLength(5)]),
-      'streetAddress1': new FormControl(this.user.streetAddress1 ? this.user.streetAddress1 : "", Validators.required),
-      'streetAddress2': new FormControl(this.user.streetAddress2 ? this.user.streetAddress2 : "", Validators.required)
+      'city': new FormControl(this.user.comune_id ? this.city[3] : [], Validators.required),
+      'zip_code': new FormControl(this.user.zipCode ? this.user.zipCode : null, [Validators.required,Validators.maxLength(5), Validators.minLength(5)]),
+      'street_address_1': new FormControl(this.user.streetAddress1 ? this.user.streetAddress1 : "", Validators.required),
+      'street_address_2': new FormControl(this.user.streetAddress2 ? this.user.streetAddress2 : "", Validators.required)
     })
     if (this.user.role==="LIBRERIA") {
       this.userForm.addControl('libraryname', new FormControl(this.user.libraryInfos.name ? this.user.libraryInfos.name : "", Validators.required));
@@ -79,8 +80,10 @@ export class EditUserDetailComponent implements OnInit{
 
     this.userForm.get('provinces').valueChanges.subscribe(
       value => {
+        console.log(value);
+        
         this.http.get(
-          `http://161.35.18.65:3000/api/v1/provinces/${value[0].id}`
+          `${environment.apiUrl}/api/v1/provinces/${value[0].id}`
         ).subscribe(
           (resData: {message: string, data: []}) => {
             this.city = resData.data;
@@ -95,7 +98,27 @@ export class EditUserDetailComponent implements OnInit{
   onSubmit() {
     this.userForm.markAllAsTouched()
     
-    console.log(this.userForm.value);
+    if (this.userForm.valid) {
+      console.log(this.userForm);
+      delete this.userForm.value.email
+      this.userForm.value.comune_id = this.userForm.value.city[0].id
+      delete this.userForm.value.city
+      
+      this.http.patch(
+        `${environment.apiUrl}/api/v1/users/${this.user.id}`,
+        this.userForm.value
+      ).subscribe(
+        res => {
+          console.log(res);
+          
+          this.router.navigate(['/my-profile'])
+        },
+        error => {
+          console.log(error);
+          
+        }
+      )
+    }
     
   }
 

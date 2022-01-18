@@ -14,13 +14,14 @@ export class User {
       description: string,
       piva: string
     },
-    public provinceId: number,
-    public city: number,
+    public comune_id: number,
     public zipCode: number,
     public streetAddress1: string,
     public streetAddress2: string,
     private _token: string,
-    private _tokenExpirationDate: Date
+    private _tokenExpirationDate: Date,
+
+    private address?: {city: string, province: string}
     ) {
       switch (this.role) {
         case "LIBRERIA":
