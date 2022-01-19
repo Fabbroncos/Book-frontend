@@ -97,18 +97,17 @@ export class AddAdsFormComponent implements OnInit{
       }
 
     console.log(formData);
-    return
-
-    let url = environment.apiUrl + "/api/v1/ads/"
-    this.http.post(
-      url,
-      formData
-    ).subscribe(
-      resData => {
-        this.router.navigate([`/${this.authService.user.value.id}/my-insertion`])
+    
+    // let url = this.authService.user.value.role === "LIBRERIA" ? environment.apiUrl + "/api/v1/ads/sell" : environment.apiUrl + "/api/v1/ads/search"
+    // this.http.post(
+    //   url,
+    //   formData
+    // ).subscribe(
+    //   resData => {
+    //     this.router.navigate([`/${this.authService.user.value.id}/my-insertion`])
         
-      }
-    )
+    //   }
+    // )
   }
   }
 }

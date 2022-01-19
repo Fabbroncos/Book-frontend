@@ -76,7 +76,7 @@ export class AuthService {
           this.autoLogout(expirationDuration)
 
           localStorage.setItem('userData',JSON.stringify(userData));
-          // this.loadUser();
+          this.loadUser();
         },
        )//,
       // take(1),

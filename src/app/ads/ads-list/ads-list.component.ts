@@ -42,10 +42,16 @@ export class AdsListComponent implements OnInit, OnChanges{
     private adsService: AdsService) {}
 
   ngOnChanges() {
+    console.log(this.params);
+    
     this.adsService.getAds(this.params).subscribe(
       (adsData: any) => {
         this.ads = adsData.data.data
         this.last_page = adsData.data.last_page
+        console.log(adsData);
+        
+      },
+      error => {console.log(error);
       }
     )
   }

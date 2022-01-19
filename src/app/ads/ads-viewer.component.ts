@@ -62,6 +62,10 @@ export class AdsViewerComponent implements OnInit{
       params = {...filterForm.value}
       params.type = this.type
     }
+    if (params.genre) {params.genre_id = params.genre[0].id}
+    
+    console.log(params);
+    
 
     this.params = params
   }

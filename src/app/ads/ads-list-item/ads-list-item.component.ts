@@ -25,7 +25,7 @@ export class AdsListItemComponent implements OnInit, OnChanges{
     // console.log(this.ad);
      
     // this.ad["type"] = "S";
-    this.ad["price"] = "15.99€";
+    // this.ad["price"] = "15.99€";
     if(this.ad.images[0]){
       this.srcImage =  environment.apiUrl+ "/api/v1/adImages/" +this.ad.images[0].url
     }

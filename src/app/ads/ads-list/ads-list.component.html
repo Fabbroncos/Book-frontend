@@ -12,14 +12,13 @@
 }
 </style>
 
-
 <div  class="d-flex w-100 h-100 flex-row" style="position: relative;">
   <div  class="d-flex px-3 pb-3">
     <div  class="w-100">
-      <div class="w-100 d-flex flex-wrap">
+      <div *ngIf="ads.length !== 0; else emptyAds" class="w-100 d-flex flex-wrap">
         <app-ads-list-item-component class="px-2 pb-2" *ngFor="let ad of ads" [ad]="ad" [mode]="mode" [ngClass]="{'list': 'w-100', 'grid': 'w-50', 'gridCard' : 'w-25'}[mode]"></app-ads-list-item-component>
         <div class="row w-100 justify-content-end">
-          <div class="col-9">
+          <div class="col-9 bg-warning">
             <div class="pt-3 align-items-center d-flex justify-content-end w-100">
               <button class="btn" (click)="changePage('--')" [disabled]="page===1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
@@ -60,7 +59,7 @@
               </button>
             </div>
           </div>
-          <div class="col-3">
+          <div class="col-3 bg-danger">
             <div class="pt-3 w-100 d-flex justify-content-end">
               <style>
                 .bordered {
@@ -68,7 +67,7 @@
                   box-shadow: none;
                 }
               </style>
-              <button class="btn bordered me-1">{{pageSize}}</button>
+              <!-- <button class="btn bordered me-1">{{pageSize}}</button> -->
               <button class="btn bordered d-flex align-items-center" (click)="changeMode()">
                 <svg *ngIf="mode==='list'" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
@@ -86,6 +85,11 @@
           </div>
         </div>
       </div>
+      <ng-template #emptyAds>
+        <div class="w-100 p-4 d-flex flex-wrap">
+          <h4 class="text-center" style="color: #3A6562;">Nessuna inserzione trovata</h4>
+        </div>
+      </ng-template>
     </div>
   </div>
 </div>

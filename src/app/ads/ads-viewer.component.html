@@ -45,16 +45,18 @@
               <input ngModel id="title" name="title" class="form-control">
               <label  for="author">Autore</label>
               <input ngModel id="author" name="author" class="form-control">
-              <label  for="title">Anno</label>
+              <label  for="year">Anno</label>
               <app-multiple-select-component ngModel id="year" name="year" [list]="years"></app-multiple-select-component>
-              <label  for="title">Isbn</label>
+              <label  for="isbn">Isbn</label>
               <input ngModel id="isbn" name="isbn" minlength="11" maxlength="13" class="form-control">
-              <label  for="title">Editore</label>
+              <label  for="publisher">Editore</label>
               <input ngModel id="publisher" name="publisher" class="form-control">
-              <label  for="title">Genere</label>
+              <label  for="genre">Genere</label>
               <app-multiple-select-component ngModel name="genre" [list]="genres" stringAttribute="name" [multiple]="true"></app-multiple-select-component>
-              <label  for="title">Price</label>
-              <input ngModel id="price" name="price" class="form-control">
+              <label for="price" class="d-block">Price</label>
+                <input ngModel id="price_min" name="price_min" placeholder="min" class="form-control d-inline-flex w-50">
+                <input ngModel id="price_max" name="price_max" placeholder="max" class="form-control d-inline-flex w-50">
+
             </div>
             <div class="col-12 p-3">
               <button class="btn btn-green w-100" type="submit">Cerca</button>
