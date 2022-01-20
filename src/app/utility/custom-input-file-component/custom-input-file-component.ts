@@ -22,7 +22,7 @@ export class CustomInputFileComponent implements OnInit, ControlValueAccessor{
   
   defaultText = "Aggiungi un immagine...";
 
-  valueText: String = this.defaultText;
+  // valueText: String = this.defaultText;
   // value: any[] = [];
   isMultiple = false;
 
@@ -33,10 +33,56 @@ export class CustomInputFileComponent implements OnInit, ControlValueAccessor{
   @HostListener('click')
   onClick() {
     this.touched = true;
-    this.onTouched();
   }
 
-  onChange: any = () => { console.log(this.value);};
+  // @HostListener('focusout')
+  // onFocusOut() {
+  //   console.log("cia");
+    
+  // }
+
+  @HostListener('window:focus', ['$event'])
+  onFocus(event) {
+    if (this.touched && this.value.length === 0) {
+      this.onTouched();
+    }
+  }
+
+  onRemove(id: number) {
+    console.log(this.value);
+    this.value.splice(id,1)
+    this.imagePreview.splice(id,1)
+    console.log(this.value);
+    
+
+    this.onChange(this.value)
+    
+  }
+
+  onRemoveTarget(e) {
+    e.target.value = "";
+    console.log(e.target.value);
+    
+  }
+
+  setText() {
+    let valueText: string = this.defaultText
+    if (this.value.length !== 0) {
+      valueText = ""
+      this.value.forEach(
+        (item,i)=> {
+          if (i===0){
+            valueText = item.name
+          } else {
+            valueText = valueText + ", " + item.name
+          }
+      })
+    }
+    return valueText
+  }
+
+
+  onChange: any = () => { };
   onTouched: any = () => { };
 
   writeValue(value: any[]): void {
@@ -64,12 +110,14 @@ export class CustomInputFileComponent implements OnInit, ControlValueAccessor{
     // const reader = new FileReader();
     // reader.onload = () => {
       this.value.push(file);
+      console.log(file);
       
-      if (this.value.length===1) {
-        this.valueText = file.name 
-      } else {
-        this.valueText = this.valueText + ", " + file.name;
-      }
+      
+      // if (this.value.length===1) {
+      //   this.valueText = file.name 
+      // } else {
+      //   this.valueText = this.valueText + ", " + file.name;
+      // }
       
     this.onChange(this.value);
     const reader = new FileReader();

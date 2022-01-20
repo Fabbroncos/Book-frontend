@@ -1,4 +1,4 @@
-import { Component, ElementRef, forwardRef, HostListener, Input, OnInit, Optional, Self, ViewChild } from "@angular/core";
+import { Component, ElementRef, forwardRef, HostListener, Input, NgModule, OnChanges, OnInit, Optional, Self, SimpleChanges, ViewChild } from "@angular/core";
 import { ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component ({
@@ -27,13 +27,16 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
   valueText: String = this.defaultText;
   value: any[] = [];
   isMultiple = false;
+  filterString: string = "";
+
+  @ViewChild('searchBar') searchBar: ElementRef
 
   ngOnInit() {
     this.isMultiple = this.multiple;
-    // console.log(this.form);
-    // console.log(this.value);
-    
-    
+  }
+
+  onChangeSearch(value) {
+    this.filterString = value
   }
 
   setOptionText(item: any) {
@@ -43,6 +46,18 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
       default:
         return item;
     }
+  }
+
+  onFocus() {
+    this.searchBar.nativeElement.focus()
+  }
+
+  onReset(event: Event) {
+    event.stopPropagation();
+    this.searchBar.nativeElement.focus()
+    this.valueText = this.defaultText
+    this.value = []
+    this.onChange(this.value);
   }
 
   onToggleCheck(item: string ,event: Event) {
@@ -69,6 +84,10 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
       this.valueText = list.join(", ");
       
     }
+    console.log(this.searchBar);
+    
+    this.searchBar.nativeElement["value"] = ""
+    this.onChangeSearch("")
   }
 
   @ViewChild('dropdownElement') dropdownElement: ElementRef;

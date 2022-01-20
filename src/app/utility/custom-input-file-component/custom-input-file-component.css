@@ -11,8 +11,8 @@ div.form-container:focus {
 } */
 
 .imageFrame {
-  background-color: rgba(161, 62, 62, 0.10);
-  border: 1px solid #ff8615; 
+  background-color: #4d86821a;
+  border: 1px solid var(--primary-color); 
   height: 110px; width: 110px; 
   margin: 10px;
   float: top;
@@ -89,8 +89,8 @@ div .custom-file-input ~ .custom-file-label {
 }
 
 .imageFrameAdd {
-  background-color: rgba(161, 62, 62, 0.10);
-  border: 1px solid #ff8615; 
+  background-color: #4d86821a;
+  border: 1px solid var(--primary-color); 
   height: 110px; width: 110px; 
   margin: 10px;
   float: top;
@@ -115,7 +115,7 @@ div.imageFrameAdd {
   border: none;
 }
 #imgPlus {
-  color: #ff8615;
+  color: var(--primary-color);
   display: none;
 }
 
@@ -127,8 +127,8 @@ div.imageFrameAdd span{
 div.imageContainer:hover .imageFrameAdd{
   /* visibility: visible; */
   visibility: visible;
-  background-color: rgba(161, 62, 62, 0.10);
-  border: 1px solid #ff8615; 
+  background-color: #4d86821a;
+  border: 1px solid var(--primary-color); 
   height: 110px; width: 110px; 
   margin: 10px;
   float: top;
