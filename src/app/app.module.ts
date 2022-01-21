@@ -11,54 +11,31 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ConfirmAccountComponent } from './auth/confirm-account/confirm-account.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { AccountComponent } from './account/account.component';
-import { FilterPipe } from './utility/filter.pipe';
 import { AddAdsComponent } from './ads/add-ads/add-ads.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
-import { MultipleSelectComponent } from './utility/multiple-select/multiple-select.component';
-import { EditUserDetailComponent } from './account/edit-user-detail/edit-user-detail.component';
-import { CustomInputFileComponent } from './utility/custom-input-file-component/custom-input-file-component';
 import { HomeComponent } from './home/home.component';
-import { UserProfileComponent } from './account/user-profile/user-profile.component';
-import { AdsListItemComponent } from './ads/ads-list-item/ads-list-item.component';
-import { AdsListComponent } from './ads/ads-list/ads-list.component';
-import { ChatComponent } from './account/chat/chat.component';
 import { RouterModule } from '@angular/router';
-import { OwnerAdsComponent } from './account/owner-ads/owner-ads.component';
 import { AddAdsFormComponent } from './ads/add-ads/add-ads-form/add-ads-form.component';
 import { AdsViewerComponent } from './ads/ads-viewer.component';
+import { AccountModule } from './account/account.module';
+import { SharedModule } from './shared/shared.module';
+import { AdsModule } from './ads/ads.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    AdsListItemComponent,
-    AdsListComponent,
-    AdDetailComponent,
     LoginComponent,
     RegisterComponent,
     ConfirmAccountComponent,
     ChangePasswordComponent,
-    AccountComponent,
-    UserProfileComponent,
-    EditUserDetailComponent,
-    AddAdsComponent,
-    MultipleSelectComponent,
-    CustomInputFileComponent,
-    FilterPipe,
-    ChatComponent,
-    OwnerAdsComponent,
-    AddAdsFormComponent,
-    AdsViewerComponent
   ],
   imports: [
-    BrowserModule,
-    FormsModule,
-    RouterModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AccountModule,
+    AdsModule,
+    SharedModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi:true}],
   bootstrap: [AppComponent]
