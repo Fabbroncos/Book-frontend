@@ -17,11 +17,11 @@
       <div class="row">
         <div class="col-5">
           <small>Città:</small>
-          <p *ngIf="user.comune_id; else empty" class="ms-1 info p-1">{{ user.address.city }}</p>
+          <p *ngIf="user.comune; else empty" class="ms-1 info p-1">{{ user.comune.name }}</p>
         </div>
         <div class="col-5">
           <small>Provincia:</small>
-          <p *ngIf="user.comune_id; else empty" class="ms-1 info p-1">{{ user.address.province }}</p>
+          <p *ngIf="user.province; else empty" class="ms-1 info p-1">{{ user.province }}</p>
         </div>
         <div class="col-2">
           <small>CAP:</small>

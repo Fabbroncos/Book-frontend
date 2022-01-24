@@ -84,7 +84,7 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
       this.valueText = list.join(", ");
       
     }
-    console.log(this.searchBar);
+    // console.log(this.searchBar);
     
     this.searchBar.nativeElement["value"] = ""
     this.onChangeSearch("")

@@ -30,9 +30,13 @@ export class EditUserDetailComponent implements OnInit{
   ngOnInit() {
     this.route.data.subscribe(resData => {
       this.provinces = resData[0];
+      if (resData[1]) {
+        this.city = resData[1]
+      }
     })
     this.route.params.subscribe(
       (params: Params) => {
+        
         this.id = +params['username'];
         this.authService.user.subscribe(
           user=> {
@@ -54,13 +58,20 @@ export class EditUserDetailComponent implements OnInit{
     )
   }
 
+  getItemById(list: any[], id: number) {
+    for (let item of list){
+      if (item.id === id) {
+        return [item]
+      }
+    }
+  }
+
   initForm() {
-    
     this.userForm = new FormGroup({
       'email': new FormControl(this.user.email ? this.user.email : "", [Validators.required, Validators.email]),
       'password': new FormControl({value:"password", disabled: true}),
-      'provinces': new FormControl([], Validators.required),
-      'city': new FormControl(this.user.comune_id ? this.city[3] : [], Validators.required),
+      'provinces': new FormControl(this.user.comune ? this.getItemById(this.provinces,this.user.comune.province_id) : [], Validators.required),
+      'city': new FormControl(this.user.comune ? this.getItemById(this.city,this.user.comune.id) : [], Validators.required),
       'zip_code': new FormControl(this.user.zipCode ? this.user.zipCode : null, [Validators.required,Validators.maxLength(5), Validators.minLength(5)]),
       'street_address_1': new FormControl(this.user.streetAddress1 ? this.user.streetAddress1 : "", Validators.required),
       'street_address_2': new FormControl(this.user.streetAddress2 ? this.user.streetAddress2 : "", Validators.required)
@@ -77,7 +88,7 @@ export class EditUserDetailComponent implements OnInit{
     if (!this.userForm.get('provinces').valid) {
       this.userForm.get('city').disable()
     }
-
+    
     this.userForm.get('provinces').valueChanges.subscribe(
       value => {
         console.log(value);
@@ -93,6 +104,7 @@ export class EditUserDetailComponent implements OnInit{
         )
       }
     )
+
   }
 
   onSubmit() {

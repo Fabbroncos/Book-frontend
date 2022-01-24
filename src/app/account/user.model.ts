@@ -1,10 +1,10 @@
 export class User {
   private _username: string;
+  public province: string;
   constructor(
     public id: number,
     public role: string,
     public email: string,
-    // public password: string,
     public userInfos : {
       first_name: string,
       last_name: string,
@@ -14,14 +14,16 @@ export class User {
       description: string,
       piva: string
     },
-    public comune_id: number,
+    public comune: {
+      id: number,
+      name: string,
+      province_id: number
+    },
     public zipCode: number,
     public streetAddress1: string,
     public streetAddress2: string,
     private _token: string,
-    private _tokenExpirationDate: Date,
-
-    private address?: {city: string, province: string}
+    private _tokenExpirationDate: Date
     ) {
       switch (this.role) {
         case "LIBRERIA":

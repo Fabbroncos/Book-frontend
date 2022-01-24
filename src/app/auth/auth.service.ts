@@ -76,13 +76,13 @@ export class AuthService {
           this.autoLogout(expirationDuration)
 
           localStorage.setItem('userData',JSON.stringify(userData));
-          this.loadUser();
+          // this.loadUser();
         },
-       )//,
-      // take(1),
-      // exhaustMap(value => {
-      //   return this.loadUser();
-      // })
+       ),
+      take(1),
+      exhaustMap(value => {
+        return this.loadUser();
+      })
     )
   }
   
@@ -99,18 +99,23 @@ export class AuthService {
             resData['data'].email,
             resData['data'].user_infos ? resData['data'].user_infos : null,
             resData['data'].library_infos ? resData['data'].library_infos : null,
-            resData['data'].comune_id,
+            resData['data'].comune,
             resData['data'].zip_code,
             resData['data'].street_address_1,
             resData['data'].street_address_2,
             this.userData.value.token,
             expirationDate,
-            {city: "Abruzzo", province: "Pescara"}
           )
-          this.user.next(loadedUser);
+          this.http.get<any>(
+            `${environment.apiUrl}/api/v1/provinces/${loadedUser.comune.province_id}`
+          ).subscribe(provinceData => {
+            loadedUser.province = provinceData.data.name
+            this.user.next(loadedUser);
+            localStorage.setItem('userDetail', JSON.stringify(loadedUser))
+            console.log(this.user.value);
+          })
           console.log(resData);
           
-          localStorage.setItem('userDetail', JSON.stringify(loadedUser))
           
         } 
       )
@@ -135,13 +140,14 @@ export class AuthService {
           userJSON.email,
           userJSON.userInfos,
           userJSON.libraryInfos,
-          userJSON.comune_id,
+          userJSON.comune,
           userJSON.zipCode,
           userJSON.streetAddress1,
           userJSON.streetAddress2,
           userData.token,
           new Date(+userData.exp*1000)
         );
+        user.province = userJSON.province ? userJSON.province : null
         this.isLogged = true;
         this.user.next(user);
       }

@@ -42,6 +42,8 @@ export class AdsListComponent implements OnInit, OnChanges{
     private adsService: AdsService) {}
 
   ngOnChanges() {
+    console.log(this.authService.user.value);
+    
     console.log(this.params);
     
     this.adsService.getAds(this.params).subscribe(

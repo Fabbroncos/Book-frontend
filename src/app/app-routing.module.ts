@@ -19,6 +19,7 @@ import { OwnerAdsComponent } from './account/owner-ads/owner-ads.component';
 import { AdsViewerComponent } from './ads/ads-viewer.component';
 import { ChatResolverService } from './account/chat/chat-resolver.service';
 import { UserResolverService } from './account/user-resolver.service';
+import { CityResolverService } from './auth/city-resolver.service copy';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -43,11 +44,11 @@ const routes: Routes = [
   {
     path: ':username', component: AccountComponent,
     canActivate: [AuthGuard], 
-    resolve:[UserResolverService],
+    // resolve:[UserResolverService],
     children: [
       {path: '',component: UserProfileComponent},
       {path: 'my-profile',component: UserProfileComponent},
-      {path: 'my-profile/edit',component: EditUserDetailComponent, resolve: [ProvincesResolverService]},
+      {path: 'my-profile/edit',component: EditUserDetailComponent, resolve: [ProvincesResolverService, CityResolverService]},
       {path: 'my-insertion',component: OwnerAdsComponent},
       // {path: 'my-orders',component: BookListComponent},
       {path: 'add-book',component: AddAdsComponent, resolve: [GenreResolverService]},
