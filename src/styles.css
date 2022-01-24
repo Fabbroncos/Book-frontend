@@ -3,7 +3,13 @@
 :root {
   --dark-color: #213937;
   --primary-dark: #243F3D;
+  --secondary-dark: #3A6562;
   --primary-color: #4d8682;
+  --secondary-color: #69AEA9;
+  --light-color: #A2E2DE;
+  --light-cyan: #D1F1EF; 
+  --white: white;
+  --light-grey: lightgrey;
 }
 
 /* h1,h2,h3,h4,h5,h6, .list-group-item {

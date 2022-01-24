@@ -1,0 +1,16 @@
+.account-container {
+  overflow: hidden; 
+  color: var(--dark-color); 
+  background-color: var(--white); 
+  border: 1px solid var(--dark-color); 
+  flex: 1 auto; 
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.container-form {
+  width: 200px; 
+  min-width: 220px; 
+  border-radius: 20px; 
+  overflow: hidden;
+}

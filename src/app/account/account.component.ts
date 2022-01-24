@@ -4,7 +4,8 @@ import { AuthService } from "../auth/auth.service";
 
 @Component({
   selector: 'app-account',
-  templateUrl: './account.component.html'
+  templateUrl: './account.component.html',
+  styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit{
   // isUser = true;

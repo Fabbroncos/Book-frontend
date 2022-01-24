@@ -1,0 +1,25 @@
+strong {
+  right: 0;
+  top: 0;
+  margin-right: 10px;
+  margin-top: 5px;
+  position: absolute;
+}
+
+.info {
+  border-bottom: 1px solid var(--dark-color);
+}
+
+.info-empty {
+  border-bottom: 1px solid var(--light-grey);
+  color: var(--light-grey);
+}
+
+.row {
+  margin: 0;
+}
+
+.description-container {
+  border: 1px solid var(--light-color); 
+  border-radius: 20px;
+}

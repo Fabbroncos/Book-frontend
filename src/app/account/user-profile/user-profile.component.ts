@@ -5,21 +5,15 @@ import { User } from "../user.model";
 
 @Component({
   selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html'
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit{
-  id: number;
   user: User;
 
   constructor(private route: ActivatedRoute, private authService: AuthService) {}
 
   ngOnInit() {
-    console.log(this.authService.user.value);
-    
     this.user = this.authService.user.value
-
-    // console.log(this.authService.user.value);
-    
-    // this.user = this.authService.user.value
   }
 }

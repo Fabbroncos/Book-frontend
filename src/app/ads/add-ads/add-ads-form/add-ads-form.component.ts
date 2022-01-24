@@ -8,7 +8,8 @@ import { environment } from "src/environments/environment.prod";
 
 @Component({
   selector: 'app-add-ads-form-component',
-  templateUrl: './add-ads-form.component.html'
+  templateUrl: './add-ads-form.component.html',
+  styleUrls: ['./add-ads-form.component.css']
 })
 export class AddAdsFormComponent implements OnInit{
   role: string = ""

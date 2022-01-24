@@ -32,13 +32,6 @@ export class HomeComponent implements OnInit{
         this.adsPopolari = this.ads.slice(0,3);
         this.adsConsigliati = this.ads.slice(this.ads.length-3, this.ads.length);
         this.adsNovitaS = this.ads.slice(0,this.ads.length < 10 ? this.ads.length : 9 );
-
-        console.log(this.ads);
-        console.log(this.adsPopolari);
-        console.log(this.adsConsigliati);
-        console.log(this.adsNovitaS);
-        
-
       }
     )
     this.http.get(
@@ -50,7 +43,6 @@ export class HomeComponent implements OnInit{
       (adsData: any) => {
         
         this.adsNovitaF = adsData.data.data
-        console.log(this.adsNovitaF);
 
       }
     )

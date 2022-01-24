@@ -1,32 +1,15 @@
-<style>
-  .box {
-    display: flex;
-    flex-flow: column;
-    height: 100%;
-  }
-
-  .box .row.content {
-    flex: 1 1 auto;
-  }
-  h2, h3 {
-    color: #3A6562;
-  }
-</style>
-
 <ng-template #emptyInfo>
-  <p class="px-1 m-0 text-muted" style="font-size: larger; border-bottom: 1px solid lightgray;">---</p>
+  <p class="px-1 m-0 text-muted empty">---</p>
   
 </ng-template>
 
 <div class="row justify-content-center py-5 h-100">
-  <div class="col-10 col-md-8 col-lg-10 container-form box" style="height: auto;">
+  <div class="col-10 col-md-8 col-lg-10 container-form box h-auto">
     <div class="row p-4">
-      <div class="order-lg-2 col-12 col-lg-4 d-flex justify-content-center p-0" style="height: 200px; border: 1px solid var(--dark-color); background-color: #D1F1EF ">
+      <div class="order-lg-2 col-12 col-lg-4 d-flex justify-content-center p-0 img-container">
         <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel" data-bs-interval="false">
           <div class="carousel-indicators">
             <button *ngFor="let img of ad.images;let i = index ;let isFirst = first" [ngClass]="{'active': isFirst}" type="button" data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i" aria-label="Slide"></button>
-            <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button> -->
           </div>
           <div class="carousel-inner w-100 h-100">
             <div *ngFor="let img of ad.images;let isFirst = first" [ngClass]="{'active': isFirst}" class="carousel-item w-100 h-100">
@@ -55,15 +38,15 @@
           </div>
           <div class="col-11 mb-2">
             <label>Autore:</label>
-            <p class="px-1 m-0" *ngIf="ad.author; else emptyInfo" style="font-size: larger; border-bottom: 1px solid var(--primary-color);">{{ ad.author }}</p>    
+            <p class="px-1 m-0 field" *ngIf="ad.author; else emptyInfo">{{ ad.author }}</p>    
           </div>
           <div class="col-8 mb-2">
             <label>Editore:</label>
-            <p class="px-1 m-0" *ngIf="ad.author; else emptyInfo" style="font-size: larger; border-bottom: 1px solid var(--primary-color);">{{ ad.publisher }}</p>    
+            <p class="px-1 m-0" *ngIf="ad.author; else emptyInfo">{{ ad.publisher }}</p>    
           </div>
           <div class="col-3 mb-2">
             <label>Anno:</label>
-            <p class="px-1 m-0" *ngIf="ad.author; else emptyInfo" style="font-size: larger; border-bottom: 1px solid var(--primary-color);">{{ ad.year }}</p>
+            <p class="px-1 m-0" *ngIf="ad.author; else emptyInfo">{{ ad.year }}</p>
           </div>
         </div>
       </div>
@@ -73,15 +56,10 @@
             <label class="mb-1">Genere:</label>
             <div class="row px-3">
               <div class="col-auto px-1">
-                <div class="px-2 py-1" style="width: fit-content; background-color: #69AEA9; color: white; border-radius: 10px;">
+                <div class="px-2 py-1 genre-container">
                   Non disponibile
                 </div>
               </div>
-              <!-- <div class="col-auto px-1">
-                <div class="px-2 py-1" style="width: fit-content; background-color: #69AEA9; color: white; border-radius: 10px;">
-                  none
-                </div>
-              </div> -->
             </div>
           </div>
         </div>
@@ -89,12 +67,12 @@
       <div class="order-lg-4 mt-1 col-4 d-flex flex-column">
         <!-- <small class="text-end">Utente {{ad.user_id}}</small> -->
         <div class="mt-auto w-75 mx-auto">
-          <h3 class="mb-0 text-center p-0" style="border:1px solid #3A6562;">{{ad.price}} €</h3>
+          <h3 class="mb-0 text-center p-0 price-container">{{ad.price}} €</h3>
         </div>
       </div>
     </div>
     <div class="row justify-content-center content pb-3">
-      <div class="col-11 align-self-center p-3" style="height: auto; min-height: 150px; border: 1px solid lightgrey;">
+      <div class="col-11 align-self-center p-3 description-container">
         <p>{{ ad.description }}</p>
       </div>
     </div>

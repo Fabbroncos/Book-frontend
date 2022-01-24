@@ -7,7 +7,8 @@ import { environment } from "src/environments/environment.prod";
 
 @Component({
   selector: 'app-ad-detail',
-  templateUrl: './ad-detail.component.html'
+  templateUrl: './ad-detail.component.html',
+  styleUrls: ['./ad-detail.component.css']
 })
 export class AdDetailComponent implements OnInit{
   id: number;

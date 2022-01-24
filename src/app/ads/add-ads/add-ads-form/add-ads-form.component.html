@@ -5,37 +5,37 @@
     <div class="row m-0">
       <div class="col-8 order-1">
         <div class="form-group">
-          <label for="title">Titolo<span style="color: red;">*</span>:</label>
+          <label for="title">Titolo<span>*</span>:</label>
           <input type="text" name="title" class="form-control" formControlName="title">
         </div>
       </div>
       <div class="col-4 order-1">
         <div class="form-group">
-          <label for="author">Autore<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
+          <label for="author">Autore<span *ngIf="role==='LIBRERIA'">*</span>:</label>
           <input type="text" name="author" class="form-control" formControlName="author">
         </div>
       </div>
       <div class="order-2" [ngClass]="role!=='LIBRERIA'? 'col-9' : 'col-6'">
         <div class="form-group">
-          <label for="genre">Genere<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
+          <label for="genre">Genere<span *ngIf="role==='LIBRERIA'">*</span>:</label>
           <app-multiple-select-component [form]="addAdsForm.get('genre')" name="genre" [list]="genres" stringAttribute="name" [multiple]="true" formControlName="genre"></app-multiple-select-component>
         </div>
       </div>
       <div [ngClass]="role!=='LIBRERIA'? 'order-3 col-7' : 'order-2 col-4'">
         <div class="form-group">
-          <label for="publisher">Editore<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
+          <label for="publisher">Editore<span *ngIf="role==='LIBRERIA'">*</span>:</label>
           <input type="text" name="publisher" class="form-control" formControlName="publisher">
         </div>
       </div>
       <div class="order-2" [ngClass]="role!=='LIBRERIA'? 'col-3' : 'col-2'">
         <div class="form-group">
-          <label for="year">Anno<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
+          <label for="year">Anno<span *ngIf="role==='LIBRERIA'">*</span>:</label>
           <app-multiple-select-component [form]="addAdsForm.get('year')" name="year" [list]="years" formControlName="year"></app-multiple-select-component>
         </div> 
       </div>
       <div class="col-12 order-4">
         <div class="form-group content box">
-          <label for="inputImage">Immagini<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
+          <label for="inputImage">Immagini<span *ngIf="role==='LIBRERIA'">*</span>:</label>
           <div class="content">
             <app-custom-input-file-component [form]="addAdsForm.get('image')" formControlName="image"></app-custom-input-file-component>
           </div>
@@ -43,28 +43,28 @@
       </div>
       <div class="col order-4">
         <div class="form-group">
-          <label for="description">Descrizione<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
+          <label for="description">Descrizione<span *ngIf="role==='LIBRERIA'">*</span>:</label>
           <textarea 
           type="text"
           id="description"
           class="form-control"
           rows="4"
           formControlName="description"
-          style="resize: none;"></textarea>
+          ></textarea>
         </div>
       </div>
       <div class="d-flex flex-column" [ngClass]="role!=='LIBRERIA'? 'order-3 col-5' : 'order-5 col-4'">
         <div class="form-group">
-          <label for="ISBN">ISBN<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
+          <label for="ISBN">ISBN<span *ngIf="role==='LIBRERIA'">*</span>:</label>
           <input type="text" name="ISBN" class="form-control" formControlName="ISBN">
         </div>
         <div class="d-flex mt-auto" *ngIf="role==='LIBRERIA'">
-          <div class="form-group me-1" style="flex: 1 auto">
-            <label for="quantity">Quantità <span style="color: red;">*</span>:</label>
+          <div class="form-group me-1 flex-shrink-1 flex-grow-1">
+            <label for="quantity">Quantità <span>*</span>:</label>
             <input type="text" name="quantity" class="form-control" formControlName="quantity">
           </div>
-          <div class="form-group ms-1" style="flex: 1 auto">
-            <label for="price">Prezzo<span style="color: red;" *ngIf="role==='LIBRERIA'">*</span>:</label>
+          <div class="form-group ms-1 flex-shrink-1 flex-grow-1">
+            <label for="price">Prezzo<span *ngIf="role==='LIBRERIA'">*</span>:</label>
             <input type="text" name="price" class="form-control" formControlName="price">
           </div> 
         </div>
@@ -72,8 +72,5 @@
     </div>
     <hr>
     <div class="d-flex justify-content-center">
-      <!-- <button type="submit" class="btn btn-purple">Conferma</button>
-      <button type="button" (click)="changeStep(0)" class="btn btn-green">Indietro</button>
-      <button type="button" (click)="onCambia()" class="btn btn-purple">Change</button> -->
     </div>
   </form>
