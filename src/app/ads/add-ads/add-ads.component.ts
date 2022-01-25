@@ -9,7 +9,8 @@ import { environment } from "src/environments/environment.prod";
 
 @Component({
   selector: 'app-add-ads',
-  templateUrl: './add-ads.component.html'
+  templateUrl: './add-ads.component.html',
+  styleUrls: ['./add-ads.component.css']
 })
 export class AddAdsComponent implements OnInit{
   ads: Ad[] = []
@@ -39,6 +40,7 @@ export class AddAdsComponent implements OnInit{
     this.formSingle = event
   }
 
+  //Submit per singola inserzione
   onSubmitAds() {
     this.formSingle.markAllAsTouched()
     if (this.formSingle.invalid) {
@@ -112,9 +114,10 @@ export class AddAdsComponent implements OnInit{
     this.progressBarEl.nativeElement['value'] = id;
   }
 
-  changeBook(book: {title: string, isbn: string, quantity: number}) {
+  changeBook(book: {title: string, isbn: string, quantity: number, price: number}) {
     this.isbnForm.controls['ISBN'].setValue(book.isbn);
     this.isbnForm.controls['quantity'].setValue(book.quantity);
+    this.isbnForm.controls['price'].setValue(book.price);
     this.isEdit=true;
   }
 
@@ -126,8 +129,13 @@ export class AddAdsComponent implements OnInit{
       this.isbns = []
       this.books = []
       this.formSingle.reset()
-    } 
+    }
+    if(id===1) {
+      this.ads = []
+    }
     if(id === 2) {
+      console.log(this.books);
+      
 
       this.http.post(
         `${environment.apiUrl}/api/v1/books`,
@@ -146,18 +154,51 @@ export class AddAdsComponent implements OnInit{
               created_at: null,
               updated_at: null,
               deleted_at: null,
-            } 
+            }
+            const img1: adImage = {
+              id: 1,
+              url: resData.data[i].imageLinks.thumbnail,
+              ad_id: this.authService.user.value.id,
+              main: true,
+              created_at: null,
+              updated_at: null,
+              deleted_at: null,
+            }
+            const img2: adImage = {
+              id: 2,
+              url: "https://images-na.ssl-images-amazon.com/images/I/81dLwWRGPML.jpg",
+              ad_id: this.authService.user.value.id,
+              main: true,
+              created_at: null,
+              updated_at: null,
+              deleted_at: null,
+            }
             this.ads.push(new Ad(
               "S",0,resData.data[i].title,"",resData.data[0].publishedDate,
-              resData.data[i].authors[0],1,"15.99","","",this.authService.user.value.id,
-              null,[img]
+              resData.data[i].authors[0],
+              this.books[i].quantity,
+              this.books[i].price.toString(),
+              "","",this.authService.user.value.id,
+              null,[img,img1,img2]
             ))
+            console.log(this.ads);
+            
           }
           
           
         }
       )
     }
+  }
+
+  setFirstImage(ad: Ad, imageId: number) {
+    console.log(ad);
+    
+    const image: adImage = ad.images[imageId]
+    ad.images.splice(imageId,1)
+    ad.images.unshift(image)
+    console.log(ad);
+
   }
 
   onSubmitMulty() {
@@ -171,7 +212,7 @@ export class AddAdsComponent implements OnInit{
   }
 
   wrongIsbn: boolean = false
-  books: {title: string, isbn: string, quantity: number}[] = []
+  books: {title: string, isbn: string, quantity: number, price: number}[] = []
   @ViewChild('addAdsFormIsbn') isbnForm: NgForm
   onSubmitIsbn() {
     console.log(this.isbnForm);
@@ -180,10 +221,16 @@ export class AddAdsComponent implements OnInit{
       quantity=1
     }
 
+    let price = this.isbnForm.value['price'];
+    if (price === null || price === 0) {
+      price = ""
+    }
+
     for (let i = 0; i < this.books.length; i++) {
       if(this.books[i].isbn === this.isbnForm.value['ISBN']) {
         if (this.isEdit) {
           this.books[i].quantity = quantity
+          this.books[i].price = price
           this.isbnForm.resetForm()
           this.isEdit = false
         } else {
@@ -193,15 +240,14 @@ export class AddAdsComponent implements OnInit{
       }
     }
     this.isEdit = false
-
     
     
       this.http.get(
       `${environment.apiUrl}/api/v1/books/checkByIsbn/${this.isbnForm.value['ISBN']}`
       ).subscribe(
         (resData: {data: {title: string}})=> {
-          const book:{title: string, isbn: string, quantity: number}  = 
-          {title: resData.data.title, isbn: this.isbnForm.value['ISBN'], quantity: quantity} 
+          const book:{title: string, isbn: string, quantity: number,price: number}  = 
+          {title: resData.data.title, isbn: this.isbnForm.value['ISBN'], quantity: quantity, price: price} 
           this.books.push(book)
           this.isbns.push(book.isbn);
           this.isbnForm.resetForm()

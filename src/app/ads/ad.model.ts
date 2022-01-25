@@ -61,7 +61,7 @@ export class Ad {
     this.year = year
     this.author = author
     this.quantity = quantity
-    this.price = "19.99"
+    this.price = price
     this.isbn = isbn
     this.publisher = publisher
     this.user_id = user_id

@@ -1,0 +1,212 @@
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.container-form {
+  color: #243F3D;
+}
+
+.btn-purple {
+  background-color: var(--blue);
+  color: lightgray;
+}
+
+::ng-deep :root {
+  --prm-gray: lightgrey;
+  --prm-color: #69AEA9;
+
+  --transition-collapse:         height .35s ease;
+  --transition-collapse-width:   width .35s ease;
+}
+.steps {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+.step-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--prm-gray);
+  transition: .4s;
+}
+.step-button[aria-expanded="true"] {
+  width: 60px;
+  height: 60px;
+  background-color: var(--prm-color);
+  color: #fff;
+}
+.done {
+  background-color: var(--prm-color);
+  color: #fff;
+}
+.step-item {
+  pointer-events: none;
+  z-index: 10;
+  text-align: center;
+}
+
+#progress {
+-webkit-appearance:none;
+  position: absolute;
+  width: 95%;
+  z-index: 5;
+  height: 10px;
+  margin-left: 18px;
+}
+/* to customize progress bar */
+#progress::-webkit-progress-value {
+  background-color: var(--prm-color);
+  transition: .5s ease;
+}
+#progress::-webkit-progress-bar {
+  background-color: var(--prm-gray);
+}
+
+.collapsing {
+visibility: hidden;
+}
+
+.collape {
+visibility: hidden;
+transition: visibility 2s;
+}
+
+.show {
+visibility: visible;
+transition: visibility 2s;
+}
+
+.card {
+background-color: red;
+}
+
+.nav-tabs {
+  border: none;
+}
+.nav-link {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  color: darkgray;
+  background-color: var(--prm-gray);
+  transition: .4s;
+  z-index: 10;
+}
+
+.nav-link.done {
+  background-color: var(--prm-color);
+  color: #fff;
+}
+
+.nav-link.active {
+  width: 60px;
+  height: 60px;
+  background-color: var(--prm-color);
+  color: #fff;
+}
+
+div:hover.col-6 .btn-book {
+visibility: visible;
+}
+
+.btn-book {
+    /* color: #3A6562; */
+  visibility: hidden;
+display: flex;
+position: absolute;
+top: 0;
+right: 0;
+background-color: lightgray;
+border: 1px solid #213937;
+border-radius: 8px;
+}
+
+.error {
+  background-color: rgba(0, 0, 0, 0.4) ;z-index: 100;
+}
+
+.text-primary-dark {
+  color: var(--primary-dark);
+}
+
+.list-group {
+  border-radius: 20px;
+}
+
+.list-group-item {
+  border-color: var(--light-color);
+}
+
+.book-container {
+  border:1px solid #213937; 
+  border-radius: 15px;
+}
+
+.h-fit {
+  height: fit-content;
+}
+
+.form-control-hidden {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  border-bottom: 1px solid lightgray;
+}
+.ads-item {
+  height: auto;
+  overflow: hidden;
+  color: #243F3D;
+  border-radius: 20px;
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  border: 1px solid #213937;
+  background-color: white;
+}
+
+.image-container {
+  overflow: hidden; 
+  flex: 0 0 25%; 
+  height: 100%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-around;
+}
+
+.image {
+  max-height: 200px; 
+  min-height: 200px;
+}
+
+.image-background {
+  overflow: hidden; 
+  background-color: rgba(200, 200, 200, 0.60);
+}
+
+.p-initial {
+  position: initial;
+}
+
+.ads-detail-container {
+  min-width: 0; 
+  flex: 1 1 auto; 
+  height: auto; 
+  display: flex; 
+  flex-direction: column;
+}
+
+.image-chose {
+  border-top:1px solid #213937;
+}
+
+.mini-image {
+  max-width: 35px; max-height: 35px;
+}
