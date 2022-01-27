@@ -23,3 +23,9 @@
 .text-lightgrey {
   color: lightgrey;
 }
+
+.background-line {
+  height: 25%; 
+  background-color: #BFEEEC; 
+  z-index: -1;
+}

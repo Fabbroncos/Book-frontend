@@ -70,12 +70,12 @@
   width: 12.5%;
 }
 
-.list-group-item:first-child {
+.genre-box.list-group-item:first-child {
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
 }
 
-.list-group-item:last-child {
+.genre-box.list-group-item:last-child {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 }
@@ -86,4 +86,33 @@
   display: flex;
   text-align: end;
   flex-direction: column;
+}
+
+.recommended-title h1 {
+  font-size: 4vw;
+}
+
+.recommended-title p {
+  font-size: 1.5vw;
+}
+
+.bg-light-cyan {
+  background-color: #D1F1EF;
+}
+
+.h-fit {
+  height: fit-content;
+}
+
+.text-secondary-color {
+  color: var(--secondary-color);
+}
+
+.newest-ads {
+  height: 300px; 
+  width: 20%;
+}
+
+.card-title {
+  font-size: 1.3vw;
 }

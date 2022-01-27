@@ -110,3 +110,17 @@ form {
 .dropdown-item, .nav-link {
   cursor: pointer;
 }
+
+svg, a, a:link, a:visited {
+  color: #3A6562
+}
+
+.dropdown-menu {
+  color: #3A6562;
+}
+
+
+nav {
+  width: 90%; 
+  margin-inline: auto;
+}

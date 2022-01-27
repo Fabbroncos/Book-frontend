@@ -1,18 +1,7 @@
-<style>
-  .btn-green {
-    background-color: #4d8682;
-    color: #213937;
-  }
-    
-  input.ng-invalid.ng-touched {
-    border: 1px solid red;
-  }
-</style>
-
 <div class="row justify-content-center align-items-center h-100 m-0">
   <div class="col-10 col-sm-7 col-md-5">
-  <div class="container-form p-4" style="border-radius: 20px;">
-  <h1 style="color: #3A6562;">Login</h1>
+  <div class="container-form p-4">
+  <h1>Login</h1>
   <hr>
   <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
   <div *ngIf="showError" class="alert alert-danger d-flex align-items-center" role="alert">

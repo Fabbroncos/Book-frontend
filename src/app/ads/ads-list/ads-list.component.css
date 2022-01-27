@@ -1,0 +1,39 @@
+.filter-container {
+  background-color: white;
+  border: 1px solid #3A6562;
+  border-radius: 15px;
+  width: 100%;
+  display: flex;
+  height: fit-content;
+}
+.btn-primary {
+  background-color: #3A6562;
+}
+
+.text-secondary-dark {
+  color: var(--secondary-dark);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.bordered {
+  border: 1px solid lightgray;
+  box-shadow: none;
+}
+
+.page-input {
+  width: 50px; 
+  border-bottom: 1px solid lightgray; 
+  border-top: none; 
+  border-left: none;
+  border-right: none;
+}

@@ -1,18 +1,4 @@
-<style>
-.filter-container {
-  background-color: white;
-  border: 1px solid #3A6562;
-  border-radius: 15px;
-  width: 100%;
-  display: flex;
-  height: fit-content;
-}
-.btn-primary {
-  background-color: #3A6562;
-}
-</style>
-
-<div  class="d-flex w-100 h-100 flex-row" style="position: relative;">
+<div  class="d-flex w-100 h-100 flex-row position-relative">
   <div  class="d-flex px-3 pb-3">
     <div  class="w-100">
       <div *ngIf="ads.length !== 0; else emptyAds" class="w-100 d-flex flex-wrap">
@@ -32,19 +18,7 @@
                 </svg>
               </button>
               Pagina
-              <style>
-                input::-webkit-outer-spin-button,
-                input::-webkit-inner-spin-button {
-                  -webkit-appearance: none;
-                  margin: 0;
-                }
-    
-                /* Firefox */
-                input[type=number] {
-                  -moz-appearance: textfield;
-                }
-              </style>
-              <input class="form-control d-inline-block text-center py-0" [value]="page" style="width: 50px; border-bottom: 1px solid lightgray; border-top: none; border-left: none;border-right: none;" type="number">
+              <input class="form-control d-inline-block text-center py-0 page-input" [value]="page" type="number">
               di {{last_page}}
               <button class="btn ms-2" (click)="changePage('+')" [disabled]="page===last_page">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
@@ -61,12 +35,6 @@
           </div>
           <div class="col-3 bg-danger">
             <div class="pt-3 w-100 d-flex justify-content-end">
-              <style>
-                .bordered {
-                  border: 1px solid lightgray;
-                  box-shadow: none;
-                }
-              </style>
               <!-- <button class="btn bordered me-1">{{pageSize}}</button> -->
               <button class="btn bordered d-flex align-items-center" (click)="changeMode()">
                 <svg *ngIf="mode==='list'" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -87,7 +55,7 @@
       </div>
       <ng-template #emptyAds>
         <div class="w-100 p-4 d-flex flex-wrap">
-          <h4 class="text-center" style="color: #3A6562;">Nessuna inserzione trovata</h4>
+          <h4 class="text-center text-secondary-dark">Nessuna inserzione trovata</h4>
         </div>
       </ng-template>
     </div>

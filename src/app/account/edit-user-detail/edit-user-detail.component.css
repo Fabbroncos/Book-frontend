@@ -7,3 +7,7 @@ textarea.ng-touched.ng-invalid,
  app-multiple-select-component {
   background-color: red;
 }
+
+textarea {
+  resize: none;
+}

@@ -1,46 +1,28 @@
-<style>
-  .invalid {
-    border: 1px solid red;
-  }
-</style>
-
-
-    <div class="form-control form-container" [ngClass] = "{'invalid': form.invalid && form.touched}" tabindex="0">
-      <div class="input-group w-100 " style="border-bottom: 1px solid #ced4da;" id="inputImage">
+<div class="form-control form-container" [ngClass] = "{'invalid': form.invalid && form.touched}" tabindex="0">
+      <div class="input-group w-100 " id="inputImage">
         <input
           multiple
           (click)="onRemoveTarget($event)"
           (change)="onChangeInput($event)"
-          #imgInput 
-          style="display: none;"
+          #imgInput
           type="file" 
           accept="image/*" 
-          class="custom-file-input" 
+          class="custom-file-input d-none" 
           id="imgInp" 
           data-show-caption="true" 
           data-show-upload="false">
-        <label class="flex-grow-1 input-group-text" style="background-color: white;" for="imgInp">
+        <label class="flex-grow-1 input-group-text bg-white" for="imgInp">
           {{ setText() }}
         </label>
-        <label class="input-group-text flex-grow-0" style="border-bottom-left-radius: 20px; background-color: orange;" for="imgInp">Scegli</label>
+        <label class="input-group-text flex-grow-0 choose-button" for="imgInp">Scegli</label>
         
       </div>
       <div class="imageContainer" for="imgInp" tabindex="0">
         <div class="row">
-          <div *ngFor="let item of imagePreview; let i = index" (click)="onRemove(i)" style="position: relative;" class="col-xs-12 d-flex align-items-center justify-content-center imageFrame" tabindex="0">
-            <img [src]="item" style="max-height: 100px; max-width: 100px; margin: auto;">
-            <style>
-              .bg-sfumato:hover {
-                background: radial-gradient(#243F3D90,#00000000)
-              }
-              .bg-sfumato svg {
-                visibility: hidden;
-              }
-              .bg-sfumato:hover svg {
-                visibility: visible;
-              }
-            </style>
-            <div class="d-flex justify-content-center align-items-center bg-sfumato" style="color: white; position: absolute; left: 0; right: 0; top: 0; bottom: 0;">
+          <div *ngFor="let item of imagePreview; let i = index" (click)="onRemove(i)" class="col-xs-12 d-flex align-items-center justify-content-center imageFrame position-relative" tabindex="0">
+            <img [src]="item" class="image-preview">
+
+            <div class="d-flex justify-content-center align-items-center bg-sfumato text-light position-absolute top-0 right-0 end-0 start-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
                 <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
@@ -48,7 +30,6 @@
             </div>
           </div>
           <div class="col-xs-12 d-flex align-items-center imageFrameAdd p-0" tabindex="0">
-            <!-- <span style="max-height: 100px; max-width: 100px; margin: auto; text-align: center; font-size:xx-large;">+</span> -->
             <label class="h-100 w-100 d-flex align-items-center justify-content-center" for="imgInp">
               <svg xmlns="http://www.w3.org/2000/svg" id="imgPlus" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>

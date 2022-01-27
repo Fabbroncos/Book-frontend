@@ -62,7 +62,7 @@
           </div>
           <div  class="col-md-8">
             <div  class="card-body h-100 d-flex flex-column">
-              <h5  class="card-title">{{adsConsigliati[i].title}}</h5>
+              <h5 class="card-title">{{adsConsigliati[i].title}}</h5>
               <p  class="card-text">{{adsConsigliati[i].description}}</p>
               <p  class="card-text mt-auto text-end">
                 <small >{{adsConsigliati[i].price}}</small>
@@ -73,25 +73,25 @@
       </div>
     </div>
     <div  class="recommended-title col-6 order-2 p-5">
-      <h1  style="font-size: 4vw;">Libri Consigliati</h1>
-      <p  style="font-size: 1.5vw;">perditi in queste emozionanti storie</p>
+      <h1>Libri Consigliati</h1>
+      <p>perditi in queste emozionanti storie</p>
     </div>
     
   </div>
 </div>
 <div >
-  <div  class="row m-0 px-5 py-3 w-100 justify-content-center" style="background-color: #D1F1EF;">
+  <div  class="row m-0 px-5 py-3 w-100 justify-content-center bg-light-cyan">
     <div  class="col-11 p-0 d-flex flex-row flex-wrap justify-content-center">
-      <div  class="w-100 px-5 d-flex justify-content-between align-items-center" style="color: #69AEA9;">
+      <div  class="w-100 px-5 d-flex justify-content-between align-items-center text-secondary-color">
         <h1 >Novità</h1>
-        <a routerLink="/insertion" style="height: fit-content; color: #69AEA9;">Scopri di più</a>
+        <a routerLink="/insertion" class="h-fit text-secondary-color">Scopri di più</a>
       </div>
-      <div *ngFor="let ad of adsNovitaS" class="w-20 p-3 d-flex justify-content-center" style="height: 300px; width: 20%;">
-        <div role="button" routerLink="/insertion/{{ad.user_id}}/{{ad.id}}" class="card border-secondary" style="position: relative;">
-          <img  alt="{{ad.title}}" class="card-img-top" [src]="getImageUrl(ad)">
-          <div  style="position: absolute; bottom: 0; left: 0; right: 0; background-color: white;">
-            <div  class="card-body py-2 px-2">
-              <h5  class="card-title text-center text-truncate" style="font-size: 1.3vw;">{{ad.title}}</h5>
+      <div *ngFor="let ad of adsNovitaS" class="w-20 p-3 d-flex justify-content-center newest-ads">
+        <div role="button" routerLink="/insertion/{{ad.user_id}}/{{ad.id}}" class="card border-secondary position-relative">
+          <img alt="{{ad.title}}" class="card-img-top h-100" [src]="getImageUrl(ad)">
+          <div class="position-absolute bg-white bottom-0 start-0 end-0">
+            <div class="card-body py-2 px-2">
+              <h5 class="card-title text-center text-truncate">{{ad.title}}</h5>
             </div>
             <div  class="card-footer d-flex justify-content-between">
               <small >
@@ -125,7 +125,7 @@
 </ul>
 </div>
 <div  class="col-3 ps-3">
-  <div  class="w-100 h-100" style="border: 1px solid lightgrey;"> banner qualcosa </div>
+  <div class="w-100 h-100" style="border: 1px solid lightgrey;"> banner qualcosa </div>
 </div>
 </div>
 </div>

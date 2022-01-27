@@ -6,6 +6,7 @@
   --secondary-dark: #3A6562;
   --primary-color: #4d8682;
   --secondary-color: #69AEA9;
+  --third-color: #5B9A96;
   --light-color: #A2E2DE;
   --light-cyan: #D1F1EF; 
   --white: white;
@@ -15,6 +16,10 @@
 /* h1,h2,h3,h4,h5,h6, .list-group-item {
   color: var(--primary-dark);
 } */
+
+.text-third-color {
+  color: var(--third-color);
+}
 
 .btn-green {
   background-color: #4d8682;

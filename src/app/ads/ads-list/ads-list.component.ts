@@ -9,7 +9,8 @@ import { AdsService } from "../ads.service";
 
 @Component({
   selector: 'app-ads-list',
-  templateUrl: './ads-list.component.html'
+  templateUrl: './ads-list.component.html',
+  styleUrls: ['./ads-list.component.css']
 })
 export class AdsListComponent implements OnInit, OnChanges{
   listType = "Inserzioni";

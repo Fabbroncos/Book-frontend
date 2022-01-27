@@ -49,6 +49,10 @@ div.form-container:focus {
   float: top;
 }
 
+.input-group {
+  border-bottom: 1px solid #ced4da;
+}
+
 .imageContainer {
   width: 100%;
   float: top;
@@ -144,4 +148,29 @@ div.imageContainer:hover #imgPlus {
 
 div.imageContainer:hover .imageFrameAdd span{
   visibility: visible;
+}
+
+.invalid {
+  border: 1px solid red;
+}
+
+.bg-sfumato:hover {
+  background: radial-gradient(#243F3D90,#00000000)
+}
+.bg-sfumato svg {
+  visibility: hidden;
+}
+.bg-sfumato:hover svg {
+  visibility: visible;
+}
+
+.choose-button {
+  border-bottom-left-radius: 20px; 
+  background-color: orange;
+}
+
+.image-preview {
+  max-height: 100px; 
+  max-width: 100px; 
+  margin: auto;
 }
