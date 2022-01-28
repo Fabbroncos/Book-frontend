@@ -35,12 +35,6 @@ export class CustomInputFileComponent implements OnInit, ControlValueAccessor{
     this.touched = true;
   }
 
-  // @HostListener('focusout')
-  // onFocusOut() {
-  //   console.log("cia");
-    
-  // }
-
   @HostListener('window:focus', ['$event'])
   onFocus(event) {
     if (this.touched && this.value.length === 0) {

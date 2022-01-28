@@ -11,8 +11,8 @@ strong {
 }
 
 .info-empty {
-  border-bottom: 1px solid var(--light-grey);
-  color: var(--light-grey);
+  border-bottom: 1px solid var(--first-light);
+  color: var(--first-light);
 }
 
 .row {
@@ -20,6 +20,6 @@ strong {
 }
 
 .description-container {
-  border: 1px solid var(--light-color); 
+  border: 1px solid var(--third-light); 
   border-radius: 20px;
 }

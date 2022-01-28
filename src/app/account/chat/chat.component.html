@@ -3,9 +3,12 @@
     <div class="list-group h-100">
     <a role="button" (click)="changeChat(chat)" *ngFor="let chat of chats; let i = index" [ngClass]="{'active': activeChat.id===chat.id }" class="list-group-item d-flex flex-column">
       Chat con utente: {{getOtherUser(chat)}}
-      <small class="text-truncate" *ngIf="chat.last_message">
+      <small class="text-truncate" *ngIf="chat.last_message; else empty">
         Utente {{chat.last_message.sent_by}}: {{chat.last_message.text}}
       </small>
+      <ng-template #empty>
+        <small>Ciao</small>
+      </ng-template>
     </a>
     </div>
   </div>
@@ -31,7 +34,7 @@
       </div>
       <div class="row m-0">
         <div class="col-12 p-0">
-          <textarea #textMessage name="" id="" cols="30" rows="3" class="form-control"></textarea>
+          <textarea #textMessage class="form-control resize-none border-0 shadow-none" name="" id="" cols="30" rows="3" ></textarea>
         </div>
         <div class="col-12 d-flex justify-content-end p-0">
           <button class="btn btn-green" (click)="sendMessage(textMessage)">Invia</button>

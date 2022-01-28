@@ -1,17 +1,7 @@
-
-input.ng-invalid.ng-touched {
-  border: 1px solid red;
-}
-
-.btn-green {
-    background-color: #4d8682;
-    color: #213937;
-}
-
 .container-form {
-    border: 1px solid #213937;
-    background-color: #fff;
-    border-radius: 10px;
+  border: 1px solid var(--primary-dark);
+  background-color: var(--light-color);
+  border-radius: 10px;
 }
 
 span, .error {
@@ -29,9 +19,5 @@ input[type=number] {
 }
 
 .nav-link {
-  color:#4D8682;
-}
-
-h1 {
-  color: #3A6562;
+  color: var(--primary-color);
 }

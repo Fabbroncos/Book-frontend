@@ -12,20 +12,8 @@
   flex: 0 1 40px;
 }
 
-.bg-grey {
-  background-color: rgb(90, 90, 90);
-}
-
-.text-grey {
-  color: grey;
-}
-
-.text-lightgrey {
-  color: lightgrey;
-}
-
 .background-line {
   height: 25%; 
-  background-color: #BFEEEC; 
+  background-color: var(--fourth-light); 
   z-index: -1;
 }

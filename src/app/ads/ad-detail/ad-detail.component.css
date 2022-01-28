@@ -7,20 +7,20 @@
 .box .row.content {
   flex: 1 1 auto;
 }
+
 h2, h3 {
-  color: #3A6562;
+  color: var(--third-dark);
 }
 
 .empty {
   font-size: larger; 
-  border-bottom: 1px solid var(--light-grey);
+  border-bottom: 1px solid var(--first-light);
 }
 
 .img-container {
   height: 200px; 
-  border: 1px 
-  solid var(--dark-color); 
-  background-color: var(--light-cyan) 
+  border: 1px solid var(--primary-dark); 
+  background-color: var(--secondary-light) 
 }
 
 .field {
@@ -29,17 +29,17 @@ h2, h3 {
 
 .genre-container {
   width: fit-content; 
-  background-color: var(--secondary-color); 
-  color: var(--white); 
+  background-color: var(--third-color); 
+  color: var(--light-color); 
   border-radius: 10px;
 }
 
 .price-container {
-  border:1px solid var(--secondary-dark);
+  border:1px solid var(--third-dark);
 }
 
 .description-container {
   height: auto; 
   min-height: 150px; 
-  border: 1px solid var(--light-grey);
+  border: 1px solid var(--first-light);
 }

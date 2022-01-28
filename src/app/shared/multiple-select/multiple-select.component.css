@@ -7,7 +7,6 @@
   z-index: 1000;
   float: left;
   width: 100%;
-  /* width: calc(100% - 30px); */
   height: auto;
   max-height: 200px;
   padding: .375rem .75rem;
@@ -16,9 +15,9 @@
   line-height: 1.5;
   color: #495057;
   overflow-y: auto;
-  background-color: #fff;
+  background-color: var(--light-color);
   background-clip: padding-box;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--first-light);
   border-radius: .25rem;
 }
 
@@ -58,27 +57,25 @@
 
 .show div.valueText,
 div.form-control:focus {
-  border-color: #ff8615;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px #ff8615;
+  border-color: var(--primary-color);;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px var(--primary-color);;
 }
 
 .activeItem {
-  /* background-color: #a6cedf; */
-  background-color: #ff8615;
+  background-color: var(--primary-color);
 }
 
 a:active {
-  background-color: #ff8615;
+  background-color: var(--primary-color);;
 }
 
 .activeItem:hover {
-  /* background-color: #68adca; */
-  background-color: hsl(29, 85%, 43%);
+  background-color: var(--third-color);
 }
 
 .disabled {
   pointer-events: none;
-  background-color: #e9ecef;
+  background-color: var(--first-light);
   opacity: 1;
   cursor:default;
   

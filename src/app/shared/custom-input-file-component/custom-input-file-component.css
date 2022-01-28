@@ -1,14 +1,7 @@
 div.form-container:focus {
-  border-color: #ff8615;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px #ff8615;
+  border-color: var(--primary-color);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px var(--primary-color);
 }
-
-/* .disabled {
-  pointer-events: none;
-  background-color: #e9ecef;
-  opacity: 1;
-  cursor:default;
-} */
 
 .imageFrame {
   background-color: #4d86821a;
@@ -22,23 +15,15 @@ div.form-container:focus {
   border-radius: .50rem;
 }
 
-
-.custom-file {
-  width: 100%;
-}
-
 .form-container {
-  /* height: 250px; */
   height: 100%;
   flex: 1 1 auto;
   position: relative;
   padding: 0;
   overflow: hidden;
-  /* pointer-events: none; */
 
   display:flex;
   flex-direction:column;
-  
 }
 
 .inputGroup {
@@ -50,7 +35,7 @@ div.form-container:focus {
 }
 
 .input-group {
-  border-bottom: 1px solid #ced4da;
+  border-bottom: 1px solid var(--first-light);
 }
 
 .imageContainer {
@@ -78,13 +63,13 @@ label {
 
 .custom-file-input ~ .custom-file-label::after {
   content: "Scegli";
-  background-color: #ff8615;
+  background-color: var(--primary-color);
   height: 100%;
 }
 
 .custom-file-input:focus ~ .custom-file-label {
   border: none;
-  border-bottom: 1px solid #ced4da;
+  border-bottom: 1px solid var(--first-light);
   box-shadow:none;
 }
 
@@ -125,11 +110,10 @@ div.imageFrameAdd {
 
 div.imageFrameAdd span{
   visibility: hidden;
-  color: #ff8615;
+  color: var(--primary-color);
 }
 
 div.imageContainer:hover .imageFrameAdd{
-  /* visibility: visible; */
   visibility: visible;
   background-color: #4d86821a;
   border: 1px solid var(--primary-color); 
@@ -165,8 +149,8 @@ div.imageContainer:hover .imageFrameAdd span{
 }
 
 .choose-button {
-  border-bottom-left-radius: 20px; 
-  background-color: orange;
+  border-bottom-left-radius: 20px;
+  background-color: var(--primary-color);
 }
 
 .image-preview {

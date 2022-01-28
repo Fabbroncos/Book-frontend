@@ -1,54 +1,78 @@
 /* You can add global styles to this file, and also import other style files */
-
 :root {
-  --dark-color: #213937;
-  --primary-dark: #243F3D;
-  --secondary-dark: #3A6562;
   --primary-color: #4d8682;
-  --secondary-color: #69AEA9;
-  --third-color: #5B9A96;
-  --light-color: #A2E2DE;
-  --light-cyan: #D1F1EF; 
-  --white: white;
-  --light-grey: lightgrey;
+  --secondary-color: #5B9A96;
+  --third-color: #69AEA9;
+  --fourth-color: #54908C;
+
+  --light-color: white;
+  --first-light: lightgrey;
+  --secondary-light: #D1F1EF; 
+  --third-light: #A2E2DE;
+  --fourth-light: #bfeeec;
+
+  --primary-dark: #213937;
+  --secondary-dark: #243F3D;
+  --third-dark: #3A6562;
+  --fourth-dark: grey;
+  
+  --extra-color: #63BBF3;
+  --extra-color-1: #67c5ff;
+  --extra-color-2: #8DD4FF;
+  --extra-color-3: #B3E2FF;
 }
 
-/* h1,h2,h3,h4,h5,h6, .list-group-item {
-  color: var(--primary-dark);
-} */
+.resize-none {
+  resize: none
+}
+
+.h-fit {
+  height: fit-content;
+}
+
+.bg-secondary-light {
+  background-color: var(--secondary-light);
+}
+
+.text-primary-color {
+  color: var(--primary-color);
+}
+
+.text-secondary-color {
+  color: var(--secondary-color);
+}
 
 .text-third-color {
   color: var(--third-color);
 }
 
-.btn-green {
-  background-color: #4d8682;
-  color: #213937;
+.text-light-color {
+  color: var(--light-color);
 }
 
-.container-form {
-  background-color: white;
-  border: 1px solid var(--primary-color);
-  border-radius: 15px;
+.text-first-light {
+  color: var(--first-light);
+}
+
+.text-secondary-dark {
+  color: var(--secondary-dark);
+}
+
+.text-third-dark {
+  color: var(--third-dark);
+}
+
+.br-20 {
+  border-radius: 20px;
+}
+
+.btn-green {
+  background-color: var(--primary-color);
   color: var(--primary-dark);
 }
 
-input.ng-touched.ng-invalid {
+input.ng-invalid.ng-touched {
   border: 1px solid red;
-}
-
-
-.btn-orange {
-  background-color: #ff8615;
-  color: black;
-}
-
-a.link-orange, a.link-orange:visited, a.link-orange:link{
-  color: #4d8682;
-}
-
-a, a:visited, a:link{
-  color: black;
 }
 
 input:focus.form-control,
@@ -57,8 +81,9 @@ textarea:focus.form-control {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px var(--primary-color);
 }
 
-
-/* .container, .row, .col {
-  padding: 0;
-  margin: 0;
-} */
+.container-form {
+  background-color: var(--light-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 15px;
+  color: var(--primary-dark);
+}

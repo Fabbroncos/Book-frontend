@@ -1,24 +1,7 @@
-input.ng-invalid.ng-touched,
 textarea.ng-invalid.ng-touched {
   border: 1px solid red;
 }
 
-.container-form {
-  color: #243F3D;
-}
-
-.btn-purple {
-  background-color: var(--blue);
-  color: lightgray;
-}
-
-::ng-deep :root {
-  --prm-gray: lightgrey;
-  --prm-color: #69AEA9;
-
-  --transition-collapse:         height .35s ease;
-  --transition-collapse-width:   width .35s ease;
-}
 .steps {
   height: 60px;
   display: flex;
@@ -32,19 +15,20 @@ textarea.ng-invalid.ng-touched {
   height: 50px;
   border-radius: 50%;
   border: none;
-  background-color: var(--prm-gray);
+  background-color: var(--first-light);
   transition: .4s;
 }
 .step-button[aria-expanded="true"] {
   width: 60px;
   height: 60px;
-  background-color: var(--prm-color);
-  color: #fff;
+  background-color: var(--third-color);
+  color: var(--light-color);
 }
 .done {
-  background-color: var(--prm-color);
-  color: #fff;
+  background-color: var(--third-color);
+  color: var(--light-color);
 }
+
 .step-item {
   pointer-events: none;
   z-index: 10;
@@ -61,11 +45,11 @@ textarea.ng-invalid.ng-touched {
 }
 /* to customize progress bar */
 #progress::-webkit-progress-value {
-  background-color: var(--prm-color);
+  background-color: var(--third-color);
   transition: .5s ease;
 }
 #progress::-webkit-progress-bar {
-  background-color: var(--prm-gray);
+  background-color: var(--first-light);
 }
 
 .collapsing {
@@ -86,30 +70,27 @@ transition: visibility 2s;
 background-color: red;
 }
 
-.nav-tabs {
-  border: none;
-}
 .nav-link {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   border: none;
   color: darkgray;
-  background-color: var(--prm-gray);
+  background-color: var(--first-light);
   transition: .4s;
   z-index: 10;
 }
 
 .nav-link.done {
-  background-color: var(--prm-color);
-  color: #fff;
+  background-color: var(--third-color);
+  color: var(--light-color);
 }
 
 .nav-link.active {
   width: 60px;
   height: 60px;
-  background-color: var(--prm-color);
-  color: #fff;
+  background-color: var(--third-color);
+  color: var(--light-color);
 }
 
 div:hover.col-6 .btn-book {
@@ -117,35 +98,26 @@ visibility: visible;
 }
 
 .btn-book {
-    /* color: #3A6562; */
   visibility: hidden;
-display: flex;
-position: absolute;
-top: 0;
-right: 0;
-background-color: lightgray;
-border: 1px solid #213937;
-border-radius: 8px;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--first-light);
+  border: 1px solid var(--primary-dark);
+  border-radius: 8px;
 }
 
 .error {
   background-color: rgba(0, 0, 0, 0.4) ;z-index: 100;
 }
 
-.text-primary-dark {
-  color: var(--primary-dark);
-}
-
-.list-group {
-  border-radius: 20px;
-}
-
 .list-group-item {
-  border-color: var(--light-color);
+  border-color: var(--third-light);
 }
 
 .book-container {
-  border:1px solid #213937; 
+  border:1px solid var(--primary-dark); 
   border-radius: 15px;
 }
 
@@ -158,18 +130,18 @@ border-radius: 8px;
   border-left: none;
   border-right: none;
   border-radius: 0;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid var(--first-light);
 }
 .ads-item {
   height: auto;
   overflow: hidden;
-  color: #243F3D;
+  color: var(--secondary-dark);
   border-radius: 20px;
   display: flex;
   width: 100%;
   max-width: 900px;
-  border: 1px solid #213937;
-  background-color: white;
+  border: 1px solid var(--primary-dark);
+  background-color: var(--light-color);
 }
 
 .image-container {
@@ -204,7 +176,7 @@ border-radius: 8px;
 }
 
 .image-chose {
-  border-top:1px solid #213937;
+  border-top:1px solid var(--primary-dark);
 }
 
 .mini-image {

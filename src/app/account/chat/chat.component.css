@@ -1,55 +1,47 @@
 .active {
-  color: #243F3D;
-  background-color: #69AEA9;
+  color: var(--third-dark);
+  background-color: var(--third-color);
   border: none
 }
 
 small {
-  color: gray;
+  color: var(--fourth-dark);
 }
 
 .active small {
-  color: #3A6562;
+  color: var(--third-dark);
 }
 
 .list-group {
-  background-color: white;
-  border-right: 1px solid #3A6562;
+  background-color: var(--light-color);
+  border-right: 1px solid var(--third-dark);
   border-radius: 0px;
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
   overflow: hidden;
 }
 
-.list-group-item {
-  border-radius: 0;
-}
-
-.btn-green {
-  background-color: #4d8682;
-  color: #213937;
+button .btn-green {
   border-bottom-left-radius: 0;
   border-top-left-radius: 15px;
 }
 
 .userMessage {
-  background-color: #A2E2DE;
+  background-color: var(--third-light);
   border-radius: 10px;
   width: fit-content;
-  color: #243F3D;
+  color: var(--secondary-dark);
 }
 
 .otherUserMessage {
-  background-color: #69AEA9;
+  background-color: var(--third-color);;
   border-radius: 10px;
   width: fit-content;
-  color: #243F3D;
+  color: var(--secondary-dark);;
   margin-left: auto;
 }
 
 .chat-container {
   overflow: hidden; 
-  background-color: white; 
+  background-color: var(--light-color); 
   border-top-right-radius: 15px; 
   border-bottom-right-radius: 15px; 
   border-left: none;
@@ -58,11 +50,6 @@ small {
 .message-container {
   overflow-y: scroll; 
   position: relative; 
-  border-top: 1px solid #3A6562; 
-  border-bottom: 1px solid #3A6562;
-}
-
-textarea {
-  border:none; 
-  resize: none;
+  border-top: 1px solid var(--third-dark); 
+  border-bottom: 1px solid var(--third-dark);
 }

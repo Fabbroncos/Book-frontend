@@ -1,21 +1,20 @@
 a {
-  /* color: lightgrey; */
   color:inherit;
   text-decoration: none;
 }
 
 .ads-item-f {
   min-height: 120px;
-  color: #3A6562!important;
+  color: var(--third-dark)!important;
   background: linear-gradient(135deg, white 75%, #85D5D0)!important;
 }
 
 .ads-item-f h5 {
-  color: #3A6562!important;
+  color: var(--third-dark)!important;
 }
 
 .ads-item h5 {
-  color: lightgray;
+  color: var(--first-light);
 }
 
 .ads-item-grid {
@@ -32,13 +31,13 @@ a {
   min-height: 120px;
   height: auto;
   overflow: hidden;
-  color: lightgray;
+  color: var(--first-light);
   border-radius: 20px;
   display: flex;
   width: 100%;
   max-width: 900px;
-  border: 1px solid #4D8682;
-  background: linear-gradient(135deg, #69AEA9 75%, #54908C);
+  border: 1px solid var(--primary-color);
+  background: linear-gradient(135deg, var(--third-color) 75%, var(--fourth-color));
 }
 
 .ads-item-list:hover {
@@ -83,8 +82,8 @@ a {
 }
 
 .card {
-  border-color: #3A6562;
-  color: #3A6562;
+  border-color: var(--third-dark);
+  color: var(--third-dark);
 }
 
 .title-container {
@@ -130,5 +129,5 @@ a {
 
 .price-container {
   flex: 1; 
-  border-top: 1px solid lightgray;
+  border-top: 1px solid var(--first-light);
 }
