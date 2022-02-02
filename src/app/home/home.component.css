@@ -61,13 +61,18 @@
 }
 
 .genre-box {
-  background-color: var(--fourth-color);
+  background-color: var(--fourth-light);
+  color: var(--third-dark);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   font-size: 1.3vw;
   width: 12.5%;
+}
+
+.genre-box:hover {
+  background-color: var(--third-color);
 }
 
 .genre-box.list-group-item:first-child {

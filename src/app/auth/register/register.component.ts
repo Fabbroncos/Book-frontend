@@ -48,9 +48,11 @@ export class RegisterComponent implements OnInit {
     
     if(model.value[0]) {
       this.http.get(
-        `${environment.apiUrl}/api/v1/provinces/${model.value[0].id}`
+        `${environment.apiUrl}/api/v1/provinces/${model.value[0].id}/comuni`
       ).subscribe((citiesData: {data: City[]}) => {
         this.cities = citiesData.data
+        console.log(citiesData.data);
+        
       })
     } else {
       this.cities = []

@@ -20,6 +20,7 @@ import { AdsViewerComponent } from './ads/ads-viewer.component';
 import { AccountModule } from './account/account.module';
 import { SharedModule } from './shared/shared.module';
 import { AdsModule } from './ads/ads.module';
+import { PasswordRecoveryComponent } from './auth/password-recovery/password-recovery.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AdsModule } from './ads/ads.module';
     LoginComponent,
     RegisterComponent,
     ConfirmAccountComponent,
+    PasswordRecoveryComponent,
     ChangePasswordComponent,
   ],
   imports: [

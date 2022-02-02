@@ -18,6 +18,7 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
   @Input() stringAttribute: string;
   @Input() multiple: boolean = false;
   @Input() form: FormControl = new FormControl;
+  inputFocus: boolean = true;
   disabled = false;
 
   
@@ -50,6 +51,10 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
 
   onFocus() {
     this.searchBar.nativeElement.focus()
+  }
+
+  focusOut() {
+    this.inputFocus = false;
   }
 
   onReset(event: Event) {

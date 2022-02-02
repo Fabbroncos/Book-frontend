@@ -1,13 +1,13 @@
 
 <div class="form-group mb-0 position-relative" (scroll)="onScroll()" (click)="onFocus()">
-  <div class="form-control valueText" [ngClass]="{'disabled': disabled, 'invalid': form.invalid && form.touched}" tabindex="0" (blur)="onTouched()" #toggleElement role="button"  id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+  <div class="form-control valueText" [ngClass]="{'disabled': disabled, 'invalid': form.invalid && form.touched && !inputFocus}" tabindex="0" (blur)="onTouched()" #toggleElement role="button"  id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
     <p>
       {{ valueText }}
     </p>
     <span class="dropdown-toggle"></span>
   </div>
   <div class="dropdown-menu drop " #dropdownElement aria-labelledby="dropdownMenuLink" style="min-width: 0;">
-    <input #searchBar type="text" placeholder="Cerca..." class="form-control shadow-none" autocomplete="off" ngModel (ngModelChange)="onChangeSearch($event)">
+    <input #searchBar (focusout)="focusOut()" type="text" placeholder="Cerca..." class="form-control shadow-none" autocomplete="off" ngModel (ngModelChange)="onChangeSearch($event)">
     <a class="dropdown-item btn" *ngIf="valueText!==defaultText" (click)="onReset($event)">----</a>
     <a class="dropdown-item btn" [ngClass]="{'activeItem': isIncluded(item)}" #itemOption *ngFor ="let item of list | filter:filterString" (click)="onToggleCheck(item, $event); "> <!--$event.stopPropagation()-->
       <p class="d-inline">{{ setOptionText(item) }}</p>

@@ -10,7 +10,7 @@ import { AuthService } from "../auth.service";
 export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
-  showError: boolean = false;
+  errorType: string = "errorAccountVerified";
 
   onSubmit(authForm: NgForm) {
     if(!authForm.valid) {return;}
@@ -18,13 +18,15 @@ export class LoginComponent {
     const password = authForm.value.password;
     this.authService.login(email,password)
     .subscribe(
-      resData => {
+      loginData => {
         this.router.navigate(['home']);
       },
       error => {
-        this.showError = true
-        console.log(error);
-        
+        if(error.error.errorMessage === "account non attivo") { //problema cambiare stringa con error message di davide
+          this.errorType = "errorAccountVerified"
+        } else {
+          this.errorType = "errorEmailPassword"
+        }
       }
     );
   }

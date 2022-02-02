@@ -20,6 +20,7 @@ import { AdsViewerComponent } from './ads/ads-viewer.component';
 import { ChatResolverService } from './account/chat/chat-resolver.service';
 import { UserResolverService } from './account/user-resolver.service';
 import { CityResolverService } from './auth/city-resolver.service copy';
+import { PasswordRecoveryComponent } from './auth/password-recovery/password-recovery.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -39,6 +40,7 @@ const routes: Routes = [
       {path: 'login', component:LoginComponent},
       {path: 'register', component:RegisterComponent , resolve:[ProvincesResolverService]},
       {path: 'confirm-account/:token', component:ConfirmAccountComponent},
+      {path: 'password-recovery', component:PasswordRecoveryComponent},
     ]
   },
   {

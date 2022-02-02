@@ -71,6 +71,13 @@
   color: var(--primary-dark);
 }
 
+a.link-colored, a.link-colored:link, a.link-colored:visited {
+  color: var(--primary-color);
+}
+a.link-colored:hover {
+  color: var(--third-dark);
+}
+
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }

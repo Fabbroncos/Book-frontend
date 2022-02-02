@@ -69,8 +69,10 @@ export class AdDetailComponent implements OnInit{
   }
 
   onDelete() {
+    let url = this.ad.type === "S" ? environment.apiUrl + "/api/v1/ads/sell" : environment.apiUrl + "/api/v1/ads/search"
+
     this.http.delete(
-      `${environment.apiUrl}/api/v1/ads/${this.id}`
+      `${url}/${this.id}`
     ).subscribe(
       (resData) => {
         console.log(resData);
