@@ -7,7 +7,7 @@ strong {
 }
 
 .info {
-  border-bottom: 1px solid var(--dark-color);
+  border-bottom: 1px solid var(--third-dark);
 }
 
 .info-empty {

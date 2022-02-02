@@ -10,7 +10,7 @@ import { AuthService } from "../auth.service";
 export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
-  errorType: string = "errorAccountVerified";
+  errorType: string = "";
 
   onSubmit(authForm: NgForm) {
     if(!authForm.valid) {return;}

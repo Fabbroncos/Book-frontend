@@ -4,8 +4,7 @@
   background-color: var(--light-color); 
   border: 1px solid var(--primary-dark); 
   flex: 1 auto; 
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-radius: 20px;
 }
 
 .container-form {
@@ -13,4 +12,13 @@
   min-width: 220px; 
   border-radius: 20px; 
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .account-container {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
 }
