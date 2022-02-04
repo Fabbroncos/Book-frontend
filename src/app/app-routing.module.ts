@@ -52,7 +52,6 @@ const routes: Routes = [
       {path: 'my-profile',component: UserProfileComponent},
       {path: 'my-profile/edit',component: EditUserDetailComponent, resolve: [ProvincesResolverService, CityResolverService]},
       {path: 'my-insertion',component: OwnerAdsComponent},
-      // {path: 'my-orders',component: BookListComponent},
       {path: 'add-book',component: AddAdsComponent, resolve: [GenreResolverService]},
       {path: 'chat', component: ChatComponent, resolve: [ChatResolverService]},
       {path: 'change-password', component:ChangePasswordComponent},

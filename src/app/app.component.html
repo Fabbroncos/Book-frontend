@@ -7,27 +7,199 @@
     <div class="row content justify-content-center p-0 m-0">
       <div class="col m-0 p-0">
         <router-outlet>
-  </router-outlet>
+        </router-outlet>
       </div>
     </div>
     
     <div class="row footer p-0 m-0">
-  <footer  class="container-fluid py-1">
-  <hr >
-  <div  class="row px-3">
-  <div  class="col-sm-6 d-flex align-items-center justify-content-center justify-content-sm-start">
-  <span  class="text-muted">2021©</span>
-  <a  class="text-darkgrey">PDF.corp</a>
-  </div>
-  <div  class="col-sm-6 d-flex flex-row-sm-reverse justify-content-center justify-content-sm-end">
-  <div  class="nav">
-  <a  class="nav-link pl-3 pl-0 text-muted">About</a>
-  <a  class="nav-link px-3 text-muted">Team</a>
-  <a  class="nav-link pl-3 pr-0 text-muted">Contact</a>
-  </div>
-  </div>
-  </div>
-  </footer>
-  </div>
+      
+      <footer  class="container-fluid py-1">
+        <hr >
+        <div>
+          <form #colorForm="ngForm" (ngSubmit)="onSubmit(colorForm)">
+            <div class="row p-1">
+              <div class="col-3">
+                <label for="primary-color" style="color: var(--primary-color);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Primo colore
+                </label>
+                <input type="text" name="primary-color" class="form-control" ngModel>
+              </div>
+              <div class="col-3">
+                <label for="secondary-color" style="color: var(--secondary-color);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Secondo Colore
+                </label>
+                <input type="text" name="secondary-color" class="form-control" ngModel>
+              </div>
+              <div class="col-3">
+                <label for="third-color" style="color: var(--third-color);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Terzo Colore
+                </label>
+                <input type="text" name="third-color" class="form-control" ngModel>
+              </div>
+              <div class="col-3">
+                <label for="fourth-color" style="color: var(--fourth-color);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Quarto Colore
+                </label>
+                <input type="text" name="fourth-color" class="form-control" ngModel>
+              </div>
+            </div>
+            <div class="row p-1 bg-secondary">
+              <div class="col-2">
+                <label for="light-color" style="color: var(--light-color);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Colore chiaro 
+                </label>
+                <input type="text" name="light-color" class="form-control" ngModel>
+              </div>
+              <div class="col-2">
+                <label for="first-light" style="color: var(--first-light);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Primo chiaro
+                </label>
+                <input type="text" name="first-light" class="form-control" ngModel>
+              </div>
+              <div class="col-2">
+                <label for="secondary-light" style="color: var(--secondary-light);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Secondo chiaro
+                </label>
+                <input type="text" name="secondary-light" class="form-control" ngModel>
+              </div>
+              <div class="col-2">
+                <label for="third-light" style="color: var(--third-light);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Terzo chiaro
+                </label>
+                <input type="text" name="third-light" class="form-control" ngModel>
+              </div>
+              <div class="col-2">
+                <label for="fourth-light" style="color: var(--fourth-light);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Quarto chiaro
+                </label>
+                <input type="text" name="fourth-light" class="form-control" ngModel>
+              </div>
+            </div>
+            <div class="row p-1">
+              <div class="col-3">
+                <label for="primary-dark" style="color: var(--primary-dark);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Primo Scuro
+                </label>
+                <input type="text" name="primary-dark" class="form-control" ngModel>
+              </div>
+              <div class="col-3">
+                <label for="secondary-dark" style="color: var(--secondary-dark);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Secondo Scuro
+                </label>
+                <input type="text" name="secondary-dark" class="form-control" ngModel>
+              </div>
+              <div class="col-3">
+                <label for="third-dark" style="color: var(--third-dark);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Terzo Scuro
+                </label>
+                <input type="text" name="third-dark" class="form-control" ngModel>
+              </div>
+              <div class="col-3">
+                <label for="fourth-dark" style="color: var(--fourth-dark);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Quarto Scuro
+                </label>
+                <input type="text" name="fourth-dark" class="form-control" ngModel>
+              </div>
+            </div>
+            <div class="row p-1">
+              <div class="col-3">
+                <label for="extra-color" style="color: var(--extra-color);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Colore extra
+                </label>
+                <input type="text" name="extra-color" class="form-control" ngModel>
+              </div>
+              <div class="col-3">
+                <label for="extra-color-1" style="color: var(--extra-color-1);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Primo extra
+                </label>
+                <input type="text" name="extra-color-1" class="form-control" ngModel>
+              </div>
+              <div class="col-3">
+                <label for="extra-color-2" style="color: var(--extra-color-2);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Secondo extra
+                </label>
+                <input type="text" name="extra-color-2" class="form-control" ngModel>
+              </div>
+              <div class="col-3">
+                <label for="extra-color-3" style="color: var(--extra-color-3);" class="px-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.107 0a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146A.5.5 0 0 1 4.893 0h6.214z"/>
+                  </svg>
+                  Terzo extra
+                </label>
+                <input type="text" name="extra-color-3" class="form-control" ngModel>
+              </div>
+
+              <div class="col-12 d-flex justify-content-center p-2">
+                <button type="submit" class="btn btn-green">Conferma</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <hr>
+        <div  class="row px-3">
+          <div  class="col-sm-6 d-flex align-items-center justify-content-center justify-content-sm-start">
+            <span  class="text-muted">2021©</span>
+            <a  class="text-darkgrey">PDF.corp</a>
+          </div>
+          <div  class="col-sm-6 d-flex flex-row-sm-reverse justify-content-center justify-content-sm-end">
+            <div  class="nav">
+              <a  class="nav-link pl-3 pl-0 text-muted">About</a>
+              <a  class="nav-link px-3 text-muted">Team</a>
+              <a  class="nav-link pl-3 pr-0 text-muted">Contact</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
   </div>
 </div>
