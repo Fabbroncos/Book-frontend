@@ -1,19 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --primary-color: #4d8682;
+  --primary-color: #D65430/*#4d8682*/;
   --secondary-color: #5B9A96;
-  --third-color: #69AEA9;
-  --fourth-color: #54908C;
+  --third-color: #F6724A /*#69AEA9*/;
+  --fourth-color: #B74829/*#54908C*/;
 
   --light-color: white;
-  --first-light: lightgrey;
-  --secondary-light: #D1F1EF; 
-  --third-light: #A2E2DE;
-  --fourth-light: #bfeeec;
+  --first-light: #ffefd5; /*lightgrey;*/
+  --secondary-light: #FDCCAE/*#D1F1EF*/; 
+  --third-light: #FEDEC2 /*#A2E2DE*/;
+  --fourth-light: #ffefd5/*#bfeeec*/;
 
   --primary-dark: #213937;
   --secondary-dark: #243F3D;
-  --third-dark: #3A6562;
+  --third-dark: #7A301B/*#3A6562*/;
   --fourth-dark: grey;
   
   --extra-color: #63BBF3;

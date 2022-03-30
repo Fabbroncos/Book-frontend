@@ -55,9 +55,9 @@ export class AdDetailComponent implements OnInit{
           "ad_id": this.ad.id
         }
       ).subscribe(
-        chatData=> {
+        (chatData: any)=> {
           console.log(chatData);
-          this.router.navigate([`/${this.id}/chat`])
+          this.router.navigate([`/${this.id}/chat`], {queryParams: {chat_id: chatData.data.id}})
           
         }
       )

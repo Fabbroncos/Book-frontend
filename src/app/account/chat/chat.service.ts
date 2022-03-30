@@ -62,8 +62,10 @@ export class ChatService {
 
   getChatMessage(id: number, page?: number) {
     if (!page) {page=1}
+    console.log(id);
+    
     return this.http.get(
-      `${environment.apiUrl}/api/v1/chats/${id}/messages`,
+      `${environment.apiUrl}/api/v1/chats/${id.toString()}/messages`,
       {
         params: {
           page: page

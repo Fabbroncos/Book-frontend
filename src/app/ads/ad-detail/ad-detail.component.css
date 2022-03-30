@@ -24,7 +24,8 @@ h2, h3 {
 }
 
 .field {
-  font-size: larger; border-bottom: 1px solid var(--primary-color);
+  font-size: larger; 
+  /* border-bottom: 1px solid var(--primary-color); */
 }
 
 .genre-container {
@@ -39,7 +40,6 @@ h2, h3 {
 }
 
 .description-container {
-  height: auto; 
   min-height: 150px; 
-  border: 1px solid var(--first-light);
+  border: 1px solid var(--third-light);
 }

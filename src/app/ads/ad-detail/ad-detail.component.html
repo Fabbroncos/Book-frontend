@@ -1,12 +1,11 @@
 <ng-template #emptyInfo>
   <p class="px-1 m-0 text-muted empty">---</p>
-  
 </ng-template>
 
 <div class="row justify-content-center py-5 h-100">
   <div class="col-10 col-md-8 col-lg-10 container-form box h-auto">
     <div class="row p-4">
-      <div class="order-lg-2 col-12 col-lg-4 d-flex justify-content-center p-0 img-container">
+      <div class="order-lg-2 col-12 col-lg-4 d-flex justify-content-center p-0 rounded img-container">
         <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel" data-bs-interval="false">
           <div class="carousel-indicators">
             <button *ngFor="let img of ad.images;let i = index ;let isFirst = first" [ngClass]="{'active': isFirst}" type="button" data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i" aria-label="Slide"></button>
@@ -31,9 +30,9 @@
           </button>
         </div>
       </div>
-      <div class="col-8 order-lg-1">
+      <div class="col-12 col-sm-8 order-lg-1">
         <div class="row justify-content-center">
-          <div class="col-12 mb-3">
+          <div class="col-12 mt-2 mt-lg-0 mb-3">
             <h2>{{ ad.title }}</h2>
           </div>
           <div class="col-11 mb-2">
@@ -42,48 +41,55 @@
           </div>
           <div class="col-8 mb-2">
             <label>Editore:</label>
-            <p class="px-1 m-0" *ngIf="ad.author; else emptyInfo">{{ ad.publisher }}</p>    
+            <p class="px-1 m-0" *ngIf="ad.publisher; else emptyInfo">{{ ad.publisher }}</p>    
           </div>
           <div class="col-3 mb-2">
             <label>Anno:</label>
-            <p class="px-1 m-0" *ngIf="ad.author; else emptyInfo">{{ ad.year }}</p>
+            <p class="px-1 m-0" *ngIf="ad.year; else emptyInfo">{{ ad.year }}</p>
           </div>
         </div>
       </div>
-      <div class="col-8 order-lg-3">
+      <div class="col-8 order-3 order-lg-3">
         <div class="row justify-content-center">
-          <div class="col-11 mb-2">
+          <div class="col-11 mb-2"> <!--Problema aggiustare con generi multipli-->
             <label class="mb-1">Genere:</label>
             <div class="row px-3">
               <div class="col-auto px-1">
-                <div class="px-2 py-1 genre-container">
-                  Non disponibile
+                <div *ngIf="ad.genre; else emptyGenre" class="px-2 py-1 genre-container" role="button" routerLink= "/insertion" [queryParams] = "{genre_id: ad.genre.id}"> 
+                  {{ ad.genre.name }}
                 </div>
+                <ng-template #emptyGenre class="px-2 py-1 genre-container">
+                  Non disponibile
+                </ng-template>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="order-lg-4 mt-1 col-4 d-flex flex-column">
+      <div class="col-4 col-lg-4 order-5 order-lg-4 d-flex flex-column justify-content-center">
         <!-- <small class="text-end">Utente {{ad.user_id}}</small> -->
-        <div class="mt-auto w-75 mx-auto">
-          <h3 class="mb-0 text-center p-0 price-container">{{ad.price}} €</h3>
+        <div class="flex-shrink-1 w-75 mx-auto">
+          <h3 class="mb-0 text-center p-0 br-20 border-0 border-sm-1 price-container">{{ad.price}} €</h3>
         </div>
       </div>
-    </div>
-    <div class="row justify-content-center content pb-3">
-      <div class="col-11 align-self-center p-3 description-container">
-        <p>{{ ad.description }}</p>
+      <div class="col-12 order-4 p-1">
+        <div class="row justify-content-center content pb-3">
+          <div class="col-11 br-20 h-auto align-self-center p-3 description-container">
+            <p>{{ ad.description }}</p>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="row px-5 pb-4 justify-content-between">
-      <div class="col-8 d-flex align-items-center">
+      <div class="col-8 ps-md-5 order-4 order-lg-5 d-flex align-items-center">
         <small class="text-end">Utente {{ad.user_id}}</small>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-lg-4 pt-2 pt-lg-0 pe-lg-5 order-5">
         <button *ngIf="userId===ad.user_id" class="btn btn-danger w-100" (click)="onDelete()">Elimina Inserzione</button>
         <button *ngIf="!(userId===ad.user_id)" class="btn btn-green w-100" (click)="openChat()">Contatta Inserzionista</button>
       </div>
+    </div>
+    
+    <div class="row px-5 pb-4 justify-content-between">
+      
     </div>
     
   </div>

@@ -6,7 +6,7 @@ a {
 .ads-item-f {
   min-height: 120px;
   color: var(--third-dark)!important;
-  background: linear-gradient(135deg, white 75%, #85D5D0)!important;
+  background: linear-gradient(135deg, white 75%, var(--third-light))!important;
 }
 
 .ads-item-f h5 {
@@ -128,6 +128,6 @@ a {
 }
 
 .price-container {
-  flex: 1; 
+  /* flex: 1;  */
   border-top: 1px solid var(--first-light);
 }

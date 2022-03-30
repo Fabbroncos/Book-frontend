@@ -1,4 +1,4 @@
-<div *ngIf="mode!=='gridCard'; else gridCard" class="p-0 ads-item h-100" [ngClass]="{'ads-item-f': ad.type==='F','ads-item-list': mode==='list', 'ads-item-grid': mode==='grid'}">
+<div *ngIf="mode!=='gridCard'; else gridCard" class="py-0 ads-item h-100" [ngClass]="{'ads-item-f': ad.type==='F','ads-item-list': mode==='list', 'ads-item-grid': mode==='grid'}">
   <div class="ads-image-col">
     <div class="ads-image-frame">
       <img  class="w-100" src="{{srcImage}}" alt="{{ad.title}}">
@@ -26,28 +26,30 @@
       </div>
     </div>
     <div class="col-12 d-flex flex-grow-1 flex-wrap align-items-center" *ngIf="mode!=='grid'">
-      <div *ngIf="ad.author; else emptyValue" class="pe-2 d-flex flex-grow-1 flex-shrink-1">
-        <a routerLink= "/insertion"
+      <div class="pe-2 d-flex flex-shrink-1 w-50">
+        <a *ngIf="ad.author; else emptyValue" routerLink= "/insertion"
             [queryParams] = "{author: ad.author}" class="d-inline">{{ad.author}}</a>
       </div>
-      <div *ngIf="ad.publisher; else emptyValue" class="pe-2 d-flex flex-grow-1 flex-shrink-1">
-        <a 
+      <div class="pe-2 d-flex flex-shrink-1 w-25">
+        <a
+          *ngIf="ad.publisher; else emptyValue"
           routerLink= "/insertion"
           [queryParams] = "{publisher: ad.publisher}"
           class="d-inline">{{ad.publisher}}</a>
       </div>
-      <div *ngIf="ad.year; else emptyValue" class="pe-2 d-flex flex-grow-1 flex-shrink-1">
-        <a routerLink= "/insertion"
+      <div class="pe-2 d-flex flex-shrink-1 w-25">
+        <a *ngIf="ad.year; else emptyValue" routerLink= "/insertion"
             [queryParams] = "{year: ad.year}" class="d-inline">{{ad.year}}</a>
       </div>
       <ng-template #emptyValue>
-        <div class="d-flex empty-value">
+        <a class="d-flex empty-value">
           ---
-        </div>
+        </a>
       </ng-template>
     </div>
     <div class="col-12 d-flex flex-grow-1 justify-content-between align-items-center">
       <div class="d-flex flex-grow-1 flex-shrink-1">
+        <!--Problema cambiare utente id con username utente-->
         Utente {{ad.user_id}}
       </div>
       <div *ngIf="ad.type==='S'" class=" d-flex justify-content-end flex-grow-1 flex-shrink-1">
@@ -58,12 +60,15 @@
 </div>
 
 <ng-template #gridCard>
-  <div class="card">
-    <img class="card-img-top" src="{{srcImage}}" alt="{{ad.title}}">
-    <div class="card-body p-2">
-      <a routerLink= "/insertion/{{ad.user_id}}/{{ad.id}}" class="fs-6 ad-title pb-1 text-center"><b>{{ad.title}}</b></a>
-      <div *ngIf="ad.type==='S'" class="d-flex justify-content-end price-container">
-        {{ad.price}}
+  <div class="card flex-fill">
+    <img class="card-img-top" src="{{srcImage}}" alt="{{ad.title}}" style="max-height: 200px; min-height: 200px;">
+    <div class="card-body p-2 d-flex flex-column">
+      <a routerLink= "/insertion/{{ad.user_id}}/{{ad.id}}" class="fs-6 flex-fill d-flex align-items-center ad-title pb-1 justify-content-center text-center"><b>{{ad.title}}</b></a>
+      <div class="d-flex justify-content-between price-container">
+        <!--Problema cambiare utente id con username utente-->
+        Utente {{ad.user_id}}
+        <span *ngIf="ad.type==='S'">{{ad.price}} €</span>
+        
       </div>
     </div>
   </div>

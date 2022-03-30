@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit{
         this.ads = adsData.data.data;
         this.adsPopolari = this.ads.slice(0,3);
         this.adsConsigliati = this.ads.slice(this.ads.length-3, this.ads.length);
-        this.adsNovitaS = this.ads.slice(0,this.ads.length < 10 ? this.ads.length : 9 );
+        this.adsNovitaS = this.ads.slice(0,this.ads.length < 5 ? this.ads.length : 5 );
       }
     )
     this.http.get(

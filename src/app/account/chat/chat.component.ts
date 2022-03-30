@@ -10,7 +10,7 @@ import { Chat, chatMessage, ChatService } from "./chat.service";
 })
 export class ChatComponent implements OnInit ,OnDestroy {
   chats: Chat[] = []
-  activeChat: Chat;
+  activeChat: Chat = null;
   messages: chatMessage[] = [];
   page=1;
   connection;
@@ -43,33 +43,64 @@ export class ChatComponent implements OnInit ,OnDestroy {
   @ViewChild('messagesList') messagesListEl: ElementRef
   scrollContainer: any;
   ngOnInit() {
+    
+
     this.route.data.subscribe(chatData => {
       this.chats = chatData[0];
-      this.changeChat(chatData[0])
+      this.chatService.connect();
+      this.connection = this.chatService.getMessages().subscribe( (messageData: {msg: string, sent_by: number}) => {
+        const message: chatMessage = {
+          id: this.messages[0].id+1,
+          chat_id: this.activeChat.id,
+          sent_by: messageData.sent_by,
+          text: messageData.msg,
+          created_at: null,
+          updated_at: null,
+          deleted_at: null
+        }
+        this.messageListItem.first.nativeElement['classList'].remove('mb-3')
+        this.messages.unshift(message)
+        this.isFirstLoad = true
+      })
+      this.route.queryParams.subscribe(
+        params => {
+          console.log(params);
+          if(params) {
+            for (let chat of this.chats) {
+              if (chat.id.toString() === params.chat_id) {
+                this.changeChat(chat)
+                return
+              }
+            }
+          } else {
+            this.changeChat(this.chats[0])
+          }
+        }
+      )
     })
 
-    this.chatService.connect();
+    // this.chatService.connect();
     
-    this.connection = this.chatService.getChatList().subscribe(
-      (chatListData: {data: {data: Chat[]}})=> {
-        this.chats = chatListData.data.data;
-        this.changeChat(this.chats[0])
-        this.chatService.getMessages().subscribe( (messageData: {msg: string, sent_by: number}) => {
-          const message: chatMessage = {
-            id: this.messages[0].id+1,
-            chat_id: this.activeChat.id,
-            sent_by: messageData.sent_by,
-            text: messageData.msg,
-            created_at: null,
-            updated_at: null,
-            deleted_at: null
-          }
-          this.messageListItem.first.nativeElement['classList'].remove('mb-3')
-          this.messages.unshift(message)
-          this.isFirstLoad = true
-        })
-      }
-    )
+    // this.connection = this.chatService.getChatList().subscribe(
+    //   (chatListData: {data: {data: Chat[]}})=> {
+    //     this.chats = chatListData.data.data;
+    //     // this.changeChat(this.chats[0])
+    //     // this.chatService.getMessages().subscribe( (messageData: {msg: string, sent_by: number}) => {
+    //     //   const message: chatMessage = {
+    //     //     id: this.messages[0].id+1,
+    //     //     chat_id: this.activeChat.id,
+    //     //     sent_by: messageData.sent_by,
+    //     //     text: messageData.msg,
+    //     //     created_at: null,
+    //     //     updated_at: null,
+    //     //     deleted_at: null
+    //     //   }
+    //     //   this.messageListItem.first.nativeElement['classList'].remove('mb-3')
+    //     //   this.messages.unshift(message)
+    //     //   this.isFirstLoad = true
+    //     // })
+    //   }
+    // )
   }
 
   isLoad: boolean = false
@@ -110,7 +141,9 @@ export class ChatComponent implements OnInit ,OnDestroy {
   }
 
   changeChat(chat: Chat) {
+    console.log(chat);
     this.activeChat = chat
+    
     this.chatService.getChatMessage(this.activeChat.id).subscribe(
       (messageData: {data: {data: chatMessage[]}})=> {
         this.messages = messageData.data.data;
