@@ -18,6 +18,8 @@ export class GenreResolverService implements Resolve<Genre[]>{
     )
     .pipe(
       map((genresData: {message: string, data: []}) => {
+        console.log(genresData);
+        
         return genresData.data
       })
     );

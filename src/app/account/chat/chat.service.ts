@@ -54,8 +54,13 @@ export class ChatService {
   }
 
   getChatList(){
-    
     return this.http.get(
+      `${environment.apiUrl}/api/v1/chats`
+    )
+  }
+
+  getChatInPage(id: number) { // cerca la chat in una pagina specifica
+    this.http.get(
       `${environment.apiUrl}/api/v1/chats`
     )
   }

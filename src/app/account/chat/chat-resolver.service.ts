@@ -12,8 +12,10 @@ export class ChatResolverService implements Resolve<Chat[]> {
   constructor(private http: HttpClient, private authService: AuthService, private chatService: ChatService) {}
   
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    console.log(route.queryParams)
     return this.chatService.getChatList().pipe(
       map((chatData: {data: {data: Chat[]}}) => {
+        
         return chatData.data.data
       })
     );

@@ -22,11 +22,17 @@ export class LoginComponent {
         this.router.navigate(['home']);
       },
       error => {
-        if(error.error.errorMessage === "account non attivo") { //problema cambiare stringa con error message di davide
+        if (error) {
+          console.log(error);
+          
+          if(error.error.errorMessage === "account non attivo") { //problema cambiare stringa con error message di davide
           this.errorType = "errorAccountVerified"
         } else {
           this.errorType = "errorEmailPassword"
         }
+        }
+        
+        
       }
     );
   }

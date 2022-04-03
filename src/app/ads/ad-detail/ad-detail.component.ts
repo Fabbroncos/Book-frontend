@@ -75,7 +75,7 @@ export class AdDetailComponent implements OnInit{
       `${url}/${this.id}`
     ).subscribe(
       (resData) => {
-        console.log(resData);
+        this.router.navigate([`./${this.authService.user.value.id}/my-insertion`])
       }
     )
   }

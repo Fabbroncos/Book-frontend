@@ -7,6 +7,27 @@
   </div>
 </div>
 
+<style>
+  .btn-outline-primary {
+    color: var(--third-dark);
+    border-color: var(--third-dark);
+    background-color: var(--first-light);
+  }
+  .btn-outline-primary:hover {
+    color: white;
+    background-color: var(--third-dark);
+  }
+
+  .btn-outline-secondary {
+    color: var(--third-color);
+    border-color: var(--secondary-light);
+  }
+  .btn-outline-secondary:hover {
+    color: white;
+    background-color: var(--secondary-light);
+  }
+</style>
+
 <div class="row p-3 flex-column flex-sm-row">
   <div class="col-12 col-md-4 col-lg-3 ps-md-5 mb-4 mb-lg-0 d-block">
     <form #filter1Form="ngForm" (ngSubmit)="onSubmit(filter1Form)">
@@ -25,10 +46,10 @@
           </button>
         </div>
         <div class="col-6 order-1 justify-content-center d-flex mb-0 mb-md-2">
-          <button role="button" (click)="toggleType('S')" class="btn shadow-none flex-grow-1 p-0" [ngClass]="type==='S' ? 'btn-outline-warning' : 'btn-outline-secondary'" type="submit">Vendo</button>
+          <button role="button" (click)="toggleType('S')" class="btn shadow-none flex-grow-1 p-0" [ngClass]="type==='S' ? 'btn-outline-primary' : 'btn-outline-secondary'" type="submit">Vendo</button>
         </div>
         <div class="col-6 order-1 justify-content-center d-flex mb-0 mb-md-2">
-          <button role="button" (click)="toggleType('F')" class="btn shadow-none flex-grow-1 p-0" [ngClass]="type==='F' ? 'btn-outline-success' : 'btn-outline-secondary'" type="submit">Cerco</button>
+          <button role="button" (click)="toggleType('F')" class="btn shadow-none flex-grow-1 p-0" [ngClass]="type==='F' ? 'btn-outline-primary' : 'btn-outline-secondary'" type="submit">Cerco</button>
         </div>
         <div class="col-6 col-md-12 order-3">
           <label  for="author">Autore</label>
@@ -56,7 +77,7 @@
           <input ngModel id="price_max" name="price_max" placeholder="max" class="form-control d-inline-flex w-50">
         </div>
         <div class="col-12 order-3 p-3">
-          <button class="btn btn-green w-100 p-0" type="submit">Cerca</button>
+          <button class="btn btn-main w-100 p-0" type="submit">Cerca</button>
         </div>
           
           

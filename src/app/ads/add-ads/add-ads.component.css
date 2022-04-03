@@ -179,6 +179,12 @@ visibility: visible;
   border-top:1px solid var(--primary-dark);
 }
 
-.mini-image {
-  max-width: 35px; max-height: 35px;
+.mini-image a {
+  max-width: 35px; 
+  max-height: 35px;
 }
+
+.mini-image:hover a{
+  max-width: 100px; 
+  max-height: 100px;
+} 

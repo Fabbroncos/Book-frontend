@@ -148,7 +148,7 @@ export class AddAdsComponent implements OnInit{
           for (let i = 0; i < resData.data.length; i++) {
             const img: adImage = {
               id: 0,
-              url: resData.data[i].imageLinks.smallThumbnail,
+              url: resData.data[i].imageLinks.thumbnail,
               ad_id: this.authService.user.value.id,
               main: true,
               created_at: null,
@@ -246,6 +246,8 @@ export class AddAdsComponent implements OnInit{
       `${environment.apiUrl}/api/v1/books/checkByIsbn/${this.isbnForm.value['ISBN']}`
       ).subscribe(
         (resData: {data: {title: string}})=> {
+          console.log(resData);
+          
           const book:{title: string, isbn: string, quantity: number,price: number}  = 
           {title: resData.data.title, isbn: this.isbnForm.value['ISBN'], quantity: quantity, price: price} 
           this.books.push(book)
@@ -253,6 +255,8 @@ export class AddAdsComponent implements OnInit{
           this.isbnForm.resetForm()
         },
         error => {
+          console.log(error);
+          
           this.isbnForm.controls['ISBN'].setErrors({'incorrect': true})
         }
       )

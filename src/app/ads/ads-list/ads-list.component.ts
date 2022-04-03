@@ -119,12 +119,23 @@ export class AdsListComponent implements OnInit, OnChanges{
     
     this.adsService.getAds(this.params).subscribe(
       (adsData: any) => {
+        console.log(adsData);
+        
         this.ads = adsData.data.data
         this.last_page = adsData.data.last_page
         this.page = adsData.data.page
         console.log(this.page + " e " + this.last_page);
       }
     )
+  }
+
+  adsLoaded() {
+    if (this.ads) {
+      if (this.ads.length !== 0) {
+        return true
+      }
+    }
+    return false
   }
 
   mode = "list"

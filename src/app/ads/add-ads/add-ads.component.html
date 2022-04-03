@@ -18,7 +18,7 @@
   <div *ngIf="role === 'ACQUIRENTE'">
     <app-add-ads-form-component [genres]="genres" (formChangeEvent)="formCheck($event)"></app-add-ads-form-component>
     <div class="d-flex justify-content-center">
-      <button (click)="onSubmitAds()" [disabled]="formSingle.invalid" class="btn btn-green w-50">Pubblica</button>
+      <button (click)="onSubmitAds()" [disabled]="formSingle.invalid" class="btn btn-main w-50">Pubblica</button>
     </div>
   </div>
   <div *ngIf="role === 'LIBRERIA'" class="accordion h-100 d-flex flex-column" id="accordionExample">
@@ -32,7 +32,11 @@
       </div>
       
       
-      
+      <style>
+        a:hover {
+          color: var(--third-dark);
+        } 
+      </style>
     
     
     <div class="tab-content bg-light d-flex flex-grow-1 flex-shrink-1 px-4 pt-3" id="nav-tabContent">
@@ -54,8 +58,8 @@
         <div *ngIf="!isMultyISBN; else multyIsbn">
           <app-add-ads-form-component [genres]="genres" (formChangeEvent)="formCheck($event)"></app-add-ads-form-component>
           <div class="d-flex justify-content-between px-5">
-            <button type="button" (click)="changeStep(0)" class="btn btn-green w-25">Indietro</button>
-            <button (click)="onSubmitAds()" [disabled]="formSingle.invalid" class="btn btn-green w-25">Pubblica</button>
+            <button type="button" (click)="changeStep(0)" class="btn btn-main w-25">Indietro</button>
+            <button (click)="onSubmitAds()" [disabled]="formSingle.invalid" class="btn btn-main w-25">Pubblica</button>
           </div>
         </div>
         <ng-template #multyIsbn >
@@ -78,7 +82,7 @@
                     <input type="number" name="price" id="multyPrice" class="form-control" ngModel>
                   </div>
                   <div class="col-3 d-flex align-items-end">
-                    <button [disabled]="addAdsFormIsbn.invalid" type="submit" class="btn btn-green">Conferma ISBN</button>
+                    <button [disabled]="addAdsFormIsbn.invalid" type="submit" class="btn btn-main">Conferma ISBN</button>
                   </div>
                 </div>
                </form>
@@ -99,8 +103,8 @@
           </div>
           <div class="row p-4">
             <div class="col-12 d-flex justify-content-between">
-              <button class="btn" (click)="changeStep(0);">Indietro</button>
-              <button class="btn" [disabled]="books.length===0" (click)="changeStep(2);">Riepilogo</button>
+              <button class="btn btn-main" (click)="changeStep(0);">Indietro</button>
+              <button class="btn btn-main" [disabled]="books.length===0" (click)="changeStep(2);">Riepilogo</button>
             </div>
           </div>
         </div>
@@ -148,17 +152,19 @@
                     </div>
                 </div>
                 <div class="col-12 image-chose">Scegli immagine principale:</div>
-                <div class="col-12 py-2 px-4">
-                  <a class="me-3 mini-image" role="btn" *ngFor="let img of ad.images; let i = index" (click)=setFirstImage(ad,i)>
-                    <img src="{{img.url}}" class="mini-image" alt="ad.title">
-                  </a>
+                <div class="col-12 py-2 px-2 d-flex flex-row">
+                  <div *ngFor="let img of ad.images; let i = index" role="button" class="d-flex mini-image">
+                    <a role="btn" class="d-flex justify-content-center" (click)=setFirstImage(ad,i)>
+                      <img src="{{img.url}}" class="h-100" alt="ad.title">
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-12 d-flex justify-content-between">
-            <button class="btn" (click)="changeStep(1);">Indietro</button>
-            <button class="btn" (click)="onSubmitMulty()">Pubblica</button>
+            <button class="btn btn-main" (click)="changeStep(1);">Indietro</button>
+            <button class="btn btn-main" (click)="onSubmitMulty()">Pubblica</button>
           </div>
         </div>
       </div>

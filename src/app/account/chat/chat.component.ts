@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, HostListener, Input, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from "@angular/core";
+import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
 import { Chat, chatMessage, ChatService } from "./chat.service";
@@ -147,6 +147,8 @@ export class ChatComponent implements OnInit ,OnDestroy {
     this.chatService.getChatMessage(this.activeChat.id).subscribe(
       (messageData: {data: {data: chatMessage[]}})=> {
         this.messages = messageData.data.data;
+        console.log(this.messages);
+        
       }
     )
   }
