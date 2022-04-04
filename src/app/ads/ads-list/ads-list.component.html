@@ -1,7 +1,7 @@
 <div  class="d-flex w-100 flex-row position-relative">
-  <div  class="d-flex px-lg-3">
-    <div *ngIf="adsLoaded(); else emptyAds" class="d-flex flex-wrap row">
-      <div *ngFor="let ad of ads" class="pb-2" [ngClass]="{'list': 'col-12', 'grid': 'col-6', 'gridCard' : 'col-4 col-lg-3 d-flex'}[mode]">
+  <div  class="d-flex w-100 px-lg-3">
+    <div *ngIf="adsLoaded(); else emptyAds" class="d-flex flex-wrap row w-100 m-0">
+      <div *ngFor="let ad of ads" class="pb-2" [ngClass]="{'list': 'col-12', 'grid': 'col-6', 'gridCard' : 'col-4 col-lg-3 col-xl-2 d-flex'}[mode]">
         <app-ads-list-item-component class="d-flex flex-fill" [ad]="ad" [mode]="mode" ></app-ads-list-item-component>
 
       </div>

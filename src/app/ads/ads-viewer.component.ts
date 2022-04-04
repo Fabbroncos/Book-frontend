@@ -12,7 +12,7 @@ export class AdsViewerComponent implements OnInit{
   genres: Genre[] = []
   years: number[] = []
 
-  filterHide:boolean = true;
+  filterHide:boolean = false;
 
   page: number = 1
 

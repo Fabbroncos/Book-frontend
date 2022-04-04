@@ -140,7 +140,7 @@ export class AdsListComponent implements OnInit, OnChanges{
     return false
   }
 
-  mode = "list"
+  mode = "gridCard"
   changeMode() {
     switch (this.mode) {
       case "list":
