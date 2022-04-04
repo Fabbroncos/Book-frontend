@@ -6,6 +6,8 @@ import { Ad, Genre } from "src/app/ads/ad.model";
 import { NgForm } from "@angular/forms";
 import { Subject, Subscription } from "rxjs";
 import { AdsService } from "../ads.service";
+import { environment } from "src/environments/environment.prod";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-ads-list',
@@ -134,7 +136,7 @@ export class AdsListComponent implements OnInit, OnChanges{
       if (this.ads.length !== 0) {
         return true
       }
-    }
+    } 
     return false
   }
 

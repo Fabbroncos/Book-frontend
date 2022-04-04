@@ -1,7 +1,7 @@
-<div *ngIf="mode!=='gridCard'; else gridCard" class="py-0 ads-item h-100" [ngClass]="{'ads-item-f': ad.type==='F','ads-item-list': mode==='list', 'ads-item-grid': mode==='grid'}">
-  <div class="ads-image-col">
-    <div class="ads-image-frame">
-      <img  class="w-100" src="{{srcImage}}" alt="{{ad.title}}">
+<div *ngIf="mode!=='gridCard'; else gridCard" class="py-0 ads-item d-flex" [ngClass]="{'h-100': !ad.images[0] ,'ads-item-f': ad.type==='F','ads-item-list': mode==='list', 'ads-item-grid': mode==='grid'}">
+  <div class="ads-image-col d-flex h-100">
+    <div class="ads-image-frame d-flex h-100">
+      <img  class="h-100" [ngClass]="{'w-100': !ad.images[0]}" src="{{srcImage}}" alt="{{ad.title}}">
     </div>
   </div>
   <div class="ads-info-col row p-2">

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.datge.cloud'
+  apiUrl: 'https://api.librerieriunite.net'
 };

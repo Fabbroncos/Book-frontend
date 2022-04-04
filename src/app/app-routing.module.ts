@@ -23,13 +23,13 @@ import { CityResolverService } from './auth/city-resolver.service copy';
 import { PasswordRecoveryComponent } from './auth/password-recovery/password-recovery.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '', redirectTo: '/insertion', pathMatch: 'full'},
   {path: 'home', component:HomeComponent},
   {
-    path: 'insertion', resolve: [GenreResolverService],
+    path: 'insertion', 
+    resolve: [GenreResolverService],
     children: [
       {path: '', component: AdsViewerComponent},
-      // {path: 'newest', component: BookListComponent},
       {path: ':book-userId/:book-id', component: AdDetailComponent}
     ]
   },

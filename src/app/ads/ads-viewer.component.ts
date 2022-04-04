@@ -12,6 +12,8 @@ export class AdsViewerComponent implements OnInit{
   genres: Genre[] = []
   years: number[] = []
 
+  filterHide:boolean = true;
+
   page: number = 1
 
   params: Params
@@ -46,6 +48,10 @@ export class AdsViewerComponent implements OnInit{
     } else {
       this.type = type
     }
+  }
+
+  hideFilter(){
+    this.filterHide = !this.filterHide;
   }
 
   onSubmit(filterForm: NgForm) {

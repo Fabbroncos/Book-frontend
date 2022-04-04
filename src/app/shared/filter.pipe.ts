@@ -6,11 +6,14 @@ import { Pipe, PipeTransform } from "@angular/core";
 })
 export class FilterPipe  implements PipeTransform{
   transform(value: any, filterString: string, propName?: string) {
-    
+    const resultArray = [];
+    if (!value) {
+      return resultArray
+    }
     if (value.length === 0 || filterString === "") {
       return value;
     }
-    const resultArray = [];
+    
     for (const item of value) {
       if (typeof(item) !== "object") {
         if (String(item).toLowerCase().includes(filterString.toLowerCase())){
