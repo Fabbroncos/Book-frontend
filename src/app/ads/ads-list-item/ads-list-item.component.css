@@ -31,13 +31,13 @@ a {
   min-height: 120px;
   height: auto;
   overflow: hidden;
-  color: var(--first-light);
+  color: var(--fourth-color);
   border-radius: 20px;
   display: flex;
   width: 100%;
   max-width: 1500px;
   border: 1px solid var(--primary-color);
-  background: linear-gradient(135deg, var(--third-color) 75%, var(--fourth-color));
+  background: linear-gradient(135deg, var(--secondary-light) 75%, #F88D68);
 }
 
 .ads-item-list:hover {
@@ -75,6 +75,7 @@ a {
 
 .ad-title {
   width: 100%;
+  font-weight: 600;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;

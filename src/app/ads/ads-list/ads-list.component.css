@@ -30,3 +30,11 @@ input[type=number] {
   border-left: none;
   border-right: none;
 }
+
+@media (max-width: 400px) {
+  .list {
+    grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+    grid-gap: 20px 12px;
+    padding: 0 10px;
+  }
+}
