@@ -75,6 +75,8 @@ export class ChatComponent implements OnInit ,OnDestroy {
           } else {
             this.changeChat(this.chats[0])
           }
+          console.log(this.chats);
+          
         }
       )
     })

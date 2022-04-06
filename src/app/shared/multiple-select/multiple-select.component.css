@@ -75,7 +75,7 @@ a:active {
 
 .disabled {
   pointer-events: none;
-  background-color: var(--first-light);
+  background-color: lightgray;
   opacity: 1;
   cursor:default;
   

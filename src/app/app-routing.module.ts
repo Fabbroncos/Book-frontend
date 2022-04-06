@@ -24,7 +24,7 @@ import { PasswordRecoveryComponent } from './auth/password-recovery/password-rec
 
 const routes: Routes = [
   {path: '', redirectTo: '/insertion', pathMatch: 'full'},
-  {path: 'home', component:HomeComponent},
+  // {path: 'home', component:HomeComponent},
   {
     path: 'insertion', 
     resolve: [GenreResolverService],

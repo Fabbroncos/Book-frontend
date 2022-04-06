@@ -23,8 +23,12 @@ input[type=number] {
   box-shadow: none;
 }
 
+.page-input:focus {
+  box-shadow: none;
+
+}
 .page-input {
-  width: 50px; 
+  max-width: 50px;
   border-bottom: 1px solid var(--first-light); 
   border-top: none; 
   border-left: none;

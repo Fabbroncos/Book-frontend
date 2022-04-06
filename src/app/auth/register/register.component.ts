@@ -150,7 +150,7 @@ export class RegisterComponent implements OnInit {
     .subscribe(
       resData => {
         console.log(resData);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/insertion']);
       },
       error => {
         console.log(error);
