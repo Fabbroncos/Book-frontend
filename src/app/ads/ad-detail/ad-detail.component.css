@@ -8,7 +8,7 @@
   flex: 1 1 auto;
 }
 
-h2, h3 {
+h1, h2, h3 {
   color: var(--third-dark);
 }
 
@@ -18,7 +18,7 @@ h2, h3 {
 }
 
 .img-container {
-  height: 200px; 
+  height: 250px; 
   border: 1px solid var(--primary-dark); 
   background-color: var(--secondary-light) 
 }

@@ -13,6 +13,7 @@ import { environment } from "src/environments/environment.prod";
 export class AdDetailComponent implements OnInit{
   id: number;
   ad: Ad;
+  zoomImageShow: boolean = false
 
   userId: number;
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService, private http: HttpClient) {}
@@ -35,6 +36,10 @@ export class AdDetailComponent implements OnInit{
         
       }
     )
+  }
+
+  imgZoom() {
+    this.zoomImageShow = !this.zoomImageShow
   }
 
   gte(data: Element) {
@@ -65,7 +70,7 @@ export class AdDetailComponent implements OnInit{
   }
 
   getUrl(img: adImage) {
-    return `${environment.apiUrl}/api/v1/adImages/${img.url}`
+    return "/assets/babel.jpg" //`${environment.apiUrl}/api/v1/adImages/${img.url}`
   }
 
   onDelete() {

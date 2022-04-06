@@ -23,7 +23,7 @@ export class AdsViewerComponent implements OnInit{
   ngOnInit() {
     let cont: string = this.router.url;
 
-    let startYear = 1900;
+    let startYear = 1850;
     let endYear = new Date().getFullYear();
 
     for (let i = endYear; i > startYear; i--) {this.years.push(i);}
