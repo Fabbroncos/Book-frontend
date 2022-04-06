@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   onLogout() {
     this.authService.logout();
     this.dropdown.nativeElement['classList'].remove('show')
-    this.router.navigate(["/home"])
+    this.router.navigate(["/insertion"])
   }
   
 }
