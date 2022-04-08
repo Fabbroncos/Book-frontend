@@ -65,16 +65,19 @@ export class ChatComponent implements OnInit ,OnDestroy {
       this.route.queryParams.subscribe(
         params => {
           console.log(params);
-          if(params) {
-            for (let chat of this.chats) {
-              if (chat.id.toString() === params.chat_id) {
-                this.changeChat(chat)
-                return
+          if (this.chats) {
+            if(params ) {
+              for (let chat of this.chats) {
+                if (chat.id.toString() === params.chat_id) {
+                  this.changeChat(chat)
+                  return
+                }
               }
+            } else {
+              this.changeChat(this.chats[0])
             }
-          } else {
-            this.changeChat(this.chats[0])
           }
+          
           console.log(this.chats);
           
         }
@@ -169,6 +172,7 @@ export class ChatComponent implements OnInit ,OnDestroy {
 
   ngOnDestroy() {
     this.connection.unsubscribe();
+    this.chatService.disconnect();
   }
 }
 

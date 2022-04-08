@@ -26,9 +26,9 @@
     <div class="steps w-75 d-flex mx-auto nav nav-tabs border-0" id="nav-tab" role="tablist">
       <progress #progressBar id="progress" value=0 max=2 ></progress>
       
-      <button #step (click)="onSetStep(0)" class="steps-item nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="false">1</button>  
-        <button #step (click)="onSetStep(1)" class="steps-item nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">2</button>
-        <button #step (click)="onSetStep(2)" class="steps-item nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">3</button>
+      <button #step (click)="onSetStep(0)" class="steps-item nav-link active" style="pointer-events: none;" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="false">1</button>  
+        <button #step (click)="onSetStep(1)" class="steps-item nav-link" style="pointer-events: none;" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">2</button>
+        <button #step (click)="onSetStep(2)" class="steps-item nav-link" style="pointer-events: none;" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">3</button>
       </div>
       
       

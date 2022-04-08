@@ -91,11 +91,11 @@ export class AdsListComponent implements OnInit, OnChanges{
     this.params["page"] = this.page+1;
     console.log(this.params);
     
-    this.router.navigate(['/insertion'], {queryParams: {...this.params, page: this.page+1}})
+    this.router.navigate(['/home'], {queryParams: {...this.params, page: this.page+1}})
   }
 
   previousPage() {
-    this.router.navigate(['/insertion'], {queryParams: {...this.params, page: this.page-1}})
+    this.router.navigate(['/home'], {queryParams: {...this.params, page: this.page-1}})
   }
 
   changePage(mode: string) {
@@ -140,7 +140,7 @@ export class AdsListComponent implements OnInit, OnChanges{
     return false
   }
 
-  mode = "list"
+  mode = "gridCard"
   changeMode() {
     switch (this.mode) {
       case "list":

@@ -8,7 +8,7 @@
     <div class="col-12 flex-grow-1 d-flex">
       <div  class="d-flex align-items-center title-container">
         <h5 class="m-0 text-title" [ngClass]="{'fs-6': mode==='grid'}">
-          <a routerLink= "/insertion/{{ad.user_id}}/{{ad.id}}" style="color: var(--fourth-color);">{{ad.title}}</a>
+          <a routerLink= "/home/{{ad.user_id}}/{{ad.id}}" style="color: var(--fourth-color);">{{ad.title}}</a>
         </h5>
       </div>
       <div class="px-2 badge-container">
@@ -27,18 +27,18 @@
     </div>
     <div class="col-12 d-flex flex-grow-1 flex-wrap align-items-center" *ngIf="mode!=='grid'">
       <div class="pe-2 d-flex flex-shrink-1 w-50">
-        <a *ngIf="ad.author; else emptyValue" routerLink= "/insertion"
+        <a *ngIf="ad.author; else emptyValue" routerLink= "/home"
             [queryParams] = "{author: ad.author}" class="d-inline">{{ad.author}}</a>
       </div>
       <div class="pe-2 d-flex flex-shrink-1 w-25">
         <a
           *ngIf="ad.publisher; else emptyValue"
-          routerLink= "/insertion"
+          routerLink= "/home"
           [queryParams] = "{publisher: ad.publisher}"
           class="d-inline">{{ad.publisher}}</a>
       </div>
       <div class="pe-2 d-flex flex-shrink-1 w-25">
-        <a *ngIf="ad.year; else emptyValue" routerLink= "/insertion"
+        <a *ngIf="ad.year; else emptyValue" routerLink= "/home"
             [queryParams] = "{year: ad.year}" class="d-inline">{{ad.year}}</a>
       </div>
       <ng-template #emptyValue>
@@ -48,10 +48,10 @@
       </ng-template>
     </div>
     <div class="col-12 d-flex flex-grow-1 justify-content-between align-items-center">
-      <div class="d-flex flex-grow-1 flex-shrink-1">
+      <a routerLink="/detail/{{ad.user_id}}" class="d-flex flex-grow-1 flex-shrink-1">
         <!--Problema cambiare utente id con username utente-->
         Utente {{ad.user_id}}
-      </div>
+      </a>
       <div *ngIf="ad.type==='S'" class=" d-flex justify-content-end flex-grow-1 flex-shrink-1">
         {{ad.price}} €
       </div>
@@ -61,11 +61,11 @@
 
 <ng-template #gridCard>
   <div class="" style=" overflow: hidden; border-radius: 10px; border: 1px solid var(--secondary-light);">
-    <div style="aspect-ratio: 1 / 1.4; overflow: hidden;" class=" d-flex align-items-center justify-content-center">
+    <div style="aspect-ratio: 1 / 1.4; overflow: hidden; background-color: rgba(50, 50, 50, 0.1);" class=" d-flex align-items-center justify-content-center">
       <img #imgAds (load)="loaded()" src="{{srcImage}}" alt="{{ad.title}}" style="">
     </div>
-    <div class="p-2 h-100" style="background-color: var(--first-light);">
-      <a routerLink= "/insertion/{{ad.user_id}}/{{ad.id}}" class="fs-6 flex-fill align-items-center ad-title">
+    <div class="p-2 h-100" [ngClass]="{'bg-white': ad.type==='F'}" style="background-color: var(--first-light); border-top: 1px solid var(--secondary-light);;">
+      <a routerLink= "/home/{{ad.user_id}}/{{ad.id}}" style="color: var(--fourth-color);" class="fs-6 flex-fill align-items-center ad-title">
         {{ad.title}}
       </a>
     </div>

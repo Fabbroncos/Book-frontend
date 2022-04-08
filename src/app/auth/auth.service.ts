@@ -163,7 +163,7 @@ export class AuthService {
     this.isLogged = false;
     localStorage.removeItem('userData');
     localStorage.removeItem('userDetail');
-    this.router.navigate(['/insertion']);
+    this.router.navigate(['/home']);
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
     }

@@ -2,7 +2,7 @@
   <p class="ms-1 info-empty p-1">---</p>
 </ng-template>
 
-<div class="p-3 container flex-column d-flex h-100 w-100">
+<div class="p-3 container flex-column d-flex h-100 w-100 text-dark">
   <div class="row p-4">
     <div class="col-12 text-center text-sm-start">
       <h1 *ngIf="user.role=='ACQUIRENTE'">{{ user.username }} {{ user.userInfos.last_name }}</h1>
@@ -47,7 +47,7 @@
         <h6>Descrizione:</h6>
         <div class="row">
           <div class="col-12 description-container">
-            <p class="m-3">{{ user.libraryInfos.description }}</p>
+            <p class="m-3 text-dark">{{ user.libraryInfos.description }}</p>
           </div>
         </div>
       </ng-container>

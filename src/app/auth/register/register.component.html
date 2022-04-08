@@ -174,7 +174,7 @@
                 </div>
                 <div  class="col-12 col-lg-4 order-2 order-lg-1">
                   <label for="piva" class="d-flex align-items-center"> 
-                    Piva<span >*</span>: 
+                    Partita Iva<span >*</span>: 
                     <span class="ms-auto" *ngIf="getError('piva')"  data-bs-toggle="tooltip" title="{{errorHandle('piva')}}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -274,7 +274,7 @@
                       </svg>
                     </span>
                   </label>
-                  <textarea  required ngModel name="description" minlength="10" maxlength="2000" id="description" cols="30" rows="3" class="form-control ">
+                  <textarea placeholder="Descrivi la tua libreria..." required ngModel name="description" minlength="10" maxlength="2000" id="description" cols="30" rows="3" class="form-control ">
                   </textarea>
                 </div>
               </div>

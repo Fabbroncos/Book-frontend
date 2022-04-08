@@ -19,7 +19,7 @@ export class ChangePasswordComponent {
 
     this.authService.changePassword(password,newPassword,newPasswordConfirm).subscribe(
       resData => {
-        this.router.navigate(['/insertion']);
+        this.router.navigate(['/home']);
       }
     );
   }

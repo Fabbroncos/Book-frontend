@@ -39,11 +39,17 @@ export class ChatService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   connect() {
-    this.socket = io("https://ws.datge.cloud/ws/libreria/chats");
+    this.socket = io("https://ws.librerieriunite.net/ws/libreria/chats");
     this.socket.on('connection', (pack) => {
       //console.log(pack);
     })
     this.socket.emit('joining-open-chats', {jwt: this.authService.user.value.token})
+  }
+
+  disconnect(){
+    this.socket.on("disconnect", () => {
+      console.log("Disconnect " + this.socket.id); // undefined
+    });
   }
   
   sendMessage(chat_id: number, message: string){

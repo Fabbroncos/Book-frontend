@@ -35,9 +35,9 @@ export class HeaderComponent implements OnInit, OnDestroy{
     
     const searchString: string = searchForm.value['search'];
     if (searchForm.value['search'] === "") {
-      this.router.navigate(['/insertion']);
+      this.router.navigate(['/home']);
     } else {
-      this.router.navigate(['/insertion'], {queryParams: {title: searchForm.value['search']}});
+      this.router.navigate(['/home'], {queryParams: {title: searchForm.value['search']}});
     }
   }
 
@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   onLogout() {
     this.authService.logout();
     this.dropdown.nativeElement['classList'].remove('show')
-    this.router.navigate(["/insertion"])
+    this.router.navigate(["/home"])
   }
   
 }

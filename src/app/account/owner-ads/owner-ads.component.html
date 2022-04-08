@@ -5,9 +5,12 @@
     </div>
     <div class="col-12">
       <div class="input-group p-2">
-        <input #searchInput type="text" class="form-control" placeholder="Cerca..." aria-label="Cerca..." aria-describedby="searchBtn">
-        <button (click)="onSearch()" class="btn btn-outline-secondary" type="button" id="searchBtn">Cerca</button>
+        <input #searchInput type="text" style="box-shadow: none;" class="form-control" placeholder="Cerca..." aria-label="Cerca..." aria-describedby="searchBtn">
+        <button (click)="onSearch()" class="btn btn-main" type="button" id="searchBtn">Cerca</button>
       </div>
+    </div>
+    <div class="col-12">
+      <app-ads-list [params]="params"></app-ads-list>
     </div>
     <div class="col-12 py-2 d-flex flex-wrap">
       <div *ngFor="let ad of ads" class="d-flex p-2 w-50" > 

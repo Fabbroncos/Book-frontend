@@ -9,7 +9,6 @@ import { AccountComponent } from './account/account.component';
 import { GenreResolverService } from './ads/genre-resolver.service';
 import { EditUserDetailComponent } from './account/edit-user-detail/edit-user-detail.component';
 import { AuthGuard } from './auth/auth.guard';
-import { HomeComponent } from './home/home.component';
 import { ProvincesResolverService } from './auth/provinces-resolver.service';
 import { UserProfileComponent } from './account/user-profile/user-profile.component';
 import { AddAdsComponent } from './ads/add-ads/add-ads.component';
@@ -21,12 +20,13 @@ import { ChatResolverService } from './account/chat/chat-resolver.service';
 import { UserResolverService } from './account/user-resolver.service';
 import { CityResolverService } from './auth/city-resolver.service copy';
 import { PasswordRecoveryComponent } from './auth/password-recovery/password-recovery.component';
+import { PublicUserDetail } from './account/public-user-detail/public-user-detail.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/insertion', pathMatch: 'full'},
-  // {path: 'home', component:HomeComponent},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: 'detail/:username', component: PublicUserDetail},
   {
-    path: 'insertion', 
+    path: 'home', 
     resolve: [GenreResolverService],
     children: [
       {path: '', component: AdsViewerComponent},
