@@ -47,6 +47,9 @@ export class ChatComponent implements OnInit ,OnDestroy {
 
     this.route.data.subscribe(chatData => {
       this.chats = chatData[0];
+      if (this.chats) { 
+        this.changeChat(this.chats[0])
+      }
       this.chatService.connect();
       this.connection = this.chatService.getMessages().subscribe( (messageData: {msg: string, sent_by: number}) => {
         const message: chatMessage = {
@@ -66,15 +69,11 @@ export class ChatComponent implements OnInit ,OnDestroy {
         params => {
           console.log(params);
           if (this.chats) {
-            if(params ) {
-              for (let chat of this.chats) {
-                if (chat.id.toString() === params.chat_id) {
-                  this.changeChat(chat)
-                  return
-                }
+            for (let chat of this.chats) {
+              if (chat.id.toString() === params.chat_id) {
+                this.changeChat(chat)
+                return
               }
-            } else {
-              this.changeChat(this.chats[0])
             }
           }
           
@@ -158,23 +157,33 @@ export class ChatComponent implements OnInit ,OnDestroy {
     )
   }
   
-  getOtherUser(chat: Chat) {
-    if(chat){
-      if (chat.opened_user_id === this.authService.user.value.id){
-        return chat.opener_user_id
-      } else {
-        return chat.opened_user_id
-      }
-    } else {
-      return ""
-    }
+  // getOtherUser(chat: Chat) {
+  //   if(chat){
+  //     if (chat.opened_user_id === this.authService.user.value.id){
+  //       return chat.opener_user_id
+  //     } else {
+  //       return chat.opened_user_id
+  //     }
+  //   } else {
+  //     return ""
+  //   }
+  // }
+
+  getUsername(chat: Chat) {
+    var name = chat.other_user.email.split("@")[0];
+    return name
   }
 
   ngOnDestroy() {
     this.connection.unsubscribe();
     this.chatService.disconnect();
   }
+
+  getLink() {
+    console.log(this.activeChat.opener_user_id);
+    console.log(this.activeChat.ad_id);
+    
+    return "/home/{{activeChat.opener_user_id}}/{{activeChat.ad_id}}"
+  }
+
 }
-
-
-

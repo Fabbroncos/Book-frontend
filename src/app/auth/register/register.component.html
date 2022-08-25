@@ -234,7 +234,7 @@
                 </div>
                 <div  class="col-7 col-lg-8 col-xl-4 order-2">
                   <label for="street_address_2" class="d-flex align-items-center"> 
-                    Indirizzo 2<span >*</span>: 
+                    Indirizzo 2: 
                     <span class="ms-auto" *ngIf="getError('street_address_2')"  data-bs-toggle="tooltip" title="{{errorHandle('street_address_2')}}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -242,7 +242,7 @@
                       </svg>
                     </span>
                   </label>
-                  <input  type="text" required ngModel name="street_address_2" minlength="2" maxlength="500" id="library_street_address_2" class="form-control ">
+                  <input  type="text" ngModel name="street_address_2" minlength="2" maxlength="500" id="library_street_address_2" class="form-control ">
                 </div>
                 <div  class="col-6 col-xl-5 order-4">
                   <label for="province">Provincia<span >*</span>:</label>
@@ -266,7 +266,7 @@
                 </div>
                 <div  class="col-12 order-5">
                   <label for="description" class="d-flex align-items-center"> 
-                    Descrizione<span >*</span>: 
+                    Descrizione: 
                     <span class="ms-auto" *ngIf="getError('description')"  data-bs-toggle="tooltip" title="{{errorHandle('description')}}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -274,7 +274,7 @@
                       </svg>
                     </span>
                   </label>
-                  <textarea placeholder="Descrivi la tua libreria..." required ngModel name="description" minlength="10" maxlength="2000" id="description" cols="30" rows="3" class="form-control ">
+                  <textarea placeholder="Descrivi la tua libreria..." ngModel name="description" minlength="10" maxlength="2000" id="description" cols="30" rows="3" class="form-control ">
                   </textarea>
                 </div>
               </div>

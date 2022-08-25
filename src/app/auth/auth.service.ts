@@ -87,6 +87,8 @@ export class AuthService {
   }
   
   loadUser(){
+    console.log("pass");
+    
     return this.http.get(
       `${environment.apiUrl}/api/v1/users/${this.userData.value.id}`
     ).pipe(
@@ -106,14 +108,19 @@ export class AuthService {
             this.userData.value.token,
             expirationDate,
           )
-          this.http.get<any>(
-            `${environment.apiUrl}/api/v1/provinces/${loadedUser.comune.province_id}`
-          ).subscribe(provinceData => {
-            loadedUser.province = provinceData.data.name
+          if (loadedUser.comune) {
+            this.http.get<any>(
+              `${environment.apiUrl}/api/v1/provinces/${loadedUser.comune.province_id}`
+            ).subscribe(provinceData => {
+              loadedUser.province = provinceData.data.name
+              this.user.next(loadedUser);
+              localStorage.setItem('userDetail', JSON.stringify(loadedUser))
+              console.log(this.user.value);
+            })
+          } else {
             this.user.next(loadedUser);
-            localStorage.setItem('userDetail', JSON.stringify(loadedUser))
-            console.log(this.user.value);
-          })
+
+          } 
           console.log(resData);
           
           

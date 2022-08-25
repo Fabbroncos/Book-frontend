@@ -56,8 +56,8 @@ const routes: Routes = [
       {path: 'chat', component: ChatComponent, resolve: [ChatResolverService]},
       {path: 'change-password', component:ChangePasswordComponent},
     ]
-  }
-  
+  },
+  {path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];
 
 @NgModule({

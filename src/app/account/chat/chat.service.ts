@@ -27,6 +27,9 @@ export interface Chat {
   last_opened_by_opener: null
   opened_user_id: number
   opener_user_id: number
+  other_user: {
+    email: string
+  }
   updated_at: Date
 }
 
@@ -61,7 +64,7 @@ export class ChatService {
 
   getChatList(){
     return this.http.get(
-      `${environment.apiUrl}/api/v1/chats`
+      `${environment.apiUrl}/api/v1/chats`,
     )
   }
 

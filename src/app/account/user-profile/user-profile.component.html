@@ -5,9 +5,9 @@
 <div class="p-3 container flex-column d-flex h-100 w-100 text-dark">
   <div class="row p-4">
     <div class="col-12 text-center text-sm-start">
-      <h1 *ngIf="user.role=='ACQUIRENTE'">{{ user.username }} {{ user.userInfos.last_name }}</h1>
-      <h1 *ngIf="user.role=='LIBRERIA'">{{ user.username }}</h1>
-      <h5 class="ms-2">{{ user.email }}</h5>
+      <h1 *ngIf="user?.role=='ACQUIRENTE'">{{ user?.username }} {{ user?.userInfos.last_name }}</h1>
+      <h1 *ngIf="user?.role=='LIBRERIA'">{{ user?.username }}</h1>
+      <h5 class="ms-2">{{ user?.email }}</h5>
     </div>
   </div>
   <div class="row px-2 px-lg-4">
@@ -17,37 +17,37 @@
       <div class="row">
         <div class="col-12 col-md-6 col-lg-5 order-1">
           <small>Città:</small>
-          <p *ngIf="user.comune; else empty" class="ms-1 info py-1 px-2">{{ user.comune.name }}</p>
+          <p *ngIf="user?.comune; else empty" class="ms-1 info py-1 px-2">{{ user?.comune.name }}</p>
         </div>
         <div class="col-12 col-md-6 col-lg-5 order-1">
           <small>Provincia:</small>
-          <p *ngIf="user.province; else empty" class="ms-1 info p-1">{{ user.province }}</p>
+          <p *ngIf="user?.province; else empty" class="ms-1 info p-1">{{ user?.province }}</p>
         </div>
         <div class="col-5 col-lg-2 order-3 order-lg-1">
           <small>CAP:</small>
-          <p *ngIf="user.zipCode; else empty" class="ms-1 info p-1">{{ user.zipCode }}</p>
+          <p *ngIf="user?.zipCode; else empty" class="ms-1 info p-1">{{ user?.zipCode }}</p>
         </div>
         <div class="col-12 col-lg-8 order-2">
           <small>Indirizzo 1:</small>
-          <p *ngIf="user.streetAddress1; else empty" class="ms-1 info p-1">{{ user.streetAddress1 }}</p>
+          <p *ngIf="user?.streetAddress1; else empty" class="ms-1 info p-1">{{ user?.streetAddress1 }}</p>
         </div>
         <div class="col-7 col-lg-4 order-2">
           <small>Indirizzo 2:</small>
-          <p *ngIf="user.streetAddress2; else empty" class="ms-1 info p-1">{{ user.streetAddress2 }}</p>
+          <p *ngIf="user?.streetAddress2; else empty" class="ms-1 info p-1">{{ user?.streetAddress2 }}</p>
         </div>
         
       </div>
-      <ng-container *ngIf="user.role=='LIBRERIA'">
+      <ng-container *ngIf="user?.role=='LIBRERIA'">
         <div class="row justify-content-center">
           <div class="col-12 col-lg-6">
             <h6 class="mb-0">P.iva</h6>
-            <p *ngIf="user.libraryInfos.piva; else empty" class="ms-1 info p-1">{{ user.libraryInfos.piva }}</p>
+            <p *ngIf="user?.libraryInfos.piva; else empty" class="ms-1 info p-1">{{ user?.libraryInfos.piva }}</p>
           </div>
         </div>
         <h6>Descrizione:</h6>
         <div class="row">
           <div class="col-12 description-container">
-            <p class="m-3 text-dark">{{ user.libraryInfos.description }}</p>
+            <p class="m-3 text-dark">{{ user?.libraryInfos.description }}</p>
           </div>
         </div>
       </ng-container>
@@ -56,10 +56,10 @@
   <br>
   <div class="row mt-auto pb-3 flex-column flex-md-row justify-content-lg-center">
     <div class="col-12 col-md-6 col-lg-auto d-flex p-1 justify-content-end justify-content-lg-center order-1 order-xl-2">
-      <button class="btn btn-main flex-grow-1 flex-lg-grow-0" routerLink="/{{ user.id }}/my-profile/edit">Modifica profilo</button>
+      <button class="btn btn-main flex-grow-1 flex-lg-grow-0" routerLink="/{{ user?.id }}/my-profile/edit">Modifica profilo</button>
     </div>
     <div class="col-12 col-md-6 col-lg-auto d-flex p-1 justify-content-end justify-content-lg-center order-1 order-xl-2">
-      <button class="btn btn-main flex-grow-1 flex-lg-grow-0" routerLink="/{{ user.id }}/change-password">Modifica password</button>
+      <button class="btn btn-main flex-grow-1 flex-lg-grow-0" routerLink="/{{ user?.id }}/change-password">Modifica password</button>
     </div>
     <div class="col-12 px-0 px-xl-3 order-2">
       <hr>
