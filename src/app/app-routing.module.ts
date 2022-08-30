@@ -24,7 +24,7 @@ import { PublicUserDetail } from './account/public-user-detail/public-user-detai
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'detail/:username', component: PublicUserDetail},
+  {path: 'detail/:user_id', component: PublicUserDetail},
   {
     path: 'home', 
     resolve: [GenreResolverService],

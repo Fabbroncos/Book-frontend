@@ -22,7 +22,7 @@ export class LoginComponent {
         this.router.navigate(['home']);
       },
       error => {
-        if (error) {
+        if (error && error.error.errorMessage) {
           console.log(error);
           
           if(error.error.errorMessage === "account non attivo") { //problema cambiare stringa con error message di davide

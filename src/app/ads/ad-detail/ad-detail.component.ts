@@ -14,6 +14,7 @@ export class AdDetailComponent implements OnInit{
   id: number;
   ad: Ad;
   zoomImageShow: boolean = false
+  username
 
   userId: number;
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService, private http: HttpClient) {}
@@ -30,9 +31,22 @@ export class AdDetailComponent implements OnInit{
           (ad: {message: string, data: Ad}) => {
             this.ad = ad.data
             console.log(this.ad);
-            
+            this.http.get(
+              `${environment.apiUrl}/api/v1/users/info/${this.ad.user_id}`
+            ).subscribe(
+              (data: {data}) => {
+                console.log(data.data);
+                if (data.data.user_infos) {
+                  this.username = data.data.user_infos.first_name
+                } else {
+                  this.username = data.data.library_infos.name
+                }
+                
+              }
+            )
           }
         )
+        
         
       }
     )

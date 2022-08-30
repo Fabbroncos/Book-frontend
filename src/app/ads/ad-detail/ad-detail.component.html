@@ -40,7 +40,7 @@
   </div>
   <div class="col-10 col-md-8 col-lg-10 container-form box h-auto">
     <div class="row p-4">
-      <div class="order-lg-2 col-12 col-lg-4 d-flex justify-content-center p-0 rounded img-container">
+      <div class="order-lg-1 col-12 col-lg-4 d-flex justify-content-center p-0 rounded img-container">
         <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel" data-bs-interval="false">
           <div *ngIf="ad.images.length > 1" class="carousel-indicators">
             <button *ngFor="let img of ad.images;let i = index ;let isFirst = first" [ngClass]="{'active': isFirst}" type="button" data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i" aria-label="Slide"></button>
@@ -65,26 +65,26 @@
           </button>
         </div>
       </div>
-      <div class="col-12 col-sm-8 order-lg-1">
+      <div class="col-12 col-sm-8 order-lg-2">
         <div class="row justify-content-around h-100">
           <div class="col-12 mt-2 mt-lg-0 mb-3">
             <h2 class="text-center">{{ ad.title }}</h2>
           </div>
           <div class="col-11 mb-2" >
             <label class="" style="font-weight: 500;">Autore:</label>
-            <p class="px-1 m-0 field" *ngIf="ad.author; else emptyInfo">{{ ad.author }}</p>    
+            <p class="px-1 m-0 field" style="border-bottom: 1px solid var(--third-dark);" *ngIf="ad.author; else emptyInfo">{{ ad.author }}</p>    
           </div>
           <div class="col-11 mb-2">
             <label class="" style="font-weight: 500;">Editore:</label>
-            <p class="px-1 m-0 field" *ngIf="ad.publisher; else emptyInfo">{{ ad.publisher }}</p>    
+            <p class="px-1 m-0 field" style="border-bottom: 1px solid var(--third-dark);" *ngIf="ad.publisher; else emptyInfo">{{ ad.publisher }}</p>    
           </div>
           <div class="col-11 mb-2">
             <label class="" style="font-weight: 500;">Anno:</label>
-            <p class="px-1 m-0 field" *ngIf="ad.year; else emptyInfo">{{ ad.year }}</p>
+            <p class="px-1 m-0 field" style="border-bottom: 1px solid var(--third-dark);" *ngIf="ad.year; else emptyInfo">{{ ad.year }}</p>
           </div>
         </div>
       </div>
-      <div class="col-8 order-3 order-lg-3">
+      <div class="col-8 order-3 order-lg-4">
         <div class="row justify-content-center">
           <div class="col-11 mb-2"> <!--Problema aggiustare con generi multipli-->
             <label class="mb-1" style="font-weight: 500;">Genere:</label>
@@ -101,7 +101,7 @@
           </div>
         </div>
       </div>
-      <div class="col-6 col-lg-4 order-5 order-lg-4 pe-4 pe-md-5 pe-lg-0 mt-2 d-flex justify-content-end">
+      <div class="col-6 col-lg-4 order-5 order-lg-3 pe-4 pe-md-5 pe-lg-0 mt-2 d-flex justify-content-end">
         <!-- <small class="text-end">Utente {{ad.user_id}}</small> -->
         <div class="flex-shrink-1 w-75 m-lg-auto d-flex justify-content-end justify-content-lg-between">
           <label style="font-weight: 500;" class="me-1 me-lg-0">prezzo:</label>
@@ -118,7 +118,7 @@
       <div class="col-6 col-lg-8 ps-4 ps-md-5 order-4 order-lg-5 d-flex align-items-center">
         <small class="text-end">
           <a routerLink="/detail/{{ad.user_id}}" class="link-colored" style="text-decoration: none">
-            Utente {{ad.user_id}}
+            Utente {{username}}
           </a>
           </small>
       </div>
@@ -129,7 +129,6 @@
     </div>
     
     <div class="row px-5 pb-4 justify-content-between">
-      
     </div>
     
   </div>

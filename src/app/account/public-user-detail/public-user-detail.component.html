@@ -1,8 +1,12 @@
 <div class="row m-5 p-4 container-form">
-  <div class="col-12">Username</div>
-  <div class="col-12">Email</div>
-  <div class="col-12">Venezia - Via che c'era</div>
-  <div class="col-12">Descrizione</div>
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12">Username: {{user?.library_infos.name}}</div>
+      <div class="col-12">Email: {{user?.email}}</div>
+      <div class="col-12" *ngIf="user?.comune && user?.street_address_1">{{user?.comune}} - {{user?.street_address_1}}</div>
+      <div class="col-12 px-4 py-2"><i>{{user?.library_infos.description}}</i></div>  
+    </div>
+  </div>
   <div class="col-12">
     <app-ads-list class="w-100" [params]="params"></app-ads-list>
   </div>

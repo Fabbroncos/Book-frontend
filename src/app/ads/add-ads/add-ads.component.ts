@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
 import { Ad, adImage, Genre } from "../ad.model";
 import { environment } from "src/environments/environment.prod";
+import { of } from "rxjs";
 
 @Component({
   selector: 'app-add-ads',
@@ -19,6 +20,7 @@ export class AddAdsComponent implements OnInit{
   showError: boolean = false
   isEdit: boolean = false
   formSingle: FormGroup = null
+  errorIsbn: string[] = []
 
   isMultyISBN: boolean = false;
 
@@ -148,7 +150,7 @@ export class AddAdsComponent implements OnInit{
           for (let i = 0; i < resData.data.length; i++) {
             const img: adImage = {
               id: 0,
-              url: resData.data[i].imageLinks.thumbnail,
+              url: resData.data[i].imageLinks ? resData.data[i].imageLinks.thumbnail : null,
               ad_id: this.authService.user.value.id,
               main: true,
               created_at: null,
@@ -157,7 +159,7 @@ export class AddAdsComponent implements OnInit{
             }
             const img1: adImage = {
               id: 1,
-              url: resData.data[i].imageLinks.thumbnail,
+              url: resData.data[i].imageLinks ? resData.data[i].imageLinks.thumbnail : null,
               ad_id: this.authService.user.value.id,
               main: true,
               created_at: null,
@@ -263,6 +265,36 @@ export class AddAdsComponent implements OnInit{
     
     
     
+    
+  }
+
+  onSubmitIsbnList(form: NgForm) {
+    const list = form.value["ISBN"];
+    const isbnArray = list.match(/[a-zA-Z]+|[0-9]+/g);
+
+    for (let isbn of isbnArray) {
+      this.http.get(
+        `${environment.apiUrl}/api/v1/books/checkByIsbn/${isbn}`
+        ).subscribe(
+          (resData: {data: {title: string}})=> {
+            console.log(resData);
+            
+            const book:{title: string, isbn: string, quantity: number,price: number}  = 
+            {title: resData.data.title, isbn: isbn, quantity: 0, price: 0} 
+            this.books.push(book)
+            this.isbns.push(book.isbn);
+            this.isbnForm.resetForm()
+          },
+          error => {
+            console.log(error);
+            this.errorIsbn.push(isbn)
+            // const book:{title: string, isbn: string, quantity: number,price: number}  = 
+            // {title: `isbn non trovato o errato` , isbn: isbn, quantity: 0, price: 0} 
+            // this.books.push(book)
+            // this.isbnForm.controls['ISBN'].setErrors({'incorrect': true})
+          }
+        )
+    }
     
   }
 
