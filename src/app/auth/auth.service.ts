@@ -102,9 +102,9 @@ export class AuthService {
             resData['data'].user_infos ? resData['data'].user_infos : null,
             resData['data'].library_infos ? resData['data'].library_infos : null,
             resData['data'].comune ? resData['data'].comune : null,
-            resData['data'].zip_code ? resData['data'].comune : null,
-            resData['data'].street_address_1 ? resData['data'].comune : null,
-            resData['data'].street_address_2 ? resData['data'].comune : null,
+            resData['data'].zip_code ? resData['data'].zip_code : null,
+            resData['data'].street_address_1 ? resData['data'].street_address_1 : null,
+            resData['data'].street_address_2 ? resData['data'].street_address_2 : null,
             this.userData.value.token,
             expirationDate,
           )
