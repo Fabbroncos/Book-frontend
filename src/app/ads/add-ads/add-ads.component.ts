@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { ValueConverter } from "@angular/compiler/src/render3/view/template";
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from "@angular/core";
-import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
+import { FormControl, FormGroup, NgForm, NgModel, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
 import { Ad, adImage, Genre } from "../ad.model";
@@ -30,7 +30,6 @@ export class AddAdsComponent implements OnInit{
 
   ngOnInit() {
     this.role = this.authService.user.value.role;
-
     this.route.data.subscribe(
       (resData) => {
         this.genres = resData[0];
@@ -124,6 +123,7 @@ export class AddAdsComponent implements OnInit{
   }
 
   isbns: string[] = []
+  adsForms: FormGroup[] = [];
   changeStep(id: number) {
     this.stepEl.get(id).nativeElement.click()
     if(id===0) {
@@ -147,50 +147,98 @@ export class AddAdsComponent implements OnInit{
       ).subscribe(
         (resData: {data}) => {
           console.log(resData);
+
           for (let i = 0; i < resData.data.length; i++) {
-            const img: adImage = {
-              id: 0,
-              url: resData.data[i].imageLinks ? resData.data[i].imageLinks.thumbnail : null,
-              ad_id: this.authService.user.value.id,
-              main: true,
-              created_at: null,
-              updated_at: null,
-              deleted_at: null,
-            }
-            const img1: adImage = {
-              id: 1,
-              url: resData.data[i].imageLinks ? resData.data[i].imageLinks.thumbnail : null,
-              ad_id: this.authService.user.value.id,
-              main: true,
-              created_at: null,
-              updated_at: null,
-              deleted_at: null,
-            }
-            const img2: adImage = {
-              id: 2,
-              url: "https://images-na.ssl-images-amazon.com/images/I/81dLwWRGPML.jpg",
-              ad_id: this.authService.user.value.id,
-              main: true,
-              created_at: null,
-              updated_at: null,
-              deleted_at: null,
-            }
+            let img: adImage = null
+              console.log(resData.data[i].imageLinks);
+              
+              if (resData.data[i].imageLinks) {
+                img = {
+                  id: 0,
+                  url: resData.data[i].imageLinks ? resData.data[i].imageLinks.thumbnail : null,
+                  ad_id: this.authService.user.value.id,
+                  main: true,
+                  created_at: null,
+                  updated_at: null,
+                  deleted_at: null,
+                }
+              }
+            this.adsForms.push(
+              new FormGroup(
+                {
+                  'title': new FormControl(resData.data[i].title ? resData.data[i].title : "", Validators.required),
+                  'author': new FormControl(resData.data[i].authors ? resData.data[i].authors : "", Validators.required),
+                  'publisher': new FormControl(resData.data[i].publisher ? resData.data[i].publisher : "", Validators.required),
+                  'year': new FormControl(resData.data[i].publishedDate ? resData.data[i].publishedDate : "", Validators.required),
+                  'isbn': new FormControl({value: this.isbns[i], disabled: true}, Validators.required),
+                  'price': new FormControl(0, Validators.required),
+                  'quantity': new FormControl(0, Validators.required),
+                  'description': new FormControl("", Validators.required),
+                  'image': new FormControl(img !== null ? [img] : [], Validators.required),
+                }
+              )
+            )
+            
+          }
+
+          
+          for (let i = 0; i < resData.data.length; i++) {
+              let img: adImage = null
+              if (resData.data[i].imageLinks) {
+                img = {
+                  id: 0,
+                  url: resData.data[i].imageLinks ? resData.data[i].imageLinks.thumbnail : null,
+                  ad_id: this.authService.user.value.id,
+                  main: true,
+                  created_at: null,
+                  updated_at: null,
+                  deleted_at: null,
+                }
+              }
+              
+            // const img2: adImage = {
+            //   id: 2,
+            //   url: "https://images-na.ssl-images-amazon.com/images/I/81dLwWRGPML.jpg",
+            //   ad_id: this.authService.user.value.id,
+            //   main: true,
+            //   created_at: null,
+            //   updated_at: null,
+            //   deleted_at: null,
+            // }
             this.ads.push(new Ad(
-              "S",0,resData.data[i].title,"",resData.data[0].publishedDate,
-              resData.data[i].authors[0],
+              "S",
+              0,
+              resData.data[i].title,
+              "",
+              resData.data[0].publishedDate,
+              resData.data[i].authors ? resData.data[i].authors[0] : "",
               this.books[i].quantity,
               this.books[i].price.toString(),
-              "","",this.authService.user.value.id,
-              null,[img,img1,img2]
+              this.isbns[i],
+              "",
+              this.authService.user.value.id,
+              null,
+              resData.data[i].imageLinks ? [img] : null
             ))
+            
             console.log(this.ads);
             
           }
           
           
         }
+        
       )
     }
+  }
+
+  getFormControl(form: FormGroup) {
+    if(form) {
+      form.addControl('libraryname', new FormControl(null, Validators.required));
+    }
+    console.log(form);
+    
+    return form
   }
 
   setFirstImage(ad: Ad, imageId: number) {
@@ -203,8 +251,148 @@ export class AddAdsComponent implements OnInit{
 
   }
 
+
+  checkAds(ad: Ad) {
+    for (const nameValue of Object.keys(ad)) {
+      if(ad[nameValue] === null || (nameValue !== "description" && ad[nameValue] === "")) {
+        return true
+      }
+    }
+    return false
+  }
+
+  listErrorAds(form: NgForm) {
+    const listError = []
+    form.control.markAllAsTouched()
+    for (const value of Object.keys(form.controls)) {
+      console.log(form.controls[value]);
+      
+      if(form.controls[value].status === "INVALID") {
+        switch (value) {
+          case 'year':
+            listError.push('Anno di pubblicazione mancante')
+            break;
+          case 'author':
+            listError.push("Nome dell'autore mancante")
+            break;
+          case 'quantity':
+            listError.push('Quantità di libri a disposizione mancante')
+            break;
+          case 'price':
+            listError.push('Prezzo mancante')
+            break;
+          case 'publisher':
+            listError.push('Casa editrice mancante')
+            break;
+          case 'images':
+            listError.push('Immagine libro mancante')
+            break;
+          case 'genre':
+            listError.push('Genere del libro mancante')
+            break;
+        }
+      }
+    }
+    
+    return listError
+  }
+
+  valueCheck(form: NgForm, adsValue: string) {
+    if(form.controls[adsValue]) {
+      if(form.controls[adsValue].status === "VALID") {
+        return true
+      }
+    }
+    return false
+      
+    //   if(form.controls[adsValue].status === "INVALID") {
+    //     switch (adsValue) {
+    //       case 'year':
+    //         return 'Anno di pubblicazione mancante'
+    //         break;
+    //       case 'author':
+    //         return "Nome dell'autore mancante"
+    //         break;
+    //       case 'quantity':
+    //         return 'Quantità di libri a disposizione mancante'
+    //         break;
+    //       case 'price':
+    //         return 'Prezzo mancante'
+    //         break;
+    //       case 'publisher':
+    //         return 'Casa editrice mancante'
+    //         break;
+    //       case 'images':
+    //         return 'Immagine libro mancante'
+    //         break;
+    //       case 'genre':
+    //         return 'Genere del libro mancante'
+    //         break;
+    //     }
+    //   }
+    
+    // return form.controls[adsValue].value
+  }
+
   onSubmitMulty() {
-    console.log(this.ads);
+    for (let ad of this.ads) {
+      const formData = new FormData()
+
+      console.log(Object.keys(ad));
+
+      for (const nameValue of Object.keys(ad)) {
+        if(ad[nameValue] === null) {
+          console.log(nameValue + " " + ad[nameValue]);
+          return
+        }
+      }
+
+      for (const nameValue of Object.keys(ad)) {
+        console.log( nameValue +" " +ad[nameValue]);
+        
+        if(ad[nameValue]!== null && ad[nameValue]!== ""){
+          switch (nameValue) {
+            case "images":
+              console.log(ad['images']);
+              
+              if (ad['images']) {
+                for (const image of ad['images']) {
+                  // formData.append('images',image, image.name)
+                  console.log(image);
+                  
+                }
+              }
+              break
+            // case "genre":
+            //   // formData.append('genre_id',ad['genre'][0].id)
+            //   break
+            // case "quantity":
+            // case "price":
+            //   if (this.authService.user.value.role === "LIBRERIA") {
+            //     // formData.append(nameValue,ad[nameValue])
+            //   }
+            //   break
+            // default: 
+            //   formData.append(nameValue,ad[nameValue])
+            //   break
+          }
+        }
+      }
+
+      // let url = this.authService.user.value.role === "LIBRERIA" ? environment.apiUrl + "/api/v1/ads/sell" : environment.apiUrl + "/api/v1/ads/search"
+      // console.log(formData);
+      
+      // this.http.post(
+      //   url,
+      //   formData
+      // ).subscribe(
+      //   resData => {
+      //     this.router.navigate([`/${this.authService.user.value.id}/my-insertion`])
+          
+      //   }
+      // )
+      
+    }
   }
 
   onEdit() {
@@ -265,6 +453,48 @@ export class AddAdsComponent implements OnInit{
     
     
     
+    
+  }
+
+  getImageUrl(ad: Ad) {
+    console.log(ad.images);
+    if(ad.images) {
+      return ad.images[0].url
+    }
+    return "../assets/no_image.png"
+  }
+
+  toggleOpenAd(container: Element, adItem: Element, errorList: Element) {
+    if(container.classList.contains('col-12')) {
+      adItem.classList.remove("ads-item-edit")
+      adItem.classList.add("ads-item")
+      container.classList.remove('col-12')
+      container.classList.add('col-6')
+      // errorList.classList.remove("d-block");
+      // errorList.classList.add("d-none");
+    } else {
+      adItem.classList.remove("ads-item")
+      adItem.classList.add("ads-item-edit")
+      container.classList.remove('col-6')
+      container.classList.add('col-12')
+      // errorList.classList.remove("d-none");
+      // errorList.classList.add("d-block");
+    }
+  }
+
+  checkForm(form: NgForm) {
+    // form.control.markAllAsTouched()
+    console.log(this.adsForms);
+    
+    
+  }
+
+  @ViewChildren('adsform') adsform: QueryList<NgForm>
+  check() {
+    console.log(this.adsform.toArray());
+    for (const adForm of this.adsform.toArray()) {
+      this.checkForm(adForm)
+    }
     
   }
 

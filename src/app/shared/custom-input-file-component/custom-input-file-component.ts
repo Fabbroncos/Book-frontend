@@ -1,3 +1,4 @@
+import { HttpClient } from "@angular/common/http";
 import { Component, ElementRef, forwardRef, HostListener, Input, OnInit, Optional, Self, ViewChild } from "@angular/core";
 import { ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -15,10 +16,13 @@ import { ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR } from 
 })
 export class CustomInputFileComponent implements OnInit, ControlValueAccessor{
   @Input() form: FormControl = new FormControl;
+  @Input() id: string = "";
   disabled = false;
   touched = false;
 
   value: File[] = []; //filePaths
+
+  constructor(private http: HttpClient) {}
   
   defaultText = "Aggiungi un immagine...";
 
@@ -27,7 +31,9 @@ export class CustomInputFileComponent implements OnInit, ControlValueAccessor{
   isMultiple = false;
 
   ngOnInit() {
-    this.value.length
+    //aggiungere file dell'api
+    console.log(this.id);
+    
   }
 
   @HostListener('click')
@@ -100,6 +106,7 @@ export class CustomInputFileComponent implements OnInit, ControlValueAccessor{
   imagePreview: string[] = []
 
   onChangeInput(event) {
+    console.log(event);
     const file = (event.target as HTMLInputElement).files[0];
     // const reader = new FileReader();
     // reader.onload = () => {
@@ -117,6 +124,8 @@ export class CustomInputFileComponent implements OnInit, ControlValueAccessor{
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview.push(reader.result as string);
+      console.log(this.imagePreview);
+      
     }
     reader.readAsDataURL(file)
   }

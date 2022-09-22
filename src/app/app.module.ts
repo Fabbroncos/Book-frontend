@@ -24,7 +24,7 @@ import { PublicUserDetail } from './account/public-user-detail/public-user-detai
     RegisterComponent,
     ConfirmAccountComponent,
     PasswordRecoveryComponent,
-    ChangePasswordComponent,
+    ChangePasswordComponent
   ],
   imports: [
     AppRoutingModule,

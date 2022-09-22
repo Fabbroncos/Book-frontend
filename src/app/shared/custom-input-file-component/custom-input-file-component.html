@@ -1,23 +1,22 @@
 <div class="form-control form-container" [ngClass] = "{'invalid': form.invalid && form.touched}" tabindex="0">
-      <div class="input-group w-100 " id="inputImage">
+      <div class="input-group w-100 ">
         <input
           multiple
           (click)="onRemoveTarget($event)"
           (change)="onChangeInput($event)"
-          #imgInput
           type="file" 
           accept="image/*" 
           class="custom-file-input d-none" 
-          id="imgInp" 
+          id="{{'imgInp' + id}}" 
           data-show-caption="true" 
           data-show-upload="false">
-        <label class="flex-grow-1 input-group-text bg-white" for="imgInp">
+        <label class="flex-grow-1 input-group-text bg-white" for="{{'imgInp' + id}}">
           {{ setText() }}
         </label>
-        <label class="input-group-text flex-grow-0 choose-button" for="imgInp">Scegli</label>
+        <label class="input-group-text flex-grow-0 choose-button" for="{{'imgInp' + id}}">Scegli</label>
         
       </div>
-      <div class="imageContainer" for="imgInp" tabindex="0">
+      <div class="imageContainer" tabindex="0">
         <div class="row">
           <div *ngFor="let item of imagePreview; let i = index" (click)="onRemove(i)" class="col-xs-12 d-flex align-items-center justify-content-center imageFrame position-relative" tabindex="0">
             <img [src]="item" class="image-preview">
@@ -30,7 +29,7 @@
             </div>
           </div>
           <div class="col-xs-12 d-flex align-items-center imageFrameAdd p-0" tabindex="0">
-            <label class="h-100 w-100 d-flex align-items-center justify-content-center" for="imgInp">
+            <label class="h-100 w-100 d-flex align-items-center justify-content-center" for="{{'imgInp' + id}}">
               <svg xmlns="http://www.w3.org/2000/svg" id="imgPlus" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
               </svg>

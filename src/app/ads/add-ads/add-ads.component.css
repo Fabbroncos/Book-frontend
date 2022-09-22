@@ -132,6 +132,12 @@ visibility: visible;
   border-radius: 0;
   border-bottom: 1px solid var(--first-light);
 }
+
+.textarea-hidden {
+  border-radius: 10px;
+  border: 1px solid var(--first-light);
+}
+
 .ads-item {
   height: auto;
   overflow: hidden;
@@ -142,6 +148,10 @@ visibility: visible;
   max-width: 900px;
   border: 1px solid var(--primary-dark);
   background-color: var(--light-color);
+}
+
+.ads-error {
+  border: 1px solid red;
 }
 
 .image-container {
@@ -175,8 +185,9 @@ visibility: visible;
   flex-direction: column;
 }
 
-.image-chose {
+.divider {
   border-top:1px solid var(--primary-dark);
+  border-bottom:1px solid var(--primary-dark);
 }
 
 .mini-image a {
@@ -188,3 +199,57 @@ visibility: visible;
   max-width: 100px; 
   max-height: 100px;
 } 
+
+.ads-item:hover .btn-main,
+.ads-item-edit:hover .btn-main {
+  display: flex !important;
+
+}
+
+.col-6 {
+  transition: width 1s;
+}
+
+.col-12 {
+  transition: width 1s;
+}
+
+.ads-item-edit {
+  height: auto;
+  overflow: hidden;
+  color: var(--secondary-dark);
+  border-radius: 20px;
+  display: flex;
+  width: 100%;
+  border: 1px solid var(--primary-dark);
+  background-color: var(--light-color);
+}
+
+.ads-item-edit small,
+.ads-item-edit input {
+  display: block;
+}
+
+.ads-item-edit .ad-description {
+  display: flex !important;
+}
+
+.ads-item-edit h6 ,
+.ads-item-edit p{
+  display: none;
+}
+
+.ads-item h6,
+.ads-item p {
+  display: block;
+}
+
+.ads-item .ad-description {
+  display: none;
+}
+
+.ads-item small,
+.ads-item input {
+  display: none;
+}
+
