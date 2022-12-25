@@ -1,3 +1,5 @@
+import { TuiRootModule, TuiDialogModule, TuiAlertModule } from "@taiga-ui/core";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 
@@ -26,7 +28,7 @@ import { PublicUserDetail } from './account/public-user-detail/public-user-detai
     PasswordRecoveryComponent,
     ChangePasswordComponent,
   ],
-  imports: [AppRoutingModule, AccountModule, AdsModule, SharedModule],
+  imports: [AppRoutingModule, AccountModule, AdsModule, SharedModule, BrowserAnimationsModule, TuiRootModule, TuiDialogModule, TuiAlertModule],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
   bootstrap: [AppComponent],
 })
