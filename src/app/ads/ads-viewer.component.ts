@@ -1,30 +1,32 @@
 import { Component, OnInit } from '@angular/core'
 import { NgForm } from '@angular/forms'
 import { ActivatedRoute, Params, Router } from '@angular/router'
+
 import { Genre } from './ad.model'
 
 @Component({
   selector: 'app-ads-viewer-component',
   templateUrl: './ads-viewer.component.html',
+  styleUrls:['./ads-viewer.component.css']
 })
 export class AdsViewerComponent implements OnInit {
-  type: String = ''
+  type = ''
   genres: Genre[] = []
   years: number[] = []
 
-  filterHide: boolean = true
+  filterHide = true
 
-  page: number = 1
+  page = 1
 
   params: Params
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    let cont: string = this.router.url
+    const cont: string = this.router.url
 
-    let startYear = 1850
-    let endYear = new Date().getFullYear()
+    const startYear = 1850
+    const endYear = new Date().getFullYear()
 
     for (let i = endYear; i > startYear; i--) {
       this.years.push(i)
@@ -39,7 +41,7 @@ export class AdsViewerComponent implements OnInit {
     })
   }
 
-  toggleType(type: String) {
+  toggleType(type: string) {
     if (type === this.type) {
       this.type = ''
     } else {
