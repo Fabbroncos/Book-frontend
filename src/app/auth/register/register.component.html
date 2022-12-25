@@ -1,302 +1,726 @@
-<div  class="row py-3 justify-content-center align-items-center h-100">
-  <div  class="col-10 col-md-7">
-    <div  class="container-form py-3 px-4 py-md-4 px-md-5 p-lg-4 px-lg-5">
+<div class="row py-3 justify-content-center align-items-center h-100">
+  <div class="col-10 col-md-7">
+    <div class="container-form py-3 px-4 py-md-4 px-md-5 p-lg-4 px-lg-5">
       <h1 class="text-third-dark">Registrati</h1>
-      <hr >
-      <ul  id="myTab" role="tablist" class="nav nav-tabs">
-        <li  role="presentation" class="nav-item">
-          <button (click)="changeForm(false)" id="user-tab" data-bs-toggle="tab" data-bs-target="#user" type="button" role="tab" aria-controls="user" aria-selected="true" class="nav-link active">Utente</button>
+      <hr />
+      <ul id="myTab" role="tablist" class="nav nav-tabs">
+        <li role="presentation" class="nav-item">
+          <button
+            (click)="changeForm(false)"
+            id="user-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#user"
+            type="button"
+            role="tab"
+            aria-controls="user"
+            aria-selected="true"
+            class="nav-link active"
+          >
+            Utente
+          </button>
         </li>
-        <li  role="presentation" class="nav-item">
-          <button (click)="changeForm(true)" id="library-tab" data-bs-toggle="tab" data-bs-target="#library" type="button" role="tab" aria-controls="library" aria-selected="false" class="nav-link">Libreria</button>
+        <li role="presentation" class="nav-item">
+          <button
+            (click)="changeForm(true)"
+            id="library-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#library"
+            type="button"
+            role="tab"
+            aria-controls="library"
+            aria-selected="false"
+            class="nav-link"
+          >
+            Libreria
+          </button>
         </li>
       </ul>
-      <div  id="myTabContent" class="tab-content">
+      <div id="myTabContent" class="tab-content">
         <!--Form Acquirente-->
-        <div  id="user" role="tabpanel" aria-labelledby="user-tab" class="tab-pane fade active show">
+        <div id="user" role="tabpanel" aria-labelledby="user-tab" class="tab-pane fade active show">
           <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
-            <div  class="container">
-              <div  class="row py-3">
-                <div  class="col-12 order-1">
-                  <div  role="alert" class="alert alert-danger d-flex align-items-center" *ngIf="showError">
-                    <svg  xmlns="http://www.w3.org/2000/svg" role="img" width="24" height="24" aria-label="Danger:" fill="currentColor" viewBox="0 0 16 16" class="bi flex-shrink-0 me-2 bi-exclamation-triangle-fill"><path  d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path></svg>
-                    <div > Completa correttamente i campi obbligatori </div>
+            <div class="container">
+              <div class="row py-3">
+                <div class="col-12 order-1">
+                  <div role="alert" class="alert alert-danger d-flex align-items-center" *ngIf="showError">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      role="img"
+                      width="24"
+                      height="24"
+                      aria-label="Danger:"
+                      fill="currentColor"
+                      viewBox="0 0 16 16"
+                      class="bi flex-shrink-0 me-2 bi-exclamation-triangle-fill"
+                    >
+                      <path
+                        d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+                      ></path>
+                    </svg>
+                    <div>Completa correttamente i campi obbligatori</div>
                   </div>
-                  <label  class="d-flex align-items-center"> 
-                    Email<span >*</span>: 
-                    <span class="ms-auto" *ngIf="getError('email')"  data-bs-toggle="tooltip" title="{{errorHandle('email')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                  <label class="d-flex align-items-center">
+                    Email<span>*</span>:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('email')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('email') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <input type="email" required ngModel email name="email" id="email" class="form-control">
+                  <input type="email" required ngModel email name="email" id="email" class="form-control" />
                 </div>
-                <div  class="col-12 col-md-6 order-1">
-                  <label for="password" class="d-flex align-items-center"> 
-                    Password<span >*</span>: 
-                    <span class="ms-auto" *ngIf="getError('password')"  data-bs-toggle="tooltip" title="{{errorHandle('password')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                <div class="col-12 col-md-6 order-1">
+                  <label for="password" class="d-flex align-items-center">
+                    Password<span>*</span>:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('password')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('password') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <input  type="password" required minlength="6" (change)="passwordConfirmValidate(userForm)" maxlength="20" ngModel name="password" id="password" class="form-control ">
+                  <input
+                    type="password"
+                    required
+                    minlength="6"
+                    (change)="passwordConfirmValidate(userForm)"
+                    maxlength="20"
+                    ngModel
+                    name="password"
+                    id="password"
+                    class="form-control"
+                  />
                 </div>
-                <div  class="col-12 col-md-6 order-1">
-                  <label for="passwordConfirm" class="d-flex align-items-center"> 
-                    Conferma Password<span >*</span>: 
-                    <span class="ms-auto" *ngIf="getError('passwordConfirm')"  data-bs-toggle="tooltip" title="{{errorHandle('passwordConfirm')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                <div class="col-12 col-md-6 order-1">
+                  <label for="passwordConfirm" class="d-flex align-items-center">
+                    Conferma Password<span>*</span>:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('passwordConfirm')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('passwordConfirm') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <input  type="password" required ngModel (change)="passwordConfirmValidate(userForm)" name="passwordConfirm" id="passwordConfirm" class="form-control ">
+                  <input
+                    type="password"
+                    required
+                    ngModel
+                    (change)="passwordConfirmValidate(userForm)"
+                    name="passwordConfirm"
+                    id="passwordConfirm"
+                    class="form-control"
+                  />
                 </div>
-                <div  class="col-12 col-md-6 order-1">
-                  <label for="first_name" class="d-flex align-items-center"> 
-                    Nome: 
-                    <span class="ms-auto" *ngIf="getError('first_name')"  data-bs-toggle="tooltip" title="{{errorHandle('first_name')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                <div class="col-12 col-md-6 order-1">
+                  <label for="first_name" class="d-flex align-items-center">
+                    Nome:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('first_name')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('first_name') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <input  type="text" minlength="2" maxlength="40" ngModel name="first_name" id="first_name" class="form-control ">
+                  <input
+                    type="text"
+                    minlength="2"
+                    maxlength="40"
+                    ngModel
+                    name="first_name"
+                    id="first_name"
+                    class="form-control"
+                  />
                 </div>
-                <div  class="col-12 col-md-6 order-1">
-                  <label for="last_name" class="d-flex align-items-center"> 
-                    Cognome: 
-                    <span class="ms-auto" *ngIf="getError('last_name')"  data-bs-toggle="tooltip" title="{{errorHandle('last_name')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                <div class="col-12 col-md-6 order-1">
+                  <label for="last_name" class="d-flex align-items-center">
+                    Cognome:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('last_name')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('last_name') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <input  type="text" minlength="2" maxlength="40" ngModel name="last_name" id="last_name" class="form-control ">
+                  <input
+                    type="text"
+                    minlength="2"
+                    maxlength="40"
+                    ngModel
+                    name="last_name"
+                    id="last_name"
+                    class="form-control"
+                  />
                 </div>
-                <div  class="col-12 col-xl-8 order-1">
-                  <label for="street_address_1" class="d-flex align-items-center"> 
-                    Indirizzo 1: 
-                    <span class="ms-auto" *ngIf="getError('street_address_1')"  data-bs-toggle="tooltip" title="{{errorHandle('street_address_1')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                <div class="col-12 col-xl-8 order-1">
+                  <label for="street_address_1" class="d-flex align-items-center">
+                    Indirizzo 1:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('street_address_1')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('street_address_1') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <input  type="text" minlength="2" maxlength="500" ngModel name="street_address_1" id="street_address_1" class="form-control ">
+                  <input
+                    type="text"
+                    minlength="2"
+                    maxlength="500"
+                    ngModel
+                    name="street_address_1"
+                    id="street_address_1"
+                    class="form-control"
+                  />
                 </div>
-                <div  class="col-6 col-md-8 col-xl-4 order-1">
-                  <label for="street_address_2" class="d-flex align-items-center"> 
-                    Indirizzo 2: 
-                    <span class="ms-auto" *ngIf="getError('street_address_2')"  data-bs-toggle="tooltip" title="{{errorHandle('street_address_2')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                <div class="col-6 col-md-8 col-xl-4 order-1">
+                  <label for="street_address_2" class="d-flex align-items-center">
+                    Indirizzo 2:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('street_address_2')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('street_address_2') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <input  type="text" minlength="2" maxlength="500" ngModel name="street_address_2" id="street_address_2" class="form-control ">
+                  <input
+                    type="text"
+                    minlength="2"
+                    maxlength="500"
+                    ngModel
+                    name="street_address_2"
+                    id="street_address_2"
+                    class="form-control"
+                  />
                 </div>
-                <div  class="col-6 col-xl-5 order-3">
-                  <label for="province" class="d-flex align-items-center"> 
-                    Provincia:
-                  </label>
-                  <app-multiple-select-component #userProvinces (ngModelChange)="getCity(userProvinces)" [list]="provinces" id="province" stringAttribute="name" name="province" ngModel></app-multiple-select-component>
+                <div class="col-6 col-xl-5 order-3">
+                  <label for="province" class="d-flex align-items-center"> Provincia: </label>
+                  <app-multiple-select-component
+                    #userProvinces
+                    (ngModelChange)="getCity(userProvinces)"
+                    [list]="provinces"
+                    id="province"
+                    stringAttribute="name"
+                    name="province"
+                    ngModel
+                  ></app-multiple-select-component>
                 </div>
-                <div  class="col-6 col-xl-5 order-3">
-                  <label for="city" class="d-flex align-items-center"> 
-                    Città:
-                  </label>
-                  <app-multiple-select-component [list]="cities" [disabled]="cities.length === 0" id="city" stringAttribute="name" name="city" ngModel></app-multiple-select-component>
+                <div class="col-6 col-xl-5 order-3">
+                  <label for="city" class="d-flex align-items-center"> Città: </label>
+                  <app-multiple-select-component
+                    [list]="cities"
+                    [disabled]="cities.length === 0"
+                    id="city"
+                    stringAttribute="name"
+                    name="city"
+                    ngModel
+                  ></app-multiple-select-component>
                 </div>
-                <div  class="col-6 col-md-4 col-xl-2 order-2 order-xl-4">
-                  <label for="zip_code" class="d-flex align-items-center"> 
-                    CAP: 
-                    <span class="ms-auto" *ngIf="getError('zip_code')"  data-bs-toggle="tooltip" title="{{errorHandle('zip_code')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                <div class="col-6 col-md-4 col-xl-2 order-2 order-xl-4">
+                  <label for="zip_code" class="d-flex align-items-center">
+                    CAP:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('zip_code')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('zip_code') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <input  type="text" minlength="3" maxlenght="20" ngModel name="zip_code" id="zip_code" class="form-control ">
+                  <input
+                    type="text"
+                    minlength="3"
+                    maxlenght="20"
+                    ngModel
+                    name="zip_code"
+                    id="zip_code"
+                    class="form-control"
+                  />
                 </div>
               </div>
-              <div  class="row">
+              <div class="row">
                 <!--Problema metti i link-->
                 <div class="col-6 d-flex justify-content-center">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="privacy">
-                    <label class="form-check-label" for="privacy">
-                      Privacy
-                    </label>
+                    <input class="form-check-input" type="checkbox" value="" id="privacy" />
+                    <label class="form-check-label" for="privacy"> Privacy </label>
                   </div>
                 </div>
                 <div class="col-6 d-flex justify-content-center">
-                  <div class="form-check">  
-                    <input class="form-check-input" type="checkbox" value="" id="condizioni">
-                    <label class="form-check-label" for="condizioni">
-                      Condizioni
-                    </label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="condizioni" />
+                    <label class="form-check-label" for="condizioni"> Condizioni </label>
                   </div>
                 </div>
-                <div  class="col-12 d-flex justify-content-center align-items-center">
-                  <button  type="submit" [disabled]="userForm.invalid" class="btn btn-main px-5">Conferma</button>
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                  <button type="submit" [disabled]="userForm.invalid" class="btn btn-main px-5">Conferma</button>
                 </div>
               </div>
             </div>
           </form>
         </div>
         <!--Form Libreria-->
-        <div  id="library" role="tabpanel" aria-labelledby="library-tab" class="tab-pane fade">
+        <div id="library" role="tabpanel" aria-labelledby="library-tab" class="tab-pane fade">
           <form #libraryForm="ngForm" (ngSubmit)="onSubmit(libraryForm)">
-            <div  class="container">
-              <div  class="row py-3">
-                <div  class="col-12 col-lg-8 order-1">
-                  <label for="library_name" class="d-flex align-items-center"> 
-                    Nome Libreria<span >*</span>: 
-                    <span class="ms-auto" *ngIf="getError('name')"  data-bs-toggle="tooltip" title="{{errorHandle('library_name')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+            <div class="container">
+              <div class="row py-3">
+                <div class="col-12 col-lg-8 order-1">
+                  <label for="library_name" class="d-flex align-items-center">
+                    Nome Libreria<span>*</span>:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('name')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('library_name') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <input  type="text" required ngModel name="name" id="library_name" minlength="2" maxlength="800" class="form-control ">
+                  <input
+                    type="text"
+                    required
+                    ngModel
+                    name="name"
+                    id="library_name"
+                    minlength="2"
+                    maxlength="800"
+                    class="form-control"
+                  />
                 </div>
-                <div  class="col-12 col-lg-4 order-2 order-lg-1">
-                  <label for="piva" class="d-flex align-items-center"> 
-                    Partita Iva<span >*</span>: 
-                    <span class="ms-auto" *ngIf="getError('piva')"  data-bs-toggle="tooltip" title="{{errorHandle('piva')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                <div class="col-12 col-lg-4 order-2 order-lg-1">
+                  <label for="piva" class="d-flex align-items-center">
+                    Partita Iva<span>*</span>:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('piva')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('piva') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <input  type="text" required ngModel name="piva" id="piva" minlength="11" maxlength="11" class="form-control ">
+                  <input
+                    type="text"
+                    required
+                    ngModel
+                    name="piva"
+                    id="piva"
+                    minlength="11"
+                    maxlength="11"
+                    class="form-control"
+                  />
                 </div>
-                <div  class="col-12 order-1">
-                  <label for="library_email" class="d-flex align-items-center"> 
-                    Email<span >*</span>: 
-                    <span class="ms-auto" *ngIf="getError('email')"  data-bs-toggle="tooltip" title="{{errorHandle('email')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                <div class="col-12 order-1">
+                  <label for="library_email" class="d-flex align-items-center">
+                    Email<span>*</span>:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('email')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('email') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <input  type="email" required ngModel email name="email" id="library_email" class="form-control ">
+                  <input type="email" required ngModel email name="email" id="library_email" class="form-control" />
                 </div>
-                <div  class="col-12 col-lg-6 order-1">
-                  <label for="library_password" class="d-flex align-items-center"> 
-                    Password<span >*</span>: 
-                    <span class="ms-auto" *ngIf="getError('password')"  data-bs-toggle="tooltip" title="{{errorHandle('password')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                <div class="col-12 col-lg-6 order-1">
+                  <label for="library_password" class="d-flex align-items-center">
+                    Password<span>*</span>:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('password')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('password') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <input  type="password" required ngModel name="password" minlength="6" maxlength="20" id="library_password" class="form-control ">
+                  <input
+                    type="password"
+                    required
+                    ngModel
+                    name="password"
+                    minlength="6"
+                    maxlength="20"
+                    id="library_password"
+                    class="form-control"
+                  />
                 </div>
-                <div  class="col-12 col-lg-6 order-1">
-                  <label for="library_passwordConfirm" class="d-flex align-items-center"> 
-                    Conferma Password<span >*</span>: 
-                    <span class="ms-auto" *ngIf="getError('passwordConfirm')"  data-bs-toggle="tooltip" title="{{errorHandle('passwordConfirm')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                <div class="col-12 col-lg-6 order-1">
+                  <label for="library_passwordConfirm" class="d-flex align-items-center">
+                    Conferma Password<span>*</span>:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('passwordConfirm')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('passwordConfirm') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <input  type="password" required ngModel name="passwordConfirm" id="library_passwordConfirm" class="form-control ">
+                  <input
+                    type="password"
+                    required
+                    ngModel
+                    name="passwordConfirm"
+                    id="library_passwordConfirm"
+                    class="form-control"
+                  />
                 </div>
                 <div class="col-12 col-xl-8 order-2">
-                  <label for="street_address_1" class="d-flex align-items-center"> 
-                    Indirizzo 1<span >*</span>: 
-                    <span class="ms-auto" *ngIf="getError('street_address_1')"  data-bs-toggle="tooltip" title="{{errorHandle('street_address_1')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                  <label for="street_address_1" class="d-flex align-items-center">
+                    Indirizzo 1<span>*</span>:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('street_address_1')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('street_address_1') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <input  type="text" required ngModel name="street_address_1" minlength="2" maxlength="500" id="library_street_address_1" class="form-control ">
+                  <input
+                    type="text"
+                    required
+                    ngModel
+                    name="street_address_1"
+                    minlength="2"
+                    maxlength="500"
+                    id="library_street_address_1"
+                    class="form-control"
+                  />
                 </div>
-                <div  class="col-7 col-lg-8 col-xl-4 order-2">
-                  <label for="street_address_2" class="d-flex align-items-center"> 
-                    Indirizzo 2: 
-                    <span class="ms-auto" *ngIf="getError('street_address_2')"  data-bs-toggle="tooltip" title="{{errorHandle('street_address_2')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                <div class="col-7 col-lg-8 col-xl-4 order-2">
+                  <label for="street_address_2" class="d-flex align-items-center">
+                    Indirizzo 2:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('street_address_2')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('street_address_2') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <input  type="text" ngModel name="street_address_2" minlength="2" maxlength="500" id="library_street_address_2" class="form-control ">
+                  <input
+                    type="text"
+                    ngModel
+                    name="street_address_2"
+                    minlength="2"
+                    maxlength="500"
+                    id="library_street_address_2"
+                    class="form-control"
+                  />
                 </div>
-                <div  class="col-6 col-xl-5 order-4">
-                  <label for="province">Provincia<span >*</span>:</label>
-                  <app-multiple-select-component #libraryProvince (ngModelChange)="getCity(libraryProvince)" [list]="provinces"  required id="library_province" stringAttribute="name" name="province" ngModel></app-multiple-select-component>
+                <div class="col-6 col-xl-5 order-4">
+                  <label for="province">Provincia<span>*</span>:</label>
+                  <app-multiple-select-component
+                    #libraryProvince
+                    (ngModelChange)="getCity(libraryProvince)"
+                    [list]="provinces"
+                    required
+                    id="library_province"
+                    stringAttribute="name"
+                    name="province"
+                    ngModel
+                  ></app-multiple-select-component>
                 </div>
-                <div  class="col-6 col-xl-5 order-4">
-                  <label for="city">Citta<span >*</span>:</label>
-                  <app-multiple-select-component [list]="cities" [disabled]="cities.length === 0"  required id="library_city" stringAttribute="name" name="city" ngModel disabled=""></app-multiple-select-component>
+                <div class="col-6 col-xl-5 order-4">
+                  <label for="city">Citta<span>*</span>:</label>
+                  <app-multiple-select-component
+                    [list]="cities"
+                    [disabled]="cities.length === 0"
+                    required
+                    id="library_city"
+                    stringAttribute="name"
+                    name="city"
+                    ngModel
+                    disabled=""
+                  ></app-multiple-select-component>
                 </div>
-                <div  class="col-5 col-lg-4 col-xl-2 order-3 order-xl-4">
-                  <label for="library_zip_code" class="d-flex align-items-center"> 
-                    CAP:<span >*</span>: 
-                    <span class="ms-auto" *ngIf="getError('library_zip_code')"  data-bs-toggle="tooltip" title="{{errorHandle('library_zip_code')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                <div class="col-5 col-lg-4 col-xl-2 order-3 order-xl-4">
+                  <label for="library_zip_code" class="d-flex align-items-center">
+                    CAP:<span>*</span>:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('library_zip_code')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('library_zip_code') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <input  type="text" required ngModel name="zip_code" minlength="3" maxlength="20" id="library_zip_code" class="form-control ">
+                  <input
+                    type="text"
+                    required
+                    ngModel
+                    name="zip_code"
+                    minlength="3"
+                    maxlength="20"
+                    id="library_zip_code"
+                    class="form-control"
+                  />
                 </div>
-                <div  class="col-12 order-5">
-                  <label for="description" class="d-flex align-items-center"> 
-                    Descrizione: 
-                    <span class="ms-auto" *ngIf="getError('description')"  data-bs-toggle="tooltip" title="{{errorHandle('description')}}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                <div class="col-12 order-5">
+                  <label for="description" class="d-flex align-items-center">
+                    Descrizione:
+                    <span
+                      class="ms-auto"
+                      *ngIf="getError('description')"
+                      data-bs-toggle="tooltip"
+                      title="{{ errorHandle('description') }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-exclamation-circle"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                          d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                        />
                       </svg>
                     </span>
                   </label>
-                  <textarea placeholder="Descrivi la tua libreria..." ngModel name="description" minlength="10" maxlength="2000" id="description" cols="30" rows="3" class="form-control ">
+                  <textarea
+                    placeholder="Descrivi la tua libreria..."
+                    ngModel
+                    name="description"
+                    minlength="10"
+                    maxlength="2000"
+                    id="description"
+                    cols="30"
+                    rows="3"
+                    class="form-control"
+                  >
                   </textarea>
                 </div>
               </div>
-              <div  class="row">
+              <div class="row">
                 <!--Problema metti i link-->
                 <div class="col-6 d-flex justify-content-center">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="lib-privacy">
-                    <label class="form-check-label" for="lib-privacy">
-                      Privacy
-                    </label>
+                    <input class="form-check-input" type="checkbox" value="" id="lib-privacy" />
+                    <label class="form-check-label" for="lib-privacy"> Privacy </label>
                   </div>
                 </div>
                 <div class="col-6 d-flex justify-content-center">
-                  <div class="form-check">  
-                    <input class="form-check-input" type="checkbox" value="" id="lib-condizioni">
-                    <label class="form-check-label" for="lib-condizioni">
-                      Condizioni
-                    </label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="lib-condizioni" />
+                    <label class="form-check-label" for="lib-condizioni"> Condizioni </label>
                   </div>
                 </div>
-                <div  class="col-12 d-flex justify-content-center align-items-center">
+                <div class="col-12 d-flex justify-content-center align-items-center">
                   <button type="submit" [disabled]="libraryForm.invalid" class="btn btn-main px-5">Conferma</button>
                 </div>
               </div>
@@ -304,10 +728,9 @@
           </form>
         </div>
       </div>
-      <hr >
-      <div  class="d-flex justify-content-center">
-        <p >Hai gia un account? <a class="link-colored" routerlink="/auth/login" href="/auth/login">clicca qui</a>
-        </p>
+      <hr />
+      <div class="d-flex justify-content-center">
+        <p>Hai gia un account? <a class="link-colored" routerlink="/auth/login" href="/auth/login">clicca qui</a></p>
       </div>
     </div>
   </div>

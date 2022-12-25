@@ -1,8 +1,18 @@
-import { HttpClient } from "@angular/common/http";
-import { Component, ElementRef, forwardRef, HostListener, Input, OnInit, Optional, Self, ViewChild } from "@angular/core";
-import { ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { HttpClient } from '@angular/common/http'
+import {
+  Component,
+  ElementRef,
+  forwardRef,
+  HostListener,
+  Input,
+  OnInit,
+  Optional,
+  Self,
+  ViewChild,
+} from '@angular/core'
+import { ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms'
 
-@Component ({
+@Component({
   selector: 'app-custom-input-file-component',
   templateUrl: './custom-input-file-component.html',
   styleUrls: ['./custom-input-file-component.css'],
@@ -10,128 +20,122 @@ import { ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR } from 
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomInputFileComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
-export class CustomInputFileComponent implements OnInit, ControlValueAccessor{
-  @Input() form: FormControl = new FormControl;
-  @Input() id: string = "";
-  disabled = false;
-  touched = false;
+export class CustomInputFileComponent implements OnInit, ControlValueAccessor {
+  @Input() form: FormControl = new FormControl()
+  @Input() id: string = ''
+  disabled = false
+  touched = false
 
-  value: File[] = []; //filePaths
+  value: File[] = [] //filePaths
 
   constructor(private http: HttpClient) {}
-  
-  defaultText = "Aggiungi un immagine...";
+
+  defaultText = 'Aggiungi un immagine...'
 
   // valueText: String = this.defaultText;
   // value: any[] = [];
-  isMultiple = false;
+  isMultiple = false
 
   ngOnInit() {
     //aggiungere file dell'api
-    console.log(this.id);
-    
+    console.log(this.id)
   }
 
   @HostListener('click')
   onClick() {
-    this.touched = true;
+    this.touched = true
   }
 
   @HostListener('window:focus', ['$event'])
   onFocus(event) {
     if (this.touched && this.value.length === 0) {
-      this.onTouched();
+      this.onTouched()
     }
   }
 
   onRemove(id: number) {
-    console.log(this.value);
-    this.value.splice(id,1)
-    this.imagePreview.splice(id,1)
-    console.log(this.value);
-    
+    console.log(this.value)
+    this.value.splice(id, 1)
+    this.imagePreview.splice(id, 1)
+    console.log(this.value)
 
     this.onChange(this.value)
-    
   }
 
   onRemoveTarget(e) {
-    e.target.value = "";
-    console.log(e.target.value);
-    
+    e.target.value = ''
+    console.log(e.target.value)
   }
 
   setText() {
     let valueText: string = this.defaultText
     if (this.value.length !== 0) {
-      valueText = ""
-      this.value.forEach(
-        (item,i)=> {
-          if (i===0){
-            valueText = item.name
-          } else {
-            valueText = valueText + ", " + item.name
-          }
+      valueText = ''
+      this.value.forEach((item, i) => {
+        if (i === 0) {
+          valueText = item.name
+        } else {
+          valueText = valueText + ', ' + item.name
+        }
       })
     }
     return valueText
   }
 
-
-  onChange: any = () => { };
-  onTouched: any = () => { };
+  onChange: any = () => {}
+  onTouched: any = () => {}
 
   writeValue(value: any[]): void {
-    if (!value) {return}
-    this.value = value;
-    this.onChange(this.value);
+    if (!value) {
+      return
+    }
+    this.value = value
+    this.onChange(this.value)
   }
 
   registerOnChange(fn: any): void {
-    this.onChange = fn;
+    this.onChange = fn
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouched = fn;
+    this.onTouched = fn
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this.disabled = isDisabled
   }
 
   imagePreview: string[] = []
 
   onChangeInput(event) {
-    console.log(event);
-    const file = (event.target as HTMLInputElement).files[0];
+    console.log(event)
+    const file = (event.target as HTMLInputElement).files[0]
     // const reader = new FileReader();
     // reader.onload = () => {
-      this.value.push(file);
-      console.log(file);
-      
-      
-      // if (this.value.length===1) {
-      //   this.valueText = file.name 
-      // } else {
-      //   this.valueText = this.valueText + ", " + file.name;
-      // }
-      
-    this.onChange(this.value);
-    const reader = new FileReader();
+    this.value.push(file)
+    console.log(file)
+
+    // if (this.value.length===1) {
+    //   this.valueText = file.name
+    // } else {
+    //   this.valueText = this.valueText + ", " + file.name;
+    // }
+
+    this.onChange(this.value)
+    const reader = new FileReader()
     reader.onload = () => {
-      this.imagePreview.push(reader.result as string);
-      console.log(this.imagePreview);
-      
+      this.imagePreview.push(reader.result as string)
+      console.log(this.imagePreview)
     }
     reader.readAsDataURL(file)
   }
 
   // imagePreview(file: File): string {
-    
+
   //   const reader = new FileReader();
   //   reader.onload = () => {
   //     return reader.result as string

@@ -14,7 +14,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 
@@ -25,19 +25,18 @@ input[type=number] {
 
 .page-input:focus {
   box-shadow: none;
-
 }
 .page-input {
   max-width: 50px;
-  border-bottom: 1px solid var(--first-light); 
-  border-top: none; 
+  border-bottom: 1px solid var(--first-light);
+  border-top: none;
   border-left: none;
   border-right: none;
 }
 
 @media (max-width: 400px) {
   .list {
-    grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     grid-gap: 20px 12px;
     padding: 0 10px;
   }
