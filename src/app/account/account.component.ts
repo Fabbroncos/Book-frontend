@@ -1,15 +1,15 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { ActivatedRoute, Params } from "@angular/router";
-import { AuthService } from "../auth/auth.service";
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core'
+import { ActivatedRoute, Params } from '@angular/router'
+import { AuthService } from '../auth/auth.service'
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css']
+  styleUrls: ['./account.component.css'],
 })
-export class AccountComponent implements OnInit{
+export class AccountComponent implements OnInit {
   // isUser = true;
-  id = "0";
+  id = '0'
 
   constructor(private route: ActivatedRoute, private authService: AuthService) {}
 
@@ -17,7 +17,7 @@ export class AccountComponent implements OnInit{
     // this.route.params.subscribe(
     //   (params: Params) => {
     //     this.isUser = !!params;
-    //   } 
+    //   }
     // )
   }
 

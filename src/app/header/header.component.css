@@ -15,8 +15,8 @@
 
 .searchBtn {
   pointer-events: none;
-  padding: .5rem 1rem; 
-  color: rgba(255,255,255,.5);
+  padding: 0.5rem 1rem;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .container-fluid {
@@ -24,7 +24,7 @@
 }
 
 .navbar-nav .dropdown-menu {
-  position:absolute;
+  position: absolute;
 }
 
 @media (max-width: 768px) {
@@ -44,14 +44,13 @@
     padding: 0;
   }
 
-  #navbarHeader{
+  #navbarHeader {
     display: block;
   }
 }
 
-
-@media (min-width: 768px){
-  input{
+@media (min-width: 768px) {
+  input {
     width: 200px;
   }
 
@@ -64,8 +63,8 @@
   }
 }
 
-@media (min-width: 992px){
-  input{
+@media (min-width: 992px) {
+  input {
     width: 400px;
   }
 }
@@ -89,15 +88,19 @@
   margin-right: auto;
 }
 
-.dropdown-item, .nav-link {
+.dropdown-item,
+.nav-link {
   cursor: pointer;
 }
 
-svg, a, a:link, a:visited {
-  color: var(--third-dark)
+svg,
+a,
+a:link,
+a:visited {
+  color: var(--third-dark);
 }
 
 nav {
-  width: 90%; 
+  width: 90%;
   margin-inline: auto;
 }

@@ -1,16 +1,16 @@
 a {
-  color:inherit;
+  color: inherit;
   text-decoration: none;
 }
 
 .ads-item-f {
   min-height: 120px;
-  color: var(--third-dark)!important;
-  background: linear-gradient(135deg, white 75%, var(--third-light))!important;
+  color: var(--third-dark) !important;
+  background: linear-gradient(135deg, white 75%, var(--third-light)) !important;
 }
 
 .ads-item-f h5 {
-  color: var(--third-dark)!important;
+  color: var(--third-dark) !important;
 }
 
 .ads-item h5 {
@@ -37,7 +37,7 @@ a {
   width: 100%;
   max-width: 1500px;
   border: 1px solid var(--primary-color);
-  background: linear-gradient(135deg, var(--secondary-light) 75%, #F88D68);
+  background: linear-gradient(135deg, var(--secondary-light) 75%, #f88d68);
 }
 
 .ads-item-list:hover {
@@ -46,13 +46,13 @@ a {
 }
 
 .ads-image-col {
-  overflow: hidden; 
-  flex: 0 0 25%; 
-  height: 100%; 
-  border-top-left-radius: 10px; 
+  overflow: hidden;
+  flex: 0 0 25%;
+  height: 100%;
+  border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
   justify-content: space-around;
   align-self: center;
 }
@@ -61,15 +61,15 @@ a {
   justify-content: center;
   display: flex;
   width: 100%;
-  overflow: hidden; 
-  background-color: rgba(200, 200, 200, 0.60);
+  overflow: hidden;
+  background-color: rgba(200, 200, 200, 0.6);
 }
 
 .ads-info-col {
-  min-width: 0; 
-  flex: 1 1 auto; 
-  height: auto; 
-  display: flex; 
+  min-width: 0;
+  flex: 1 1 auto;
+  height: auto;
+  display: flex;
   flex-direction: column;
 }
 
@@ -88,26 +88,26 @@ a {
 }
 
 .title-container {
-  flex: 1; 
+  flex: 1;
   min-width: 0;
 }
 
 .text-title {
-  white-space: nowrap; 
-  overflow: hidden; 
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .badge-container {
-  flex: 0 1 auto; 
-  height: 100%; 
-  border-top-right-radius: 20px; 
-  border-bottom-right-radius: 20px; 
-  display: flex; 
-  justify-content: space-around; 
-  align-items: center; 
-  height: auto; 
-  display: flex; 
+  flex: 0 1 auto;
+  height: 100%;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: auto;
+  display: flex;
   flex-direction: column;
 }
 
@@ -119,12 +119,12 @@ a {
   color: tomato;
 }
 
-.empty-value{
+.empty-value {
   flex: 0 20%;
 }
 
 .card {
-  border-radius: 10px; 
+  border-radius: 10px;
   overflow: hidden;
 }
 

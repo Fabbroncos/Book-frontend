@@ -1,7 +1,20 @@
-import { Component, ElementRef, forwardRef, HostListener, Input, NgModule, OnChanges, OnInit, Optional, Self, SimpleChanges, ViewChild } from "@angular/core";
-import { ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR } from "@angular/forms";
+import {
+  Component,
+  ElementRef,
+  forwardRef,
+  HostListener,
+  Input,
+  NgModule,
+  OnChanges,
+  OnInit,
+  Optional,
+  Self,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core'
+import { ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms'
 
-@Component ({
+@Component({
   selector: 'app-multiple-select-component',
   templateUrl: './multiple-select.component.html',
   styleUrls: ['./multiple-select.component.css'],
@@ -9,31 +22,29 @@ import { ControlValueAccessor, FormControl, NgControl, NG_VALUE_ACCESSOR } from 
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => MultipleSelectComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
-export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
-  @Input() list;
-  @Input() stringAttribute: string;
-  @Input() multiple: boolean = false;
-  @Input() form: FormControl = new FormControl;
-  inputFocus: boolean = true;
-  disabled = false;
+export class MultipleSelectComponent implements OnInit, ControlValueAccessor {
+  @Input() list
+  @Input() stringAttribute: string
+  @Input() multiple: boolean = false
+  @Input() form: FormControl = new FormControl()
+  inputFocus: boolean = true
+  disabled = false
 
-  
+  defaultText = 'Scegli tra le seguenti...'
 
-  defaultText = "Scegli tra le seguenti...";
-
-  valueText: String = this.defaultText;
-  value: any[] = [];
-  isMultiple = false;
-  filterString: string = "";
+  valueText: String = this.defaultText
+  value: any[] = []
+  isMultiple = false
+  filterString: string = ''
 
   @ViewChild('searchBar') searchBar: ElementRef
 
   ngOnInit() {
-    this.isMultiple = this.multiple;
+    this.isMultiple = this.multiple
   }
 
   onChangeSearch(value) {
@@ -41,11 +52,11 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
   }
 
   setOptionText(item: any) {
-    switch (typeof(item)) {
-      case "object":
-        return(item[this.stringAttribute].toString())
+    switch (typeof item) {
+      case 'object':
+        return item[this.stringAttribute].toString()
       default:
-        return item;
+        return item
     }
   }
 
@@ -54,98 +65,100 @@ export class MultipleSelectComponent implements OnInit, ControlValueAccessor{
   }
 
   focusOut() {
-    this.inputFocus = false;
+    this.inputFocus = false
   }
 
   onReset(event: Event) {
-    event.stopPropagation();
+    event.stopPropagation()
     this.searchBar.nativeElement.focus()
     this.valueText = this.defaultText
     this.value = []
-    this.onChange(this.value);
+    this.onChange(this.value)
   }
 
-  onToggleCheck(item: string ,event: Event) {
+  onToggleCheck(item: string, event: Event) {
     if (this.isMultiple) {
-      event.stopPropagation();
+      event.stopPropagation()
       if (this.value.includes(item)) {
-        const id = this.value.indexOf(item);
-        this.value.splice(id,1);
+        const id = this.value.indexOf(item)
+        this.value.splice(id, 1)
       } else {
-        this.value.push(item);
-        this.value.sort();
+        this.value.push(item)
+        this.value.sort()
       }
     } else {
-      this.value = [item];
+      this.value = [item]
     }
-    this.onChange(this.value);
+    this.onChange(this.value)
     if (this.value.length === 0) {
       this.valueText = this.defaultText
     } else {
-      let list: String[] =[];
+      let list: String[] = []
       for (const item of this.value) {
-        list.push(this.setOptionText(item));
+        list.push(this.setOptionText(item))
       }
-      this.valueText = list.join(", ");
-      
+      this.valueText = list.join(', ')
     }
     // console.log(this.searchBar);
-    
-    this.searchBar.nativeElement["value"] = ""
-    this.onChangeSearch("")
+
+    this.searchBar.nativeElement['value'] = ''
+    this.onChangeSearch('')
   }
 
-  @ViewChild('dropdownElement') dropdownElement: ElementRef;
-  @ViewChild('toggleElement') toggleElement: ElementRef;
-  @HostListener('window:scroll',['$event']) // for window scroll events
+  @ViewChild('dropdownElement') dropdownElement: ElementRef
+  @ViewChild('toggleElement') toggleElement: ElementRef
+  @HostListener('window:scroll', ['$event']) // for window scroll events
   onScroll() {
-    const list: NamedNodeMap = this.dropdownElement.nativeElement["attributes"];
+    const list: NamedNodeMap = this.dropdownElement.nativeElement['attributes']
     for (let i = 0; i < list.length; i++) {
-      if (list.item(i).name === "x-placement") {
-        if (list.item(i).value === "top-start") {
-          this.toggleElement.nativeElement["classList"].add("dropup")
+      if (list.item(i).name === 'x-placement') {
+        if (list.item(i).value === 'top-start') {
+          this.toggleElement.nativeElement['classList'].add('dropup')
         } else {
-          this.toggleElement.nativeElement["classList"].remove("dropup")
+          this.toggleElement.nativeElement['classList'].remove('dropup')
         }
       }
     }
   }
 
-  onChange: any = () => { };
-  onTouched: any = () => { };
+  onChange: any = () => {}
+  onTouched: any = () => {}
 
   writeValue(value): void {
-    if (value===null || value === "") {this.valueText = this.defaultText; return}    
-    this.value = value;
-    this.onChange(this.value);
-    if (this.value.length===0) {
+    if (value === null || value === '') {
+      this.valueText = this.defaultText
+      return
+    }
+    this.value = value
+    this.onChange(this.value)
+    if (this.value.length === 0) {
       this.valueText = this.defaultText
     } else {
-      let list: String[] =[];
+      let list: String[] = []
       for (const item of this.value) {
-        list.push(this.setOptionText(item));
+        list.push(this.setOptionText(item))
       }
-      this.valueText = list.join(", ");
-      
+      this.valueText = list.join(', ')
     }
   }
 
   registerOnChange(fn: any): void {
-    this.onChange = fn;
+    this.onChange = fn
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouched = fn;
+    this.onTouched = fn
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this.disabled = isDisabled
   }
 
   isIncluded(item): boolean {
-    if (this.value!== null){
-      if (this.value.includes(item)){
-       return true}
+    if (this.value !== null) {
+      if (this.value.includes(item)) {
+        return true
+      }
     }
     return false
   }

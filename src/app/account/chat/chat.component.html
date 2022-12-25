@@ -2,26 +2,29 @@
   <div class="w-25">
     <div class="list-group h-100">
       <!-- [ngClass]="{'active': activeChat.id===chat.id }" -->
-    <a role="button" (click)="changeChat(chat)" *ngFor="let chat of chats; let i = index" class="list-group-item d-flex flex-column">
-      {{getUsername(chat)}}
-      <small class="text-truncate" *ngIf="chat.last_message; else empty">
-        Utente {{chat.last_message.sent_by}}: {{chat.last_message.text}}
-      </small>
-      <ng-template #empty>
-        <small>Ciao</small>
-      </ng-template>
-    </a>
+      <a
+        role="button"
+        (click)="changeChat(chat)"
+        *ngFor="let chat of chats; let i = index"
+        class="list-group-item d-flex flex-column"
+      >
+        {{ getUsername(chat) }}
+        <small class="text-truncate" *ngIf="chat.last_message; else empty">
+          Utente {{ chat.last_message.sent_by }}: {{ chat.last_message.text }}
+        </small>
+        <ng-template #empty>
+          <small>Ciao</small>
+        </ng-template>
+      </a>
     </div>
   </div>
   <div class="w-100 chat-container">
     <div class="container d-flex flex-column p-0 h-100">
       <div class="d-flex p-3 justify-content-between">
-        <h4 class="m-0">{{getUsername(activeChat)}}</h4>
+        <h4 class="m-0">{{ getUsername(activeChat) }}</h4>
         <span class="d-flex align-items-end">
           <small *ngIf="activeChat">
-            <a routerLink= "getLink()" style="color: var(--fourth-color);">
-              Inserzione ID:{{activeChat.ad_id}}
-            </a>
+            <a routerLink="getLink()" style="color: var(--fourth-color)"> Inserzione ID:{{ activeChat.ad_id }} </a>
           </small>
         </span>
       </div>
@@ -31,15 +34,29 @@
             <div class="d-flex justify-content-center">
               <div class="" *ngIf="isLoading">Loading...</div>
             </div>
-            <div class="my-1 p-2 d-flex align-items-center text-center" #messageListItem [id]="i" *ngFor="let message of messages;let i = index ;let isLast = last; let isFirst = first" [ngClass]="getMessageSide(messageListItem,message,isLast, isFirst) ? 'userMessage' : 'otherUserMessage'">
-              <p class="m-0">{{message.text}}</p>
+            <div
+              class="my-1 p-2 d-flex align-items-center text-center"
+              #messageListItem
+              [id]="i"
+              *ngFor="let message of messages; let i = index; let isLast = last; let isFirst = first"
+              [ngClass]="getMessageSide(messageListItem, message, isLast, isFirst) ? 'userMessage' : 'otherUserMessage'"
+            >
+              <p class="m-0">{{ message.text }}</p>
             </div>
           </div>
         </div>
       </div>
       <div class="row m-0">
         <div class="col-12 p-0">
-          <textarea #textMessage class="form-control resize-none border-0 shadow-none" name="" id="" cols="30" rows="3" placeholder="Invia un messaggio..."></textarea>
+          <textarea
+            #textMessage
+            class="form-control resize-none border-0 shadow-none"
+            name=""
+            id=""
+            cols="30"
+            rows="3"
+            placeholder="Invia un messaggio..."
+          ></textarea>
         </div>
         <div class="col-12 d-flex justify-content-end p-0">
           <button class="btn btn-main" (click)="sendMessage(textMessage)">Invia</button>

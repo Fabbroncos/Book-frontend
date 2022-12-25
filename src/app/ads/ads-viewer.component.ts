@@ -1,18 +1,18 @@
-import { Component, OnInit } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { ActivatedRoute, Params, Router } from "@angular/router";
-import { Genre } from "./ad.model";
+import { Component, OnInit } from '@angular/core'
+import { NgForm } from '@angular/forms'
+import { ActivatedRoute, Params, Router } from '@angular/router'
+import { Genre } from './ad.model'
 
 @Component({
   selector: 'app-ads-viewer-component',
-  templateUrl: './ads-viewer.component.html'
+  templateUrl: './ads-viewer.component.html',
 })
-export class AdsViewerComponent implements OnInit{
-  type: String = ""
+export class AdsViewerComponent implements OnInit {
+  type: String = ''
   genres: Genre[] = []
   years: number[] = []
 
-  filterHide: boolean = true;
+  filterHide: boolean = true
 
   page: number = 1
 
@@ -21,57 +21,55 @@ export class AdsViewerComponent implements OnInit{
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    let cont: string = this.router.url;
+    let cont: string = this.router.url
 
-    let startYear = 1850;
-    let endYear = new Date().getFullYear();
+    let startYear = 1850
+    let endYear = new Date().getFullYear()
 
-    for (let i = endYear; i > startYear; i--) {this.years.push(i);}
+    for (let i = endYear; i > startYear; i--) {
+      this.years.push(i)
+    }
 
-    this.route.data.subscribe(
-      genreData => {
-        this.genres = genreData[0]
-      }
-    )
+    this.route.data.subscribe((genreData) => {
+      this.genres = genreData[0]
+    })
 
-    this.route.queryParams.subscribe(
-      (params: Params) => {
-        this.params = params;
-      }
-    )
+    this.route.queryParams.subscribe((params: Params) => {
+      this.params = params
+    })
   }
 
-
   toggleType(type: String) {
-    if(type === this.type) {
-      this.type = ""
+    if (type === this.type) {
+      this.type = ''
     } else {
       this.type = type
     }
   }
 
-  hideFilter(){
-    this.filterHide = !this.filterHide;
+  hideFilter() {
+    this.filterHide = !this.filterHide
   }
 
   onSubmit(filterForm: NgForm) {
-    let params = {...this.params}
+    let params = { ...this.params }
 
     for (const key in filterForm.value) {
-      if(filterForm.value[key] !== "") {
+      if (filterForm.value[key] !== '') {
         params[key] = filterForm.value[key]
       }
     }
     delete params.page
     delete params.type
-    if(this.type !== "") {
-      params = {...filterForm.value}
+    if (this.type !== '') {
+      params = { ...filterForm.value }
       params.type = this.type
     }
-    if (params.genre) {params.genre_id = params.genre[0].id}
-    
-    console.log(params);
-    
+    if (params.genre) {
+      params.genre_id = params.genre[0].id
+    }
+
+    console.log(params)
 
     this.params = params
   }

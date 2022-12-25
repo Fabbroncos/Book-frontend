@@ -1,5 +1,5 @@
 input.ng-touched.ng-invalid,
 textarea.ng-touched.ng-invalid,
-:host app-multiple-select-component.ng-touched.ng-invalid ::ng-deep .form-control{
+:host app-multiple-select-component.ng-touched.ng-invalid ::ng-deep .form-control {
   border: 1px solid red;
 }

@@ -1,29 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --primary-color: #D65430/*#4d8682*/;
-  --secondary-color: #5B9A96;
-  --third-color: #F6724A /*#69AEA9*/;
-  --fourth-color: #B74829/*#54908C*/;
+  --primary-color: #d65430 /*#4d8682*/;
+  --secondary-color: #5b9a96;
+  --third-color: #f6724a /*#69AEA9*/;
+  --fourth-color: #b74829 /*#54908C*/;
 
   --light-color: white;
   --first-light: #ffefd5; /*lightgrey;*/
-  --secondary-light: #FDCCAE/*#D1F1EF*/; 
-  --third-light: #FEDEC2 /*#A2E2DE*/;
-  --fourth-light: #ffefd5/*#bfeeec*/;
+  --secondary-light: #fdccae /*#D1F1EF*/;
+  --third-light: #fedec2 /*#A2E2DE*/;
+  --fourth-light: #ffefd5 /*#bfeeec*/;
 
   --primary-dark: #512012;
-  --secondary-dark: #36150C;
-  --third-dark: #7A301B/*#3A6562*/;
+  --secondary-dark: #36150c;
+  --third-dark: #7a301b /*#3A6562*/;
   --fourth-dark: grey;
-  
-  --extra-color: #63BBF3;
+
+  --extra-color: #63bbf3;
   --extra-color-1: #67c5ff;
-  --extra-color-2: #8DD4FF;
-  --extra-color-3: #B3E2FF;
+  --extra-color-2: #8dd4ff;
+  --extra-color-3: #b3e2ff;
 }
 
 .resize-none {
-  resize: none
+  resize: none;
 }
 
 .h-fit {
@@ -71,10 +71,12 @@
   color: var(--fourth-light);
 }
 .btn-main:focus {
-  box-shadow: 0 0 0 .25rem var(--secondary-light);
+  box-shadow: 0 0 0 0.25rem var(--secondary-light);
 }
 
-a.link-colored, a.link-colored:link, a.link-colored:visited {
+a.link-colored,
+a.link-colored:link,
+a.link-colored:visited {
   color: var(--primary-color);
 }
 a.link-colored:hover {
