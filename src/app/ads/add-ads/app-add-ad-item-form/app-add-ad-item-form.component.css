@@ -1,0 +1,175 @@
+div.form-container:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px var(--primary-color);
+}
+
+.imageFrame {
+  background-color: #4d86821a;
+  border: 1px solid var(--primary-color); 
+  height: 110px; width: 110px; 
+  margin: 10px;
+  float: top;
+  display: inline;
+
+  background-clip: padding-box;
+  border-radius: .50rem;
+}
+
+.form-container {
+  /* height: 100%; */
+  flex: 1 1 auto;
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+
+  display:flex;
+  flex-direction:column;
+}
+
+.inputGroup {
+  width: 100%;
+  height: auto;
+  display:inline-flex;
+  border: none;
+  float: top;
+}
+
+.input-group {
+  border-bottom: 1px solid var(--first-light);
+}
+
+.imageContainer {
+  width: 100%;
+  float: top;
+  display: flex;
+  overflow: hidden;
+  overflow-y: auto;
+  flex:1;
+}
+
+.imageContainer .row {
+  height:auto;
+  width: 100%;
+  margin: 0;
+}
+
+label {
+  border: none;
+}
+
+.form-group {
+  margin-top: 50px;
+}
+
+.custom-file-input ~ .custom-file-label::after {
+  content: "Scegli";
+  background-color: var(--primary-color);
+  height: 100%;
+}
+
+.custom-file-input:focus ~ .custom-file-label {
+  border: none;
+  border-bottom: 1px solid var(--first-light);
+  box-shadow:none;
+}
+
+div .custom-file-input ~ .custom-file-label {
+  pointer-events: auto;
+}
+
+.imageFrameAdd {
+  background-color: #4d86821a;
+  border: 1px solid var(--primary-color); 
+  height: 110px; width: 110px; 
+  margin: 10px;
+  float: top;
+  display: inline;
+
+  background-clip: padding-box;
+  border-radius: .50rem;
+}
+
+div.imageContainer {
+  pointer-events: auto;
+}
+
+div.imageFrame,
+div.imageFrameAdd {
+  pointer-events: auto;
+}
+
+div.imageFrameAdd {
+  pointer-events: auto;
+  background: none;
+  border: none;
+}
+#imgPlus {
+  color: var(--primary-color);
+  display: none;
+}
+
+div.imageFrameAdd span{
+  visibility: hidden;
+  color: var(--primary-color);
+}
+
+div.imageContainer:hover .imageFrameAdd{
+  visibility: visible;
+  background-color: #4d86821a;
+  border: 1px solid var(--primary-color); 
+  height: 110px; width: 110px; 
+  margin: 10px;
+  float: top;
+  display: inline;
+
+  background-clip: padding-box;
+  border-radius: .50rem;
+}
+
+div.imageContainer:hover #imgPlus {
+  display: block;
+}
+
+div.imageContainer:hover .imageFrameAdd span{
+  visibility: visible;
+}
+
+.invalid {
+  border: 1px solid red;
+}
+
+.bg-sfumato:hover {
+  background: radial-gradient(#243F3D90,#00000000)
+}
+.bg-sfumato svg {
+  visibility: hidden;
+}
+.bg-sfumato:hover svg {
+  visibility: visible;
+}
+
+.choose-button {
+  border-bottom-left-radius: 20px;
+  background-color: var(--primary-color);
+}
+
+.col-12 .input-group-text {
+  display: none;
+}
+
+.col-12 .form-container .imageContainer .imageFrameAdd,
+.col-12 .form-container .imageContainer .imageFrame {
+  width: 50px;
+  height: 50px;
+}
+
+.col-12 .form-container .imageContainer .image-preview {
+  max-height: 44px; 
+  max-width: 44px; 
+}
+
+.image-preview {
+  max-height: 100px; 
+  max-width: 100px; 
+  margin: auto;
+}

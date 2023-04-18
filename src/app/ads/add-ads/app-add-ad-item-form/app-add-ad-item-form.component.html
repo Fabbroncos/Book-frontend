@@ -1,4 +1,4 @@
-<div class="col-6 p-2" style="border: 1px solid black;">
+<div class="col-12 p-2" style="border: 1px solid black;">
   <form>
     <div class="row">
       <div class="col-4 d-flex">
@@ -8,42 +8,64 @@
         align-items: center; 
         justify-content: space-around;">
           <div class="h-100 d-flex justify-content-center" style="overflow: hidden; background-color: rgba(200, 200, 200, 0.60);">
-            <img src="../../../../assets/babel.jpg" alt="" class="h-100" style="max-height: 200px; min-height: 200px;">
+            <img src="../../../../assets/babel.jpg" alt="" class="w-100" style="max-height: 300px; min-height: 200px;">
           </div>
         </div>
       </div>
       <div class="col-8">
         <div class="row flex-row">
           <div class="col-12">
-            <h6 for="title">Title:</h6>  
+            <h6 for="title" *ngIf="!isOpen; else frmtitle">La repubblica del Drago</h6>
+            <ng-template #frmtitle>
+              <label for="title">Title:</label>
+              <input class="form-control" type="text">  
+            </ng-template>
           </div>
           <div class="col-12">
-            <p for="author">Autore:</p>
+            <p for="author" *ngIf="!isOpen; else frmauthor">Autore: R.K. Fuang</p>
+            <ng-template #frmauthor>
+              <label for="author">Autore:</label>
+              <input class="form-control" type="text">  
+            </ng-template>
           </div>
           <div class="col-12">
-            <p for="author">Casa Editrice:</p>
+            <p for="publisher" *ngIf="!isOpen; else frmpublisher">Casa Editrice: Mondadori</p>
+            <ng-template #frmpublisher>
+              <label for="publisher">Casa Editrice:</label>
+              <input class="form-control" type="text">  
+            </ng-template>
           </div>
           <div class="col-6">
-            <p for="author">Anno:</p>
+            <p for="year" *ngIf="!isOpen; else frmyear">Anno: 2018</p>
+            <ng-template #frmyear>
+              <label for="year">Anno:</label>
+              <input class="form-control" type="text">  
+            </ng-template>
           </div>
           <div class="col-6">
-            <p for="author">Isbn:</p>
+            <p for="Isbn" *ngIf="!isOpen; else frmisbn">Isbn: 12345678911</p>
+            <ng-template #frmisbn>
+              <label for="isbn">Isbn:</label>
+              <input class="form-control" disabled type="text">  
+            </ng-template>
           </div>
           <div class="col-6">
             <label for="quantity">Quantità:</label>
-            <input class="form-control" type="text">  
+            <input class="form-control" type="number">  
           </div>
           <div class="col-6">
             <label for="price">Prezzo:</label>
-            <input class="form-control" type="text">  
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+              <span class="input-group-text">€</span>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-12">
-        <label for="">Scegli l'immagine</label>
-
+      <div class="py-2 " [ngClass]="isOpen ? 'col-6 px-3' : 'col-12 '">
+        <label for="" class="px-1 pb-1">Aggiungi un immagine:</label>
         <div class="form-control form-container"  tabindex="0"> <!-- [ngClass] = "{'invalid': form.invalid && form.touched}" -->
-          <div class="input-group w-100 ">
+          <div class="input-group w-100">
             <input
               multiple
               (click)="onRemoveTarget($event)"
@@ -83,6 +105,10 @@
           </div>
         </div>    
 
+      </div>
+      <div class="col-6 d-flex flex-column py-2">
+        <label for="description" class="px-1 pb-1">Descrizione:</label>
+        <textarea name="description" id="description" class="form-control flex-fill"></textarea>
       </div>
     </div>
     <!-- <div class="row">

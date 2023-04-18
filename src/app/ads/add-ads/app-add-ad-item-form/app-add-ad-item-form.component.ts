@@ -22,11 +22,19 @@ export class AddAdItemFormComponent implements OnInit, ControlValueAccessor {
   form: FormGroup = null;
   touched: boolean = false;
   imageFile: File[] = [];
+  isOpen = true
 
 
   ngOnInit(): void {
   }
 
+  onRemove(id: number) {
+    this.imageFile.splice(id,1)
+    this.imagePreview.splice(id,1)
+
+    this.onChange(this.imageFile)
+    
+  }
   onRemoveTarget(event) {
     event.target.value = "";
   }
