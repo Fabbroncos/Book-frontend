@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/auth/auth.service'
 import { environment } from 'src/environments/environment.prod'
 
 import { HttpClient } from '@angular/common/http'
-import { Component, Input, OnChanges, OnInit } from '@angular/core'
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
 import { NgForm } from '@angular/forms'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 
@@ -48,15 +48,10 @@ export class AdsListComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnChanges() {
-    console.log(this.authService.user.value)
-
-    console.log(this.params)
-
     this.adsService.getAds(this.params).subscribe(
       (adsData: any) => {
         this.ads = adsData.data.data
         this.last_page = adsData.data.last_page
-        console.log(adsData)
       },
       (error) => {
         console.log(error)
@@ -77,7 +72,6 @@ export class AdsListComponent implements OnInit, OnChanges {
     }
 
     this.route.data.subscribe((genreData) => {
-      console.log(genreData)
       this.genres = genreData[0]
     })
 

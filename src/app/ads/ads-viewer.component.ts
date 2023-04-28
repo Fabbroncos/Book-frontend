@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { NgForm } from '@angular/forms'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 
-import { Genre } from './ad.model'
+import { Ad, Genre } from './ad.model'
+import { AdsService } from './ads.service'
 
 @Component({
   selector: 'app-ads-viewer-component',
@@ -20,10 +21,18 @@ export class AdsViewerComponent implements OnInit {
 
   params: Params
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  ad: Ad = null
+
+  constructor(private router: Router, private route: ActivatedRoute,private adsservice: AdsService) {}
 
   ngOnInit() {
     const cont: string = this.router.url
+
+    this.adsservice.getAds().subscribe((ads: {data}) => {
+      this.ad = ads.data.data[0];
+      console.log(ads.data.data[0]);
+      
+    })
 
     const startYear = 1850
     const endYear = new Date().getFullYear()

@@ -190,16 +190,17 @@
             <label class="mb-1" style="font-weight: 500">Genere:</label>
             <div class="row px-3">
               <div class="col-auto d-flex flex-wrap px-1">
+                <!-- *ngIf="ad?.genres; else emptyGenre" -->
                 <div
-                  *ngIf="ad?.genre; else emptyGenre"
-                  class="px-2 py-1 genre-container"
+                  *ngFor="let genre of ad?.genres"
+                  class="px-2 me-1 py-1 genre-container"
                   role="button"
                   routerLink="/home"
-                  [queryParams]="{ genre_id: ad?.genre.id }"
+                  [queryParams]="{ genres: genre.id }"
                 >
-                  {{ ad?.genre.name }}
+                  {{ genre.genre.name }}
                 </div>
-                <ng-template #emptyGenre class="px-2 py-1 genre-container"> Non disponibile </ng-template>
+                <div *ngIf="ad?.genres.length == 0" class="px-2 py-1 genre-container"> Non disponibile </div>
               </div>
             </div>
           </div>
@@ -210,7 +211,7 @@
         <div class="flex-shrink-1 w-75 m-lg-auto d-flex justify-content-end justify-content-lg-between">
           <label style="font-weight: 500" class="me-1 me-lg-0">prezzo:</label>
           <h1 class="mb-0 text-center p-0 br-20 border-0 border-sm-1 price-container d-inline">
-            {{ ad?.price }}<span class="fs-6">,00 €</span>
+            {{ price[0] }}<span class="fs-6">,{{ price[1] }} €</span>
           </h1>
         </div>
       </div>

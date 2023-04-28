@@ -15,6 +15,7 @@ export class AdDetailComponent implements OnInit {
   ad: Ad
   zoomImageShow: boolean = false
   username
+  price = ["1","00"]
 
   userId: number
   constructor(
@@ -31,6 +32,7 @@ export class AdDetailComponent implements OnInit {
 
       this.http.get(`${environment.apiUrl}/api/v1/ads/${this.id}`).subscribe((ad: { message: string; data: Ad }) => {
         this.ad = ad.data
+        this.price = this.ad.price.toString().split(".");
         console.log(this.ad)
         this.http.get(`${environment.apiUrl}/api/v1/users/info/${this.ad.user_id}`).subscribe((data: { data }) => {
           console.log(data.data)

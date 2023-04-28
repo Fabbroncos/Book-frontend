@@ -15,6 +15,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.authService.autoLogin()
+    this.authService.userData.subscribe((data)=> {
+      console.log(data);
+    })
   }
 
   onChange(color: number, input: NgModule) {

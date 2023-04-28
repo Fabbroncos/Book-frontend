@@ -25,7 +25,7 @@ export class Ad {
   public isbn: string
   public publisher: string
   public user_id: number
-  public genre: Genre[]
+  public genres: Genre[]
   public images: adImage[]
 
   hidden: boolean
@@ -45,7 +45,7 @@ export class Ad {
     isbn: string,
     publisher: string,
     user_id: number,
-    genre: Genre[],
+    genres: Genre[],
     images: adImage[],
   ) {
     if (quantity !== null) {
@@ -63,7 +63,7 @@ export class Ad {
     this.isbn = isbn
     this.publisher = publisher
     this.user_id = user_id
-    this.genre = genre
+    this.genres = genres
     this.images = images
   }
 }

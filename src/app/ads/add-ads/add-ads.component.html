@@ -92,9 +92,9 @@
 
     <div class="tab-content d-flex flex-grow-1 flex-shrink-1 px-4 pt-3" id="nav-tabContent">
       <div class="tab-pane fade show active h-100 w-100" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-        <div class="row">
+        <!-- <div class="row">
           <app-add-ad-item-form></app-add-ad-item-form>
-        </div>
+        </div> -->
         <div class="d-flex justify-content-center align-items-center h-75 w-100">
           <ul class="list-group br-20 w-50">
             <a role="button" (click)="changeStep(1); isMultyISBN = false" class="list-group-item p-4">
@@ -246,8 +246,8 @@
             #adContainer
             class="p-3"
             [ngClass]="openAd?.includes(i) ? 'col-12' : 'col-6'"
-            *ngFor="let ad of ads; let i = index"
-          >
+            *ngFor="let ad of ads; let i = index">
+
             <div #adItem class="my-3 p-0 ads-item" [ngClass]="{ 'ads-error': checkAds(ad) }">
               <form [formGroup]="adsForms[i]">
                 <ng-template #emptyValue>
@@ -421,6 +421,7 @@
                       formControlName="image"
                     ></app-custom-input-file-component>
                   </div>
+                  
                   <div class="col-8 ad-description">
                     <div class="d-flex flex-fill flex-column px-1">
                       <small class="d-block">

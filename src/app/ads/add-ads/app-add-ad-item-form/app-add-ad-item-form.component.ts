@@ -1,5 +1,7 @@
-import { Component, forwardRef, HostListener, OnInit } from '@angular/core'
-import { ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms'
+import { Component, EventEmitter, forwardRef, HostBinding, HostListener, Input, OnChanges, OnInit, Output } from '@angular/core'
+import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, NgForm, Validators } from '@angular/forms'
+import { Ad, Genre } from '../../ad.model'
+import { environment } from 'src/environments/environment.prod'
 
 @Component({
   selector: 'app-add-ad-item-form',
@@ -13,23 +15,91 @@ import { ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR } from '@angular/for
     },
   ],
 })
-export class AddAdItemFormComponent implements OnInit, ControlValueAccessor {
+export class AddAdItemFormComponent implements OnInit, ControlValueAccessor, OnChanges {
   constructor() {}
+
+  @Input('ad') ad: Ad = null
+  @Input('genres') genres: Genre[] = []
 
   id = 0
   imagePreview = []
-  form: FormGroup = null
   touched: boolean = false
   imageFile: File[] = []
+  isOpen = false
 
-  id = 0;
-  imagePreview = [];
-  form: FormGroup = null;
-  touched: boolean = false;
-  imageFile: File[] = [];
+  years: number[] = []
 
+  adForm: FormGroup = new FormGroup({
+    title: new FormControl(null, Validators.required),
+    author: new FormControl(null, Validators.required),
+    year: new FormControl(null, Validators.required),
+    publisher: new FormControl(null, Validators.required),
+    genre: new FormControl(null, Validators.required),
+    description: new FormControl(null),
+    image: new FormControl([], Validators.required),
+    ISBN: new FormControl({value: null, disabled: true}, Validators.required),
+    quantity: new FormControl(null, Validators.required),
+    price: new FormControl(null, Validators.required),
+  })
+
+  @HostBinding('class') className = 'col-6';
+  @Output() formChangeEvent = new EventEmitter<FormGroup>()
+
+
+  async ngOnChanges() {
+    console.log(this.ad);
+    
+    if (this.ad) {
+      
+      this.adForm.get('title').setValue(this.ad.title)
+      this.adForm.get('author').setValue(this.ad.author)
+      // this.adForm.get('year').setValue(this.ad.year)
+      this.adForm.get('publisher').setValue(this.ad.publisher)
+      // this.adForm.get('genre').setValue(this.ad.genres)
+      this.adForm.get('description').setValue(this.ad.description)
+      this.adForm.get('ISBN').setValue(this.ad.isbn)
+      for(let image of this.ad.images) {
+        this.imagePreview.push(environment.apiUrl + '/api/v1/adImages/' + image.url)
+        const response = await fetch(image.url);
+        // here image is url/location of image
+        const blob = await response.blob();
+        const file = new File([blob], 'image.jpg', {type: blob.type});
+        console.log(file);
+        this.imageFile.push(file)
+        console.log(image);
+
+      }
+      this.adForm.get('image').setValue(this.imageFile !== null ? this.imageFile : [])
+      this.adForm.get('quantity').setValue(this.ad.quantity)
+      this.adForm.get('price').setValue(this.ad.price)
+    }
+  }
 
   ngOnInit(): void {
+    const startYear = 1850
+    const endYear = new Date().getFullYear()
+
+    
+
+    for (let i = endYear; i > startYear; i--) {
+      this.years.push(i)
+    }
+
+    console.log(this.ad);
+    if (this.ad) {
+      
+      this.adForm.get('title').setValue(this.ad.title)
+      this.adForm.get('author').setValue(this.ad.author)
+      // this.adForm.get('year').setValue(this.ad.year)
+      this.adForm.get('publisher').setValue(this.ad.publisher)
+      // this.adForm.get('genre').setValue(this.ad.genres)
+      this.adForm.get('description').setValue(this.ad.description)
+      this.adForm.get('image').setValue(this.ad.images)
+      this.adForm.get('ISBN').setValue(this.ad.isbn)
+
+      this.adForm.get('quantity').setValue(this.ad.quantity)
+      this.adForm.get('price').setValue(this.ad.price)
+    }
   }
 
   onRemove(id: number) {
@@ -52,6 +122,7 @@ export class AddAdItemFormComponent implements OnInit, ControlValueAccessor {
     reader.onload = () => {
       this.imagePreview.push(reader.result as string)
       console.log(this.imagePreview)
+      console.log(this.imageFile)
     }
     reader.readAsDataURL(file)
   }
@@ -86,5 +157,38 @@ export class AddAdItemFormComponent implements OnInit, ControlValueAccessor {
     if (this.touched && this.imageFile.length === 0) {
       this.onTouched()
     }
+  }
+
+  toggleOpenAd(container: Element) {
+    this.isOpen = !this.isOpen;
+    console.log(this.isOpen);
+
+    if (this.isOpen) {
+      this.className = 'col-12'
+    } else {
+      this.className = 'col-6'
+    }
+    
+    if (container.classList.contains('ad-item')) {
+      container.classList.remove('ad-item')
+      container.classList.add('ad-item-edit')
+    //   container.classList.remove('col-12')
+    //   container.classList.add('col-6')
+    //   // errorList.classList.remove("d-block");
+    //   // errorList.classList.add("d-none");
+    } else {
+      container.classList.remove('ad-item-edit')
+      container.classList.add('ad-item')
+    //   container.classList.remove('col-6')
+    //   container.classList.add('col-12')
+    //   // errorList.classList.remove("d-none");
+    //   // errorList.classList.add("d-block");
+    }
+  }
+
+  checkForm() {
+    // form.control.markAllAsTouched()
+    console.log(this.adForm)
+    console.log(this.imagePreview)
   }
 }

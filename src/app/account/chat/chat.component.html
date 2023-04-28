@@ -1,3 +1,9 @@
+
+<div class="d-flex h-100 w-100 justify-content-center" *ngIf="!ChatLoadedObs | async; else empty">
+  <h1 class="m-3">There are no chat</h1>
+</div>
+
+<ng-template #empty>
 <div class="d-flex h-100 w-100">
   <div class="w-25">
     <div class="list-group h-100">
@@ -9,12 +15,9 @@
         class="list-group-item d-flex flex-column"
       >
         {{ getUsername(chat) }}
-        <small class="text-truncate" *ngIf="chat.last_message; else empty">
+        <small class="text-truncate" *ngIf="chat.last_message">
           Utente {{ chat.last_message.sent_by }}: {{ chat.last_message.text }}
         </small>
-        <ng-template #empty>
-          <small>Ciao</small>
-        </ng-template>
       </a>
     </div>
   </div>
@@ -65,3 +68,4 @@
     </div>
   </div>
 </div>
+</ng-template>

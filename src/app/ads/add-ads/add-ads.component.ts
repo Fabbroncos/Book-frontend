@@ -64,7 +64,16 @@ export class AddAdsComponent implements OnInit {
               }
               break
             case 'genre':
-              formData.append('genre_id', this.formSingle.value['genre'][0].id)
+              console.log(this.formSingle.value['genre']);
+              const genres = []
+              for(let genre of this.formSingle.value['genre']) {
+                console.log(genre);
+                genres.push(genre.id);
+              }
+              console.log(genres);
+              
+              formData.append('genres', JSON.stringify(genres))
+              // formData.append('genre_id', this.formSingle.value['genre'][0].id)
               break
             case 'quantity':
             case 'price':
@@ -83,7 +92,7 @@ export class AddAdsComponent implements OnInit {
         this.authService.user.value.role === 'LIBRERIA'
           ? environment.apiUrl + '/api/v1/ads/sell'
           : environment.apiUrl + '/api/v1/ads/search'
-      console.log(formData)
+      console.log(formData.get('genres'))
 
       this.http.post(url, formData).subscribe((resData) => {
         this.router.navigate([`/${this.authService.user.value.id}/my-insertion`])
@@ -167,7 +176,7 @@ export class AddAdsComponent implements OnInit {
                 ),
                 isbn: new FormControl({ value: this.isbns[i], disabled: true }, Validators.required),
                 price: new FormControl(0, Validators.required),
-                quantity: new FormControl(0, Validators.required),
+                quantity: new FormControl(1, Validators.required),
                 description: new FormControl('', Validators.required),
                 image: new FormControl(img !== null ? [img] : [], Validators.required),
               }),
@@ -330,7 +339,7 @@ export class AddAdsComponent implements OnInit {
       for (const nameValue of Object.keys(ad)) {
         if (ad[nameValue] === null) {
           console.log(nameValue + ' ' + ad[nameValue])
-          return
+          
         }
       }
 
@@ -349,34 +358,34 @@ export class AddAdsComponent implements OnInit {
                 }
               }
               break
-            // case "genre":
-            //   // formData.append('genre_id',ad['genre'][0].id)
-            //   break
-            // case "quantity":
-            // case "price":
-            //   if (this.authService.user.value.role === "LIBRERIA") {
-            //     // formData.append(nameValue,ad[nameValue])
-            //   }
-            //   break
-            // default:
-            //   formData.append(nameValue,ad[nameValue])
-            //   break
+            case "genre":
+              // formData.append('genre_id',ad['genre'][0].id)
+              break
+            case "quantity":
+            case "price":
+              if (this.authService.user.value.role === "LIBRERIA") {
+                // formData.append(nameValue,ad[nameValue])
+              }
+              break
+            default:
+              formData.append(nameValue,ad[nameValue])
+              break
           }
         }
       }
 
-      // let url = this.authService.user.value.role === "LIBRERIA" ? environment.apiUrl + "/api/v1/ads/sell" : environment.apiUrl + "/api/v1/ads/search"
-      // console.log(formData);
+      let url = this.authService.user.value.role === "LIBRERIA" ? environment.apiUrl + "/api/v1/ads/sell" : environment.apiUrl + "/api/v1/ads/search"
+      console.log(formData);
 
-      // this.http.post(
-      //   url,
-      //   formData
-      // ).subscribe(
-      //   resData => {
-      //     this.router.navigate([`/${this.authService.user.value.id}/my-insertion`])
+      this.http.post(
+        url,
+        formData
+      ).subscribe(
+        resData => {
+          this.router.navigate([`/${this.authService.user.value.id}/my-insertion`])
 
-      //   }
-      // )
+        }
+      )
     }
   }
 

@@ -33,6 +33,10 @@
     background-color: var(--secondary-light);
   }
 </style>
+<div class="row p-2 d-flex flex-shrink-1 flex-grow-1">
+  <app-add-ad-item-form [genres]="genres" [ad]="ad"></app-add-ad-item-form>
+  <app-add-ad-item-form [genres]="genres" [ad]="ad"></app-add-ad-item-form>
+</div>
 
 <div class="row m-3 flex-column">
   <div class="col-12 mb-4 mb-lg-0 d-block">
@@ -111,7 +115,7 @@
         </div>
         <div class="col-6 col-lg-4 order-3 mt-2" [ngClass]="{ 'd-none': filterHide }">
           <label for="year">Anno</label>
-          <app-multiple-select-component ngModel id="year" name="year" [list]="years"></app-multiple-select-component>
+          <app-multiple-select-component formControlName="year" id="year" name="year" [list]="years"></app-multiple-select-component>
         </div>
         <div class="col-6 col-lg-4 order-3 mt-2" [ngClass]="{ 'd-none': filterHide }">
           <label for="publisher">Editore</label>

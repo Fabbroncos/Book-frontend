@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.isLibrary = userData.role === 'LIBRERIA'
         this.id = userData.id
       }
+      console.log(this.isAuthenticated);
     })
   }
 

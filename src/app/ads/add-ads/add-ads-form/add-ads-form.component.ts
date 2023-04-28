@@ -24,7 +24,7 @@ export class AddAdsFormComponent implements OnInit {
     genre: new FormControl(null),
     description: new FormControl(null),
     image: new FormControl(null),
-    ISBN: new FormControl(null),
+    ISBN: new FormControl({value: null, disabled: true}),
     quantity: new FormControl(null),
     price: new FormControl(null),
   })
@@ -82,7 +82,14 @@ export class AddAdsFormComponent implements OnInit {
               formData.append('images', image, image.name)
             }
           } else if (nameValue === 'genre') {
-            formData.append('genre_id', this.addAdsForm.value['genre'][0].id)
+            console.log(this.addAdsForm.value['genre']);
+            let genres = []
+            for(let genre of this.addAdsForm.value['genre']) {
+              console.log(genre);
+              genres.push(genre.id);
+            }
+            
+            formData.append('genres', genres.toString())
           } else if (this.addAdsForm.value[nameValue] !== '') {
             console.log(nameValue)
 
@@ -90,13 +97,14 @@ export class AddAdsFormComponent implements OnInit {
           }
         }
       }
-
+      
+      
       if (this.authService.user.value.role === 'LIBRERIA') {
         formData.append('quantity', this.addAdsForm.value['quantity'])
         formData.append('price', this.addAdsForm.value['price'])
       }
 
-      console.log(formData)
+      
 
       // let url = this.authService.user.value.role === "LIBRERIA" ? environment.apiUrl + "/api/v1/ads/sell" : environment.apiUrl + "/api/v1/ads/search"
       // this.http.post(

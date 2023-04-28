@@ -42,9 +42,10 @@ export class ChatService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   connect() {
-    this.socket = io('https://ws.librerieriunite.net/ws/libreria/chats')
+    // this.socket = io('https://ws.librerieriunite.net/ws/libreria/chats')
+    this.socket = io('http://localhost:8080' + '/ws/libreria/chats')
     this.socket.on('connection', (pack) => {
-      //console.log(pack);
+      console.log("Connesso");
     })
     this.socket.emit('joining-open-chats', { jwt: this.authService.user.value.token })
   }

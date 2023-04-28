@@ -1,7 +1,9 @@
-import { Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core'
+import { Component, ElementRef, OnChanges, OnDestroy, OnInit, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { AuthService } from 'src/app/auth/auth.service'
 import { Chat, chatMessage, ChatService } from './chat.service'
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject'
+import { Observable } from 'rxjs/internal/Observable'
 
 @Component({
   selector: 'app-chat-component',
@@ -16,6 +18,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   connection
   message
   isLoading = false
+  private _ChatLoadedSub: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public ChatLoadedObs: Observable<boolean> = this._ChatLoadedSub.asObservable();
 
   constructor(private route: ActivatedRoute, private chatService: ChatService, private authService: AuthService) {}
 
@@ -43,15 +47,18 @@ export class ChatComponent implements OnInit, OnDestroy {
   @ViewChild('messagesList') messagesListEl: ElementRef
   scrollContainer: any
   ngOnInit() {
+    this.ChatLoadedObs.subscribe((data)=>{console.log(data);
+    })
     this.route.data.subscribe((chatData) => {
       this.chats = chatData[0]
-      if (this.chats) {
+      this._ChatLoadedSub.next(true);
+      if (this.chats.length > 0) {
         this.changeChat(this.chats[0])
       }
       this.chatService.connect()
       this.connection = this.chatService.getMessages().subscribe((messageData: { msg: string; sent_by: number }) => {
         const message: chatMessage = {
-          id: this.messages[0].id + 1,
+          id: this.messages[0] ? this.messages[0].id + 1 : 1,
           chat_id: this.activeChat.id,
           sent_by: messageData.sent_by,
           text: messageData.msg,
@@ -144,7 +151,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.chatService.getChatMessage(this.activeChat.id).subscribe((messageData: { data: { data: chatMessage[] } }) => {
       this.messages = messageData.data.data
-      console.log(this.messages)
+      // console.log(this.messages)
     })
   }
 
