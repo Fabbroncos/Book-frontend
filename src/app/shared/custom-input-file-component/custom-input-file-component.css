@@ -5,14 +5,15 @@ div.form-container:focus {
 
 .imageFrame {
   background-color: #4d86821a;
-  border: 1px solid var(--primary-color); 
-  height: 110px; width: 110px; 
+  border: 1px solid var(--primary-color);
+  height: 110px;
+  width: 110px;
   margin: 10px;
   float: top;
   display: inline;
 
   background-clip: padding-box;
-  border-radius: .50rem;
+  border-radius: 0.5rem;
 }
 
 .form-container {
@@ -22,14 +23,14 @@ div.form-container:focus {
   padding: 0;
   overflow: hidden;
 
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
 }
 
 .inputGroup {
   width: 100%;
   height: auto;
-  display:inline-flex;
+  display: inline-flex;
   border: none;
   float: top;
 }
@@ -44,11 +45,11 @@ div.form-container:focus {
   display: flex;
   overflow: hidden;
   overflow-y: auto;
-  flex:1;
+  flex: 1;
 }
 
 .imageContainer .row {
-  height:auto;
+  height: auto;
   width: 100%;
   margin: 0;
 }
@@ -62,7 +63,7 @@ label {
 }
 
 .custom-file-input ~ .custom-file-label::after {
-  content: "Scegli";
+  content: 'Scegli';
   background-color: var(--primary-color);
   height: 100%;
 }
@@ -70,7 +71,7 @@ label {
 .custom-file-input:focus ~ .custom-file-label {
   border: none;
   border-bottom: 1px solid var(--first-light);
-  box-shadow:none;
+  box-shadow: none;
 }
 
 div .custom-file-input ~ .custom-file-label {
@@ -79,14 +80,15 @@ div .custom-file-input ~ .custom-file-label {
 
 .imageFrameAdd {
   background-color: #4d86821a;
-  border: 1px solid var(--primary-color); 
-  height: 110px; width: 110px; 
+  border: 1px solid var(--primary-color);
+  height: 110px;
+  width: 110px;
   margin: 10px;
   float: top;
   display: inline;
 
   background-clip: padding-box;
-  border-radius: .50rem;
+  border-radius: 0.5rem;
 }
 
 div.imageContainer {
@@ -108,29 +110,30 @@ div.imageFrameAdd {
   display: none;
 }
 
-div.imageFrameAdd span{
+div.imageFrameAdd span {
   visibility: hidden;
   color: var(--primary-color);
 }
 
-div.imageContainer:hover .imageFrameAdd{
+div.imageContainer:hover .imageFrameAdd {
   visibility: visible;
   background-color: #4d86821a;
-  border: 1px solid var(--primary-color); 
-  height: 110px; width: 110px; 
+  border: 1px solid var(--primary-color);
+  height: 110px;
+  width: 110px;
   margin: 10px;
   float: top;
   display: inline;
 
   background-clip: padding-box;
-  border-radius: .50rem;
+  border-radius: 0.5rem;
 }
 
 div.imageContainer:hover #imgPlus {
   display: block;
 }
 
-div.imageContainer:hover .imageFrameAdd span{
+div.imageContainer:hover .imageFrameAdd span {
   visibility: visible;
 }
 
@@ -139,7 +142,7 @@ div.imageContainer:hover .imageFrameAdd span{
 }
 
 .bg-sfumato:hover {
-  background: radial-gradient(#243F3D90,#00000000)
+  background: radial-gradient(#243f3d90, #00000000);
 }
 .bg-sfumato svg {
   visibility: hidden;
@@ -154,7 +157,7 @@ div.imageContainer:hover .imageFrameAdd span{
 }
 
 .image-preview {
-  max-height: 100px; 
-  max-width: 100px; 
+  max-height: 100px;
+  max-width: 100px;
   margin: auto;
 }

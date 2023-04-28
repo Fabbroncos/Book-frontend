@@ -2,42 +2,51 @@
   <div class="col-10 col-sm-7 col-md-5">
     <div class="container-form br-20 p-4">
       <h1 class="text-third-dark">Login</h1>
-      <hr>
+      <hr />
       <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
         <div *ngIf="errorType !== ''" class="alert alert-danger d-flex align-items-center px-4" role="alert">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
-            <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
-            <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            class="bi bi-exclamation-triangle"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"
+            />
+            <path
+              d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"
+            />
           </svg>
-          <div class="ps-3 w-100" *ngIf="errorType === 'errorEmailPassword'">
-            Email o password errate
-          </div>
+          <div class="ps-3 w-100" *ngIf="errorType === 'errorEmailPassword'">Email o password errate</div>
           <div class="text-center w-100 fs-6" *ngIf="errorType === 'errorAccountVerified'">
-            L'account non è stato verificato <br>
-            clicca sul link nell'email che ti è stata inviata<br>
+            L'account non è stato verificato <br />
+            clicca sul link nell'email che ti è stata inviata<br />
             Non ti è arrivata l'email? <a class="link-danger" routerLink="/auth/password-recovery">clicca qui</a>
           </div>
         </div>
         <div #loginForm class="form-group">
           <label for="email">Email:</label>
-          <input type="email" name="email" id="email" email ngModel required class="form-control">
+          <input type="email" name="email" id="email" email ngModel required class="form-control" />
         </div>
         <div class="form-group">
           <label for="password">Password:</label>
-          <input type="password" name="password" id="password" ngModel required class="form-control">
+          <input type="password" name="password" id="password" ngModel required class="form-control" />
         </div>
         <small class="px-2 d-flex">
-          <p class="m-0"><a class="link-colored" routerLink="/auth/password-recovery">Password dimenticata?</a>
-          </p>
+          <p class="m-0"><a class="link-colored" routerLink="/auth/password-recovery">Password dimenticata?</a></p>
         </small>
         <div class="d-flex my-3 justify-content-center">
-          <button type="submit" [disabled]="loginForm.invalid" class="w-100 mb-2 btn btn-orange rounded-4 btn-main">Accedi</button>
+          <button type="submit" [disabled]="loginForm.invalid" class="w-100 mb-2 btn btn-orange rounded-4 btn-main">
+            Accedi
+          </button>
         </div>
       </form>
-      <hr>
+      <hr />
       <div class="d-flex justify-content-center">
-        <p>Non hai un account? <a class="link-colored" routerLink="/auth/register">Clicca qui</a>
-        </p>
+        <p>Non hai un account? <a class="link-colored" routerLink="/auth/register">Clicca qui</a></p>
       </div>
     </div>
   </div>

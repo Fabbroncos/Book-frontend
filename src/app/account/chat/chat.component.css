@@ -1,7 +1,7 @@
 .active {
   color: var(--third-dark);
   background-color: var(--third-color);
-  border: none
+  border: none;
 }
 
 small {
@@ -32,24 +32,24 @@ button .btn-main {
 }
 
 .otherUserMessage {
-  background-color: var(--third-color);;
+  background-color: var(--third-color);
   border-radius: 10px;
   width: fit-content;
-  color: var(--secondary-dark);;
+  color: var(--secondary-dark);
   margin-left: auto;
 }
 
 .chat-container {
-  overflow: hidden; 
-  background-color: var(--light-color); 
-  border-top-right-radius: 15px; 
-  border-bottom-right-radius: 15px; 
+  overflow: hidden;
+  background-color: var(--light-color);
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
   border-left: none;
 }
 
 .message-container {
-  overflow-y: scroll; 
-  position: relative; 
-  border-top: 1px solid var(--third-dark); 
+  overflow-y: scroll;
+  position: relative;
+  border-top: 1px solid var(--third-dark);
   border-bottom: 1px solid var(--third-dark);
 }

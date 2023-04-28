@@ -8,38 +8,40 @@
   flex: 1 1 auto;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: var(--third-dark);
 }
 
 .empty {
-  font-size: larger; 
+  font-size: larger;
   border-bottom: 1px solid var(--first-light);
 }
 
 .img-container {
-  height: 250px; 
-  border: 1px solid var(--primary-dark); 
-  background-color: var(--secondary-light) 
+  height: 250px;
+  border: 1px solid var(--primary-dark);
+  background-color: var(--secondary-light);
 }
 
 .field {
-  font-size: larger; 
+  font-size: larger;
   /* border-bottom: 1px solid var(--primary-color); */
 }
 
 .genre-container {
-  width: fit-content; 
-  background-color: var(--third-color); 
-  color: var(--light-color); 
+  width: fit-content;
+  background-color: var(--third-color);
+  color: var(--light-color);
   border-radius: 10px;
 }
 
 .price-container {
-  border:1px solid var(--third-dark);
+  border: 1px solid var(--third-dark);
 }
 
 .description-container {
-  min-height: 150px; 
+  min-height: 150px;
   border: 1px solid var(--third-light);
 }

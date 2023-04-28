@@ -5,13 +5,13 @@
 <div class="p-3 container flex-column d-flex h-100 w-100 text-dark">
   <div class="row p-4">
     <div class="col-12 text-center text-sm-start">
-      <h1 *ngIf="user?.role=='ACQUIRENTE'">{{ user?.username }} {{ user?.userInfos.last_name }}</h1>
-      <h1 *ngIf="user?.role=='LIBRERIA'">{{ user?.username }}</h1>
+      <h1 *ngIf="user?.role == 'ACQUIRENTE'">{{ user?.username }} {{ user?.userInfos.last_name }}</h1>
+      <h1 *ngIf="user?.role == 'LIBRERIA'">{{ user?.username }}</h1>
       <h5 class="ms-2">{{ user?.email }}</h5>
     </div>
   </div>
   <div class="row px-2 px-lg-4">
-    <h4 class=" mb-3 ms-auto">Informazioni</h4>
+    <h4 class="mb-3 ms-auto">Informazioni</h4>
     <div class="col-12 ms-1">
       <h6>Indirizzo:</h6>
       <div class="row">
@@ -35,9 +35,8 @@
           <small>Indirizzo 2:</small>
           <p *ngIf="user?.streetAddress2; else empty" class="ms-1 info p-1">{{ user?.streetAddress2 }}</p>
         </div>
-        
       </div>
-      <ng-container *ngIf="user?.role=='LIBRERIA'">
+      <ng-container *ngIf="user?.role == 'LIBRERIA'">
         <div class="row justify-content-center">
           <div class="col-12 col-lg-6">
             <h6 class="mb-0">P.iva</h6>
@@ -53,18 +52,27 @@
       </ng-container>
     </div>
   </div>
-  <br>
+  <br />
   <div class="row mt-auto pb-3 flex-column flex-md-row justify-content-lg-center">
-    <div class="col-12 col-md-6 col-lg-auto d-flex p-1 justify-content-end justify-content-lg-center order-1 order-xl-2">
-      <button class="btn btn-main flex-grow-1 flex-lg-grow-0" routerLink="/{{ user?.id }}/my-profile/edit">Modifica profilo</button>
+    <div
+      class="col-12 col-md-6 col-lg-auto d-flex p-1 justify-content-end justify-content-lg-center order-1 order-xl-2"
+    >
+      <button class="btn btn-main flex-grow-1 flex-lg-grow-0" routerLink="/{{ user?.id }}/my-profile/edit">
+        Modifica profilo
+      </button>
     </div>
-    <div class="col-12 col-md-6 col-lg-auto d-flex p-1 justify-content-end justify-content-lg-center order-1 order-xl-2">
-      <button class="btn btn-main flex-grow-1 flex-lg-grow-0" routerLink="/{{ user?.id }}/change-password">Modifica password</button>
+    <div
+      class="col-12 col-md-6 col-lg-auto d-flex p-1 justify-content-end justify-content-lg-center order-1 order-xl-2"
+    >
+      <button class="btn btn-main flex-grow-1 flex-lg-grow-0" routerLink="/{{ user?.id }}/change-password">
+        Modifica password
+      </button>
     </div>
     <div class="col-12 px-0 px-xl-3 order-2">
-      <hr>
+      <hr />
       <small class="d-flex justify-content-center">
-        <a href="#" class="link-danger">Elimina account</a> <!--Problema crea eliminazione account con toast di conferma-->
+        <a href="#" class="link-danger">Elimina account</a>
+        <!--Problema crea eliminazione account con toast di conferma-->
       </small>
     </div>
   </div>

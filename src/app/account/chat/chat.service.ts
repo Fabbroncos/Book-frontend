@@ -1,9 +1,9 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { io } from "socket.io-client";
-import { AuthService } from "src/app/auth/auth.service";
-import { environment } from "src/environments/environment.prod";
+import { HttpClient } from '@angular/common/http'
+import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs'
+import { io } from 'socket.io-client'
+import { AuthService } from 'src/app/auth/auth.service'
+import { environment } from 'src/environments/environment.prod'
 
 export interface chatMessage {
   chat_id: number
@@ -34,69 +34,65 @@ export interface Chat {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class ChatService {  
-  private socket;
+export class ChatService {
+  private socket
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   connect() {
-    this.socket = io("https://ws.librerieriunite.net/ws/libreria/chats");
+    this.socket = io('https://ws.librerieriunite.net/ws/libreria/chats')
     this.socket.on('connection', (pack) => {
       //console.log(pack);
     })
-    this.socket.emit('joining-open-chats', {jwt: this.authService.user.value.token})
+    this.socket.emit('joining-open-chats', { jwt: this.authService.user.value.token })
   }
 
-  disconnect(){
-    this.socket.on("disconnect", () => {
-      console.log("Disconnect " + this.socket.id); // undefined
-    });
-  }
-  
-  sendMessage(chat_id: number, message: string){
-    console.log(message);
-    
-    const chat = {id: chat_id, msg: message}
-    this.socket.emit('sending-message', {jwt: this.authService.user.value.token, chat: chat});    
+  disconnect() {
+    this.socket.on('disconnect', () => {
+      console.log('Disconnect ' + this.socket.id) // undefined
+    })
   }
 
-  getChatList(){
-    return this.http.get(
-      `${environment.apiUrl}/api/v1/chats`,
-    )
+  sendMessage(chat_id: number, message: string) {
+    console.log(message)
+
+    const chat = { id: chat_id, msg: message }
+    this.socket.emit('sending-message', { jwt: this.authService.user.value.token, chat: chat })
   }
 
-  getChatInPage(id: number) { // cerca la chat in una pagina specifica
-    this.http.get(
-      `${environment.apiUrl}/api/v1/chats`
-    )
+  getChatList() {
+    return this.http.get(`${environment.apiUrl}/api/v1/chats`)
+  }
+
+  getChatInPage(id: number) {
+    // cerca la chat in una pagina specifica
+    this.http.get(`${environment.apiUrl}/api/v1/chats`)
   }
 
   getChatMessage(id: number, page?: number) {
-    if (!page) {page=1}
-    console.log(id);
-    
-    return this.http.get(
-      `${environment.apiUrl}/api/v1/chats/${id.toString()}/messages`,
-      {
-        params: {
-          page: page
-        }
-      }
-    )
+    if (!page) {
+      page = 1
+    }
+    console.log(id)
+
+    return this.http.get(`${environment.apiUrl}/api/v1/chats/${id.toString()}/messages`, {
+      params: {
+        page: page,
+      },
+    })
   }
-  
+
   getMessages() {
-    let observable = new Observable(observer => {
+    let observable = new Observable((observer) => {
       this.socket.on('receiving-message', (data) => {
-        observer.next(data);    
-      });
+        observer.next(data)
+      })
       // return () => {
       //   this.socket.disconnect();
-      // };  
-    })     
-    return observable;
-  }  
+      // };
+    })
+    return observable
+  }
 }

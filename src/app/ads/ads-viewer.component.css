@@ -1,0 +1,10 @@
+.ads-viewer-container {
+  margin-top: -35px;
+  color: var(--third-color);
+}
+
+.ads-viewer-logo {
+  background-color: var(--secondary-light);
+  border-radius: 20px;
+  height: auto;
+}

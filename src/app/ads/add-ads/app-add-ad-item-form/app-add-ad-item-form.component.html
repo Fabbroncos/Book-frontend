@@ -1,4 +1,4 @@
-<div class="col-12 p-2" style="border: 1px solid black;">
+<div class="col-6 p-2" style="border: 1px solid black;">
   <form>
     <div class="row">
       <div class="col-4 d-flex">
@@ -8,18 +8,14 @@
         align-items: center; 
         justify-content: space-around;">
           <div class="h-100 d-flex justify-content-center" style="overflow: hidden; background-color: rgba(200, 200, 200, 0.60);">
-            <img src="../../../../assets/babel.jpg" alt="" class="w-100" style="max-height: 300px; min-height: 200px;">
+            <img src="../../../../assets/babel.jpg" alt="" class="h-100" style="max-height: 200px; min-height: 200px;">
           </div>
         </div>
       </div>
       <div class="col-8">
         <div class="row flex-row">
           <div class="col-12">
-            <h6 for="title" *ngIf="!isOpen; else frmtitle">La repubblica del Drago</h6>
-            <ng-template #frmtitle>
-              <label for="title">Title:</label>
-              <input class="form-control" type="text">  
-            </ng-template>
+            <h6 for="title">Title:</h6>  
           </div>
           <div class="col-12">
             <p for="author" *ngIf="!isOpen; else frmauthor">Autore: R.K. Fuang</p>
@@ -51,53 +47,81 @@
           </div>
           <div class="col-6">
             <label for="quantity">Quantità:</label>
-            <input class="form-control" type="number">  
+            <input class="form-control" type="text">  
           </div>
           <div class="col-6">
             <label for="price">Prezzo:</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-              <span class="input-group-text">€</span>
-            </div>
+            <input class="form-control" type="text">  
           </div>
         </div>
       </div>
-      <div class="py-2 " [ngClass]="isOpen ? 'col-6 px-3' : 'col-12 '">
-        <label for="" class="px-1 pb-1">Aggiungi un immagine:</label>
+      <div class="col-12">
+        <label for="">Scegli l'immagine</label>
+
         <div class="form-control form-container"  tabindex="0"> <!-- [ngClass] = "{'invalid': form.invalid && form.touched}" -->
-          <div class="input-group w-100">
+          <div class="input-group w-100 ">
             <input
               multiple
               (click)="onRemoveTarget($event)"
               (change)="onChangeInput($event)"
-              type="file" 
-              accept="image/*" 
-              class="custom-file-input d-none" 
-              id="{{'imgInp' + id}}" 
-              data-show-caption="true" 
-              data-show-upload="false">
-            <label class="flex-grow-1 input-group-text bg-white" for="{{'imgInp' + id}}">
+              type="file"
+              accept="image/*"
+              class="custom-file-input d-none"
+              id="{{ 'imgInp' + id }}"
+              data-show-caption="true"
+              data-show-upload="false"
+            />
+            <label class="flex-grow-1 input-group-text bg-white" for="{{ 'imgInp' + id }}">
               {{ setText() }}
             </label>
-            <label class="input-group-text flex-grow-0 choose-button" for="{{'imgInp' + id}}">Scegli</label>
-            
+            <label class="input-group-text flex-grow-0 choose-button" for="{{ 'imgInp' + id }}">Scegli</label>
           </div>
           <div class="imageContainer" tabindex="0">
             <div class="row">
-              <div *ngFor="let item of imagePreview; let i = index" (click)="onRemove(i)" class="col-xs-12 d-flex align-items-center justify-content-center imageFrame position-relative" tabindex="0">
-                <img [src]="item" class="image-preview">
-    
-                <div class="d-flex justify-content-center align-items-center bg-sfumato text-light-color position-absolute top-0 bottom-0 end-0 start-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
-                    <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+              <div
+                *ngFor="let item of imagePreview; let i = index"
+                (click)="onRemove(i)"
+                class="col-xs-12 d-flex align-items-center justify-content-center imageFrame position-relative"
+                tabindex="0"
+              >
+                <img [src]="item" class="image-preview" />
+
+                <div
+                  class="d-flex justify-content-center align-items-center bg-sfumato text-light-color position-absolute top-0 bottom-0 end-0 start-0"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    class="bi bi-x-lg"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"
+                    />
                   </svg>
                 </div>
               </div>
               <div class="col-xs-12 d-flex align-items-center imageFrameAdd p-0" tabindex="0">
-                <label class="h-100 w-100 d-flex align-items-center justify-content-center" for="{{'imgInp' + id}}">
-                  <svg xmlns="http://www.w3.org/2000/svg" id="imgPlus" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                    <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+                <label class="h-100 w-100 d-flex align-items-center justify-content-center" for="{{ 'imgInp' + id }}">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="imgPlus"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-plus-lg"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"
+                    />
                   </svg>
                 </label>
               </div>
@@ -105,10 +129,6 @@
           </div>
         </div>    
 
-      </div>
-      <div class="col-6 d-flex flex-column py-2">
-        <label for="description" class="px-1 pb-1">Descrizione:</label>
-        <textarea name="description" id="description" class="form-control flex-fill"></textarea>
       </div>
     </div>
     <!-- <div class="row">

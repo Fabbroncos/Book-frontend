@@ -13,7 +13,7 @@
 }
 
 .background-line {
-  height: 25%; 
-  background-color: var(--fourth-light); 
+  height: 25%;
+  background-color: var(--fourth-light);
   z-index: -1;
 }

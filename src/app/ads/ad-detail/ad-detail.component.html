@@ -2,64 +2,145 @@
   <p class="px-1 m-0 text-muted empty">---</p>
 </ng-template>
 
-
 <div class="row justify-content-center position-relative py-5">
-  <div *ngIf="zoomImageShow" class="position-absolute col-9 col-lg-7 col-xl-6 m-lg-auto mb-auto mx-auto top-0 start-0 bottom-0 end-0 p-1" style="border-radius: 10px; background-color: var(--third-color); z-index: 1000; aspect-ratio: 1 / 1;">  
+  <div
+    *ngIf="zoomImageShow"
+    class="position-absolute col-9 col-lg-7 col-xl-6 m-lg-auto mb-auto mx-auto top-0 start-0 bottom-0 end-0 p-1"
+    style="border-radius: 10px; background-color: var(--third-color); z-index: 1000; aspect-ratio: 1 / 1"
+  >
     <div class="position-relative h-100 w-100 d-flex justify-content-center p-0 rounded img-container border-0">
-      <div role="button" (click)="imgZoom()" class="position-absolute top-0 end-0 d-flex justify-content-center align-items-center" style="cursor:pointer; z-index: 1500; background-color: var(--fourth-light); height: 20px; aspect-ratio: 1 / 1; border-radius: 5px;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
-          <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+      <div
+        role="button"
+        (click)="imgZoom()"
+        class="position-absolute top-0 end-0 d-flex justify-content-center align-items-center"
+        style="
+          cursor: pointer;
+          z-index: 1500;
+          background-color: var(--fourth-light);
+          height: 20px;
+          aspect-ratio: 1 / 1;
+          border-radius: 5px;
+        "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-x-lg"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"
+          />
         </svg>
       </div>
       <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel" data-bs-interval="false">
         <div *ngIf="ad?.images.length > 1" class="carousel-indicators">
-          <button *ngFor="let img of ad?.images;let i = index ;let isFirst = first" [ngClass]="{'active': isFirst}" type="button" data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i" aria-label="Slide"></button>
+          <button
+            *ngFor="let img of ad?.images; let i = index; let isFirst = first"
+            [ngClass]="{ active: isFirst }"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            [attr.data-bs-slide-to]="i"
+            aria-label="Slide"
+          ></button>
         </div>
         <div class="carousel-inner w-100 h-100">
-          <div *ngFor="let img of ad?.images;let isFirst = first" [ngClass]="{'active': isFirst}" class="carousel-item w-100 h-100">
+          <div
+            *ngFor="let img of ad?.images; let isFirst = first"
+            [ngClass]="{ active: isFirst }"
+            class="carousel-item w-100 h-100"
+          >
             <div class="w-100 h-100 d-flex justify-content-center">
-              <img [src]="getUrl(img)" class="d-block h-100" alt="{{ad?.title}}">
+              <img [src]="getUrl(img)" class="d-block h-100" alt="{{ ad?.title }}" />
             </div>
           </div>
           <div *ngIf="ad?.images.length === 0" class="h-100 w-100 d-flex justify-content-center align-items-center">
             Immagine non disponibile
           </div>
         </div>
-        <button *ngIf="ad?.images.length > 1" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <button
+          *ngIf="ad?.images.length > 1"
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button *ngIf="ad?.images.length > 1" class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <button
+          *ngIf="ad?.images.length > 1"
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>
     </div>
-
   </div>
   <div class="col-10 col-md-8 col-lg-10 container-form box h-auto">
     <div class="row p-4">
       <div class="order-lg-1 col-12 col-lg-4 d-flex justify-content-center p-0 rounded img-container">
-        <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel" data-bs-interval="false">
+        <div
+          id="carouselExampleIndicators"
+          class="carousel slide w-100"
+          data-bs-ride="carousel"
+          data-bs-interval="false"
+        >
           <div *ngIf="ad?.images.length > 1" class="carousel-indicators">
-            <button *ngFor="let img of ad?.images;let i = index ;let isFirst = first" [ngClass]="{'active': isFirst}" type="button" data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i" aria-label="Slide"></button>
+            <button
+              *ngFor="let img of ad?.images; let i = index; let isFirst = first"
+              [ngClass]="{ active: isFirst }"
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              [attr.data-bs-slide-to]="i"
+              aria-label="Slide"
+            ></button>
           </div>
           <div class="carousel-inner w-100 h-100">
-            <div role="button" (click)="imgZoom()" *ngFor="let img of ad?.images;let isFirst = first" [ngClass]="{'active': isFirst}" class="carousel-item w-100 h-100" style="cursor: pointer;">
+            <div
+              role="button"
+              (click)="imgZoom()"
+              *ngFor="let img of ad?.images; let isFirst = first"
+              [ngClass]="{ active: isFirst }"
+              class="carousel-item w-100 h-100"
+              style="cursor: pointer"
+            >
               <div class="w-100 h-100 d-flex justify-content-center">
-                <img [src]="getUrl(img)" class="d-block h-100" alt="{{ad?.title}}">
+                <img [src]="getUrl(img)" class="d-block h-100" alt="{{ ad?.title }}" />
               </div>
             </div>
             <div *ngIf="ad?.images.length === 0" class="h-100 w-100 d-flex justify-content-center align-items-center">
               Immagine non disponibile
             </div>
           </div>
-          <button *ngIf="ad?.images.length > 1" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <button
+            *ngIf="ad?.images.length > 1"
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev"
+          >
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button *ngIf="ad?.images.length > 1" class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <button
+            *ngIf="ad?.images.length > 1"
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next"
+          >
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
@@ -70,32 +151,55 @@
           <div class="col-12 mt-2 mt-lg-0 mb-3">
             <h2 class="text-center">{{ ad?.title }}</h2>
           </div>
-          <div class="col-11 mb-2" >
-            <label class="" style="font-weight: 500;">Autore:</label>
-            <p class="px-1 m-0 field" style="border-bottom: 1px solid var(--third-dark);" *ngIf="ad?.author; else emptyInfo">{{ ad?.author }}</p>    
+          <div class="col-11 mb-2">
+            <label class="" style="font-weight: 500">Autore:</label>
+            <p
+              class="px-1 m-0 field"
+              style="border-bottom: 1px solid var(--third-dark)"
+              *ngIf="ad?.author; else emptyInfo"
+            >
+              {{ ad?.author }}
+            </p>
           </div>
           <div class="col-11 mb-2">
-            <label class="" style="font-weight: 500;">Editore:</label>
-            <p class="px-1 m-0 field" style="border-bottom: 1px solid var(--third-dark);" *ngIf="ad?.publisher; else emptyInfo">{{ ad?.publisher }}</p>    
+            <label class="" style="font-weight: 500">Editore:</label>
+            <p
+              class="px-1 m-0 field"
+              style="border-bottom: 1px solid var(--third-dark)"
+              *ngIf="ad?.publisher; else emptyInfo"
+            >
+              {{ ad?.publisher }}
+            </p>
           </div>
           <div class="col-11 mb-2">
-            <label class="" style="font-weight: 500;">Anno:</label>
-            <p class="px-1 m-0 field" style="border-bottom: 1px solid var(--third-dark);" *ngIf="ad?.year; else emptyInfo">{{ ad?.year }}</p>
+            <label class="" style="font-weight: 500">Anno:</label>
+            <p
+              class="px-1 m-0 field"
+              style="border-bottom: 1px solid var(--third-dark)"
+              *ngIf="ad?.year; else emptyInfo"
+            >
+              {{ ad?.year }}
+            </p>
           </div>
         </div>
       </div>
       <div class="col-8 order-3 order-lg-4">
         <div class="row justify-content-center">
-          <div class="col-11 mb-2"> <!--Problema aggiustare con generi multipli-->
-            <label class="mb-1" style="font-weight: 500;">Genere:</label>
+          <div class="col-11 mb-2">
+            <!--Problema aggiustare con generi multipli-->
+            <label class="mb-1" style="font-weight: 500">Genere:</label>
             <div class="row px-3">
               <div class="col-auto d-flex flex-wrap px-1">
-                <div *ngIf="ad?.genre; else emptyGenre" class="px-2 py-1 genre-container" role="button" routerLink= "/home" [queryParams] = "{genre_id: ad?.genre.id}"> 
+                <div
+                  *ngIf="ad?.genre; else emptyGenre"
+                  class="px-2 py-1 genre-container"
+                  role="button"
+                  routerLink="/home"
+                  [queryParams]="{ genre_id: ad?.genre.id }"
+                >
                   {{ ad?.genre.name }}
                 </div>
-                <ng-template #emptyGenre class="px-2 py-1 genre-container">
-                  Non disponibile
-                </ng-template>
+                <ng-template #emptyGenre class="px-2 py-1 genre-container"> Non disponibile </ng-template>
               </div>
             </div>
           </div>
@@ -104,8 +208,10 @@
       <div class="col-6 col-lg-4 order-5 order-lg-3 pe-4 pe-md-5 pe-lg-0 mt-2 d-flex justify-content-end">
         <!-- <small class="text-end">Utente {{ad?.user_id}}</small> -->
         <div class="flex-shrink-1 w-75 m-lg-auto d-flex justify-content-end justify-content-lg-between">
-          <label style="font-weight: 500;" class="me-1 me-lg-0">prezzo:</label>
-          <h1 class="mb-0 text-center p-0 br-20 border-0 border-sm-1 price-container d-inline">{{ad?.price}}<span class="fs-6">,00 €</span>  </h1>
+          <label style="font-weight: 500" class="me-1 me-lg-0">prezzo:</label>
+          <h1 class="mb-0 text-center p-0 br-20 border-0 border-sm-1 price-container d-inline">
+            {{ ad?.price }}<span class="fs-6">,00 €</span>
+          </h1>
         </div>
       </div>
       <div class="col-12 order-4 p-1">
@@ -117,21 +223,21 @@
       </div>
       <div class="col-6 col-lg-8 ps-4 ps-md-5 order-4 order-lg-5 d-flex align-items-center">
         <small class="text-end">
-          <a routerLink="/detail/{{ad?.user_id}}" class="link-colored" style="text-decoration: none">
-            Utente {{username}}
+          <a routerLink="/detail/{{ ad?.user_id }}" class="link-colored" style="text-decoration: none">
+            Utente {{ username }}
           </a>
-          </small>
+        </small>
       </div>
       <div class="col-12 col-lg-4 pt-2 pt-lg-0 pe-lg-5 order-5">
-        <button *ngIf="userId===ad?.user_id" class="btn btn-danger w-100" (click)="onDelete()">Elimina Inserzione</button>
-        <button *ngIf="!(userId===ad?.user_id)" class="btn btn-main w-100" (click)="openChat()">Contatta Inserzionista</button>
+        <button *ngIf="userId === ad?.user_id" class="btn btn-danger w-100" (click)="onDelete()">
+          Elimina Inserzione
+        </button>
+        <button *ngIf="!(userId === ad?.user_id)" class="btn btn-main w-100" (click)="openChat()">
+          Contatta Inserzionista
+        </button>
       </div>
     </div>
-    
-    <div class="row px-5 pb-4 justify-content-between">
-    </div>
-    
-  </div>
-  </div>
 
-  
+    <div class="row px-5 pb-4 justify-content-between"></div>
+  </div>
+</div>

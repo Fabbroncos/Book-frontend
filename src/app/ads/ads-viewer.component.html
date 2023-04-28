@@ -1,13 +1,13 @@
-<div style="color: var(--third-color);" class="row px-5 m-0 justify-content-center">
-  <div class="col-11 d-flex flex-column justify-content-center text-center py-1" style="background-color: var(--secondary-light); border-radius: 20px; height:auto">
+<div class="row px-5 mx-0 justify-content-center ads-viewer-container">
+  <div class="col-11 d-flex flex-column justify-content-center text-center py-1 ads-viewer-logo">
     <!-- <h1 style="font-size:100px;">LIR</h1> -->
-    <img style="height: 100px; width: 130px;" class="mx-auto" src="/assets/icon.png" alt="icon">
+    <img style="height: 100px; width: 130px" class="mx-auto" src="/assets/icon.png" alt="icon" />
     <p class="fs-3">Librerie Indipendenti Riunite</p>
   </div>
   <!--<div class="col-6 d-flex">
     <div class="px-3">
 
-       <div class="px-2 fs-1">Inserzione</div> 
+       <div class="px-2 fs-1">Inserzione</div>
     </div>
   </div>-->
 </div>
@@ -20,14 +20,15 @@
   }
   /* .btn-outline-primary:hover {
     color: white;
-    background-color: var(--third-dark); 
+    background-color: var(--third-dark);
   } */
 
   .btn-outline-secondary {
     color: var(--third-color);
     border-color: var(--secondary-light);
   }
-  .btn-outline-secondary:hover, .btn-outline-primary:hover {
+  .btn-outline-secondary:hover,
+  .btn-outline-primary:hover {
     color: white;
     background-color: var(--secondary-light);
   }
@@ -37,62 +38,109 @@
   <div class="col-12 mb-4 mb-lg-0 d-block">
     <form #filter1Form="ngForm" (ngSubmit)="onSubmit(filter1Form)">
       <!--Problema conatiner per varie dimensioni-->
-      <div class="row p-3 bg-white br-20"> <!--style="border: 1px solid var(--third-dark); border-radius: 20px;"-->
-        <div class="col-12 col-md-10 order-2 d-flex flex-row  justify-content-between">
+      <div class="row p-3 bg-white br-20">
+        <!--style="border: 1px solid var(--third-dark); border-radius: 20px;"-->
+        <div class="col-12 col-md-10 order-2 d-flex flex-row justify-content-between">
           <div class="d-flex flex-column flex-fill me-2">
             <!-- <label class="" for="title">Titolo</label> -->
-            <input ngModel id="title" name="title" placeholder="Cerca titolo..." class="form-control">
+            <input ngModel id="title" name="title" placeholder="Cerca titolo..." class="form-control" />
           </div>
 
-          <button type="submit" class="btn text-third-dark d-flex align-items-center shadow-none bg-white me-2" style="border: 1px solid var(--third-dark);">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          <button
+            type="submit"
+            class="btn text-third-dark d-flex align-items-center shadow-none bg-white me-2"
+            style="border: 1px solid var(--third-dark)"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              class="bi bi-search"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+              />
             </svg>
           </button>
-          
-          <button (click)="hideFilter()" class="btn text-third-dark d-flex align-items-center shadow-none bg-white" style="border: 1px solid var(--third-dark);">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-sliders" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"/>
-            </svg> 
+
+          <button
+            (click)="hideFilter()"
+            class="btn text-third-dark d-flex align-items-center shadow-none bg-white"
+            style="border: 1px solid var(--third-dark)"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              class="bi bi-sliders"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"
+              />
+            </svg>
           </button>
         </div>
         <div class="col-12 col-md-2 order-1 justify-content-between mb-2 mb-md-0 pe-md-0 d-flex">
-          <button role="button" (click)="toggleType('S')" class="btn shadow-none flex-grow-1 p-0 me-1" [ngClass]="type==='S' ? 'btn-outline-primary' : 'btn-outline-secondary'" type="submit">Vendo</button>
-          <button role="button" (click)="toggleType('F')" class="btn shadow-none flex-grow-1 p-0 ms-1" [ngClass]="type==='F' ? 'btn-outline-primary' : 'btn-outline-secondary'" type="submit">Cerco</button>
-          
+          <button
+            role="button"
+            (click)="toggleType('S')"
+            class="btn shadow-none flex-grow-1 p-0 me-1"
+            [ngClass]="type === 'S' ? 'btn-outline-primary' : 'btn-outline-secondary'"
+            type="submit"
+          >
+            Vendo
+          </button>
+          <button
+            role="button"
+            (click)="toggleType('F')"
+            class="btn shadow-none flex-grow-1 p-0 ms-1"
+            [ngClass]="type === 'F' ? 'btn-outline-primary' : 'btn-outline-secondary'"
+            type="submit"
+          >
+            Cerco
+          </button>
         </div>
-        <div class="col-6 col-lg-4 order-3 mt-2" [ngClass]="{'d-none': filterHide}">
-          <label  for="author">Autore</label>
-          <input ngModel id="author" name="author" class="form-control">
+        <div class="col-6 col-lg-4 order-3 mt-2" [ngClass]="{ 'd-none': filterHide }">
+          <label for="author">Autore</label>
+          <input ngModel id="author" name="author" class="form-control" />
         </div>
-        <div class="col-6 col-lg-4 order-3 mt-2" [ngClass]="{'d-none': filterHide}">
-          <label  for="year">Anno</label>
+        <div class="col-6 col-lg-4 order-3 mt-2" [ngClass]="{ 'd-none': filterHide }">
+          <label for="year">Anno</label>
           <app-multiple-select-component ngModel id="year" name="year" [list]="years"></app-multiple-select-component>
         </div>
-        <div class="col-6 col-lg-4 order-3 mt-2" [ngClass]="{'d-none': filterHide}">
-          <label  for="publisher">Editore</label>
-          <input ngModel id="publisher" name="publisher" class="form-control">
+        <div class="col-6 col-lg-4 order-3 mt-2" [ngClass]="{ 'd-none': filterHide }">
+          <label for="publisher">Editore</label>
+          <input ngModel id="publisher" name="publisher" class="form-control" />
         </div>
-        <div class="col-6 col-lg-4 order-3 mt-2"  [ngClass]="{'d-none': filterHide}">
-          <label  for="isbn">Isbn</label>
-          <input ngModel id="isbn" name="isbn" minlength="11" maxlength="13" class="form-control">
+        <div class="col-6 col-lg-4 order-3 mt-2" [ngClass]="{ 'd-none': filterHide }">
+          <label for="isbn">Isbn</label>
+          <input ngModel id="isbn" name="isbn" minlength="11" maxlength="13" class="form-control" />
         </div>
-        <div class="col-6 col-lg-4 order-3 mt-2"  [ngClass]="{'d-none': filterHide}">
-          <label  for="genre">Genere</label>
-          <app-multiple-select-component ngModel name="genre" [list]="genres" stringAttribute="name" [multiple]="true"></app-multiple-select-component>
+        <div class="col-6 col-lg-4 order-3 mt-2" [ngClass]="{ 'd-none': filterHide }">
+          <label for="genre">Genere</label>
+          <app-multiple-select-component
+            ngModel
+            name="genre"
+            [list]="genres"
+            stringAttribute="name"
+            [multiple]="true"
+          ></app-multiple-select-component>
         </div>
-        <div class="col-6 col-lg-4 order-3 mt-2"  [ngClass]="{'d-none': filterHide}">
+        <div class="col-6 col-lg-4 order-3 mt-2" [ngClass]="{ 'd-none': filterHide }">
           <label for="price" class="d-block">Prezzo</label>
-          <input ngModel id="price_min" name="price_min" placeholder="min" class="form-control d-inline-flex w-50">
-          <input ngModel id="price_max" name="price_max" placeholder="max" class="form-control d-inline-flex w-50">
+          <input ngModel id="price_min" name="price_min" placeholder="min" class="form-control d-inline-flex w-50" />
+          <input ngModel id="price_max" name="price_max" placeholder="max" class="form-control d-inline-flex w-50" />
         </div>
         <!-- <div class="col-12 order-3 p-3" [ngClass]="{'d-none': filterHide}">
           <button class="btn btn-main w-100 p-0" type="submit">Cerca</button>
         </div> -->
-          
-          
       </div>
-    </form> 
+    </form>
   </div>
   <div class="col-12">
     <app-ads-list [params]="params"></app-ads-list>
