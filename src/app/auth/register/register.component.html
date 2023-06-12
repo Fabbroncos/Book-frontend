@@ -353,14 +353,16 @@
                 <div class="col-6 d-flex justify-content-center">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="privacy" />
-                    <label class="form-check-label" for="privacy"> Privacy </label>
+                    <label class="form-check-label" for="privacy"> 
+                      <a routerLink="/privacy" class="link-colored" style="text-decoration: none;">Privacy</a>
+                    </label>
                   </div>
                 </div>
                 <div class="col-6 d-flex justify-content-center">
-                  <div class="form-check">
+                  <!-- <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="condizioni" />
                     <label class="form-check-label" for="condizioni"> Condizioni </label>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="col-12 d-flex justify-content-center align-items-center">
                   <button type="submit" [disabled]="userForm.invalid" class="btn btn-main px-5">Conferma</button>

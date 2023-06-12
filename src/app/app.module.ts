@@ -15,7 +15,8 @@ import { AccountModule } from './account/account.module'
 import { SharedModule } from './shared/shared.module'
 import { AdsModule } from './ads/ads.module'
 import { PasswordRecoveryComponent } from './auth/password-recovery/password-recovery.component'
-import { PublicUserDetail } from './account/public-user-detail/public-user-detail.component'
+import { PublicUserDetail } from './account/public-user-detail/public-user-detail.component';
+import { PrivacyComponent } from './privacy/privacy.component'
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PublicUserDetail } from './account/public-user-detail/public-user-detai
     ConfirmAccountComponent,
     PasswordRecoveryComponent,
     ChangePasswordComponent,
+    PrivacyComponent,
   ],
   imports: [AppRoutingModule, AccountModule, AdsModule, SharedModule, BrowserAnimationsModule, TuiRootModule, TuiDialogModule, TuiAlertModule],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],

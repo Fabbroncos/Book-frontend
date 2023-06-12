@@ -16,14 +16,13 @@ import { environment } from 'src/environments/environment.prod'
   ],
 })
 export class AddAdItemFormComponent implements OnInit, ControlValueAccessor, OnChanges {
-  constructor() {}
 
   @Input('ad') ad: Ad = null
   @Input('genres') genres: Genre[] = []
 
   id = 0
   imagePreview = []
-  touched: boolean = false
+  touched = false
   imageFile: File[] = []
   isOpen = false
 
@@ -48,7 +47,14 @@ export class AddAdItemFormComponent implements OnInit, ControlValueAccessor, OnC
 
   async ngOnChanges() {
     console.log(this.ad);
-    
+    if (this.ad) {
+      const date = this.ad.year.toString().split(/[. \-/_]/);
+      for (const num in date) {
+        if (num.length === 4) {
+          this.ad.year = parseInt(num)
+        }
+      }
+    }
     if (this.ad) {
       
       this.adForm.get('title').setValue(this.ad.title)
@@ -58,20 +64,19 @@ export class AddAdItemFormComponent implements OnInit, ControlValueAccessor, OnC
       // this.adForm.get('genre').setValue(this.ad.genres)
       this.adForm.get('description').setValue(this.ad.description)
       this.adForm.get('ISBN').setValue(this.ad.isbn)
-      for(let image of this.ad.images) {
-        this.imagePreview.push(environment.apiUrl + '/api/v1/adImages/' + image.url)
+      this.adForm.get('quantity').setValue(this.ad.quantity)
+      this.adForm.get('price').setValue(this.ad.price)
+      for(const image of this.ad.images) {
+        this.imagePreview.push(image.url)
         const response = await fetch(image.url);
         // here image is url/location of image
         const blob = await response.blob();
         const file = new File([blob], 'image.jpg', {type: blob.type});
-        console.log(file);
         this.imageFile.push(file)
-        console.log(image);
 
       }
       this.adForm.get('image').setValue(this.imageFile !== null ? this.imageFile : [])
-      this.adForm.get('quantity').setValue(this.ad.quantity)
-      this.adForm.get('price').setValue(this.ad.price)
+      
     }
   }
 
@@ -85,7 +90,6 @@ export class AddAdItemFormComponent implements OnInit, ControlValueAccessor, OnC
       this.years.push(i)
     }
 
-    console.log(this.ad);
     if (this.ad) {
       
       this.adForm.get('title').setValue(this.ad.title)
@@ -102,6 +106,14 @@ export class AddAdItemFormComponent implements OnInit, ControlValueAccessor, OnC
     }
   }
 
+  getUrl() {
+    if (this.ad && this.ad.images != null && this.ad.images[0]) {
+      return this.ad.images[0].url
+    } else {
+      return '../assets/no_image.png'
+    }
+  }
+
   onRemove(id: number) {
     this.imageFile.splice(id,1)
     this.imagePreview.splice(id,1)
@@ -114,15 +126,12 @@ export class AddAdItemFormComponent implements OnInit, ControlValueAccessor, OnC
   }
 
   onChangeInput(event) {
-    console.log(event)
     const file = (event.target as HTMLInputElement).files[0]
     this.imageFile.push(file)
     this.onChange(this.imageFile)
     const reader = new FileReader()
     reader.onload = () => {
       this.imagePreview.push(reader.result as string)
-      console.log(this.imagePreview)
-      console.log(this.imageFile)
     }
     reader.readAsDataURL(file)
   }
@@ -161,7 +170,6 @@ export class AddAdItemFormComponent implements OnInit, ControlValueAccessor, OnC
 
   toggleOpenAd(container: Element) {
     this.isOpen = !this.isOpen;
-    console.log(this.isOpen);
 
     if (this.isOpen) {
       this.className = 'col-12'

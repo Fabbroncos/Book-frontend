@@ -43,7 +43,7 @@ export class ChatService {
 
   connect() {
     // this.socket = io('https://ws.librerieriunite.net/ws/libreria/chats')
-    this.socket = io('http://localhost:8080' + '/ws/libreria/chats')
+    this.socket = io(environment.apiUrlsocket + '/ws/libreria/chats')
     this.socket.on('connection', (pack) => {
       console.log("Connesso");
     })

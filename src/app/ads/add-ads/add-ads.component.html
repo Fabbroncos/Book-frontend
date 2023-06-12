@@ -101,10 +101,10 @@
               <h5>Crea un inserzione</h5>
               <small class="text-muted">Inserisci manualmente i dettagli</small>
             </a>
-            <a role="button" (click)="changeStep(1); isMultyISBN = true" class="list-group-item p-4">
+            <!-- <a role="button" (click)="changeStep(1); isMultyISBN = true" class="list-group-item p-4">
               <h5>Inserisci un inserzione tramite ISBN</h5>
               <small class="text-muted">Con questa opzione è possibile creare molteplici inserzioni</small>
-            </a>
+            </a> -->
           </ul>
         </div>
       </div>
@@ -242,7 +242,8 @@
       </div>
       <div class="tab-pane fade h-100 w-100" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
         <div class="row d-flex flex-shrink-1 flex-grow-1">
-          <div
+          <app-add-ad-item-form *ngFor="let ad of ads; let i = index" [genres]="genres" [ad]="ad"></app-add-ad-item-form>
+          <!-- <div
             #adContainer
             class="p-3"
             [ngClass]="openAd?.includes(i) ? 'col-12' : 'col-6'"
@@ -324,7 +325,7 @@
                           formControlName="publisher"
                           class="form-control form-control-hidden"
                         />
-                        <!--Cambiare in ad.publisher-->
+                        <!-Cambiare in ad.publisher->
                         <p>{{ ad.publisher }}</p>
                       </div>
                       <div class="col-6 d-flex px-2 flex-column">
@@ -365,7 +366,7 @@
                           class="d-block form-control form-control-hidden"
                         />
                       </div>
-                      <!-- <div class="d-flex px-2 justify-content-between">
+                      <!- <div class="d-flex px-2 justify-content-between">
                       <div class="px-2">
                         Prezzo: 
                         <input type="text" class="form-control form-control-hidden" #priceInput [(ngModel)]="ad.price" (change)="ad.price = priceInput.value">
@@ -374,21 +375,21 @@
                         Quantità: 
                         <input type="number" class="form-control form-control-hidden" #quantityInput [(ngModel)]="ad.quantity" (change)="ad.quantity = quantityInput.value">
                       </div>
-                    </div> -->
+                    </div> ->
                     </div>
                   </div>
-                  <!-- <div class="col-12 divider">Scegli immagine principale:</div> -->
+                  <!- <div class="col-12 divider">Scegli immagine principale:</div> ->
 
                   <div class="col divider py-2 d-flex flex-column">
                     Scegli immagine principale:
-                    <!-- <div class="d-flex flex-row p-2"> -->
-                    <!-- <div *ngFor="let img of ad.images; let i = index" role="button" class="d-flex mini-image">
+                    <!- <div class="d-flex flex-row p-2"> ->
+                    <!- <div *ngFor="let img of ad.images; let i = index" role="button" class="d-flex mini-image">
                       <a role="btn" class="d-flex justify-content-center" (click)=setFirstImage(ad,i)>
                         <img src="{{img.url}}" class="h-100" alt="ad.title">
                       </a>
-                    </div>-->
-                    <!-- </div>  -->
-                    <!-- <style>
+                    </div>->
+                    <!- </div>  ->
+                    <!- <style>
                     :host ::ng-deep .input-group {
                       display: none
                     }
@@ -414,7 +415,7 @@
                       max-width: 98px; 
                       max-height: 98px;
                     }  */
-                  </style> -->
+                  </style> ->
                     <app-custom-input-file-component
                       [form]="adsForms[i].get('image')"
                       [id]="i"
@@ -435,13 +436,13 @@
                       ></textarea>
                     </div>
                   </div>
-                  <!-- <div #errorList class="col-12 p-2">
+                  <!- <div #errorList class="col-12 p-2">
                   <p *ngFor="let error of listErrorAds(adsform)" class="text-danger p-0 m-0">{{error}}</p>
-                </div> -->
+                </div> ->
                 </div>
               </form>
             </div>
-          </div>
+          </div> -->
           <div class="col-12 d-flex justify-content-between">
             <button class="btn btn-main" (click)="changeStep(1)">Indietro</button>
             <button class="btn btn-main" (click)="onSubmitMulty(); check()">Pubblica</button>

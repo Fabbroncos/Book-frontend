@@ -49,14 +49,14 @@
         align-items: center; 
         justify-content: space-around;">
           <div class="h-100 d-flex justify-content-center"  style="overflow: hidden; background-color: rgba(200, 200, 200, 0.60);">
-            <img src="../../../../assets/babel.jpg" alt="" class="h-100 ad-image" style="">
+            <img src="{{ getUrl() }}" alt="" class="h-100 ad-image" style="">
           </div>
         </div>
       </div>
       <div class="col-8">
         <div class="row flex-row">
           <div class="col-12 pb-2">
-            <h5 for="title" *ngIf="!isOpen; else frmtitle">BlackWater</h5>
+            <h5 for="title" *ngIf="!isOpen; else frmtitle">{{ ad?.title }}</h5>
             <ng-template #frmtitle>
               <h6 for="title" class="d-inline">Titolo:</h6>
               <input class="form-control" id="title" formControlName="title" type="text">  
@@ -64,42 +64,39 @@
           </div>
           <div class="col-12 pb-2">
             <h6 class="d-inline">Autore: </h6>
-            <p for="author" class="d-inline" *ngIf="!isOpen; else frmauthor">R.K. Fuang</p>
+            <p for="author" class="d-inline" *ngIf="!isOpen; else frmauthor">{{ ad?.author }}</p>
             <ng-template #frmauthor>
               <input class="form-control" id="author" formControlName="author" type="text">  
             </ng-template>
           </div>
           <div [ngClass]="isOpen ? 'col-6' : 'd-none'" class="pb-2">
             <h6 class="d-inline">Genere: </h6>
-            <p for="genre" class="d-inline" *ngIf="!isOpen; else frmgenre">Mondadori</p>
-            <ng-template #frmgenre>
-              <app-multiple-select-component
-                id="genre" 
-                formControlName="genre"
-                name="genre"
-                [list]="genres"
-                stringAttribute="name"
-                [multiple]="true"
-              ></app-multiple-select-component>
-            </ng-template>
+            <app-multiple-select-component
+              id="genre" 
+              formControlName="genre"
+              name="genre"
+              [list]="genres"
+              stringAttribute="name"
+              [multiple]="true"
+            ></app-multiple-select-component>
           </div>
           <div [ngClass]="isOpen ? 'col-6' : 'col-12'" class="pb-2">
             <h6 class="d-inline">Casa Editrice: </h6>
-            <p for="publisher" class="d-inline" *ngIf="!isOpen; else frmpublisher">Mondadori</p>
+            <p for="publisher" class="d-inline" *ngIf="!isOpen; else frmpublisher">{{ ad?.publisher }}</p>
             <ng-template #frmpublisher>
               <input class="form-control" id="publisher" formControlName="publisher" type="text">  
             </ng-template>
           </div>
           <div class="col-6 pb-2">
             <h6 class="d-inline">Anno: </h6>
-            <p for="year" class="d-inline" *ngIf="!isOpen; else frmyear">2018</p>
+            <p for="year" class="d-inline" *ngIf="!isOpen; else frmyear">{{ ad?.year }}</p>
             <ng-template #frmyear>
               <app-multiple-select-component formControlName="year" id="year" name="year" [list]="years"></app-multiple-select-component>
             </ng-template>
           </div>
           <div class="col-6 pb-2">
             <h6 class="d-inline">Isbn: </h6>
-            <p for="ISBN" class="d-inline" *ngIf="!isOpen; else frmisbn">12345678911</p>
+            <p for="ISBN" class="d-inline" *ngIf="!isOpen; else frmisbn">{{ ad?.isbn }}</p>
             <ng-template #frmisbn>
               <input class="form-control" id="ISBN" formControlName="ISBN" type="text">  
             </ng-template>

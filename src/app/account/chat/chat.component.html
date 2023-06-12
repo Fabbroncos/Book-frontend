@@ -27,7 +27,7 @@
         <h4 class="m-0">{{ getUsername(activeChat) }}</h4>
         <span class="d-flex align-items-end">
           <small *ngIf="activeChat">
-            <a routerLink="getLink()" style="color: var(--fourth-color)"> Inserzione ID:{{ activeChat.ad_id }} </a>
+            <a routerLink="{{getLink()}}" style="color: var(--fourth-color)"> Inserzione ID:{{ activeChat.ad_id }} </a>
           </small>
         </span>
       </div>

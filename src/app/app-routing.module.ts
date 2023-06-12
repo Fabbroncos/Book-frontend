@@ -21,10 +21,12 @@ import { UserResolverService } from './account/user-resolver.service'
 import { CityResolverService } from './auth/city-resolver.service copy'
 import { PasswordRecoveryComponent } from './auth/password-recovery/password-recovery.component'
 import { PublicUserDetail } from './account/public-user-detail/public-user-detail.component'
+import { PrivacyComponent } from './privacy/privacy.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'detail/:user_id', component: PublicUserDetail },
+  { path: 'privacy', component: PrivacyComponent },
   {
     path: 'home',
     resolve: [GenreResolverService],

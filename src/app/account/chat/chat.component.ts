@@ -178,8 +178,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   getLink() {
-    console.log(this.activeChat.opener_user_id)
-    console.log(this.activeChat.ad_id)
+    // console.log(this.activeChat.opener_user_id)
+    // console.log(this.activeChat.ad_id)
 
     return '/home/{{activeChat.opener_user_id}}/{{activeChat.ad_id}}'
   }

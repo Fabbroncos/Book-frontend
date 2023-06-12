@@ -28,12 +28,6 @@ export class AdsViewerComponent implements OnInit {
   ngOnInit() {
     const cont: string = this.router.url
 
-    this.adsservice.getAds().subscribe((ads: {data}) => {
-      this.ad = ads.data.data[0];
-      console.log(ads.data.data[0]);
-      
-    })
-
     const startYear = 1850
     const endYear = new Date().getFullYear()
 
