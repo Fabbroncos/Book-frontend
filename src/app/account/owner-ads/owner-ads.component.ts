@@ -15,7 +15,7 @@ export class OwnerAdsComponent implements OnInit {
   constructor(private http: HttpClient, private authService: AuthService) {}
   ngOnInit() {
     // this.http.get(
-    //   `${environment.apiUrl}/api/v1/ads`,
+    //   `${environment.apiUrl}//v1/ads`,
     //   {
     //     params:{
     //       "owner": true
@@ -33,7 +33,7 @@ export class OwnerAdsComponent implements OnInit {
   onSearch() {
     this.params = { ...this.params, title: this.searchInput.nativeElement.value }
     // this.http.get(
-    //   `${environment.apiUrl}/api/v1/ads`,
+    //   `${environment.apiUrl}//v1/ads`,
     //   {
     //     params:{
     //       "title": this.searchInput.nativeElement.value,

@@ -44,7 +44,7 @@ export class AdsListItemComponent implements OnInit {
     // this.ad["price"] = "15.99€";
 
     if (this.ad.images[0]) {
-      this.srcImage = environment.apiUrl + '/api/v1/adImages/' + this.ad.images[0].url
+      this.srcImage = environment.apiUrl + '//v1/adImages/' + this.ad.images[0].url
       if (this.ad.id % 2 === 0) {
         this.srcImage = '/assets/babel.jpg'
       } else {

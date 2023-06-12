@@ -20,7 +20,7 @@ export class CityResolverService implements Resolve<City[]> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.authService.user.value.comune) {
       return this.http
-        .get(`${environment.apiUrl}/api/v1/provinces/${this.authService.user.value.comune.province_id}/comuni`)
+        .get(`${environment.apiUrl}//v1/provinces/${this.authService.user.value.comune.province_id}/comuni`)
         .pipe(
           map((resData: { message: string; data: City[] }) => {
             console.log(resData)

@@ -64,12 +64,12 @@ export class ChatService {
   }
 
   getChatList() {
-    return this.http.get(`${environment.apiUrl}/api/v1/chats`)
+    return this.http.get(`${environment.apiUrl}//v1/chats`)
   }
 
   getChatInPage(id: number) {
     // cerca la chat in una pagina specifica
-    this.http.get(`${environment.apiUrl}/api/v1/chats`)
+    this.http.get(`${environment.apiUrl}//v1/chats`)
   }
 
   getChatMessage(id: number, page?: number) {
@@ -78,7 +78,7 @@ export class ChatService {
     }
     console.log(id)
 
-    return this.http.get(`${environment.apiUrl}/api/v1/chats/${id.toString()}/messages`, {
+    return this.http.get(`${environment.apiUrl}//v1/chats/${id.toString()}/messages`, {
       params: {
         page: page,
       },

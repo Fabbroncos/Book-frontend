@@ -18,7 +18,7 @@ export class ProvincesResolverService implements Resolve<Provinces[]> {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.http.get(`${environment.apiUrl}/api/v1/provinces`).pipe(
+    return this.http.get(`${environment.apiUrl}//v1/provinces`).pipe(
       map((resData: { message: string; data: Provinces[] }) => {
         return resData.data
       }),
