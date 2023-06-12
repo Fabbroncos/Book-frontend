@@ -114,8 +114,9 @@
       <div [ngClass]="!isOpen ? 'col-12' : 'col-6'">
         <h6 for="" class="d-inline">Scegli l'immagine</h6>
 
-        <div class="form-control form-container"  tabindex="0"> <!-- [ngClass] = "{'invalid': form.invalid && form.touched}" -->
-          <div class="input-group w-100 ">
+        <div class="form-control form-container" tabindex="0">
+          <!-- [ngClass] = "{'invalid': form.invalid && form.touched}" -->
+          <div class="input-group w-100">
             <input
               multiple
               formControlName="image"
@@ -184,8 +185,7 @@
               </div>
             </div>
           </div>
-        </div>    
-
+        </div>
       </div>
       <div [ngClass]="{ 'd-none': !isOpen }" class="col-6 d-flex">
         <div class="d-flex flex-fill flex-column px-1">
