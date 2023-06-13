@@ -46,7 +46,7 @@ export class EditUserDetailComponent implements OnInit {
         this.initForm()
         // if (this.user.provinceId && this.user.provinceId!==0) {
         // this.http.get(
-        //   `${environment.apiUrl}//v1/provinces/${this.user.provinceId}`
+        //   `${environment.apiUrl}/api/v1/provinces/${this.user.provinceId}`
         // ).subscribe(
         //   (resData: {message: string, data: []}) => {
         //     this.city = resData.data;
@@ -126,7 +126,7 @@ export class EditUserDetailComponent implements OnInit {
       console.log(value)
 
       this.http
-        .get(`${environment.apiUrl}//v1/provinces/${value[0].id}`)
+        .get(`${environment.apiUrl}/api/v1/provinces/${value[0].id}`)
         .subscribe((resData: { message: string; data: [] }) => {
           this.city = resData.data
           this.userForm.get('city').setValue([])
@@ -144,7 +144,7 @@ export class EditUserDetailComponent implements OnInit {
       this.userForm.value.comune_id = this.userForm.value.city[0].id
       delete this.userForm.value.city
 
-      this.http.patch(`${environment.apiUrl}//v1/users/${this.user.id}`, this.userForm.value).subscribe(
+      this.http.patch(`${environment.apiUrl}/api/v1/users/${this.user.id}`, this.userForm.value).subscribe(
         (res) => {
           console.log(res)
 

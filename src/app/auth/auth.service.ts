@@ -49,12 +49,12 @@ export class AuthService {
   }
 
   register(info) {
-    return this.http.post(`${environment.apiUrl}//v1/auth/register`, info)
+    return this.http.post(`${environment.apiUrl}/api/v1/auth/register`, info)
   }
 
   login(email: string, password: string) {
     return this.http
-      .post(/*<AuthResponseData>*/ `${environment.apiUrl}//v1/auth/login`, {
+      .post(/*<AuthResponseData>*/ `${environment.apiUrl}/api/v1/auth/login`, {
         email: email,
         password: password,
       })
@@ -88,7 +88,7 @@ export class AuthService {
   loadUser() {
     console.log('pass')
 
-    return this.http.get(`${environment.apiUrl}//v1/users/${this.userData.value.id}`).pipe(
+    return this.http.get(`${environment.apiUrl}/api/v1/users/${this.userData.value.id}`).pipe(
       tap((resData) => {
         const expirationDate = new Date(+this.userData.value.exp * 1000)
         const loadedUser = new User(
@@ -106,7 +106,7 @@ export class AuthService {
         )
         if (loadedUser.comune) {
           this.http
-            .get<any>(`${environment.apiUrl}//v1/provinces/${loadedUser.comune.province_id}`)
+            .get<any>(`${environment.apiUrl}/api/v1/provinces/${loadedUser.comune.province_id}`)
             .subscribe((provinceData) => {
               loadedUser.province = provinceData.data.name
               this.user.next(loadedUser)
@@ -181,7 +181,7 @@ export class AuthService {
   }
 
   changePassword(password: string, newPassword: string, newPasswordConfirm: string) {
-    return this.http.post(`${environment.apiUrl}//v1/auth/change-password`, {
+    return this.http.post(`${environment.apiUrl}/api/v1/auth/change-password`, {
       password: password,
       passwordNew: newPassword,
       passwordConfirm: newPasswordConfirm,
@@ -189,7 +189,7 @@ export class AuthService {
   }
 
   confirmAccount(token: string) {
-    return this.http.get(`${environment.apiUrl}//v1/auth/confirm-account/${token}`, {
+    return this.http.get(`${environment.apiUrl}/api/v1/auth/confirm-account/${token}`, {
       headers: {
         data: `Bearer ${token}`,
       },

@@ -30,11 +30,11 @@ export class AdDetailComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['book-id']
 
-      this.http.get(`${environment.apiUrl}//v1/ads/${this.id}`).subscribe((ad: { message: string; data: Ad }) => {
+      this.http.get(`${environment.apiUrl}/api/v1/ads/${this.id}`).subscribe((ad: { message: string; data: Ad }) => {
         this.ad = ad.data
         this.price = this.ad.price.toString().split(".");
         console.log(this.ad)
-        this.http.get(`${environment.apiUrl}//v1/users/info/${this.ad.user_id}`).subscribe((data: { data }) => {
+        this.http.get(`${environment.apiUrl}/api/v1/users/info/${this.ad.user_id}`).subscribe((data: { data }) => {
           console.log(data.data)
           if (data.data.user_infos) {
             this.username = data.data.user_infos.first_name
@@ -62,7 +62,7 @@ export class AdDetailComponent implements OnInit {
       this.router.navigate([`/auth/login`])
     } else {
       this.http
-        .post(`${environment.apiUrl}//v1/chats`, {
+        .post(`${environment.apiUrl}/api/v1/chats`, {
           ad_id: this.ad.id,
         })
         .subscribe((chatData: any) => {
@@ -73,11 +73,11 @@ export class AdDetailComponent implements OnInit {
   }
 
   getUrl(img: adImage) {
-    return '/assets/babel.jpg' //`${environment.apiUrl}//v1/adImages/${img.url}`
+    return '/assets/babel.jpg' //`${environment.apiUrl}/api/v1/adImages/${img.url}`
   }
 
   onDelete() {
-    let url = this.ad.type === 'S' ? environment.apiUrl + '//v1/ads/sell' : environment.apiUrl + '//v1/ads/search'
+    let url = this.ad.type === 'S' ? environment.apiUrl + '/api/v1/ads/sell' : environment.apiUrl + '/api/v1/ads/search'
 
     this.http.delete(`${url}/${this.id}`).subscribe((resData) => {
       this.router.navigate([`./${this.authService.user.value.id}/my-insertion`])

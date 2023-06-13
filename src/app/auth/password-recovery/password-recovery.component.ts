@@ -26,7 +26,7 @@ export class PasswordRecoveryComponent {
     this.onSend()
   }
   onSend() {
-    this.http.post(`${environment.apiUrl}//v1/auth/password-recovery`, { email: this.email }).subscribe(
+    this.http.post(`${environment.apiUrl}/api/v1/auth/password-recovery`, { email: this.email }).subscribe(
       (success) => {
         this.emailSend = true
       },

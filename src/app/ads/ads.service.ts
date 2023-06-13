@@ -12,7 +12,7 @@ export class AdsService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getAds(params?) {
-    return this.http.get(`${environment.apiUrl}//v1/ads`, {
+    return this.http.get(`${environment.apiUrl}/api/v1/ads`, {
       params: params,
     })
   }

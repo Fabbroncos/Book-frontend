@@ -15,7 +15,7 @@ export class UserResolverService implements Resolve<void> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     console.log(this.authService.user.value)
 
-    this.http.get<any>(`${environment.apiUrl}//v1/provinces/${this.authService.user.value.comune.province_id}`).pipe(
+    this.http.get<any>(`${environment.apiUrl}/api/v1/provinces/${this.authService.user.value.comune.province_id}`).pipe(
       map((provinceData) => {
         this.authService.user.value.province = provinceData.data.name
         console.log(this.authService.user.value)

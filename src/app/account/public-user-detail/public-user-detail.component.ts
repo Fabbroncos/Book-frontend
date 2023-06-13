@@ -16,7 +16,7 @@ export class PublicUserDetail implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.params.user_id = params.user_id
-      this.http.get(`${environment.apiUrl}//v1/users/info/${params.user_id}`).subscribe((data: { data }) => {
+      this.http.get(`${environment.apiUrl}/api/v1/users/info/${params.user_id}`).subscribe((data: { data }) => {
         console.log(data.data)
         this.user = data.data
       })

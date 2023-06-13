@@ -14,7 +14,7 @@ export class GenreResolverService implements Resolve<Genre[]> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     try {
-      return this.http.get(`${environment.apiUrl}//v1/genres`).pipe(
+      return this.http.get(`${environment.apiUrl}/api/v1/genres`).pipe(
         map((genresData: { data: [] }) => {
           return genresData.data
         }),

@@ -106,7 +106,7 @@ export class AddAdsFormComponent implements OnInit {
 
       
 
-      // let url = this.authService.user.value.role === "LIBRERIA" ? environment.apiUrl + "//v1/ads/sell" : environment.apiUrl + "//v1/ads/search"
+      // let url = this.authService.user.value.role === "LIBRERIA" ? environment.apiUrl + "/api/v1/ads/sell" : environment.apiUrl + "/api/v1/ads/search"
       // this.http.post(
       //   url,
       //   formData

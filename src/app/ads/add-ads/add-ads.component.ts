@@ -90,8 +90,8 @@ export class AddAdsComponent implements OnInit {
 
       let url =
         this.authService.user.value.role === 'LIBRERIA'
-          ? environment.apiUrl + '//v1/ads/sell'
-          : environment.apiUrl + '//v1/ads/search'
+          ? environment.apiUrl + '/api/v1/ads/sell'
+          : environment.apiUrl + '/api/v1/ads/search'
       console.log(formData.get('genres'))
 
       this.http.post(url, formData).subscribe((resData) => {
@@ -141,7 +141,7 @@ export class AddAdsComponent implements OnInit {
       console.log(this.books)
 
       this.http
-        .post(`${environment.apiUrl}//v1/books`, {
+        .post(`${environment.apiUrl}/api/v1/books`, {
           isbns: this.isbns,
         })
         .subscribe((resData: { data }) => {
@@ -374,7 +374,7 @@ export class AddAdsComponent implements OnInit {
         }
       }
 
-      let url = this.authService.user.value.role === "LIBRERIA" ? environment.apiUrl + "//v1/ads/sell" : environment.apiUrl + "//v1/ads/search"
+      let url = this.authService.user.value.role === "LIBRERIA" ? environment.apiUrl + "/api/v1/ads/sell" : environment.apiUrl + "/api/v1/ads/search"
       console.log(formData);
 
       this.http.post(
@@ -425,7 +425,7 @@ export class AddAdsComponent implements OnInit {
     }
     this.isEdit = false
 
-    this.http.get(`${environment.apiUrl}//v1/books/checkByIsbn/${this.isbnForm.value['ISBN']}`).subscribe(
+    this.http.get(`${environment.apiUrl}/api/v1/books/checkByIsbn/${this.isbnForm.value['ISBN']}`).subscribe(
       (resData: { data: { title: string } }) => {
         console.log(resData)
 
@@ -491,7 +491,7 @@ export class AddAdsComponent implements OnInit {
     const isbnArray = list.match(/[a-zA-Z]+|[0-9]+/g)
 
     for (let isbn of isbnArray) {
-      this.http.get(`${environment.apiUrl}//v1/books/checkByIsbn/${isbn}`).subscribe(
+      this.http.get(`${environment.apiUrl}/api/v1/books/checkByIsbn/${isbn}`).subscribe(
         (resData: { data: { title: string } }) => {
           console.log(resData)
 
